@@ -1,0 +1,5468 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "SDK Reference",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/threads": {
+      "get": {
+        "operationId": "get-threads",
+        "summary": "Get threads",
+        "description": "Returns all threads.",
+        "tags": [
+          "subpackage_thread"
+        ],
+        "parameters": [
+          {
+            "name": "page_number",
+            "in": "query",
+            "description": "Page number for pagination, starting from 1",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "description": "Number of threads to retrieve per page.",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "order_by",
+            "in": "query",
+            "description": "Field to order the results by: created_at, updated_at, user_id, thread_id.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "asc",
+            "in": "query",
+            "description": "Order direction: true for ascending, false for descending.",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of threads",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataThreadListResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "start-a-new-thread",
+        "summary": "Start a new thread.",
+        "description": "Start a new thread.",
+        "tags": [
+          "subpackage_thread"
+        ],
+        "responses": {
+          "201": {
+            "description": "The thread object.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataThread"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "Thread",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ModelsCreateThreadRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/threads/{threadId}": {
+      "delete": {
+        "operationId": "delete-thread",
+        "summary": "Delete thread",
+        "description": "Deletes a thread.",
+        "tags": [
+          "subpackage_thread"
+        ],
+        "parameters": [
+          {
+            "name": "threadId",
+            "in": "path",
+            "description": "The ID of the thread for which memory should be deleted.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataSuccessResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/threads/{threadId}/context": {
+      "get": {
+        "operationId": "get-user-context",
+        "summary": "Get user context",
+        "description": "Returns most relevant context from the user graph (including memory from any/all past threads) based on the content of the past few messages of the given thread.",
+        "tags": [
+          "subpackage_thread"
+        ],
+        "parameters": [
+          {
+            "name": "threadId",
+            "in": "path",
+            "description": "The ID of the current thread (for which context is being retrieved).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "template_id",
+            "in": "query",
+            "description": "Optional template ID to use for custom context rendering.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataThreadContextResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/threads/{threadId}/messages": {
+      "get": {
+        "operationId": "get-messages-of-a-thread",
+        "summary": "Get messages of a thread",
+        "description": "Returns messages for a thread.",
+        "tags": [
+          "subpackage_thread"
+        ],
+        "parameters": [
+          {
+            "name": "threadId",
+            "in": "path",
+            "description": "Thread ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Limit the number of results returned",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "description": "Cursor for pagination",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "lastn",
+            "in": "query",
+            "description": "Number of most recent messages to return (overrides limit and cursor)",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataThreadMessageListResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "add-messages-to-a-thread",
+        "summary": "Add messages to a thread",
+        "description": "Add messages to a thread.",
+        "tags": [
+          "subpackage_thread"
+        ],
+        "parameters": [
+          {
+            "name": "threadId",
+            "in": "path",
+            "description": "The ID of the thread to which messages should be added.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "An object, optionally containing user context retrieved for the last thread message",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAddThreadMessagesResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "An object representing the thread messages to be added.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApidataAddThreadMessagesRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/threads/{threadId}/messages-batch": {
+      "post": {
+        "operationId": "add-messages-to-a-thread-in-batch",
+        "summary": "Add messages to a thread in batch",
+        "description": "Add messages to a thread in batch mode. This will process messages concurrently, which is useful for data migrations.",
+        "tags": [
+          "subpackage_thread"
+        ],
+        "parameters": [
+          {
+            "name": "threadId",
+            "in": "path",
+            "description": "The ID of the thread to which messages should be added.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "An object, optionally containing user context retrieved for the last thread message",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAddThreadMessagesResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "An object representing the thread messages to be added.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApidataAddThreadMessagesRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/messages/{messageUUID}": {
+      "patch": {
+        "operationId": "updates-a-message",
+        "summary": "Updates a message.",
+        "description": "Updates a message.",
+        "tags": [
+          ""
+        ],
+        "parameters": [
+          {
+            "name": "messageUUID",
+            "in": "path",
+            "description": "The UUID of the message.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The updated message.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataThreadMessage"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "The updates.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ModelsThreadMessageUpdate"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users": {
+      "post": {
+        "operationId": "add",
+        "summary": "Add User",
+        "description": "Adds a user.",
+        "tags": [
+          "subpackage_user"
+        ],
+        "responses": {
+          "201": {
+            "description": "The user that was added.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataUser"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "The user to add.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApidataCreateUserRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users-ordered": {
+      "get": {
+        "operationId": "list-ordered",
+        "summary": "Get Users",
+        "description": "Returns all users.",
+        "tags": [
+          "subpackage_user"
+        ],
+        "parameters": [
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "description": "Page number for pagination, starting from 1",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Number of users to retrieve per page",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "description": "Search term for filtering users by user_id, name, or email",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "order_by",
+            "in": "query",
+            "description": "Column to sort by (created_at, user_id, email)",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "asc",
+            "in": "query",
+            "description": "Sort in ascending order",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved list of users",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataUserListResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/{userId}": {
+      "get": {
+        "operationId": "get",
+        "summary": "Get User",
+        "description": "Returns a user.",
+        "tags": [
+          "subpackage_user"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "The user_id of the user to get.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The user that was retrieved.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataUser"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "delete",
+        "summary": "Delete User",
+        "description": "Deletes a user.",
+        "tags": [
+          "subpackage_user"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "User ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataSuccessResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "update",
+        "summary": "Update User",
+        "description": "Updates a user.",
+        "tags": [
+          "subpackage_user"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "User ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The user that was updated.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataUser"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "Update User Request",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApidataUpdateUserRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/{userId}/node": {
+      "get": {
+        "operationId": "get-user-node",
+        "summary": "Get User Node",
+        "description": "Returns a user's node.",
+        "tags": [
+          "subpackage_user"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "The user_id of the user to get the node for.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Response object containing the User node.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataUserNodeResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/{userId}/threads": {
+      "get": {
+        "operationId": "get-user-threads",
+        "summary": "Get User Threads",
+        "description": "Returns all threads for a user.",
+        "tags": [
+          "subpackage_user"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "User ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ApidataThread"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/{userId}/warm": {
+      "get": {
+        "operationId": "warm-user-cache",
+        "summary": "Warm User Cache",
+        "description": "Hints Zep to warm a user's graph for low-latency search",
+        "tags": [
+          "subpackage_user"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "User ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Warm hint accepted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataSuccessResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User or graph not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user-summary-instructions": {
+      "get": {
+        "operationId": "list-user-instructions",
+        "summary": "List User Instructions",
+        "description": "Lists all user summary instructions for a project, user.",
+        "tags": [
+          "subpackage_user"
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "description": "User ID to get user-specific instructions",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The list of instructions.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataListUserInstructionsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "add-user-instructions",
+        "summary": "Add User Instructions",
+        "description": "Adds new summary instructions for users graphs without removing existing ones. If user_ids is empty, adds to project-wide default instructions.",
+        "tags": [
+          "subpackage_user"
+        ],
+        "responses": {
+          "200": {
+            "description": "Instructions added successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataSuccessResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "The instructions to add",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApidataAddUserInstructionsRequest"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "delete-user-instructions",
+        "summary": "Delete User Instructions",
+        "description": "Deletes user summary/instructions for users or project wide defaults.",
+        "tags": [
+          "subpackage_user"
+        ],
+        "responses": {
+          "200": {
+            "description": "Instructions deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataSuccessResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "The instructions to delete",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApidataDeleteUserInstructionsRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/context-templates": {
+      "post": {
+        "operationId": "create-context-template",
+        "summary": "Create Context Template",
+        "description": "Creates a new context template.",
+        "tags": [
+          "subpackage_context"
+        ],
+        "responses": {
+          "200": {
+            "description": "The created context template.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataContextTemplateResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "The context template to create",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApidataCreateContextTemplateRequest"
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "list-context-templates",
+        "summary": "List Context Templates",
+        "description": "Lists all context templates.",
+        "tags": [
+          "subpackage_context"
+        ],
+        "responses": {
+          "200": {
+            "description": "The list of context templates.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataListContextTemplatesResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/context-templates/{template_id}": {
+      "get": {
+        "operationId": "get-context-template",
+        "summary": "Get Context Template",
+        "description": "Retrieves a context template by template_id.",
+        "tags": [
+          "subpackage_context"
+        ],
+        "parameters": [
+          {
+            "name": "template_id",
+            "in": "path",
+            "description": "Template ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The context template.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataContextTemplateResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "operationId": "update-context-template",
+        "summary": "Update Context Template",
+        "description": "Updates an existing context template by template_id.",
+        "tags": [
+          "subpackage_context"
+        ],
+        "parameters": [
+          {
+            "name": "template_id",
+            "in": "path",
+            "description": "Template ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The updated context template.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataContextTemplateResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "The updated template content",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApidataUpdateContextTemplateRequest"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "delete-context-template",
+        "summary": "Delete Context Template",
+        "description": "Deletes a context template by template_id.",
+        "tags": [
+          "subpackage_context"
+        ],
+        "parameters": [
+          {
+            "name": "template_id",
+            "in": "path",
+            "description": "Template ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Template deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataSuccessResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/graph/set-ontology": {
+      "put": {
+        "operationId": "set-ontology",
+        "summary": "Set graph ontology",
+        "description": "Sets custom entity and edge types for your graph. This wrapper method\nprovides a clean interface for defining your graph schema with custom\nentity and edge types.\n\nSee the [full documentation](/customizing-graph-structure#setting-entity-and-edge-types) for details.\n",
+        "tags": [
+          "subpackage_graph"
+        ],
+        "responses": {
+          "200": {
+            "description": "Ontology set successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataSuccessResponse"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "entities": {
+                    "$ref": "#/components/schemas/GraphSetOntologyPutRequestBodyContentApplicationJsonSchemaEntities",
+                    "description": "Dictionary mapping entity type names to their definitions"
+                  },
+                  "edges": {
+                    "$ref": "#/components/schemas/GraphSetOntologyPutRequestBodyContentApplicationJsonSchemaEdges",
+                    "description": "Dictionary mapping edge type names to their definitions with source/target constraints"
+                  },
+                  "user_ids": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "Optional list of user IDs to apply ontology to"
+                  },
+                  "graph_ids": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "Optional list of graph IDs to apply ontology to"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/graph/list-ontology": {
+      "get": {
+        "operationId": "list-ontology",
+        "summary": "List graph ontology",
+        "description": "Retrieves the current entity and edge types configured for your graph.\n\nSee the [full documentation](/customizing-graph-structure) for details.\n",
+        "tags": [
+          "subpackage_graph"
+        ],
+        "responses": {
+          "200": {
+            "description": "Current ontology",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataEntityTypeResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/graph": {
+      "post": {
+        "operationId": "add-data",
+        "summary": "Add Data",
+        "description": "Add data to the graph.",
+        "tags": [
+          "subpackage_data"
+        ],
+        "responses": {
+          "202": {
+            "description": "Added episode",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataGraphEpisode"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "Add data request",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApidataAddDataRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/graph-batch": {
+      "post": {
+        "operationId": "add-data-in-batch-mode",
+        "summary": "Add Data in batch mode",
+        "description": "Add data to the graph in batch mode. Episodes are processed sequentially in the order provided.",
+        "tags": [
+          "subpackage_data"
+        ],
+        "responses": {
+          "202": {
+            "description": "Added episodes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ApidataGraphEpisode"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "Add data request",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApidataAddDataBatchRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/graph/add-fact-triple": {
+      "post": {
+        "operationId": "add-fact-triple",
+        "summary": "Add Fact Triple",
+        "description": "Add a fact triple for a user or group",
+        "tags": [
+          "subpackage_entity"
+        ],
+        "responses": {
+          "200": {
+            "description": "Resulting triple",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GraphitiAddTripleResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "Triple to add",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GraphitiAddTripleRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/graph/clone": {
+      "post": {
+        "operationId": "clone-graph",
+        "summary": "Clone graph",
+        "description": "Clone a user or group graph.",
+        "tags": [
+          "subpackage_data"
+        ],
+        "responses": {
+          "202": {
+            "description": "Response object containing graph_id or user_id pointing to the new graph",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataCloneGraphResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "Clone graph request",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApidataCloneGraphRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/graph/create": {
+      "post": {
+        "operationId": "create-graph",
+        "summary": "Create Graph",
+        "description": "Creates a new graph.",
+        "tags": [
+          "subpackage_graph"
+        ],
+        "responses": {
+          "201": {
+            "description": "The added graph",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataGraph"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "Graph",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApidataCreateGraphRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/graph/list-all": {
+      "get": {
+        "operationId": "list-all-graphs",
+        "summary": "List all graphs.",
+        "description": "Returns all graphs. In order to list users, use user.list_ordered instead",
+        "tags": [
+          "subpackage_graph"
+        ],
+        "parameters": [
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "description": "Page number for pagination, starting from 1.",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Number of graphs to retrieve per page.",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "order_by",
+            "in": "query",
+            "description": "Column to sort by (created_at, group_id, name).",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "asc",
+            "in": "query",
+            "description": "Sort in ascending order.",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved list of graphs.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataGraphListResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/graph/patterns": {
+      "post": {
+        "operationId": "detect-patterns-experimental",
+        "summary": "Detect Patterns (Experimental)",
+        "description": "Detects structural patterns in a knowledge graph including relationship frequencies,\nmulti-hop paths, co-occurrences, hubs, and clusters.\nWhen a query is provided, uses hybrid search to discover seed nodes,\ndetects triple-frequency patterns, and returns resolved edges ranked by relevance.",
+        "tags": [
+          "subpackage_graph"
+        ],
+        "responses": {
+          "200": {
+            "description": "Detected patterns",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataDetectPatternsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "Pattern detection request",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApidataDetectPatternsRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/graph/search": {
+      "post": {
+        "operationId": "graph",
+        "summary": "Search Graph",
+        "description": "Perform a graph search query.",
+        "tags": [
+          "subpackage_search"
+        ],
+        "responses": {
+          "200": {
+            "description": "Graph search results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataGraphSearchResults"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "Graph search query",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GraphitiGraphSearchQuery"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/graph/{graphId}": {
+      "get": {
+        "operationId": "get-graph",
+        "summary": "Get Graph",
+        "description": "Returns a graph.",
+        "tags": [
+          "subpackage_graph"
+        ],
+        "parameters": [
+          {
+            "name": "graphId",
+            "in": "path",
+            "description": "The graph_id of the graph to get.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The graph that was retrieved.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataGraph"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "delete-graph",
+        "summary": "Delete Graph",
+        "description": "Deletes a graph. If you would like to delete a user graph, make sure to use user.delete instead.",
+        "tags": [
+          "subpackage_graph"
+        ],
+        "parameters": [
+          {
+            "name": "graphId",
+            "in": "path",
+            "description": "Graph ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deleted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataSuccessResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "update-graph",
+        "summary": "Update Graph.",
+        "description": "Updates information about a graph.",
+        "tags": [
+          "subpackage_graph"
+        ],
+        "parameters": [
+          {
+            "name": "graphId",
+            "in": "path",
+            "description": "Graph ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "The updated graph object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataGraph"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "Graph",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApidataUpdateGraphRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/graph/edge/graph/{graph_id}": {
+      "post": {
+        "operationId": "get-graph-edges",
+        "summary": "Get Graph Edges",
+        "description": "Returns all edges for a graph.",
+        "tags": [
+          "subpackage_entity"
+        ],
+        "parameters": [
+          {
+            "name": "graph_id",
+            "in": "path",
+            "description": "Graph ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Edges",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GraphitiEntityEdge"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "Pagination parameters",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApidataGraphEdgesRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/graph/edge/user/{user_id}": {
+      "post": {
+        "operationId": "get-user-edges",
+        "summary": "Get User Edges",
+        "description": "Returns all edges for a user.",
+        "tags": [
+          "subpackage_entity"
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "description": "User ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Edges",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GraphitiEntityEdge"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "Pagination parameters",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApidataGraphEdgesRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/graph/edge/{uuid}": {
+      "get": {
+        "operationId": "get-edge",
+        "summary": "Get Edge",
+        "description": "Returns a specific edge by its UUID.",
+        "tags": [
+          "subpackage_entity"
+        ],
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "description": "Edge UUID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Edge",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GraphitiEntityEdge"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "update-edge",
+        "summary": "Update Edge",
+        "description": "Updates an entity edge by UUID.",
+        "tags": [
+          "subpackage_graph"
+        ],
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "description": "Edge UUID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Updated edge",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GraphitiEntityEdge"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "Update edge request",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApidataUpdateEdgeRequest"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "delete-edge",
+        "summary": "Delete Edge",
+        "description": "Deletes an edge by UUID.",
+        "tags": [
+          "subpackage_entity"
+        ],
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "description": "Edge UUID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Edge deleted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataSuccessResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/graph/episodes/graph/{graph_id}": {
+      "get": {
+        "operationId": "get-graph-episodes",
+        "summary": "Get Graph Episodes",
+        "description": "Returns episodes by graph id.",
+        "tags": [
+          "subpackage_episodes"
+        ],
+        "parameters": [
+          {
+            "name": "graph_id",
+            "in": "path",
+            "description": "Graph ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "lastn",
+            "in": "query",
+            "description": "The number of most recent episodes to retrieve.",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Episodes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataGraphEpisodeResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/graph/episodes/user/{user_id}": {
+      "get": {
+        "operationId": "get-user-episodes",
+        "summary": "Get User Episodes",
+        "description": "Returns episodes by user id.",
+        "tags": [
+          "subpackage_episodes"
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "description": "User ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "lastn",
+            "in": "query",
+            "description": "The number of most recent episodes entries to retrieve.",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Episodes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataGraphEpisodeResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/graph/episodes/{uuid}": {
+      "get": {
+        "operationId": "get-episode",
+        "summary": "Get Episode",
+        "description": "Returns episodes by UUID",
+        "tags": [
+          "subpackage_episodes"
+        ],
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "description": "Episode UUID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Episode",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataGraphEpisode"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "delete-episode",
+        "summary": "Delete Episode",
+        "description": "Deletes an episode by its UUID.",
+        "tags": [
+          "subpackage_entity"
+        ],
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "description": "Episode UUID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Episode deleted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataSuccessResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/graph/episodes/{uuid}/mentions": {
+      "get": {
+        "operationId": "return-any-nodes-and-edges-mentioned-in-an-episode",
+        "summary": "Return any nodes and edges mentioned in an episode",
+        "description": "Returns nodes and edges mentioned in an episode",
+        "tags": [
+          "subpackage_episodes"
+        ],
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "description": "Episode uuid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Edges and nodes mentioned in an episode",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataEpisodeMentions"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/graph/node/graph/{graph_id}": {
+      "post": {
+        "operationId": "get-graph-nodes",
+        "summary": "Get Graph Nodes",
+        "description": "Returns all nodes for a graph.",
+        "tags": [
+          "subpackage_entity"
+        ],
+        "parameters": [
+          {
+            "name": "graph_id",
+            "in": "path",
+            "description": "Graph ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Nodes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GraphitiEntityNode"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "Pagination parameters",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApidataGraphNodesRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/graph/node/user/{user_id}": {
+      "post": {
+        "operationId": "get-user-nodes",
+        "summary": "Get User Nodes",
+        "description": "Returns all nodes for a user",
+        "tags": [
+          "subpackage_entity"
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "description": "User ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Nodes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GraphitiEntityNode"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "Pagination parameters",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApidataGraphNodesRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/graph/node/{node_uuid}/entity-edges": {
+      "get": {
+        "operationId": "get-entity-edges-for-a-node",
+        "summary": "Get Entity Edges for a node",
+        "description": "Returns all edges for a node",
+        "tags": [
+          "subpackage_entity"
+        ],
+        "parameters": [
+          {
+            "name": "node_uuid",
+            "in": "path",
+            "description": "Node UUID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Edges",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GraphitiEntityEdge"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/graph/node/{node_uuid}/episodes": {
+      "get": {
+        "operationId": "get-episodes-for-a-node",
+        "summary": "Get Episodes for a node",
+        "description": "Returns all episodes that mentioned a given node",
+        "tags": [
+          "subpackage_entity"
+        ],
+        "parameters": [
+          {
+            "name": "node_uuid",
+            "in": "path",
+            "description": "Node UUID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Episodes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataGraphEpisodeResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/graph/node/{uuid}": {
+      "get": {
+        "operationId": "get-node",
+        "summary": "Get Node",
+        "description": "Returns a specific node by its UUID.",
+        "tags": [
+          "subpackage_entity"
+        ],
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "description": "Node UUID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Node",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GraphitiEntityNode"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "update-node",
+        "summary": "Update Node",
+        "description": "Updates an entity node by UUID.",
+        "tags": [
+          "subpackage_graph"
+        ],
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "description": "Node UUID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Updated node",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GraphitiEntityNode"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "Update node request",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApidataUpdateNodeRequest"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "delete-node",
+        "summary": "Delete Node",
+        "description": "Deletes a node by UUID.",
+        "tags": [
+          "subpackage_entity"
+        ],
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "description": "Node UUID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Node deleted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataSuccessResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/custom-instructions": {
+      "get": {
+        "operationId": "list-custom-instructions",
+        "summary": "List Custom Instructions",
+        "description": "Lists all custom instructions for a project, user, or graph.",
+        "tags": [
+          "subpackage_graph"
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "description": "User ID to get user-specific instructions",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "graph_id",
+            "in": "query",
+            "description": "Graph ID to get graph-specific instructions",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The list of instructions.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataListCustomInstructionsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "add-custom-instructions",
+        "summary": "Add Custom Instructions",
+        "description": "Adds new custom instructions for graphs without removing existing ones. If user_ids or graph_ids is empty, adds to project-wide default instructions.",
+        "tags": [
+          "subpackage_graph"
+        ],
+        "responses": {
+          "200": {
+            "description": "Instructions added successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataSuccessResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "The instructions to add",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApidataAddCustomInstructionsRequest"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "delete-custom-instructions",
+        "summary": "Delete Custom Instructions",
+        "description": "Deletes custom instructions for graphs or project wide defaults.",
+        "tags": [
+          "subpackage_graph"
+        ],
+        "responses": {
+          "200": {
+            "description": "Instructions deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataSuccessResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "The instructions to delete",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApidataDeleteCustomInstructionsRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/projects/info": {
+      "get": {
+        "operationId": "retrieves-project-information",
+        "summary": "Retrieves project information",
+        "description": "Retrieve project info based on the provided api key.",
+        "tags": [
+          "subpackage_project"
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataProjectInfoResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tasks/{task_id}": {
+      "get": {
+        "operationId": "get-task",
+        "summary": "Get Task",
+        "description": "Gets a task by its ID",
+        "tags": [
+          "subpackage_task"
+        ],
+        "parameters": [
+          {
+            "name": "task_id",
+            "in": "path",
+            "description": "Task ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Task",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataGetTaskResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Task not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.getzep.com/api/v2"
+    }
+  ],
+  "components": {
+    "schemas": {
+      "ApidataThread": {
+        "type": "object",
+        "properties": {
+          "created_at": {
+            "type": "string"
+          },
+          "project_uuid": {
+            "type": "string"
+          },
+          "thread_id": {
+            "type": "string"
+          },
+          "user_id": {
+            "type": "string"
+          },
+          "uuid": {
+            "type": "string"
+          }
+        },
+        "title": "ApidataThread"
+      },
+      "ApidataThreadListResponse": {
+        "type": "object",
+        "properties": {
+          "response_count": {
+            "type": "integer"
+          },
+          "threads": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApidataThread"
+            }
+          },
+          "total_count": {
+            "type": "integer"
+          }
+        },
+        "title": "ApidataThreadListResponse"
+      },
+      "ApidataAPIError": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        },
+        "title": "ApidataAPIError"
+      },
+      "ModelsCreateThreadRequest": {
+        "type": "object",
+        "properties": {
+          "thread_id": {
+            "type": "string",
+            "description": "The unique identifier of the thread."
+          },
+          "user_id": {
+            "type": "string",
+            "description": "The unique identifier of the user associated with the thread"
+          }
+        },
+        "required": [
+          "thread_id",
+          "user_id"
+        ],
+        "title": "ModelsCreateThreadRequest"
+      },
+      "ApidataSuccessResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        },
+        "title": "ApidataSuccessResponse"
+      },
+      "ApidataThreadContextResponse": {
+        "type": "object",
+        "properties": {
+          "context": {
+            "type": "string",
+            "description": "Context block containing relevant facts, entities, and messages/episodes from the user graph. Meant to be replaced in the system prompt on every chat turn."
+          }
+        },
+        "title": "ApidataThreadContextResponse"
+      },
+      "ApidataRoleType": {
+        "type": "string",
+        "enum": [
+          "norole",
+          "system",
+          "assistant",
+          "user",
+          "function",
+          "tool"
+        ],
+        "title": "ApidataRoleType"
+      },
+      "ApidataThreadMessage": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "string",
+            "description": "The content of the message."
+          },
+          "created_at": {
+            "type": "string",
+            "description": "The timestamp of when the message was created."
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": {
+              "description": "Any type"
+            },
+            "description": "The metadata associated with the message."
+          },
+          "name": {
+            "type": "string",
+            "description": "Customizable name of the sender of the message (e.g., \"john\", \"sales_agent\")."
+          },
+          "processed": {
+            "type": "boolean",
+            "description": "Whether the message has been processed."
+          },
+          "role": {
+            "$ref": "#/components/schemas/ApidataRoleType",
+            "description": "The role of message sender (e.g., \"user\", \"system\")."
+          },
+          "uuid": {
+            "type": "string",
+            "description": "The unique identifier of the message."
+          }
+        },
+        "required": [
+          "content",
+          "role"
+        ],
+        "title": "ApidataThreadMessage"
+      },
+      "ApidataThreadMessageListResponse": {
+        "type": "object",
+        "properties": {
+          "messages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApidataThreadMessage"
+            },
+            "description": "A list of message objects."
+          },
+          "row_count": {
+            "type": "integer",
+            "description": "The number of messages returned."
+          },
+          "thread_created_at": {
+            "type": "string",
+            "description": "The thread creation timestamp."
+          },
+          "total_count": {
+            "type": "integer",
+            "description": "The total number of messages."
+          },
+          "user_id": {
+            "type": "string",
+            "description": "The user ID associated with this thread."
+          }
+        },
+        "title": "ApidataThreadMessageListResponse"
+      },
+      "ApidataAddThreadMessagesRequest": {
+        "type": "object",
+        "properties": {
+          "ignore_roles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApidataRoleType"
+            },
+            "description": "Optional list of role types to ignore when adding messages to graph memory.\nThe message itself will still be added, retained and used as context for messages\nthat are added to a user's graph."
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApidataThreadMessage"
+            },
+            "description": "A list of message objects, where each message contains a role and content."
+          },
+          "return_context": {
+            "type": "boolean",
+            "description": "Optionally return context block relevant to the most recent messages."
+          }
+        },
+        "required": [
+          "messages"
+        ],
+        "title": "ApidataAddThreadMessagesRequest"
+      },
+      "ApidataAddThreadMessagesResponse": {
+        "type": "object",
+        "properties": {
+          "context": {
+            "type": "string"
+          },
+          "message_uuids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "task_id": {
+            "type": "string"
+          }
+        },
+        "title": "ApidataAddThreadMessagesResponse"
+      },
+      "ModelsThreadMessageUpdate": {
+        "type": "object",
+        "properties": {
+          "metadata": {
+            "type": "object",
+            "additionalProperties": {
+              "description": "Any type"
+            }
+          }
+        },
+        "required": [
+          "metadata"
+        ],
+        "title": "ModelsThreadMessageUpdate"
+      },
+      "ApidataCreateUserRequest": {
+        "type": "object",
+        "properties": {
+          "disable_default_ontology": {
+            "type": "boolean",
+            "description": "When true, disables the use of default/fallback ontology for the user's graph."
+          },
+          "email": {
+            "type": "string",
+            "description": "The email address of the user."
+          },
+          "first_name": {
+            "type": "string",
+            "description": "The first name of the user."
+          },
+          "last_name": {
+            "type": "string",
+            "description": "The last name of the user."
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": {
+              "description": "Any type"
+            },
+            "description": "The metadata associated with the user."
+          },
+          "user_id": {
+            "type": "string",
+            "description": "The unique identifier of the user."
+          }
+        },
+        "required": [
+          "user_id"
+        ],
+        "title": "ApidataCreateUserRequest"
+      },
+      "ApidataUser": {
+        "type": "object",
+        "properties": {
+          "created_at": {
+            "type": "string"
+          },
+          "deleted_at": {
+            "type": "string"
+          },
+          "disable_default_ontology": {
+            "type": "boolean"
+          },
+          "email": {
+            "type": "string"
+          },
+          "first_name": {
+            "type": "string"
+          },
+          "id": {
+            "type": "integer"
+          },
+          "last_name": {
+            "type": "string"
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": {
+              "description": "Any type"
+            },
+            "description": "Deprecated"
+          },
+          "project_uuid": {
+            "type": "string"
+          },
+          "session_count": {
+            "type": "integer",
+            "description": "Deprecated"
+          },
+          "updated_at": {
+            "type": "string",
+            "description": "Deprecated"
+          },
+          "user_id": {
+            "type": "string"
+          },
+          "uuid": {
+            "type": "string"
+          }
+        },
+        "title": "ApidataUser"
+      },
+      "ApidataUserListResponse": {
+        "type": "object",
+        "properties": {
+          "row_count": {
+            "type": "integer"
+          },
+          "total_count": {
+            "type": "integer"
+          },
+          "users": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApidataUser"
+            }
+          }
+        },
+        "title": "ApidataUserListResponse"
+      },
+      "ApidataUpdateUserRequest": {
+        "type": "object",
+        "properties": {
+          "disable_default_ontology": {
+            "type": "boolean",
+            "description": "When true, disables the use of default/fallback ontology for the user's graph."
+          },
+          "email": {
+            "type": "string",
+            "description": "The email address of the user."
+          },
+          "first_name": {
+            "type": "string",
+            "description": "The first name of the user."
+          },
+          "last_name": {
+            "type": "string",
+            "description": "The last name of the user."
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": {
+              "description": "Any type"
+            },
+            "description": "The metadata to update"
+          }
+        },
+        "title": "ApidataUpdateUserRequest"
+      },
+      "GraphitiEntityNode": {
+        "type": "object",
+        "properties": {
+          "attributes": {
+            "type": "object",
+            "additionalProperties": {
+              "description": "Any type"
+            },
+            "description": "Additional attributes of the node. Dependent on node labels"
+          },
+          "created_at": {
+            "type": "string",
+            "description": "Creation time of the node"
+          },
+          "labels": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Labels associated with the node"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the node"
+          },
+          "relevance": {
+            "type": "number",
+            "format": "double",
+            "description": "Relevance is an experimental rank-aligned score in [0,1] derived from Score via logit transformation.\nOnly populated when using cross_encoder reranker; omitted for other reranker types (e.g., RRF)."
+          },
+          "score": {
+            "type": "number",
+            "format": "double",
+            "description": "Score is the reranker output: sigmoid-distributed logits [0,1] when using cross_encoder reranker, or RRF ordinal rank when using rrf reranker"
+          },
+          "summary": {
+            "type": "string",
+            "description": "Regional summary of surrounding edges"
+          },
+          "uuid": {
+            "type": "string",
+            "description": "UUID of the node"
+          }
+        },
+        "required": [
+          "created_at",
+          "name",
+          "summary",
+          "uuid"
+        ],
+        "title": "GraphitiEntityNode"
+      },
+      "ApidataUserNodeResponse": {
+        "type": "object",
+        "properties": {
+          "node": {
+            "$ref": "#/components/schemas/GraphitiEntityNode"
+          }
+        },
+        "title": "ApidataUserNodeResponse"
+      },
+      "ApidataUserInstruction": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "text": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "text"
+        ],
+        "title": "ApidataUserInstruction"
+      },
+      "ApidataListUserInstructionsResponse": {
+        "type": "object",
+        "properties": {
+          "instructions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApidataUserInstruction"
+            }
+          }
+        },
+        "title": "ApidataListUserInstructionsResponse"
+      },
+      "ApidataAddUserInstructionsRequest": {
+        "type": "object",
+        "properties": {
+          "instructions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApidataUserInstruction"
+            },
+            "description": "Instructions to add to the user summary generation."
+          },
+          "user_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "User IDs to add the instructions to. If empty, the instructions are added to the project-wide default."
+          }
+        },
+        "required": [
+          "instructions"
+        ],
+        "title": "ApidataAddUserInstructionsRequest"
+      },
+      "ApidataDeleteUserInstructionsRequest": {
+        "type": "object",
+        "properties": {
+          "instruction_names": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Unique identifier for the instructions to be deleted. If empty deletes all instructions."
+          },
+          "user_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Determines which users will have their custom instructions deleted. If no users are provided, the project-wide custom instructions will be effected."
+          }
+        },
+        "title": "ApidataDeleteUserInstructionsRequest"
+      },
+      "ApidataCreateContextTemplateRequest": {
+        "type": "object",
+        "properties": {
+          "template": {
+            "type": "string",
+            "description": "The template content (max 1200 characters)."
+          },
+          "template_id": {
+            "type": "string",
+            "description": "Unique identifier for the template (max 100 characters)."
+          }
+        },
+        "required": [
+          "template",
+          "template_id"
+        ],
+        "title": "ApidataCreateContextTemplateRequest"
+      },
+      "ApidataContextTemplateResponse": {
+        "type": "object",
+        "properties": {
+          "template": {
+            "type": "string",
+            "description": "The template content."
+          },
+          "template_id": {
+            "type": "string",
+            "description": "Unique identifier for the template (max 100 characters)."
+          },
+          "uuid": {
+            "type": "string",
+            "description": "Unique identifier for the template."
+          }
+        },
+        "title": "ApidataContextTemplateResponse"
+      },
+      "ApidataUpdateContextTemplateRequest": {
+        "type": "object",
+        "properties": {
+          "template": {
+            "type": "string",
+            "description": "The template content (max 1200 characters)."
+          }
+        },
+        "required": [
+          "template"
+        ],
+        "title": "ApidataUpdateContextTemplateRequest"
+      },
+      "ApidataListContextTemplatesResponse": {
+        "type": "object",
+        "properties": {
+          "templates": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApidataContextTemplateResponse"
+            }
+          }
+        },
+        "title": "ApidataListContextTemplatesResponse"
+      },
+      "GraphSetOntologyPutRequestBodyContentApplicationJsonSchemaEntities": {
+        "type": "object",
+        "properties": {},
+        "description": "Dictionary mapping entity type names to their definitions",
+        "title": "GraphSetOntologyPutRequestBodyContentApplicationJsonSchemaEntities"
+      },
+      "GraphSetOntologyPutRequestBodyContentApplicationJsonSchemaEdges": {
+        "type": "object",
+        "properties": {},
+        "description": "Dictionary mapping edge type names to their definitions with source/target constraints",
+        "title": "GraphSetOntologyPutRequestBodyContentApplicationJsonSchemaEdges"
+      },
+      "ModelsEntityPropertyType": {
+        "type": "string",
+        "enum": [
+          "Text",
+          "Int",
+          "Float",
+          "Boolean"
+        ],
+        "title": "ModelsEntityPropertyType"
+      },
+      "ApidataEntityProperty": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "type": {
+            "$ref": "#/components/schemas/ModelsEntityPropertyType"
+          }
+        },
+        "required": [
+          "description",
+          "name",
+          "type"
+        ],
+        "title": "ApidataEntityProperty"
+      },
+      "ApidataEntityEdgeSourceTarget": {
+        "type": "object",
+        "properties": {
+          "source": {
+            "type": "string",
+            "description": "Source represents the originating node identifier in the edge type relationship. (optional)"
+          },
+          "target": {
+            "type": "string",
+            "description": "Target represents the target node identifier in the edge type relationship. (optional)"
+          }
+        },
+        "title": "ApidataEntityEdgeSourceTarget"
+      },
+      "ApidataEdgeType": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "properties": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApidataEntityProperty"
+            }
+          },
+          "source_targets": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApidataEntityEdgeSourceTarget"
+            }
+          }
+        },
+        "required": [
+          "description",
+          "name"
+        ],
+        "title": "ApidataEdgeType"
+      },
+      "ApidataEntityType": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "properties": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApidataEntityProperty"
+            }
+          }
+        },
+        "required": [
+          "description",
+          "name"
+        ],
+        "title": "ApidataEntityType"
+      },
+      "ApidataEntityTypeResponse": {
+        "type": "object",
+        "properties": {
+          "edge_types": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApidataEdgeType"
+            }
+          },
+          "entity_types": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApidataEntityType"
+            }
+          }
+        },
+        "title": "ApidataEntityTypeResponse"
+      },
+      "ModelsGraphDataType": {
+        "type": "string",
+        "enum": [
+          "text",
+          "json",
+          "message"
+        ],
+        "title": "ModelsGraphDataType"
+      },
+      "ApidataAddDataRequest": {
+        "type": "object",
+        "properties": {
+          "created_at": {
+            "type": "string"
+          },
+          "data": {
+            "type": "string"
+          },
+          "graph_id": {
+            "type": "string",
+            "description": "graph_id is the ID of the graph to which the data will be added. If adding to the user graph, please use user_id field instead."
+          },
+          "source_description": {
+            "type": "string"
+          },
+          "type": {
+            "$ref": "#/components/schemas/ModelsGraphDataType"
+          },
+          "user_id": {
+            "type": "string",
+            "description": "User ID is the ID of the user to which the data will be added. If not adding to a user graph, please use graph_id field instead."
+          }
+        },
+        "required": [
+          "data",
+          "type"
+        ],
+        "title": "ApidataAddDataRequest"
+      },
+      "ApidataGraphEpisode": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string"
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": {
+              "description": "Any type"
+            }
+          },
+          "processed": {
+            "type": "boolean"
+          },
+          "relevance": {
+            "type": "number",
+            "format": "double",
+            "description": "Relevance is an experimental rank-aligned score in [0,1] derived from Score via logit transformation.\nOnly populated when using cross_encoder reranker; omitted for other reranker types (e.g., RRF)."
+          },
+          "role": {
+            "type": "string",
+            "description": "Optional role, will only be present if the episode was created using memory.add API"
+          },
+          "role_type": {
+            "$ref": "#/components/schemas/ApidataRoleType",
+            "description": "Optional role_type, will only be present if the episode was created using memory.add API"
+          },
+          "score": {
+            "type": "number",
+            "format": "double",
+            "description": "Score is the reranker output: sigmoid-distributed logits [0,1] when using cross_encoder reranker, or RRF ordinal rank when using rrf reranker"
+          },
+          "source": {
+            "$ref": "#/components/schemas/ModelsGraphDataType"
+          },
+          "source_description": {
+            "type": "string"
+          },
+          "task_id": {
+            "type": "string",
+            "description": "Optional task ID to poll episode processing status. Currently only available for batch ingestion."
+          },
+          "thread_id": {
+            "type": "string",
+            "description": "Optional thread ID, will be present if the episode is part of a thread"
+          },
+          "uuid": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "content",
+          "created_at",
+          "uuid"
+        ],
+        "title": "ApidataGraphEpisode"
+      },
+      "ApidataEpisodeData": {
+        "type": "object",
+        "properties": {
+          "created_at": {
+            "type": "string"
+          },
+          "data": {
+            "type": "string"
+          },
+          "source_description": {
+            "type": "string"
+          },
+          "type": {
+            "$ref": "#/components/schemas/ModelsGraphDataType"
+          }
+        },
+        "required": [
+          "data",
+          "type"
+        ],
+        "title": "ApidataEpisodeData"
+      },
+      "ApidataAddDataBatchRequest": {
+        "type": "object",
+        "properties": {
+          "episodes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApidataEpisodeData"
+            }
+          },
+          "graph_id": {
+            "type": "string",
+            "description": "graph_id is the ID of the graph to which the data will be added. If adding to the user graph, please use user_id field instead."
+          },
+          "user_id": {
+            "type": "string",
+            "description": "User ID is the ID of the user to which the data will be added. If not adding to a user graph, please use graph_id field instead."
+          }
+        },
+        "required": [
+          "episodes"
+        ],
+        "title": "ApidataAddDataBatchRequest"
+      },
+      "GraphitiAddTripleRequest": {
+        "type": "object",
+        "properties": {
+          "created_at": {
+            "type": "string",
+            "description": "The timestamp of the message"
+          },
+          "edge_attributes": {
+            "type": "object",
+            "additionalProperties": {
+              "description": "Any type"
+            },
+            "description": "Additional attributes of the edge. Values must be scalar types (string, number, boolean, or null).\nNested objects and arrays are not allowed."
+          },
+          "expired_at": {
+            "type": "string",
+            "description": "The time (if any) at which the edge expires"
+          },
+          "fact": {
+            "type": "string",
+            "description": "The fact relating the two nodes that this edge represents"
+          },
+          "fact_name": {
+            "type": "string",
+            "description": "The name of the edge to add. Should be all caps using snake case (eg RELATES_TO)"
+          },
+          "fact_uuid": {
+            "type": "string",
+            "description": "The uuid of the edge to add"
+          },
+          "graph_id": {
+            "type": "string"
+          },
+          "invalid_at": {
+            "type": "string",
+            "description": "The time (if any) at which the fact stops being true"
+          },
+          "source_node_attributes": {
+            "type": "object",
+            "additionalProperties": {
+              "description": "Any type"
+            },
+            "description": "Additional attributes of the source node. Values must be scalar types (string, number, boolean, or null).\nNested objects and arrays are not allowed."
+          },
+          "source_node_labels": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The labels for the source node"
+          },
+          "source_node_name": {
+            "type": "string",
+            "description": "The name of the source node to add"
+          },
+          "source_node_summary": {
+            "type": "string",
+            "description": "The summary of the source node to add"
+          },
+          "source_node_uuid": {
+            "type": "string",
+            "description": "The source node uuid"
+          },
+          "target_node_attributes": {
+            "type": "object",
+            "additionalProperties": {
+              "description": "Any type"
+            },
+            "description": "Additional attributes of the target node. Values must be scalar types (string, number, boolean, or null).\nNested objects and arrays are not allowed."
+          },
+          "target_node_labels": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The labels for the target node"
+          },
+          "target_node_name": {
+            "type": "string",
+            "description": "The name of the target node to add"
+          },
+          "target_node_summary": {
+            "type": "string",
+            "description": "The summary of the target node to add"
+          },
+          "target_node_uuid": {
+            "type": "string",
+            "description": "The target node uuid"
+          },
+          "user_id": {
+            "type": "string"
+          },
+          "valid_at": {
+            "type": "string",
+            "description": "The time at which the fact becomes true"
+          }
+        },
+        "required": [
+          "fact",
+          "fact_name"
+        ],
+        "title": "GraphitiAddTripleRequest"
+      },
+      "GraphitiEntityEdge": {
+        "type": "object",
+        "properties": {
+          "attributes": {
+            "type": "object",
+            "additionalProperties": {
+              "description": "Any type"
+            },
+            "description": "Additional attributes of the edge. Dependent on edge types"
+          },
+          "created_at": {
+            "type": "string",
+            "description": "Creation time of the edge"
+          },
+          "episodes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of episode ids that reference these entity edges"
+          },
+          "expired_at": {
+            "type": "string",
+            "description": "Datetime of when the node was invalidated"
+          },
+          "fact": {
+            "type": "string",
+            "description": "Fact representing the edge and nodes that it connects"
+          },
+          "invalid_at": {
+            "type": "string",
+            "description": "Datetime of when the fact stopped being true"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the edge, relation name"
+          },
+          "relevance": {
+            "type": "number",
+            "format": "double",
+            "description": "Relevance is an experimental rank-aligned score in [0,1] derived from Score via logit transformation.\nOnly populated when using cross_encoder reranker; omitted for other reranker types (e.g., RRF)."
+          },
+          "score": {
+            "type": "number",
+            "format": "double",
+            "description": "Score is the reranker output: sigmoid-distributed logits [0,1] when using cross_encoder reranker, or RRF ordinal rank when using rrf reranker"
+          },
+          "source_node_uuid": {
+            "type": "string",
+            "description": "UUID of the source node"
+          },
+          "target_node_uuid": {
+            "type": "string",
+            "description": "UUID of the target node"
+          },
+          "uuid": {
+            "type": "string",
+            "description": "UUID of the edge"
+          },
+          "valid_at": {
+            "type": "string",
+            "description": "Datetime of when the fact became true"
+          }
+        },
+        "required": [
+          "created_at",
+          "fact",
+          "name",
+          "source_node_uuid",
+          "target_node_uuid",
+          "uuid"
+        ],
+        "title": "GraphitiEntityEdge"
+      },
+      "GraphitiAddTripleResponse": {
+        "type": "object",
+        "properties": {
+          "edge": {
+            "$ref": "#/components/schemas/GraphitiEntityEdge"
+          },
+          "source_node": {
+            "$ref": "#/components/schemas/GraphitiEntityNode"
+          },
+          "target_node": {
+            "$ref": "#/components/schemas/GraphitiEntityNode"
+          },
+          "task_id": {
+            "type": "string",
+            "description": "Task ID of the add triple task"
+          }
+        },
+        "title": "GraphitiAddTripleResponse"
+      },
+      "ApidataCloneGraphRequest": {
+        "type": "object",
+        "properties": {
+          "source_graph_id": {
+            "type": "string",
+            "description": "source_graph_id is the ID of the graph to be cloned. Required if source_user_id is not provided"
+          },
+          "source_user_id": {
+            "type": "string",
+            "description": "user_id of the user whose graph is being cloned. Required if source_graph_id is not provided"
+          },
+          "target_graph_id": {
+            "type": "string",
+            "description": "target_graph_id is the ID to be set on the cloned graph. Must not point to an existing graph. Required if target_user_id is not provided."
+          },
+          "target_user_id": {
+            "type": "string",
+            "description": "user_id to be set on the cloned user. Must not point to an existing user. Required if target_graph_id is not provided."
+          }
+        },
+        "title": "ApidataCloneGraphRequest"
+      },
+      "ApidataCloneGraphResponse": {
+        "type": "object",
+        "properties": {
+          "graph_id": {
+            "type": "string",
+            "description": "graph_id is the ID of the cloned graph"
+          },
+          "task_id": {
+            "type": "string",
+            "description": "Task ID of the clone graph task"
+          },
+          "user_id": {
+            "type": "string"
+          }
+        },
+        "title": "ApidataCloneGraphResponse"
+      },
+      "ApidataCreateGraphRequest": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "graph_id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "graph_id"
+        ],
+        "title": "ApidataCreateGraphRequest"
+      },
+      "ApidataGraph": {
+        "type": "object",
+        "properties": {
+          "created_at": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "graph_id": {
+            "type": "string"
+          },
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "project_uuid": {
+            "type": "string"
+          },
+          "uuid": {
+            "type": "string"
+          }
+        },
+        "title": "ApidataGraph"
+      },
+      "ApidataGraphListResponse": {
+        "type": "object",
+        "properties": {
+          "graphs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApidataGraph"
+            }
+          },
+          "row_count": {
+            "type": "integer"
+          },
+          "total_count": {
+            "type": "integer"
+          }
+        },
+        "title": "ApidataGraphListResponse"
+      },
+      "ApidataClusterDetectConfig": {
+        "type": "object",
+        "properties": {},
+        "title": "ApidataClusterDetectConfig"
+      },
+      "ApidataCoOccurrenceDetectConfig": {
+        "type": "object",
+        "properties": {
+          "max_hops": {
+            "type": "integer",
+            "description": "Max hops within which to detect co-occurring node types. Default: 3, Max: 5"
+          }
+        },
+        "title": "ApidataCoOccurrenceDetectConfig"
+      },
+      "ApidataHubDetectConfig": {
+        "type": "object",
+        "properties": {
+          "min_degree": {
+            "type": "integer",
+            "description": "Minimum number of connections for a node to be considered a hub. Default: 3, Min: 2"
+          }
+        },
+        "title": "ApidataHubDetectConfig"
+      },
+      "ApidataPathDetectConfig": {
+        "type": "object",
+        "properties": {
+          "max_hops": {
+            "type": "integer",
+            "description": "Max hops from seed nodes for path detection. Default: 3, Max: 5"
+          }
+        },
+        "title": "ApidataPathDetectConfig"
+      },
+      "ApidataRelationshipDetectConfig": {
+        "type": "object",
+        "properties": {},
+        "title": "ApidataRelationshipDetectConfig"
+      },
+      "ApidataDetectConfig": {
+        "type": "object",
+        "properties": {
+          "clusters": {
+            "$ref": "#/components/schemas/ApidataClusterDetectConfig",
+            "description": "Detect tightly interconnected groups (triangle topology)"
+          },
+          "co_occurrences": {
+            "$ref": "#/components/schemas/ApidataCoOccurrenceDetectConfig",
+            "description": "Detect node types that co-occur within k hops"
+          },
+          "hubs": {
+            "$ref": "#/components/schemas/ApidataHubDetectConfig",
+            "description": "Detect highly connected hub nodes (star topology)"
+          },
+          "paths": {
+            "$ref": "#/components/schemas/ApidataPathDetectConfig",
+            "description": "Detect frequent multi-hop connection paths"
+          },
+          "relationships": {
+            "$ref": "#/components/schemas/ApidataRelationshipDetectConfig",
+            "description": "Detect common (source_label, edge_type, target_label) relationship triples"
+          }
+        },
+        "title": "ApidataDetectConfig"
+      },
+      "ApidataRecencyWeight": {
+        "type": "string",
+        "enum": [
+          "none",
+          "7_days",
+          "30_days",
+          "90_days"
+        ],
+        "title": "ApidataRecencyWeight"
+      },
+      "GraphitiComparisonOperator": {
+        "type": "string",
+        "enum": [
+          "=",
+          "<>",
+          ">",
+          "<",
+          ">=",
+          "<=",
+          "IS NULL",
+          "IS NOT NULL"
+        ],
+        "title": "GraphitiComparisonOperator"
+      },
+      "GraphitiDateFilter": {
+        "type": "object",
+        "properties": {
+          "comparison_operator": {
+            "$ref": "#/components/schemas/GraphitiComparisonOperator",
+            "description": "Comparison operator for date filter"
+          },
+          "date": {
+            "type": "string",
+            "description": "Date to filter on. Required for non-null operators (=, \\<\\>, \\>, \\<, \\>=, \\<=).\nShould be omitted for IS NULL and IS NOT NULL operators."
+          }
+        },
+        "required": [
+          "comparison_operator"
+        ],
+        "title": "GraphitiDateFilter"
+      },
+      "GraphitiPropertyFilter": {
+        "type": "object",
+        "properties": {
+          "comparison_operator": {
+            "$ref": "#/components/schemas/GraphitiComparisonOperator",
+            "description": "Comparison operator for property filter"
+          },
+          "property_name": {
+            "type": "string",
+            "description": "Property name to filter on"
+          },
+          "property_value": {
+            "description": "Property value to match on. Accepted types: string, int, float64, bool, or nil.\nInvalid types (e.g., arrays, objects) will be rejected by validation.\nMust be non-nil for non-null operators (=, \\<\\>, \\>, \\<, \\>=, \\<=)."
+          }
+        },
+        "required": [
+          "comparison_operator",
+          "property_name"
+        ],
+        "title": "GraphitiPropertyFilter"
+      },
+      "GraphitiSearchFilters": {
+        "type": "object",
+        "properties": {
+          "created_at": {
+            "type": "array",
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/GraphitiDateFilter"
+              }
+            },
+            "description": "2D array of date filters for the created_at field.\nThe outer array elements are combined with OR logic.\nThe inner array elements are combined with AND logic.\nExample: [[\\{\"\\>\", date1\\}, \\{\"\\<\", date2\\}], [\\{\"=\", date3\\}]]\nThis translates to: (created_at \\> date1 AND created_at \\< date2) OR (created_at = date3)"
+          },
+          "edge_types": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of edge types to filter on"
+          },
+          "edge_uuids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of edge UUIDs to filter on"
+          },
+          "exclude_edge_types": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of edge types to exclude from results"
+          },
+          "exclude_node_labels": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of node labels to exclude from results"
+          },
+          "expired_at": {
+            "type": "array",
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/GraphitiDateFilter"
+              }
+            },
+            "description": "2D array of date filters for the expired_at field.\nThe outer array elements are combined with OR logic.\nThe inner array elements are combined with AND logic.\nExample: [[\\{\"\\>\", date1\\}, \\{\"\\<\", date2\\}], [\\{\"=\", date3\\}]]\nThis translates to: (expired_at \\> date1 AND expired_at \\< date2) OR (expired_at = date3)"
+          },
+          "invalid_at": {
+            "type": "array",
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/GraphitiDateFilter"
+              }
+            },
+            "description": "2D array of date filters for the invalid_at field.\nThe outer array elements are combined with OR logic.\nThe inner array elements are combined with AND logic.\nExample: [[\\{\"\\>\", date1\\}, \\{\"\\<\", date2\\}], [\\{\"=\", date3\\}]]\nThis translates to: (invalid_at \\> date1 AND invalid_at \\< date2) OR (invalid_at = date3)"
+          },
+          "node_labels": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of node labels to filter on"
+          },
+          "property_filters": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GraphitiPropertyFilter"
+            },
+            "description": "List of property filters to apply to nodes and edges"
+          },
+          "valid_at": {
+            "type": "array",
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/GraphitiDateFilter"
+              }
+            },
+            "description": "2D array of date filters for the valid_at field.\nThe outer array elements are combined with OR logic.\nThe inner array elements are combined with AND logic.\nExample: [[\\{\"\\>\", date1\\}, \\{\"\\<\", date2\\}], [\\{\"=\", date3\\}]]\nThis translates to: (valid_at \\> date1 AND valid_at \\< date2) OR (valid_at = date3)"
+          }
+        },
+        "title": "GraphitiSearchFilters"
+      },
+      "ApidataPatternSeeds": {
+        "type": "object",
+        "properties": {
+          "edge_types": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "All endpoints of these edge types become seeds"
+          },
+          "node_labels": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "All nodes with these labels become seeds"
+          },
+          "node_uuids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Specific node UUIDs to analyze around"
+          }
+        },
+        "title": "ApidataPatternSeeds"
+      },
+      "ApidataDetectPatternsRequest": {
+        "type": "object",
+        "properties": {
+          "detect": {
+            "$ref": "#/components/schemas/ApidataDetectConfig",
+            "description": "Which pattern types to detect with type-specific configuration.\nOmit to detect all types with defaults. Ignored when query is set."
+          },
+          "edge_limit": {
+            "type": "integer",
+            "description": "Max resolved edges per pattern. Default: 10, Max: 100. Only used with query."
+          },
+          "graph_id": {
+            "type": "string",
+            "description": "Graph ID when detecting patterns on a named graph"
+          },
+          "limit": {
+            "type": "integer",
+            "description": "Max patterns to return. Default: 50, Max: 200"
+          },
+          "min_occurrences": {
+            "type": "integer",
+            "description": "Minimum occurrence count to report a pattern. Default: 2"
+          },
+          "query": {
+            "type": "string",
+            "description": "Search query for discovering seed nodes via hybrid search.\nWhen set, forces triple-frequency detection only and enables edge resolution\nwith cross-encoder reranking. Mutually exclusive with seeds."
+          },
+          "query_limit": {
+            "type": "integer",
+            "description": "Max seed nodes from search. Default: 10, Max: 50. Only used with query."
+          },
+          "recency_weight": {
+            "$ref": "#/components/schemas/ApidataRecencyWeight",
+            "description": "Exponential half-life decay applied to edge created_at timestamps.\nValid values: none, 7_days, 30_days, 90_days. Default: none"
+          },
+          "search_filters": {
+            "$ref": "#/components/schemas/GraphitiSearchFilters",
+            "description": "Filters which edges/nodes participate in pattern detection.\nReuses the same filter format as /graph/search."
+          },
+          "seeds": {
+            "$ref": "#/components/schemas/ApidataPatternSeeds",
+            "description": "Seed selection. If omitted, analyzes the entire graph. Mutually exclusive with query."
+          },
+          "user_id": {
+            "type": "string",
+            "description": "User ID when detecting patterns on a user graph"
+          }
+        },
+        "title": "ApidataDetectPatternsRequest"
+      },
+      "ApidataPatternMetadata": {
+        "type": "object",
+        "properties": {
+          "edges_analyzed": {
+            "type": "integer",
+            "description": "Number of edges analyzed"
+          },
+          "elapsed_ms": {
+            "type": "integer",
+            "description": "Elapsed time in milliseconds"
+          },
+          "nodes_analyzed": {
+            "type": "integer",
+            "description": "Number of unique nodes analyzed"
+          }
+        },
+        "title": "ApidataPatternMetadata"
+      },
+      "ApidataPatternResult": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string",
+            "description": "Human-readable description of the pattern"
+          },
+          "edge_types": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Edge types in the pattern structure"
+          },
+          "edges": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GraphitiEntityEdge"
+            },
+            "description": "Resolved edges for this pattern, sorted by cross-encoder relevance.\nOnly populated when query is set."
+          },
+          "node_labels": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Node labels in the pattern structure"
+          },
+          "occurrences": {
+            "type": "integer",
+            "description": "Raw occurrence count (always unweighted)"
+          },
+          "type": {
+            "type": "string",
+            "description": "Pattern type: relationship, path, co_occurrence, hub, cluster"
+          },
+          "weighted_score": {
+            "type": "number",
+            "format": "double",
+            "description": "Weighted sum \u2014 equals occurrences when recency_weight is \"none\""
+          }
+        },
+        "title": "ApidataPatternResult"
+      },
+      "ApidataDetectPatternsResponse": {
+        "type": "object",
+        "properties": {
+          "metadata": {
+            "$ref": "#/components/schemas/ApidataPatternMetadata",
+            "description": "Statistics about the detection run"
+          },
+          "nodes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GraphitiEntityNode"
+            },
+            "description": "Resolved nodes referenced by pattern edges (deduplicated). Only populated when query is set."
+          },
+          "patterns": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApidataPatternResult"
+            },
+            "description": "Detected patterns, sorted by weighted_score descending"
+          }
+        },
+        "title": "ApidataDetectPatternsResponse"
+      },
+      "GraphitiReranker": {
+        "type": "string",
+        "enum": [
+          "rrf",
+          "mmr",
+          "node_distance",
+          "episode_mentions",
+          "cross_encoder"
+        ],
+        "title": "GraphitiReranker"
+      },
+      "GraphitiGraphSearchScope": {
+        "type": "string",
+        "enum": [
+          "edges",
+          "nodes",
+          "episodes"
+        ],
+        "title": "GraphitiGraphSearchScope"
+      },
+      "GraphitiGraphSearchQuery": {
+        "type": "object",
+        "properties": {
+          "bfs_origin_node_uuids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Nodes that are the origins of the BFS searches"
+          },
+          "center_node_uuid": {
+            "type": "string",
+            "description": "Node to rerank around for node distance reranking"
+          },
+          "graph_id": {
+            "type": "string",
+            "description": "The graph_id to search in. When searching user graph, please use user_id instead."
+          },
+          "limit": {
+            "type": "integer",
+            "description": "The maximum number of facts to retrieve. Defaults to 10. Limited to 50."
+          },
+          "mmr_lambda": {
+            "type": "number",
+            "format": "double",
+            "description": "weighting for maximal marginal relevance"
+          },
+          "query": {
+            "type": "string",
+            "description": "The string to search for (required)"
+          },
+          "reranker": {
+            "$ref": "#/components/schemas/GraphitiReranker",
+            "description": "Defaults to RRF"
+          },
+          "scope": {
+            "$ref": "#/components/schemas/GraphitiGraphSearchScope",
+            "description": "Defaults to Edges. Communities will be added in the future."
+          },
+          "search_filters": {
+            "$ref": "#/components/schemas/GraphitiSearchFilters",
+            "description": "Search filters to apply to the search"
+          },
+          "user_id": {
+            "type": "string",
+            "description": "The user_id when searching user graph. If not searching user graph, please use graph_id instead."
+          }
+        },
+        "required": [
+          "query"
+        ],
+        "title": "GraphitiGraphSearchQuery"
+      },
+      "ApidataGraphSearchResults": {
+        "type": "object",
+        "properties": {
+          "edges": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GraphitiEntityEdge"
+            }
+          },
+          "episodes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApidataGraphEpisode"
+            }
+          },
+          "nodes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GraphitiEntityNode"
+            }
+          }
+        },
+        "title": "ApidataGraphSearchResults"
+      },
+      "ApidataUpdateGraphRequest": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "title": "ApidataUpdateGraphRequest"
+      },
+      "ApidataGraphEdgesRequest": {
+        "type": "object",
+        "properties": {
+          "limit": {
+            "type": "integer",
+            "description": "Maximum number of items to return"
+          },
+          "uuid_cursor": {
+            "type": "string",
+            "description": "UUID based cursor, used for pagination. Should be the UUID of the last item in the previous page"
+          }
+        },
+        "title": "ApidataGraphEdgesRequest"
+      },
+      "ApidataUpdateEdgeRequest": {
+        "type": "object",
+        "properties": {
+          "attributes": {
+            "type": "object",
+            "additionalProperties": {
+              "description": "Any type"
+            },
+            "description": "Updated attributes. Merged with existing attributes. Set a key to null to delete it."
+          },
+          "expired_at": {
+            "type": "string",
+            "description": "Updated time at which the edge expires"
+          },
+          "fact": {
+            "type": "string",
+            "description": "Updated fact for the edge"
+          },
+          "invalid_at": {
+            "type": "string",
+            "description": "Updated time at which the fact stopped being true"
+          },
+          "name": {
+            "type": "string",
+            "description": "Updated name (relationship type) for the edge"
+          },
+          "valid_at": {
+            "type": "string",
+            "description": "Updated time at which the fact becomes true"
+          }
+        },
+        "title": "ApidataUpdateEdgeRequest"
+      },
+      "ApidataGraphEpisodeResponse": {
+        "type": "object",
+        "properties": {
+          "episodes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApidataGraphEpisode"
+            }
+          }
+        },
+        "title": "ApidataGraphEpisodeResponse"
+      },
+      "ApidataEpisodeMentions": {
+        "type": "object",
+        "properties": {
+          "edges": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GraphitiEntityEdge"
+            }
+          },
+          "nodes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GraphitiEntityNode"
+            }
+          }
+        },
+        "title": "ApidataEpisodeMentions"
+      },
+      "ApidataGraphNodesRequest": {
+        "type": "object",
+        "properties": {
+          "limit": {
+            "type": "integer",
+            "description": "Maximum number of items to return"
+          },
+          "uuid_cursor": {
+            "type": "string",
+            "description": "UUID based cursor, used for pagination. Should be the UUID of the last item in the previous page"
+          }
+        },
+        "title": "ApidataGraphNodesRequest"
+      },
+      "ApidataUpdateNodeRequest": {
+        "type": "object",
+        "properties": {
+          "attributes": {
+            "type": "object",
+            "additionalProperties": {
+              "description": "Any type"
+            },
+            "description": "Updated attributes. Merged with existing attributes. Set a key to null to delete it."
+          },
+          "labels": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Updated labels for the node"
+          },
+          "name": {
+            "type": "string",
+            "description": "Updated name for the node"
+          },
+          "summary": {
+            "type": "string",
+            "description": "Updated summary for the node"
+          }
+        },
+        "title": "ApidataUpdateNodeRequest"
+      },
+      "ApidataCustomInstruction": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "text": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "text"
+        ],
+        "title": "ApidataCustomInstruction"
+      },
+      "ApidataListCustomInstructionsResponse": {
+        "type": "object",
+        "properties": {
+          "instructions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApidataCustomInstruction"
+            }
+          }
+        },
+        "title": "ApidataListCustomInstructionsResponse"
+      },
+      "ApidataAddCustomInstructionsRequest": {
+        "type": "object",
+        "properties": {
+          "graph_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Graph IDs to add the instructions to. If empty, the instructions are added to the project-wide default."
+          },
+          "instructions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApidataCustomInstruction"
+            },
+            "description": "Instructions to add to the graph."
+          },
+          "user_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "User IDs to add the instructions to. If empty, the instructions are added to the project-wide default."
+          }
+        },
+        "required": [
+          "instructions"
+        ],
+        "title": "ApidataAddCustomInstructionsRequest"
+      },
+      "ApidataDeleteCustomInstructionsRequest": {
+        "type": "object",
+        "properties": {
+          "graph_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Determines which group graphs will have their custom instructions deleted. If no graphs are provided, the project-wide custom instructions will be affected."
+          },
+          "instruction_names": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Unique identifier for the instructions to be deleted. If empty deletes all instructions."
+          },
+          "user_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Determines which user graphs will have their custom instructions deleted. If no users are provided, the project-wide custom instructions will be affected."
+          }
+        },
+        "title": "ApidataDeleteCustomInstructionsRequest"
+      },
+      "ApidataProjectInfo": {
+        "type": "object",
+        "properties": {
+          "created_at": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "uuid": {
+            "type": "string"
+          }
+        },
+        "title": "ApidataProjectInfo"
+      },
+      "ApidataProjectInfoResponse": {
+        "type": "object",
+        "properties": {
+          "project": {
+            "$ref": "#/components/schemas/ApidataProjectInfo"
+          }
+        },
+        "title": "ApidataProjectInfoResponse"
+      },
+      "ApidataTaskErrorResponse": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "details": {
+            "type": "object",
+            "additionalProperties": {
+              "description": "Any type"
+            }
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "title": "ApidataTaskErrorResponse"
+      },
+      "ApidataTaskProgress": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "stage": {
+            "type": "string"
+          }
+        },
+        "title": "ApidataTaskProgress"
+      },
+      "ApidataGetTaskResponse": {
+        "type": "object",
+        "properties": {
+          "completed_at": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string"
+          },
+          "error": {
+            "$ref": "#/components/schemas/ApidataTaskErrorResponse"
+          },
+          "params": {
+            "type": "object",
+            "additionalProperties": {
+              "description": "Any type"
+            }
+          },
+          "progress": {
+            "$ref": "#/components/schemas/ApidataTaskProgress"
+          },
+          "started_at": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "task_id": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "updated_at": {
+            "type": "string"
+          }
+        },
+        "title": "ApidataGetTaskResponse"
+      }
+    },
+    "securitySchemes": {
+      "BearerAuth": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "security": [
+    {
+      "BearerAuth": []
+    }
+  ]
+}

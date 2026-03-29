@@ -1,0 +1,67 @@
+#nullable enable
+
+namespace Zep
+{
+    public partial interface ISubpackageSearchClient
+    {
+        /// <summary>
+        /// Search Graph<br/>
+        /// Perform a graph search query.
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::Zep.ApiException"></exception>
+        global::System.Threading.Tasks.Task<global::Zep.ApidataGraphSearchResults> GraphAsync(
+
+            global::Zep.GraphitiGraphSearchQuery request,
+            global::System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Search Graph<br/>
+        /// Perform a graph search query.
+        /// </summary>
+        /// <param name="bfsOriginNodeUuids">
+        /// Nodes that are the origins of the BFS searches
+        /// </param>
+        /// <param name="centerNodeUuid">
+        /// Node to rerank around for node distance reranking
+        /// </param>
+        /// <param name="graphId">
+        /// The graph_id to search in. When searching user graph, please use user_id instead.
+        /// </param>
+        /// <param name="limit">
+        /// The maximum number of facts to retrieve. Defaults to 10. Limited to 50.
+        /// </param>
+        /// <param name="mmrLambda">
+        /// weighting for maximal marginal relevance
+        /// </param>
+        /// <param name="query">
+        /// The string to search for (required)
+        /// </param>
+        /// <param name="reranker">
+        /// Defaults to RRF
+        /// </param>
+        /// <param name="scope">
+        /// Defaults to Edges. Communities will be added in the future.
+        /// </param>
+        /// <param name="searchFilters">
+        /// Search filters to apply to the search
+        /// </param>
+        /// <param name="userId">
+        /// The user_id when searching user graph. If not searching user graph, please use graph_id instead.
+        /// </param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::System.InvalidOperationException"></exception>
+        global::System.Threading.Tasks.Task<global::Zep.ApidataGraphSearchResults> GraphAsync(
+            string query,
+            global::System.Collections.Generic.IList<string>? bfsOriginNodeUuids = default,
+            string? centerNodeUuid = default,
+            string? graphId = default,
+            int? limit = default,
+            double? mmrLambda = default,
+            global::Zep.GraphitiReranker? reranker = default,
+            global::Zep.GraphitiGraphSearchScope? scope = default,
+            global::Zep.GraphitiSearchFilters? searchFilters = default,
+            string? userId = default,
+            global::System.Threading.CancellationToken cancellationToken = default);
+    }
+}

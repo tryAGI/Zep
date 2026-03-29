@@ -1,0 +1,24 @@
+#nullable enable
+
+namespace Zep
+{
+    public partial interface ISubpackageThreadClient
+    {
+        /// <summary>
+        /// Get messages of a thread<br/>
+        /// Returns messages for a thread.
+        /// </summary>
+        /// <param name="threadId"></param>
+        /// <param name="limit"></param>
+        /// <param name="cursor"></param>
+        /// <param name="lastn"></param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::Zep.ApiException"></exception>
+        global::System.Threading.Tasks.Task<global::Zep.ApidataThreadMessageListResponse> GetMessagesOfAThreadAsync(
+            string threadId,
+            int? limit = default,
+            int? cursor = default,
+            int? lastn = default,
+            global::System.Threading.CancellationToken cancellationToken = default);
+    }
+}
