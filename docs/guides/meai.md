@@ -1,96 +1,69 @@
 # Microsoft.Extensions.AI Integration
 
-The Zep SDK provides `AIFunction` tool wrappers that can be used with any `IChatClient` implementation
-from the Microsoft.Extensions.AI ecosystem. These tools enable AI agents to interact with Zep's
-knowledge graph memory during conversations.
+!!! tip "Cross-SDK comparison"
+    See the [centralized MEAI documentation](https://tryagi.github.io/docs/meai/) for feature matrices and comparisons across all tryAGI SDKs.
+
+The Zep SDK provides `AIFunction` tool wrappers compatible with [Microsoft.Extensions.AI](https://learn.microsoft.com/en-us/dotnet/ai/microsoft-extensions-ai). These tools can be used with any `IChatClient` to give AI models access to Zep's knowledge graph memory -- adding data, searching facts, retrieving context, managing threads, and inspecting user nodes.
+
+## Installation
+
+```bash
+dotnet add package Zep
+```
 
 ## Available Tools
 
-| Tool | Method | Description |
-|------|--------|-------------|
-| `Zep_AddMemory` | `AsAddMemoryTool()` | Add text data to a user's knowledge graph memory |
-| `Zep_SearchMemory` | `AsSearchMemoryTool()` | Search a user's knowledge graph for relevant facts |
-| `Zep_GetContext` | `AsGetContextTool()` | Get relevant context from a thread's conversation history |
-| `Zep_ListThreads` | `AsListThreadsTool()` | List all conversation threads with pagination |
-| `Zep_GetUserNode` | `AsGetUserNodeTool()` | Get a user's central node from the knowledge graph |
-| `Zep_AddMessages` | `AsAddMessagesTool()` | Add a message to a conversation thread |
+| Method | Tool Name | Description |
+|--------|-----------|-------------|
+| `AsAddMemoryTool()` | `Zep_AddMemory` | Add text data to a user's knowledge graph memory |
+| `AsSearchMemoryTool()` | `Zep_SearchMemory` | Search a user's knowledge graph for relevant facts and relationships |
+| `AsGetContextTool()` | `Zep_GetContext` | Get relevant context from a thread's conversation history |
+| `AsListThreadsTool()` | `Zep_ListThreads` | List all conversation threads with pagination |
+| `AsGetUserNodeTool()` | `Zep_GetUserNode` | Get a user's central node from the knowledge graph |
+| `AsAddMessagesTool()` | `Zep_AddMessages` | Add a message to a conversation thread |
 
-## Usage Example
+## Usage
 
 ```csharp
-using Microsoft.Extensions.AI;
 using Zep;
+using Microsoft.Extensions.AI;
 
-// Create the Zep client
-using var zepClient = new ZepClient(apiKey: "z_your_api_key");
+var zepClient = new ZepClient(
+    apiKey: Environment.GetEnvironmentVariable("ZEP_API_KEY")!);
 
-// Create tools
-var tools = new AITool[]
+var options = new ChatOptions
 {
-    zepClient.AsSearchMemoryTool(),
-    zepClient.AsGetContextTool(),
-    zepClient.AsAddMemoryTool(),
+    Tools =
+    [
+        zepClient.AsAddMemoryTool(),
+        zepClient.AsSearchMemoryTool(),
+        zepClient.AsGetContextTool(),
+        zepClient.AsListThreadsTool(),
+        zepClient.AsGetUserNodeTool(),
+        zepClient.AsAddMessagesTool(),
+    ],
 };
 
-// Use with any IChatClient (OpenAI, Anthropic, Ollama, etc.)
-var chatClient = new OpenAIClient(openAiKey)
-    .GetChatClient("gpt-4o")
-    .AsIChatClient();
+IChatClient chatClient = /* your chat client */;
 
-var response = await chatClient.GetResponseAsync(
-    "What do you remember about the user's preferences?",
-    new() { Tools = tools });
+var messages = new List<ChatMessage>
+{
+    new(ChatRole.User, "Search the memory for user 'user-42' about their project preferences."),
+};
+
+while (true)
+{
+    var response = await chatClient.GetResponseAsync(messages, options);
+    messages.AddRange(response.ToChatMessages());
+
+    if (response.FinishReason == ChatFinishReason.ToolCalls)
+    {
+        var results = await response.CallToolsAsync(options);
+        messages.AddRange(results);
+        continue;
+    }
+
+    Console.WriteLine(response.Text);
+    break;
+}
 ```
-
-## Tool Details
-
-### AsAddMemoryTool
-
-Adds text data to a user's Zep knowledge graph. The data will be automatically processed
-and facts/entities will be extracted.
-
-**Parameters:**
-- `data` (string) -- The text content to add to memory
-- `userId` (string) -- The user ID to add memory for
-- `sourceDescription` (string, optional) -- Description of the data source
-
-### AsSearchMemoryTool
-
-Searches a user's knowledge graph for relevant facts, entities, and relationships.
-
-**Parameters:**
-- `query` (string) -- The search query string
-- `userId` (string) -- The user ID to search memories for
-- `limit` (int, optional) -- Maximum number of results (default 10, max 50)
-
-### AsGetContextTool
-
-Gets relevant context from the user's knowledge graph based on recent messages in a thread.
-
-**Parameters:**
-- `threadId` (string) -- The thread ID to get context for
-
-### AsListThreadsTool
-
-Lists all conversation threads with pagination support.
-
-**Parameters:**
-- `pageNumber` (int, optional) -- Page number for pagination
-- `pageSize` (int, optional) -- Page size for pagination
-
-### AsGetUserNodeTool
-
-Gets a user's central node from the Zep knowledge graph, including their summary.
-
-**Parameters:**
-- `userId` (string) -- The user ID to get the node for
-
-### AsAddMessagesTool
-
-Adds a message to a conversation thread. The message will be processed and relevant
-facts will be extracted to the user's knowledge graph.
-
-**Parameters:**
-- `threadId` (string) -- The thread ID to add messages to
-- `content` (string) -- The message content
-- `role` (string) -- The role of the sender (e.g., "user", "assistant")
