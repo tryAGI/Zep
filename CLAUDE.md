@@ -20,14 +20,14 @@ API key auth with `Api-Key` scheme (keys prefixed with `z_`):
 var client = new ZepClient(apiKey); // ZEP_API_KEY env var
 ```
 
-The `Authorized` hook rewrites the default Bearer header to `Authorization: Api-Key {key}`.
+The `Authorized` hook modifies the shared Authorizations list, changing `Bearer` to `Api-Key`. This ensures all 11+ sub-clients correctly send the `Authorization: Api-Key` header.
 
 ## Key Files
 
 - `src/libs/Zep/openapi.json` -- OpenAPI spec (downloaded from help.getzep.com)
 - `src/libs/Zep/generate.sh` -- Downloads spec, fixes dotted schema names, injects auth, runs autosdk
 - `src/libs/Zep/Generated/` -- **Never edit** -- auto-generated code (~386 files)
-- `src/libs/Zep/Extensions/ZepClient.PrepareRequest.cs` -- Auth hook (Bearer -> Api-Key)
+- `src/libs/Zep/Extensions/ZepClient.PrepareRequest.cs` -- `Authorized` hook: Bearer -> Api-Key (shared across all sub-clients)
 - `src/libs/Zep/Extensions/ZepClient.Tools.cs` -- MEAI `AIFunction` tools
 - `src/tests/IntegrationTests/Tests.cs` -- Test helper with bearer auth
 - `src/tests/IntegrationTests/Examples/` -- Example tests (also generate docs)
@@ -40,7 +40,7 @@ The `Authorized` hook rewrites the default Bearer header to `Authorization: Api-
 
 **Schema name fix:** Spec uses dotted schema names (`apidata.Foo`, `graphiti.Foo`, `models.Foo`) which are renamed to PascalCase (`ApidataFoo`, `GraphitiFoo`, `ModelsFoo`) in `generate.sh`.
 
-**Auth fix:** Spec has no security schemes -- `generate.sh` injects `http/bearer` security; `Authorized` hook converts to `Api-Key` header at runtime.
+**Auth fix:** Spec has no security schemes -- `generate.sh` injects `http/bearer` security; `Authorized` hook modifies the shared Authorizations list to convert `Bearer` to `Api-Key` at runtime, ensuring all 11+ sub-clients send correct auth.
 
 ## Sub-client Pattern
 
