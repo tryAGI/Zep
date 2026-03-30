@@ -4,17 +4,24 @@ namespace Zep;
 
 public sealed partial class ZepClient
 {
-    /// <summary>
-    /// After Bearer auth is set, convert to Api-Key authorization on the HttpClient.
-    /// Zep uses "Authorization: Api-Key {key}" instead of "Authorization: Bearer {key}".
-    /// </summary>
+    // Zep uses "Authorization: Api-Key {key}" instead of "Authorization: Bearer {key}".
+    // Rewrite the scheme in the shared Authorizations list so all sub-clients
+    // (SubpackageThread, SubpackageUser, etc.) send the correct header.
     partial void Authorized(System.Net.Http.HttpClient client)
     {
-        var apiKey = Authorizations.FirstOrDefault()?.Value;
-        if (apiKey is { Length: > 0 })
+        for (var i = 0; i < Authorizations.Count; i++)
         {
-            client.DefaultRequestHeaders.Authorization =
-                new System.Net.Http.Headers.AuthenticationHeaderValue("Api-Key", apiKey);
+            var auth = Authorizations[i];
+            if (auth is { Type: "Http", Name: "Bearer" })
+            {
+                Authorizations[i] = new EndPointAuthorization
+                {
+                    Type = auth.Type,
+                    Location = auth.Location,
+                    Name = "Api-Key",
+                    Value = auth.Value,
+                };
+            }
         }
     }
 }
