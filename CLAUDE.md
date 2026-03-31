@@ -3,7 +3,7 @@
 ## Overview
 
 Auto-generated C# SDK for [Zep](https://www.getzep.com/) -- AI agent memory and context engineering platform with temporal knowledge graphs.
-OpenAPI spec from the official Zep documentation at `https://help.getzep.com/openapi.json?api=a22eebbe-debf-4028-afaa-28d8a3b0b03b` (Threads API v2).
+OpenAPI spec from the official Zep documentation at `https://help.getzep.com/openapi.json` (Threads API v2, resolved dynamically by `generate.sh`).
 
 ## Build & Test
 
@@ -34,9 +34,9 @@ The `Authorized` hook modifies the shared Authorizations list, changing `Bearer`
 
 ## Spec Notes
 
-**Two APIs available:**
-- `a22eebbe-debf-4028-afaa-28d8a3b0b03b` -- Threads API (modern, used by this SDK)
-- `ea907079-6c75-475f-b2fc-9f375fbaa6d2` -- Sessions API (legacy v2)
+**Two APIs are currently exposed by the docs index:**
+- `generate.sh` first tries the known Threads API id `8935e41a-294c-41da-ba8e-d6d73cab6182`
+- If Fern rotates ids again, `generate.sh` scrapes `https://help.getzep.com/openapi.json` and selects the spec that contains `/threads`, `/users`, `/graph/search`, and `/context-templates`
 
 **Schema name fix:** Spec uses dotted schema names (`apidata.Foo`, `graphiti.Foo`, `models.Foo`) which are renamed to PascalCase (`ApidataFoo`, `GraphitiFoo`, `ModelsFoo`) in `generate.sh`.
 
