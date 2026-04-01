@@ -315,7 +315,6 @@ namespace Zep
             global::System.Collections.Generic.IList<string>? userIds = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-
             var __request = new global::Zep.ApidataDeleteCustomInstructionsRequest
             {
                 GraphIds = graphIds,
