@@ -13,6 +13,25 @@ tmp_spec="$(mktemp)"
 tmp_index="$(mktemp)"
 trap 'rm -f "$tmp_spec" "$tmp_index"' EXIT
 
+download_url() {
+  local destination="$1"
+  local url="$2"
+  local attempts="${3:-3}"
+  local attempt
+
+  for ((attempt = 1; attempt <= attempts; attempt++)); do
+    if curl --fail --silent --show-error -L -o "$destination" "$url"; then
+      return 0
+    fi
+
+    if (( attempt < attempts )); then
+      sleep "$attempt"
+    fi
+  done
+
+  return 1
+}
+
 is_threads_api_spec() {
   python3 - <<'PY' "$1"
 import json
@@ -34,20 +53,21 @@ PY
 
 download_candidate_spec() {
   local api_id="$1"
-  curl --fail --silent --show-error -L \
-    -o "$tmp_spec" \
-    "${OPENAPI_INDEX_URL}?api=${api_id}" || return 1
+  local attempts="${2:-2}"
+
+  download_url \
+    "$tmp_spec" \
+    "${OPENAPI_INDEX_URL}?api=${api_id}" \
+    "$attempts" || return 1
 
   is_threads_api_spec "$tmp_spec"
 }
 
 selected_api_id=""
-if download_candidate_spec "$KNOWN_THREADS_API_ID"; then
+if download_candidate_spec "$KNOWN_THREADS_API_ID" 3; then
   selected_api_id="$KNOWN_THREADS_API_ID"
 else
-  curl --fail --silent --show-error -L \
-    -o "$tmp_index" \
-    "$OPENAPI_INDEX_URL"
+  download_url "$tmp_index" "$OPENAPI_INDEX_URL" 3
 
   mapfile -t candidate_api_ids < <(
     python3 - <<'PY' "$tmp_index"
@@ -67,7 +87,7 @@ PY
   )
 
   for api_id in "${candidate_api_ids[@]}"; do
-    if download_candidate_spec "$api_id"; then
+    if download_candidate_spec "$api_id" 2; then
       selected_api_id="$api_id"
       break
     fi
