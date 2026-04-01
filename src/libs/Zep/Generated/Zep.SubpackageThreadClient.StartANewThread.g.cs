@@ -273,6 +273,7 @@ namespace Zep
             string userId,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
+
             var __request = new global::Zep.ModelsCreateThreadRequest
             {
                 ThreadId = threadId,
