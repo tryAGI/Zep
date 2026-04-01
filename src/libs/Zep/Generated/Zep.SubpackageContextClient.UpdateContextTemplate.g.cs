@@ -315,7 +315,6 @@ namespace Zep
             string template,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-
             var __request = new global::Zep.ApidataUpdateContextTemplateRequest
             {
                 Template = template,

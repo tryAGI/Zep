@@ -211,7 +211,6 @@ namespace Zep
             global::System.Collections.Generic.IList<string>? graphIds = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-
             var __request = new global::Zep.SetOntologyRequest
             {
                 Entities = entities,
