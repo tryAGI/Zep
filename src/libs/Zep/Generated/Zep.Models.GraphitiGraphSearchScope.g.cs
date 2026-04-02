@@ -11,6 +11,10 @@ namespace Zep
         /// <summary>
         /// 
         /// </summary>
+        Communities,
+        /// <summary>
+        /// 
+        /// </summary>
         Edges,
         /// <summary>
         /// 
@@ -34,6 +38,7 @@ namespace Zep
         {
             return value switch
             {
+                GraphitiGraphSearchScope.Communities => "communities",
                 GraphitiGraphSearchScope.Edges => "edges",
                 GraphitiGraphSearchScope.Episodes => "episodes",
                 GraphitiGraphSearchScope.Nodes => "nodes",
@@ -47,6 +52,7 @@ namespace Zep
         {
             return value switch
             {
+                "communities" => GraphitiGraphSearchScope.Communities,
                 "edges" => GraphitiGraphSearchScope.Edges,
                 "episodes" => GraphitiGraphSearchScope.Episodes,
                 "nodes" => GraphitiGraphSearchScope.Nodes,

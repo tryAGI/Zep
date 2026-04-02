@@ -282,7 +282,7 @@ namespace Zep
         /// Defaults to RRF
         /// </param>
         /// <param name="scope">
-        /// Defaults to Edges. Communities will be added in the future.
+        /// Defaults to Edges.
         /// </param>
         /// <param name="searchFilters">
         /// Search filters to apply to the search

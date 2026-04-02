@@ -39,6 +39,15 @@ namespace Zep
         /// <summary>
         /// 
         /// </summary>
+        public SubpackageCommunityClient SubpackageCommunity => new SubpackageCommunityClient(HttpClient, authorizations: Authorizations)
+        {
+            ReadResponseAsString = ReadResponseAsString,
+            JsonSerializerContext = JsonSerializerContext,
+        };
+
+        /// <summary>
+        /// 
+        /// </summary>
         public SubpackageContextClient SubpackageContext => new SubpackageContextClient(HttpClient, authorizations: Authorizations)
         {
             ReadResponseAsString = ReadResponseAsString,

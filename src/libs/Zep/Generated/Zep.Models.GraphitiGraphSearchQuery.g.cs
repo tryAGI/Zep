@@ -53,7 +53,7 @@ namespace Zep
         public global::Zep.GraphitiReranker? Reranker { get; set; }
 
         /// <summary>
-        /// Defaults to Edges. Communities will be added in the future.
+        /// Defaults to Edges.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("scope")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Zep.JsonConverters.GraphitiGraphSearchScopeJsonConverter))]
@@ -102,7 +102,7 @@ namespace Zep
         /// Defaults to RRF
         /// </param>
         /// <param name="scope">
-        /// Defaults to Edges. Communities will be added in the future.
+        /// Defaults to Edges.
         /// </param>
         /// <param name="searchFilters">
         /// Search filters to apply to the search

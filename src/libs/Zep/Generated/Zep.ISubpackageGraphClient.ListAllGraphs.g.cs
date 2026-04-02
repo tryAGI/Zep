@@ -10,6 +10,7 @@ namespace Zep
         /// </summary>
         /// <param name="pageNumber"></param>
         /// <param name="pageSize"></param>
+        /// <param name="search"></param>
         /// <param name="orderBy"></param>
         /// <param name="asc"></param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -17,6 +18,7 @@ namespace Zep
         global::System.Threading.Tasks.Task<global::Zep.ApidataGraphListResponse> ListAllGraphsAsync(
             int? pageNumber = default,
             int? pageSize = default,
+            string? search = default,
             string? orderBy = default,
             bool? asc = default,
             global::System.Threading.CancellationToken cancellationToken = default);
