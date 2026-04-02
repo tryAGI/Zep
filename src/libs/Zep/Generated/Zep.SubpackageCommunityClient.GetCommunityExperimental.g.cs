@@ -3,71 +3,44 @@
 
 namespace Zep
 {
-    public partial class SubpackageGraphClient
+    public partial class SubpackageCommunityClient
     {
-        partial void PrepareListAllGraphsArguments(
+        partial void PrepareGetCommunityExperimentalArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref int? pageNumber,
-            ref int? pageSize,
-            ref string? search,
-            ref string? orderBy,
-            ref bool? asc);
-        partial void PrepareListAllGraphsRequest(
+            ref string uuid);
+        partial void PrepareGetCommunityExperimentalRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            int? pageNumber,
-            int? pageSize,
-            string? search,
-            string? orderBy,
-            bool? asc);
-        partial void ProcessListAllGraphsResponse(
+            string uuid);
+        partial void ProcessGetCommunityExperimentalResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
-        partial void ProcessListAllGraphsResponseContent(
+        partial void ProcessGetCommunityExperimentalResponseContent(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage,
             ref string content);
 
         /// <summary>
-        /// List all graphs.<br/>
-        /// Returns all graphs. In order to list users, use user.list_ordered instead
+        /// Get Community (Experimental)<br/>
+        /// Returns a specific community node by UUID. Community nodes are read-only.
         /// </summary>
-        /// <param name="pageNumber"></param>
-        /// <param name="pageSize"></param>
-        /// <param name="search"></param>
-        /// <param name="orderBy"></param>
-        /// <param name="asc"></param>
+        /// <param name="uuid"></param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Zep.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Zep.ApidataGraphListResponse> ListAllGraphsAsync(
-            int? pageNumber = default,
-            int? pageSize = default,
-            string? search = default,
-            string? orderBy = default,
-            bool? asc = default,
+        public async global::System.Threading.Tasks.Task<global::Zep.GraphitiCommunityNode> GetCommunityExperimentalAsync(
+            string uuid,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             PrepareArguments(
                 client: HttpClient);
-            PrepareListAllGraphsArguments(
+            PrepareGetCommunityExperimentalArguments(
                 httpClient: HttpClient,
-                pageNumber: ref pageNumber,
-                pageSize: ref pageSize,
-                search: ref search,
-                orderBy: ref orderBy,
-                asc: ref asc);
+                uuid: ref uuid);
 
             var __pathBuilder = new global::Zep.PathBuilder(
-                path: "/graph/list-all",
+                path: $"/graph/community/{uuid}",
                 baseUri: HttpClient.BaseAddress); 
-            __pathBuilder
-                .AddOptionalParameter("pageNumber", pageNumber?.ToString())
-                .AddOptionalParameter("pageSize", pageSize?.ToString())
-                .AddOptionalParameter("search", search)
-                .AddOptionalParameter("order_by", orderBy)
-                .AddOptionalParameter("asc", asc?.ToString().ToLowerInvariant()) 
-                ; 
             var __path = __pathBuilder.ToString();
             using var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
                 method: global::System.Net.Http.HttpMethod.Get,
@@ -96,14 +69,10 @@ namespace Zep
             PrepareRequest(
                 client: HttpClient,
                 request: __httpRequest);
-            PrepareListAllGraphsRequest(
+            PrepareGetCommunityExperimentalRequest(
                 httpClient: HttpClient,
                 httpRequestMessage: __httpRequest,
-                pageNumber: pageNumber,
-                pageSize: pageSize,
-                search: search,
-                orderBy: orderBy,
-                asc: asc);
+                uuid: uuid);
 
             using var __response = await HttpClient.SendAsync(
                 request: __httpRequest,
@@ -113,7 +82,7 @@ namespace Zep
             ProcessResponse(
                 client: HttpClient,
                 response: __response);
-            ProcessListAllGraphsResponse(
+            ProcessGetCommunityExperimentalResponse(
                 httpClient: HttpClient,
                 httpResponseMessage: __response);
             // Bad Request
@@ -148,6 +117,44 @@ namespace Zep
                 {
                     ResponseBody = __content_400,
                     ResponseObject = __value_400,
+                    ResponseHeaders = global::System.Linq.Enumerable.ToDictionary(
+                        __response.Headers,
+                        h => h.Key,
+                        h => h.Value),
+                };
+            }
+            // Not Found
+            if ((int)__response.StatusCode == 404)
+            {
+                string? __content_404 = null;
+                global::System.Exception? __exception_404 = null;
+                global::Zep.ApidataAPIError? __value_404 = null;
+                try
+                {
+                    if (ReadResponseAsString)
+                    {
+                        __content_404 = await __response.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+                        __value_404 = global::Zep.ApidataAPIError.FromJson(__content_404, JsonSerializerContext);
+                    }
+                    else
+                    {
+                        __content_404 = await __response.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+
+                        __value_404 = global::Zep.ApidataAPIError.FromJson(__content_404, JsonSerializerContext);
+                    }
+                }
+                catch (global::System.Exception __ex)
+                {
+                    __exception_404 = __ex;
+                }
+
+                throw new global::Zep.ApiException<global::Zep.ApidataAPIError>(
+                    message: __content_404 ?? __response.ReasonPhrase ?? string.Empty,
+                    innerException: __exception_404,
+                    statusCode: __response.StatusCode)
+                {
+                    ResponseBody = __content_404,
+                    ResponseObject = __value_404,
                     ResponseHeaders = global::System.Linq.Enumerable.ToDictionary(
                         __response.Headers,
                         h => h.Key,
@@ -205,7 +212,7 @@ namespace Zep
                     client: HttpClient,
                     response: __response,
                     content: ref __content);
-                ProcessListAllGraphsResponseContent(
+                ProcessGetCommunityExperimentalResponseContent(
                     httpClient: HttpClient,
                     httpResponseMessage: __response,
                     content: ref __content);
@@ -215,7 +222,7 @@ namespace Zep
                     __response.EnsureSuccessStatusCode();
 
                     return
-                        global::Zep.ApidataGraphListResponse.FromJson(__content, JsonSerializerContext) ??
+                        global::Zep.GraphitiCommunityNode.FromJson(__content, JsonSerializerContext) ??
                         throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
                 }
                 catch (global::System.Exception __ex)
@@ -246,7 +253,7 @@ namespace Zep
                     ).ConfigureAwait(false);
 
                     return
-                        await global::Zep.ApidataGraphListResponse.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
+                        await global::Zep.GraphitiCommunityNode.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
                         throw new global::System.InvalidOperationException("Response deserialization failed.");
                 }
                 catch (global::System.Exception __ex)

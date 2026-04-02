@@ -11,6 +11,12 @@ namespace Zep
         /// <summary>
         /// 
         /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("communities")]
+        public global::System.Collections.Generic.IList<global::Zep.GraphitiCommunityNode>? Communities { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("edges")]
         public global::System.Collections.Generic.IList<global::Zep.GraphitiEntityEdge>? Edges { get; set; }
 
@@ -35,6 +41,7 @@ namespace Zep
         /// <summary>
         /// Initializes a new instance of the <see cref="ApidataGraphSearchResults" /> class.
         /// </summary>
+        /// <param name="communities"></param>
         /// <param name="edges"></param>
         /// <param name="episodes"></param>
         /// <param name="nodes"></param>
@@ -42,10 +49,12 @@ namespace Zep
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
         public ApidataGraphSearchResults(
+            global::System.Collections.Generic.IList<global::Zep.GraphitiCommunityNode>? communities,
             global::System.Collections.Generic.IList<global::Zep.GraphitiEntityEdge>? edges,
             global::System.Collections.Generic.IList<global::Zep.ApidataGraphEpisode>? episodes,
             global::System.Collections.Generic.IList<global::Zep.GraphitiEntityNode>? nodes)
         {
+            this.Communities = communities;
             this.Edges = edges;
             this.Episodes = episodes;
             this.Nodes = nodes;

@@ -1823,6 +1823,15 @@
             }
           },
           {
+            "name": "search",
+            "in": "query",
+            "description": "Search term for filtering graphs by graph_id.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "order_by",
             "in": "query",
             "description": "Column to sort by (created_at, group_id, name).",
@@ -3534,6 +3543,221 @@
           }
         }
       }
+    },
+    "/graph/community/graph/{graph_id}": {
+      "post": {
+        "operationId": "get-graph-communities-experimental",
+        "summary": "Get Graph Communities (Experimental)",
+        "description": "Returns read-only community nodes for a graph.",
+        "tags": [
+          "subpackage_community"
+        ],
+        "parameters": [
+          {
+            "name": "graph_id",
+            "in": "path",
+            "description": "Graph ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Communities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GraphitiCommunityNode"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "Pagination parameters",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApidataGraphCommunitiesRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/graph/community/user/{user_id}": {
+      "post": {
+        "operationId": "get-user-communities-experimental",
+        "summary": "Get User Communities (Experimental)",
+        "description": "Returns read-only community nodes for a user's graph.",
+        "tags": [
+          "subpackage_community"
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "description": "User ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Communities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GraphitiCommunityNode"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "Pagination parameters",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApidataGraphCommunitiesRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/graph/community/{uuid}": {
+      "get": {
+        "operationId": "get-community-experimental",
+        "summary": "Get Community (Experimental)",
+        "description": "Returns a specific community node by UUID. Community nodes are read-only.",
+        "tags": [
+          "subpackage_community"
+        ],
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "description": "Community UUID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Community",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GraphitiCommunityNode"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "servers": [
@@ -5059,7 +5283,8 @@
         "enum": [
           "edges",
           "nodes",
-          "episodes"
+          "episodes",
+          "communities"
         ],
         "title": "GraphitiGraphSearchScope"
       },
@@ -5100,7 +5325,7 @@
           },
           "scope": {
             "$ref": "#/components/schemas/GraphitiGraphSearchScope",
-            "description": "Defaults to Edges. Communities will be added in the future."
+            "description": "Defaults to Edges."
           },
           "search_filters": {
             "$ref": "#/components/schemas/GraphitiSearchFilters",
@@ -5116,9 +5341,66 @@
         ],
         "title": "GraphitiGraphSearchQuery"
       },
+      "GraphitiCommunityNode": {
+        "type": "object",
+        "properties": {
+          "attributes": {
+            "type": "object",
+            "additionalProperties": {
+              "description": "Any type"
+            },
+            "description": "Additional attributes of the community node."
+          },
+          "created_at": {
+            "type": "string",
+            "description": "Creation time of the node"
+          },
+          "labels": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Labels associated with the node"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the node"
+          },
+          "relevance": {
+            "type": "number",
+            "format": "double",
+            "description": "Relevance is an experimental rank-aligned score in [0,1] derived from Score via logit transformation.\nOnly populated when using cross_encoder reranker; omitted for other reranker types (e.g., RRF)."
+          },
+          "score": {
+            "type": "number",
+            "format": "double",
+            "description": "Score is the reranker output: sigmoid-distributed logits [0,1] when using cross_encoder reranker, or RRF ordinal rank when using rrf reranker"
+          },
+          "summary": {
+            "type": "string",
+            "description": "Region summary of member nodes"
+          },
+          "uuid": {
+            "type": "string",
+            "description": "UUID of the node"
+          }
+        },
+        "required": [
+          "created_at",
+          "name",
+          "uuid"
+        ],
+        "title": "GraphitiCommunityNode"
+      },
       "ApidataGraphSearchResults": {
         "type": "object",
         "properties": {
+          "communities": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GraphitiCommunityNode"
+            }
+          },
           "edges": {
             "type": "array",
             "items": {
@@ -5451,6 +5733,20 @@
           }
         },
         "title": "ApidataGetTaskResponse"
+      },
+      "ApidataGraphCommunitiesRequest": {
+        "type": "object",
+        "properties": {
+          "limit": {
+            "type": "integer",
+            "description": "Maximum number of items to return"
+          },
+          "uuid_cursor": {
+            "type": "string",
+            "description": "UUID based cursor, used for pagination. Should be the UUID of the last item in the previous page"
+          }
+        },
+        "title": "ApidataGraphCommunitiesRequest"
       }
     },
     "securitySchemes": {
