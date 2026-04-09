@@ -5,6 +5,25 @@ namespace Zep
 {
     public partial class SubpackageGraphClient
     {
+
+
+        private static readonly global::Zep.EndPointSecurityRequirement s_ListOntologySecurityRequirement0 =
+            new global::Zep.EndPointSecurityRequirement
+            {
+                Authorizations = new global::Zep.EndPointAuthorizationRequirement[]
+                {                    new global::Zep.EndPointAuthorizationRequirement
+                    {
+                        Type = "Http",
+                        Location = "Header",
+                        Name = "Bearer",
+                        FriendlyName = "Bearer",
+                    },
+                },
+            };
+        private static readonly global::Zep.EndPointSecurityRequirement[] s_ListOntologySecurityRequirements =
+            new global::Zep.EndPointSecurityRequirement[]
+            {                s_ListOntologySecurityRequirement0,
+            };
         partial void PrepareListOntologyArguments(
             global::System.Net.Http.HttpClient httpClient);
         partial void PrepareListOntologyRequest(
@@ -34,9 +53,15 @@ namespace Zep
             PrepareListOntologyArguments(
                 httpClient: HttpClient);
 
+
+            var __authorizations = global::Zep.EndPointSecurityResolver.ResolveAuthorizations(
+                availableAuthorizations: Authorizations,
+                securityRequirements: s_ListOntologySecurityRequirements,
+                operationName: "ListOntologyAsync");
+
             var __pathBuilder = new global::Zep.PathBuilder(
                 path: "/graph/list-ontology",
-                baseUri: HttpClient.BaseAddress); 
+                baseUri: HttpClient.BaseAddress);
             var __path = __pathBuilder.ToString();
             using var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
                 method: global::System.Net.Http.HttpMethod.Get,
@@ -46,7 +71,7 @@ namespace Zep
             __httpRequest.VersionPolicy = global::System.Net.Http.HttpVersionPolicy.RequestVersionOrHigher;
 #endif
 
-            foreach (var __authorization in Authorizations)
+            foreach (var __authorization in __authorizations)
             {
                 if (__authorization.Type == "Http" ||
                     __authorization.Type == "OAuth2")

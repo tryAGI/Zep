@@ -5,6 +5,25 @@ namespace Zep
 {
     public partial class SubpackageEpisodesClient
     {
+
+
+        private static readonly global::Zep.EndPointSecurityRequirement s_GetUserEpisodesSecurityRequirement0 =
+            new global::Zep.EndPointSecurityRequirement
+            {
+                Authorizations = new global::Zep.EndPointAuthorizationRequirement[]
+                {                    new global::Zep.EndPointAuthorizationRequirement
+                    {
+                        Type = "Http",
+                        Location = "Header",
+                        Name = "Bearer",
+                        FriendlyName = "Bearer",
+                    },
+                },
+            };
+        private static readonly global::Zep.EndPointSecurityRequirement[] s_GetUserEpisodesSecurityRequirements =
+            new global::Zep.EndPointSecurityRequirement[]
+            {                s_GetUserEpisodesSecurityRequirement0,
+            };
         partial void PrepareGetUserEpisodesArguments(
             global::System.Net.Http.HttpClient httpClient,
             ref string userId,
@@ -43,12 +62,18 @@ namespace Zep
                 userId: ref userId,
                 lastn: ref lastn);
 
+
+            var __authorizations = global::Zep.EndPointSecurityResolver.ResolveAuthorizations(
+                availableAuthorizations: Authorizations,
+                securityRequirements: s_GetUserEpisodesSecurityRequirements,
+                operationName: "GetUserEpisodesAsync");
+
             var __pathBuilder = new global::Zep.PathBuilder(
                 path: $"/graph/episodes/user/{userId}",
                 baseUri: HttpClient.BaseAddress); 
             __pathBuilder
                 .AddOptionalParameter("lastn", lastn?.ToString()) 
-                ; 
+                ;
             var __path = __pathBuilder.ToString();
             using var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
                 method: global::System.Net.Http.HttpMethod.Get,
@@ -58,7 +83,7 @@ namespace Zep
             __httpRequest.VersionPolicy = global::System.Net.Http.HttpVersionPolicy.RequestVersionOrHigher;
 #endif
 
-            foreach (var __authorization in Authorizations)
+            foreach (var __authorization in __authorizations)
             {
                 if (__authorization.Type == "Http" ||
                     __authorization.Type == "OAuth2")

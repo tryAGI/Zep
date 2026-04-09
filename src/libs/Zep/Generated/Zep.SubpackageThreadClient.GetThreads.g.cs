@@ -5,6 +5,25 @@ namespace Zep
 {
     public partial class SubpackageThreadClient
     {
+
+
+        private static readonly global::Zep.EndPointSecurityRequirement s_GetThreadsSecurityRequirement0 =
+            new global::Zep.EndPointSecurityRequirement
+            {
+                Authorizations = new global::Zep.EndPointAuthorizationRequirement[]
+                {                    new global::Zep.EndPointAuthorizationRequirement
+                    {
+                        Type = "Http",
+                        Location = "Header",
+                        Name = "Bearer",
+                        FriendlyName = "Bearer",
+                    },
+                },
+            };
+        private static readonly global::Zep.EndPointSecurityRequirement[] s_GetThreadsSecurityRequirements =
+            new global::Zep.EndPointSecurityRequirement[]
+            {                s_GetThreadsSecurityRequirement0,
+            };
         partial void PrepareGetThreadsArguments(
             global::System.Net.Http.HttpClient httpClient,
             ref int? pageNumber,
@@ -53,6 +72,12 @@ namespace Zep
                 orderBy: ref orderBy,
                 asc: ref asc);
 
+
+            var __authorizations = global::Zep.EndPointSecurityResolver.ResolveAuthorizations(
+                availableAuthorizations: Authorizations,
+                securityRequirements: s_GetThreadsSecurityRequirements,
+                operationName: "GetThreadsAsync");
+
             var __pathBuilder = new global::Zep.PathBuilder(
                 path: "/threads",
                 baseUri: HttpClient.BaseAddress); 
@@ -61,7 +86,7 @@ namespace Zep
                 .AddOptionalParameter("page_size", pageSize?.ToString())
                 .AddOptionalParameter("order_by", orderBy)
                 .AddOptionalParameter("asc", asc?.ToString().ToLowerInvariant()) 
-                ; 
+                ;
             var __path = __pathBuilder.ToString();
             using var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
                 method: global::System.Net.Http.HttpMethod.Get,
@@ -71,7 +96,7 @@ namespace Zep
             __httpRequest.VersionPolicy = global::System.Net.Http.HttpVersionPolicy.RequestVersionOrHigher;
 #endif
 
-            foreach (var __authorization in Authorizations)
+            foreach (var __authorization in __authorizations)
             {
                 if (__authorization.Type == "Http" ||
                     __authorization.Type == "OAuth2")
