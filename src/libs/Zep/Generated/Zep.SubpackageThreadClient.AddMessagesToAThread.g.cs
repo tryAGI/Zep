@@ -5,6 +5,25 @@ namespace Zep
 {
     public partial class SubpackageThreadClient
     {
+
+
+        private static readonly global::Zep.EndPointSecurityRequirement s_AddMessagesToAThreadSecurityRequirement0 =
+            new global::Zep.EndPointSecurityRequirement
+            {
+                Authorizations = new global::Zep.EndPointAuthorizationRequirement[]
+                {                    new global::Zep.EndPointAuthorizationRequirement
+                    {
+                        Type = "Http",
+                        Location = "Header",
+                        Name = "Bearer",
+                        FriendlyName = "Bearer",
+                    },
+                },
+            };
+        private static readonly global::Zep.EndPointSecurityRequirement[] s_AddMessagesToAThreadSecurityRequirements =
+            new global::Zep.EndPointSecurityRequirement[]
+            {                s_AddMessagesToAThreadSecurityRequirement0,
+            };
         partial void PrepareAddMessagesToAThreadArguments(
             global::System.Net.Http.HttpClient httpClient,
             ref string threadId,
@@ -46,9 +65,15 @@ namespace Zep
                 threadId: ref threadId,
                 request: request);
 
+
+            var __authorizations = global::Zep.EndPointSecurityResolver.ResolveAuthorizations(
+                availableAuthorizations: Authorizations,
+                securityRequirements: s_AddMessagesToAThreadSecurityRequirements,
+                operationName: "AddMessagesToAThreadAsync");
+
             var __pathBuilder = new global::Zep.PathBuilder(
                 path: $"/threads/{threadId}/messages",
-                baseUri: HttpClient.BaseAddress); 
+                baseUri: HttpClient.BaseAddress);
             var __path = __pathBuilder.ToString();
             using var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
                 method: global::System.Net.Http.HttpMethod.Post,
@@ -58,7 +83,7 @@ namespace Zep
             __httpRequest.VersionPolicy = global::System.Net.Http.HttpVersionPolicy.RequestVersionOrHigher;
 #endif
 
-            foreach (var __authorization in Authorizations)
+            foreach (var __authorization in __authorizations)
             {
                 if (__authorization.Type == "Http" ||
                     __authorization.Type == "OAuth2")

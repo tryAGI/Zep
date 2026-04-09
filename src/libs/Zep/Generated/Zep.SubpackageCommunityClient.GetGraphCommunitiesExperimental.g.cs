@@ -5,6 +5,25 @@ namespace Zep
 {
     public partial class SubpackageCommunityClient
     {
+
+
+        private static readonly global::Zep.EndPointSecurityRequirement s_GetGraphCommunitiesExperimentalSecurityRequirement0 =
+            new global::Zep.EndPointSecurityRequirement
+            {
+                Authorizations = new global::Zep.EndPointAuthorizationRequirement[]
+                {                    new global::Zep.EndPointAuthorizationRequirement
+                    {
+                        Type = "Http",
+                        Location = "Header",
+                        Name = "Bearer",
+                        FriendlyName = "Bearer",
+                    },
+                },
+            };
+        private static readonly global::Zep.EndPointSecurityRequirement[] s_GetGraphCommunitiesExperimentalSecurityRequirements =
+            new global::Zep.EndPointSecurityRequirement[]
+            {                s_GetGraphCommunitiesExperimentalSecurityRequirement0,
+            };
         partial void PrepareGetGraphCommunitiesExperimentalArguments(
             global::System.Net.Http.HttpClient httpClient,
             ref string graphId,
@@ -46,9 +65,15 @@ namespace Zep
                 graphId: ref graphId,
                 request: request);
 
+
+            var __authorizations = global::Zep.EndPointSecurityResolver.ResolveAuthorizations(
+                availableAuthorizations: Authorizations,
+                securityRequirements: s_GetGraphCommunitiesExperimentalSecurityRequirements,
+                operationName: "GetGraphCommunitiesExperimentalAsync");
+
             var __pathBuilder = new global::Zep.PathBuilder(
                 path: $"/graph/community/graph/{graphId}",
-                baseUri: HttpClient.BaseAddress); 
+                baseUri: HttpClient.BaseAddress);
             var __path = __pathBuilder.ToString();
             using var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
                 method: global::System.Net.Http.HttpMethod.Post,
@@ -58,7 +83,7 @@ namespace Zep
             __httpRequest.VersionPolicy = global::System.Net.Http.HttpVersionPolicy.RequestVersionOrHigher;
 #endif
 
-            foreach (var __authorization in Authorizations)
+            foreach (var __authorization in __authorizations)
             {
                 if (__authorization.Type == "Http" ||
                     __authorization.Type == "OAuth2")

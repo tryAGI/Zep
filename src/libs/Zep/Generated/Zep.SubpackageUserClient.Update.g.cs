@@ -5,6 +5,25 @@ namespace Zep
 {
     public partial class SubpackageUserClient
     {
+
+
+        private static readonly global::Zep.EndPointSecurityRequirement s_UpdateSecurityRequirement0 =
+            new global::Zep.EndPointSecurityRequirement
+            {
+                Authorizations = new global::Zep.EndPointAuthorizationRequirement[]
+                {                    new global::Zep.EndPointAuthorizationRequirement
+                    {
+                        Type = "Http",
+                        Location = "Header",
+                        Name = "Bearer",
+                        FriendlyName = "Bearer",
+                    },
+                },
+            };
+        private static readonly global::Zep.EndPointSecurityRequirement[] s_UpdateSecurityRequirements =
+            new global::Zep.EndPointSecurityRequirement[]
+            {                s_UpdateSecurityRequirement0,
+            };
         partial void PrepareUpdateArguments(
             global::System.Net.Http.HttpClient httpClient,
             ref string userId,
@@ -46,9 +65,15 @@ namespace Zep
                 userId: ref userId,
                 request: request);
 
+
+            var __authorizations = global::Zep.EndPointSecurityResolver.ResolveAuthorizations(
+                availableAuthorizations: Authorizations,
+                securityRequirements: s_UpdateSecurityRequirements,
+                operationName: "UpdateAsync");
+
             var __pathBuilder = new global::Zep.PathBuilder(
                 path: $"/users/{userId}",
-                baseUri: HttpClient.BaseAddress); 
+                baseUri: HttpClient.BaseAddress);
             var __path = __pathBuilder.ToString();
             using var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
                 method: new global::System.Net.Http.HttpMethod("PATCH"),
@@ -58,7 +83,7 @@ namespace Zep
             __httpRequest.VersionPolicy = global::System.Net.Http.HttpVersionPolicy.RequestVersionOrHigher;
 #endif
 
-            foreach (var __authorization in Authorizations)
+            foreach (var __authorization in __authorizations)
             {
                 if (__authorization.Type == "Http" ||
                     __authorization.Type == "OAuth2")
