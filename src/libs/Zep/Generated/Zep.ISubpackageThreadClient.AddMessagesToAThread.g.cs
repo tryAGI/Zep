@@ -10,12 +10,14 @@ namespace Zep
         /// </summary>
         /// <param name="threadId"></param>
         /// <param name="request"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Zep.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Zep.ApidataAddThreadMessagesResponse> AddMessagesToAThreadAsync(
             string threadId,
 
             global::Zep.ApidataAddThreadMessagesRequest request,
+            global::Zep.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Add messages to a thread<br/>
@@ -33,6 +35,7 @@ namespace Zep
         /// <param name="returnContext">
         /// Optionally return context block relevant to the most recent messages.
         /// </param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         global::System.Threading.Tasks.Task<global::Zep.ApidataAddThreadMessagesResponse> AddMessagesToAThreadAsync(
@@ -40,6 +43,7 @@ namespace Zep
             global::System.Collections.Generic.IList<global::Zep.ApidataThreadMessage> messages,
             global::System.Collections.Generic.IList<global::Zep.ApidataRoleType>? ignoreRoles = default,
             bool? returnContext = default,
+            global::Zep.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
     }
 }

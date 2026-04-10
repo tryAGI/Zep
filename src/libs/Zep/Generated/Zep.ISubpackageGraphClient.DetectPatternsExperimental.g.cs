@@ -12,11 +12,13 @@ namespace Zep
         /// detects triple-frequency patterns, and returns resolved edges ranked by relevance.
         /// </summary>
         /// <param name="request"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Zep.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Zep.ApidataDetectPatternsResponse> DetectPatternsExperimentalAsync(
 
             global::Zep.ApidataDetectPatternsRequest request,
+            global::Zep.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Detect Patterns (Experimental)<br/>
@@ -63,6 +65,7 @@ namespace Zep
         /// <param name="userId">
         /// User ID when detecting patterns on a user graph
         /// </param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         global::System.Threading.Tasks.Task<global::Zep.ApidataDetectPatternsResponse> DetectPatternsExperimentalAsync(
@@ -77,6 +80,7 @@ namespace Zep
             global::Zep.GraphitiSearchFilters? searchFilters = default,
             global::Zep.ApidataPatternSeeds? seeds = default,
             string? userId = default,
+            global::Zep.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
     }
 }
