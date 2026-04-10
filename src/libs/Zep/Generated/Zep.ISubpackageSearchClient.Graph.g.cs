@@ -9,11 +9,13 @@ namespace Zep
         /// Perform a graph search query.
         /// </summary>
         /// <param name="request"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Zep.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Zep.ApidataGraphSearchResults> GraphAsync(
 
             global::Zep.GraphitiGraphSearchQuery request,
+            global::Zep.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Search Graph<br/>
@@ -49,6 +51,7 @@ namespace Zep
         /// <param name="userId">
         /// The user_id when searching user graph. If not searching user graph, please use graph_id instead.
         /// </param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         global::System.Threading.Tasks.Task<global::Zep.ApidataGraphSearchResults> GraphAsync(
@@ -62,6 +65,7 @@ namespace Zep
             global::Zep.GraphitiGraphSearchScope? scope = default,
             global::Zep.GraphitiSearchFilters? searchFilters = default,
             string? userId = default,
+            global::Zep.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
     }
 }

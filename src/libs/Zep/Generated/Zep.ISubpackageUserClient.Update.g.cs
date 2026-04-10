@@ -10,12 +10,14 @@ namespace Zep
         /// </summary>
         /// <param name="userId"></param>
         /// <param name="request"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Zep.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Zep.ApidataUser> UpdateAsync(
             string userId,
 
             global::Zep.ApidataUpdateUserRequest request,
+            global::Zep.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Update User<br/>
@@ -37,6 +39,7 @@ namespace Zep
         /// <param name="metadata">
         /// The metadata to update
         /// </param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         global::System.Threading.Tasks.Task<global::Zep.ApidataUser> UpdateAsync(
@@ -46,6 +49,7 @@ namespace Zep
             string? firstName = default,
             string? lastName = default,
             object? metadata = default,
+            global::Zep.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
     }
 }

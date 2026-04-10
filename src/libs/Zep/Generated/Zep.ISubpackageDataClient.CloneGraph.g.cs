@@ -9,11 +9,13 @@ namespace Zep
         /// Clone a user or group graph.
         /// </summary>
         /// <param name="request"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Zep.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Zep.ApidataCloneGraphResponse> CloneGraphAsync(
 
             global::Zep.ApidataCloneGraphRequest request,
+            global::Zep.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Clone graph<br/>
@@ -31,6 +33,7 @@ namespace Zep
         /// <param name="targetUserId">
         /// user_id to be set on the cloned user. Must not point to an existing user. Required if target_graph_id is not provided.
         /// </param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         global::System.Threading.Tasks.Task<global::Zep.ApidataCloneGraphResponse> CloneGraphAsync(
@@ -38,6 +41,7 @@ namespace Zep
             string? sourceUserId = default,
             string? targetGraphId = default,
             string? targetUserId = default,
+            global::Zep.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
     }
 }
