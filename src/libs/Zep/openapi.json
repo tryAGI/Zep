@@ -2696,6 +2696,87 @@
           }
         }
       },
+      "patch": {
+        "operationId": "update-episode-metadata",
+        "summary": "Update Episode Metadata",
+        "description": "Update episode metadata with merge semantics. Supplied keys overwrite or add to existing metadata; keys set to null are removed.",
+        "tags": [
+          "subpackage_episodes"
+        ],
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "description": "Episode UUID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Updated episode",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataGraphEpisode"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "Metadata update",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApidataUpdateEpisodeRequest"
+              }
+            }
+          }
+        }
+      },
       "delete": {
         "operationId": "delete-episode",
         "summary": "Delete Episode",
@@ -3543,221 +3624,6 @@
           }
         }
       }
-    },
-    "/graph/community/graph/{graph_id}": {
-      "post": {
-        "operationId": "get-graph-communities-experimental",
-        "summary": "Get Graph Communities (Experimental)",
-        "description": "Returns read-only community nodes for a graph.",
-        "tags": [
-          "subpackage_community"
-        ],
-        "parameters": [
-          {
-            "name": "graph_id",
-            "in": "path",
-            "description": "Graph ID",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Communities",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/GraphitiCommunityNode"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApidataAPIError"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApidataAPIError"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApidataAPIError"
-                }
-              }
-            }
-          }
-        },
-        "requestBody": {
-          "description": "Pagination parameters",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ApidataGraphCommunitiesRequest"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/graph/community/user/{user_id}": {
-      "post": {
-        "operationId": "get-user-communities-experimental",
-        "summary": "Get User Communities (Experimental)",
-        "description": "Returns read-only community nodes for a user's graph.",
-        "tags": [
-          "subpackage_community"
-        ],
-        "parameters": [
-          {
-            "name": "user_id",
-            "in": "path",
-            "description": "User ID",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Communities",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/GraphitiCommunityNode"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApidataAPIError"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApidataAPIError"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApidataAPIError"
-                }
-              }
-            }
-          }
-        },
-        "requestBody": {
-          "description": "Pagination parameters",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ApidataGraphCommunitiesRequest"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/graph/community/{uuid}": {
-      "get": {
-        "operationId": "get-community-experimental",
-        "summary": "Get Community (Experimental)",
-        "description": "Returns a specific community node by UUID. Community nodes are read-only.",
-        "tags": [
-          "subpackage_community"
-        ],
-        "parameters": [
-          {
-            "name": "uuid",
-            "in": "path",
-            "description": "Community UUID",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Community",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GraphitiCommunityNode"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApidataAPIError"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApidataAPIError"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApidataAPIError"
-                }
-              }
-            }
-          }
-        }
-      }
     }
   },
   "servers": [
@@ -4476,6 +4342,13 @@
           "user_id": {
             "type": "string",
             "description": "User ID is the ID of the user to which the data will be added. If not adding to a user graph, please use graph_id field instead."
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": {
+              "description": "Any type"
+            },
+            "description": "Optional metadata key-value pairs. Max 10 keys. Values must be strings, numbers, booleans, or arrays of scalars."
           }
         },
         "required": [
@@ -4559,6 +4432,13 @@
           },
           "type": {
             "$ref": "#/components/schemas/ModelsGraphDataType"
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": {
+              "description": "Any type"
+            },
+            "description": "Optional metadata key-value pairs. Max 10 keys. Values must be strings, numbers, booleans, or arrays of scalars."
           }
         },
         "required": [
@@ -4685,6 +4565,13 @@
           "valid_at": {
             "type": "string",
             "description": "The time at which the fact becomes true"
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": {
+              "description": "Any type"
+            },
+            "description": "Optional metadata key-value pairs for the shadow episode created for this fact triple.\nMax 10 keys. Values must be strings, numbers, or booleans."
           }
         },
         "required": [
@@ -4974,7 +4861,8 @@
           ">=",
           "<=",
           "IS NULL",
-          "IS NOT NULL"
+          "IS NOT NULL",
+          "CONTAINS"
         ],
         "title": "GraphitiComparisonOperator"
       },
@@ -5015,6 +4903,63 @@
           "property_name"
         ],
         "title": "GraphitiPropertyFilter"
+      },
+      "GraphitiEpisodeMetadataFilter": {
+        "type": "object",
+        "properties": {
+          "comparison_operator": {
+            "$ref": "#/components/schemas/GraphitiComparisonOperator",
+            "description": "Comparison operator: =, <>, >, <, >=, <=, IS NULL, IS NOT NULL, IN, CONTAINS"
+          },
+          "property_name": {
+            "type": "string",
+            "description": "Metadata key to filter on"
+          },
+          "property_value": {
+            "description": "Value to compare against. Not required for IS NULL / IS NOT NULL operators."
+          }
+        },
+        "required": [
+          "comparison_operator",
+          "property_name"
+        ],
+        "title": "GraphitiEpisodeMetadataFilter"
+      },
+      "GraphitiMetadataFilterGroupType": {
+        "type": "string",
+        "enum": [
+          "and",
+          "or"
+        ],
+        "description": "Logical operator: \"and\" or \"or\"",
+        "title": "GraphitiMetadataFilterGroupType"
+      },
+      "GraphitiMetadataFilterGroup": {
+        "type": "object",
+        "properties": {
+          "filters": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GraphitiEpisodeMetadataFilter"
+            },
+            "description": "Leaf filters (predicates on metadata key-value pairs)"
+          },
+          "groups": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GraphitiMetadataFilterGroup"
+            },
+            "description": "Nested sub-groups for composing complex boolean expressions"
+          },
+          "type": {
+            "$ref": "#/components/schemas/GraphitiMetadataFilterGroupType",
+            "description": "Logical operator: \"and\" or \"or\""
+          }
+        },
+        "required": [
+          "type"
+        ],
+        "title": "GraphitiMetadataFilterGroup"
       },
       "GraphitiSearchFilters": {
         "type": "object",
@@ -5100,6 +5045,10 @@
               }
             },
             "description": "2D array of date filters for the valid_at field.\nThe outer array elements are combined with OR logic.\nThe inner array elements are combined with AND logic.\nExample: [[\\{\"\\>\", date1\\}, \\{\"\\<\", date2\\}], [\\{\"=\", date3\\}]]\nThis translates to: (valid_at \\> date1 AND valid_at \\< date2) OR (valid_at = date3)"
+          },
+          "episode_metadata_filters": {
+            "$ref": "#/components/schemas/GraphitiMetadataFilterGroup",
+            "description": "[Experimental] Episode metadata filter. Restricts results to edges/nodes derived from episodes\nmatching the metadata predicates. Uses explicit AND/OR groups. This feature is experimental and may change in future releases."
           }
         },
         "title": "GraphitiSearchFilters"
@@ -5493,6 +5442,22 @@
         },
         "title": "ApidataGraphEpisodeResponse"
       },
+      "ApidataUpdateEpisodeRequest": {
+        "type": "object",
+        "properties": {
+          "metadata": {
+            "type": "object",
+            "additionalProperties": {
+              "description": "Any type"
+            },
+            "description": "Updated metadata. Merged with existing metadata: supplied keys overwrite/add, keys set to null are removed. Maximum 10 keys. Values must be scalars (string, number, boolean, null) or arrays of scalars."
+          }
+        },
+        "required": [
+          "metadata"
+        ],
+        "title": "ApidataUpdateEpisodeRequest"
+      },
       "ApidataEpisodeMentions": {
         "type": "object",
         "properties": {
@@ -5733,20 +5698,6 @@
           }
         },
         "title": "ApidataGetTaskResponse"
-      },
-      "ApidataGraphCommunitiesRequest": {
-        "type": "object",
-        "properties": {
-          "limit": {
-            "type": "integer",
-            "description": "Maximum number of items to return"
-          },
-          "uuid_cursor": {
-            "type": "string",
-            "description": "UUID based cursor, used for pagination. Should be the UUID of the last item in the previous page"
-          }
-        },
-        "title": "ApidataGraphCommunitiesRequest"
       }
     },
     "securitySchemes": {

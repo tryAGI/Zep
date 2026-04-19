@@ -3,11 +3,11 @@
 
 namespace Zep
 {
-    public partial class SubpackageCommunityClient
+    public partial class SubpackageEpisodesClient
     {
 
 
-        private static readonly global::Zep.EndPointSecurityRequirement s_GetCommunityExperimentalSecurityRequirement0 =
+        private static readonly global::Zep.EndPointSecurityRequirement s_UpdateEpisodeMetadataSecurityRequirement0 =
             new global::Zep.EndPointSecurityRequirement
             {
                 Authorizations = new global::Zep.EndPointAuthorizationRequirement[]
@@ -21,50 +21,58 @@ namespace Zep
                     },
                 },
             };
-        private static readonly global::Zep.EndPointSecurityRequirement[] s_GetCommunityExperimentalSecurityRequirements =
+        private static readonly global::Zep.EndPointSecurityRequirement[] s_UpdateEpisodeMetadataSecurityRequirements =
             new global::Zep.EndPointSecurityRequirement[]
-            {                s_GetCommunityExperimentalSecurityRequirement0,
+            {                s_UpdateEpisodeMetadataSecurityRequirement0,
             };
-        partial void PrepareGetCommunityExperimentalArguments(
+        partial void PrepareUpdateEpisodeMetadataArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string uuid);
-        partial void PrepareGetCommunityExperimentalRequest(
+            ref string uuid,
+            global::Zep.ApidataUpdateEpisodeRequest request);
+        partial void PrepareUpdateEpisodeMetadataRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string uuid);
-        partial void ProcessGetCommunityExperimentalResponse(
+            string uuid,
+            global::Zep.ApidataUpdateEpisodeRequest request);
+        partial void ProcessUpdateEpisodeMetadataResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
-        partial void ProcessGetCommunityExperimentalResponseContent(
+        partial void ProcessUpdateEpisodeMetadataResponseContent(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage,
             ref string content);
 
         /// <summary>
-        /// Get Community (Experimental)<br/>
-        /// Returns a specific community node by UUID. Community nodes are read-only.
+        /// Update Episode Metadata<br/>
+        /// Update episode metadata with merge semantics. Supplied keys overwrite or add to existing metadata; keys set to null are removed.
         /// </summary>
         /// <param name="uuid"></param>
+        /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Zep.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Zep.GraphitiCommunityNode> GetCommunityExperimentalAsync(
+        public async global::System.Threading.Tasks.Task<global::Zep.ApidataGraphEpisode> UpdateEpisodeMetadataAsync(
             string uuid,
+
+            global::Zep.ApidataUpdateEpisodeRequest request,
             global::Zep.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
+            request = request ?? throw new global::System.ArgumentNullException(nameof(request));
+
             PrepareArguments(
                 client: HttpClient);
-            PrepareGetCommunityExperimentalArguments(
+            PrepareUpdateEpisodeMetadataArguments(
                 httpClient: HttpClient,
-                uuid: ref uuid);
+                uuid: ref uuid,
+                request: request);
 
 
             var __authorizations = global::Zep.EndPointSecurityResolver.ResolveAuthorizations(
                 availableAuthorizations: Authorizations,
-                securityRequirements: s_GetCommunityExperimentalSecurityRequirements,
-                operationName: "GetCommunityExperimentalAsync");
+                securityRequirements: s_UpdateEpisodeMetadataSecurityRequirements,
+                operationName: "UpdateEpisodeMetadataAsync");
 
             using var __timeoutCancellationTokenSource = global::Zep.AutoSDKRequestOptionsSupport.CreateTimeoutCancellationTokenSource(
                 clientOptions: Options,
@@ -83,7 +91,7 @@ namespace Zep
             global::System.Net.Http.HttpRequestMessage __CreateHttpRequest()
             {
                             var __pathBuilder = new global::Zep.PathBuilder(
-                                path: $"/graph/community/{uuid}",
+                                path: $"/graph/episodes/{uuid}",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Zep.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -91,7 +99,7 @@ namespace Zep
                     clientParameters: Options.QueryParameters,
                     requestParameters: requestOptions?.QueryParameters);
                 var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
-                    method: global::System.Net.Http.HttpMethod.Get,
+                    method: new global::System.Net.Http.HttpMethod("PATCH"),
                     requestUri: new global::System.Uri(__path, global::System.UriKind.RelativeOrAbsolute));
 #if NET6_0_OR_GREATER
                 __httpRequest.Version = global::System.Net.HttpVersion.Version11;
@@ -114,6 +122,12 @@ namespace Zep
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
                 } 
             }
+                            var __httpRequestContentBody = request.ToJson(JsonSerializerContext);
+                            var __httpRequestContent = new global::System.Net.Http.StringContent(
+                                content: __httpRequestContentBody,
+                                encoding: global::System.Text.Encoding.UTF8,
+                                mediaType: "application/json");
+                            __httpRequest.Content = __httpRequestContent;
                 global::Zep.AutoSDKRequestOptionsSupport.ApplyHeaders(
                     request: __httpRequest,
                     clientHeaders: Options.Headers,
@@ -122,10 +136,11 @@ namespace Zep
                 PrepareRequest(
                     client: HttpClient,
                     request: __httpRequest);
-                PrepareGetCommunityExperimentalRequest(
+                PrepareUpdateEpisodeMetadataRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    uuid: uuid);
+                    uuid: uuid,
+                    request: request);
 
                 return __httpRequest;
             }
@@ -142,10 +157,10 @@ namespace Zep
                     await global::Zep.AutoSDKRequestOptionsSupport.OnBeforeRequestAsync(
                             clientOptions: Options,
                             context: global::Zep.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "GetCommunityExperimental",
-                                methodName: "GetCommunityExperimentalAsync",
-                                pathTemplate: "$\"/graph/community/{uuid}\"",
-                                httpMethod: "GET",
+                                operationId: "UpdateEpisodeMetadata",
+                                methodName: "UpdateEpisodeMetadataAsync",
+                                pathTemplate: "$\"/graph/episodes/{uuid}\"",
+                                httpMethod: "PATCH",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: null,
@@ -169,10 +184,10 @@ namespace Zep
                         await global::Zep.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Zep.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "GetCommunityExperimental",
-                                methodName: "GetCommunityExperimentalAsync",
-                                pathTemplate: "$\"/graph/community/{uuid}\"",
-                                httpMethod: "GET",
+                                operationId: "UpdateEpisodeMetadata",
+                                methodName: "UpdateEpisodeMetadataAsync",
+                                pathTemplate: "$\"/graph/episodes/{uuid}\"",
+                                httpMethod: "PATCH",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: null,
@@ -204,10 +219,10 @@ namespace Zep
                         await global::Zep.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Zep.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "GetCommunityExperimental",
-                                methodName: "GetCommunityExperimentalAsync",
-                                pathTemplate: "$\"/graph/community/{uuid}\"",
-                                httpMethod: "GET",
+                                operationId: "UpdateEpisodeMetadata",
+                                methodName: "UpdateEpisodeMetadataAsync",
+                                pathTemplate: "$\"/graph/episodes/{uuid}\"",
+                                httpMethod: "PATCH",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -243,7 +258,7 @@ namespace Zep
                 ProcessResponse(
                     client: HttpClient,
                     response: __response);
-                ProcessGetCommunityExperimentalResponse(
+                ProcessUpdateEpisodeMetadataResponse(
                     httpClient: HttpClient,
                     httpResponseMessage: __response);
                 if (__response.IsSuccessStatusCode)
@@ -251,10 +266,10 @@ namespace Zep
                     await global::Zep.AutoSDKRequestOptionsSupport.OnAfterSuccessAsync(
                             clientOptions: Options,
                             context: global::Zep.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "GetCommunityExperimental",
-                                methodName: "GetCommunityExperimentalAsync",
-                                pathTemplate: "$\"/graph/community/{uuid}\"",
-                                httpMethod: "GET",
+                                operationId: "UpdateEpisodeMetadata",
+                                methodName: "UpdateEpisodeMetadataAsync",
+                                pathTemplate: "$\"/graph/episodes/{uuid}\"",
+                                httpMethod: "PATCH",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -271,10 +286,10 @@ namespace Zep
                     await global::Zep.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Zep.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "GetCommunityExperimental",
-                                methodName: "GetCommunityExperimentalAsync",
-                                pathTemplate: "$\"/graph/community/{uuid}\"",
-                                httpMethod: "GET",
+                                operationId: "UpdateEpisodeMetadata",
+                                methodName: "UpdateEpisodeMetadataAsync",
+                                pathTemplate: "$\"/graph/episodes/{uuid}\"",
+                                httpMethod: "PATCH",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -318,6 +333,44 @@ namespace Zep
                                 {
                                     ResponseBody = __content_400,
                                     ResponseObject = __value_400,
+                                    ResponseHeaders = global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value),
+                                };
+                            }
+                            // Forbidden
+                            if ((int)__response.StatusCode == 403)
+                            {
+                                string? __content_403 = null;
+                                global::System.Exception? __exception_403 = null;
+                                global::Zep.ApidataAPIError? __value_403 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_403 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_403 = global::Zep.ApidataAPIError.FromJson(__content_403, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_403 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_403 = global::Zep.ApidataAPIError.FromJson(__content_403, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_403 = __ex;
+                                }
+
+                                throw new global::Zep.ApiException<global::Zep.ApidataAPIError>(
+                                    message: __content_403 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_403,
+                                    statusCode: __response.StatusCode)
+                                {
+                                    ResponseBody = __content_403,
+                                    ResponseObject = __value_403,
                                     ResponseHeaders = global::System.Linq.Enumerable.ToDictionary(
                                         __response.Headers,
                                         h => h.Key,
@@ -413,7 +466,7 @@ namespace Zep
                                     client: HttpClient,
                                     response: __response,
                                     content: ref __content);
-                                ProcessGetCommunityExperimentalResponseContent(
+                                ProcessUpdateEpisodeMetadataResponseContent(
                                     httpClient: HttpClient,
                                     httpResponseMessage: __response,
                                     content: ref __content);
@@ -423,7 +476,7 @@ namespace Zep
                                     __response.EnsureSuccessStatusCode();
 
                                     return
-                                        global::Zep.GraphitiCommunityNode.FromJson(__content, JsonSerializerContext) ??
+                                        global::Zep.ApidataGraphEpisode.FromJson(__content, JsonSerializerContext) ??
                                         throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
                                 }
                                 catch (global::System.Exception __ex)
@@ -453,7 +506,7 @@ namespace Zep
                                     ).ConfigureAwait(false);
 
                                     return
-                                        await global::Zep.GraphitiCommunityNode.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
+                                        await global::Zep.ApidataGraphEpisode.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
                                         throw new global::System.InvalidOperationException("Response deserialization failed.");
                                 }
                                 catch (global::System.Exception __ex)
@@ -491,6 +544,34 @@ namespace Zep
             {
                 __httpRequest?.Dispose();
             }
+        }
+        /// <summary>
+        /// Update Episode Metadata<br/>
+        /// Update episode metadata with merge semantics. Supplied keys overwrite or add to existing metadata; keys set to null are removed.
+        /// </summary>
+        /// <param name="uuid"></param>
+        /// <param name="metadata">
+        /// Updated metadata. Merged with existing metadata: supplied keys overwrite/add, keys set to null are removed. Maximum 10 keys. Values must be scalars (string, number, boolean, null) or arrays of scalars.
+        /// </param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::System.InvalidOperationException"></exception>
+        public async global::System.Threading.Tasks.Task<global::Zep.ApidataGraphEpisode> UpdateEpisodeMetadataAsync(
+            string uuid,
+            object metadata,
+            global::Zep.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default)
+        {
+            var __request = new global::Zep.ApidataUpdateEpisodeRequest
+            {
+                Metadata = metadata,
+            };
+
+            return await UpdateEpisodeMetadataAsync(
+                uuid: uuid,
+                request: __request,
+                requestOptions: requestOptions,
+                cancellationToken: cancellationToken).ConfigureAwait(false);
         }
     }
 }

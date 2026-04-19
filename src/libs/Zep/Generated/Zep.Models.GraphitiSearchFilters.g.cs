@@ -85,6 +85,13 @@ namespace Zep
         public global::System.Collections.Generic.IList<global::System.Collections.Generic.IList<global::Zep.GraphitiDateFilter>>? ValidAt { get; set; }
 
         /// <summary>
+        /// [Experimental] Episode metadata filter. Restricts results to edges/nodes derived from episodes<br/>
+        /// matching the metadata predicates. Uses explicit AND/OR groups. This feature is experimental and may change in future releases.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("episode_metadata_filters")]
+        public global::Zep.GraphitiMetadataFilterGroup? EpisodeMetadataFilters { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -139,6 +146,10 @@ namespace Zep
         /// Example: [[\{"\&gt;", date1\}, \{"\&lt;", date2\}], [\{"=", date3\}]]<br/>
         /// This translates to: (valid_at \&gt; date1 AND valid_at \&lt; date2) OR (valid_at = date3)
         /// </param>
+        /// <param name="episodeMetadataFilters">
+        /// [Experimental] Episode metadata filter. Restricts results to edges/nodes derived from episodes<br/>
+        /// matching the metadata predicates. Uses explicit AND/OR groups. This feature is experimental and may change in future releases.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -152,7 +163,8 @@ namespace Zep
             global::System.Collections.Generic.IList<global::System.Collections.Generic.IList<global::Zep.GraphitiDateFilter>>? invalidAt,
             global::System.Collections.Generic.IList<string>? nodeLabels,
             global::System.Collections.Generic.IList<global::Zep.GraphitiPropertyFilter>? propertyFilters,
-            global::System.Collections.Generic.IList<global::System.Collections.Generic.IList<global::Zep.GraphitiDateFilter>>? validAt)
+            global::System.Collections.Generic.IList<global::System.Collections.Generic.IList<global::Zep.GraphitiDateFilter>>? validAt,
+            global::Zep.GraphitiMetadataFilterGroup? episodeMetadataFilters)
         {
             this.CreatedAt = createdAt;
             this.EdgeTypes = edgeTypes;
@@ -164,6 +176,7 @@ namespace Zep
             this.NodeLabels = nodeLabels;
             this.PropertyFilters = propertyFilters;
             this.ValidAt = validAt;
+            this.EpisodeMetadataFilters = episodeMetadataFilters;
         }
 
         /// <summary>

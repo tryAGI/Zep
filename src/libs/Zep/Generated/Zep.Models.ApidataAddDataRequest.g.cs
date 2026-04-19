@@ -48,6 +48,12 @@ namespace Zep
         public string? UserId { get; set; }
 
         /// <summary>
+        /// Optional metadata key-value pairs. Max 10 keys. Values must be strings, numbers, booleans, or arrays of scalars.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("metadata")]
+        public object? Metadata { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -66,6 +72,9 @@ namespace Zep
         /// <param name="userId">
         /// User ID is the ID of the user to which the data will be added. If not adding to a user graph, please use graph_id field instead.
         /// </param>
+        /// <param name="metadata">
+        /// Optional metadata key-value pairs. Max 10 keys. Values must be strings, numbers, booleans, or arrays of scalars.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -75,7 +84,8 @@ namespace Zep
             string? createdAt,
             string? graphId,
             string? sourceDescription,
-            string? userId)
+            string? userId,
+            object? metadata)
         {
             this.CreatedAt = createdAt;
             this.Data = data ?? throw new global::System.ArgumentNullException(nameof(data));
@@ -83,6 +93,7 @@ namespace Zep
             this.SourceDescription = sourceDescription;
             this.Type = type;
             this.UserId = userId;
+            this.Metadata = metadata;
         }
 
         /// <summary>

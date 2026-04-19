@@ -2,41 +2,37 @@
 
 namespace Zep
 {
-    public partial interface ISubpackageCommunityClient
+    public partial interface ISubpackageEpisodesClient
     {
         /// <summary>
-        /// Get User Communities (Experimental)<br/>
-        /// Returns read-only community nodes for a user's graph.
+        /// Update Episode Metadata<br/>
+        /// Update episode metadata with merge semantics. Supplied keys overwrite or add to existing metadata; keys set to null are removed.
         /// </summary>
-        /// <param name="userId"></param>
+        /// <param name="uuid"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Zep.ApiException"></exception>
-        global::System.Threading.Tasks.Task<global::System.Collections.Generic.IList<global::Zep.GraphitiCommunityNode>> GetUserCommunitiesExperimentalAsync(
-            string userId,
+        global::System.Threading.Tasks.Task<global::Zep.ApidataGraphEpisode> UpdateEpisodeMetadataAsync(
+            string uuid,
 
-            global::Zep.ApidataGraphCommunitiesRequest request,
+            global::Zep.ApidataUpdateEpisodeRequest request,
             global::Zep.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Get User Communities (Experimental)<br/>
-        /// Returns read-only community nodes for a user's graph.
+        /// Update Episode Metadata<br/>
+        /// Update episode metadata with merge semantics. Supplied keys overwrite or add to existing metadata; keys set to null are removed.
         /// </summary>
-        /// <param name="userId"></param>
-        /// <param name="limit">
-        /// Maximum number of items to return
-        /// </param>
-        /// <param name="uuidCursor">
-        /// UUID based cursor, used for pagination. Should be the UUID of the last item in the previous page
+        /// <param name="uuid"></param>
+        /// <param name="metadata">
+        /// Updated metadata. Merged with existing metadata: supplied keys overwrite/add, keys set to null are removed. Maximum 10 keys. Values must be scalars (string, number, boolean, null) or arrays of scalars.
         /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
-        global::System.Threading.Tasks.Task<global::System.Collections.Generic.IList<global::Zep.GraphitiCommunityNode>> GetUserCommunitiesExperimentalAsync(
-            string userId,
-            int? limit = default,
-            string? uuidCursor = default,
+        global::System.Threading.Tasks.Task<global::Zep.ApidataGraphEpisode> UpdateEpisodeMetadataAsync(
+            string uuid,
+            object metadata,
             global::Zep.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
     }

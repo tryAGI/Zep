@@ -526,6 +526,10 @@ namespace Zep
         /// <param name="validAt">
         /// The time at which the fact becomes true
         /// </param>
+        /// <param name="metadata">
+        /// Optional metadata key-value pairs for the shadow episode created for this fact triple.<br/>
+        /// Max 10 keys. Values must be strings, numbers, or booleans.
+        /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
@@ -550,6 +554,7 @@ namespace Zep
             string? targetNodeUuid = default,
             string? userId = default,
             string? validAt = default,
+            object? metadata = default,
             global::Zep.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -575,6 +580,7 @@ namespace Zep
                 TargetNodeUuid = targetNodeUuid,
                 UserId = userId,
                 ValidAt = validAt,
+                Metadata = metadata,
             };
 
             return await AddFactTripleAsync(
