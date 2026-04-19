@@ -477,6 +477,9 @@ namespace Zep
         /// <param name="userId">
         /// User ID is the ID of the user to which the data will be added. If not adding to a user graph, please use graph_id field instead.
         /// </param>
+        /// <param name="metadata">
+        /// Optional metadata key-value pairs. Max 10 keys. Values must be strings, numbers, booleans, or arrays of scalars.
+        /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
@@ -487,6 +490,7 @@ namespace Zep
             string? graphId = default,
             string? sourceDescription = default,
             string? userId = default,
+            object? metadata = default,
             global::Zep.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -498,6 +502,7 @@ namespace Zep
                 SourceDescription = sourceDescription,
                 Type = type,
                 UserId = userId,
+                Metadata = metadata,
             };
 
             return await AddDataAsync(

@@ -47,11 +47,6 @@ namespace Zep
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageCommunityClient SubpackageCommunity { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
         public SubpackageContextClient SubpackageContext { get; }
 
         /// <summary>

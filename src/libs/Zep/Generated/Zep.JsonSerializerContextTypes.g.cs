@@ -328,155 +328,175 @@ namespace Zep
         /// <summary>
         /// 
         /// </summary>
-        public global::Zep.GraphitiSearchFilters? Type75 { get; set; }
+        public global::Zep.GraphitiEpisodeMetadataFilter? Type75 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.IList<global::System.Collections.Generic.IList<global::Zep.GraphitiDateFilter>>? Type76 { get; set; }
+        public global::Zep.GraphitiMetadataFilterGroupType? Type76 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Zep.GraphitiDateFilter>? Type77 { get; set; }
+        public global::Zep.GraphitiMetadataFilterGroup? Type77 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Zep.GraphitiPropertyFilter>? Type78 { get; set; }
+        public global::System.Collections.Generic.IList<global::Zep.GraphitiEpisodeMetadataFilter>? Type78 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Zep.ApidataPatternSeeds? Type79 { get; set; }
+        public global::System.Collections.Generic.IList<global::Zep.GraphitiMetadataFilterGroup>? Type79 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Zep.ApidataDetectPatternsRequest? Type80 { get; set; }
+        public global::Zep.GraphitiSearchFilters? Type80 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Zep.ApidataPatternMetadata? Type81 { get; set; }
+        public global::System.Collections.Generic.IList<global::System.Collections.Generic.IList<global::Zep.GraphitiDateFilter>>? Type81 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Zep.ApidataPatternResult? Type82 { get; set; }
+        public global::System.Collections.Generic.IList<global::Zep.GraphitiDateFilter>? Type82 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Zep.GraphitiEntityEdge>? Type83 { get; set; }
+        public global::System.Collections.Generic.IList<global::Zep.GraphitiPropertyFilter>? Type83 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Zep.ApidataDetectPatternsResponse? Type84 { get; set; }
+        public global::Zep.ApidataPatternSeeds? Type84 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Zep.GraphitiEntityNode>? Type85 { get; set; }
+        public global::Zep.ApidataDetectPatternsRequest? Type85 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Zep.ApidataPatternResult>? Type86 { get; set; }
+        public global::Zep.ApidataPatternMetadata? Type86 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Zep.GraphitiReranker? Type87 { get; set; }
+        public global::Zep.ApidataPatternResult? Type87 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Zep.GraphitiGraphSearchScope? Type88 { get; set; }
+        public global::System.Collections.Generic.IList<global::Zep.GraphitiEntityEdge>? Type88 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Zep.GraphitiGraphSearchQuery? Type89 { get; set; }
+        public global::Zep.ApidataDetectPatternsResponse? Type89 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Zep.GraphitiCommunityNode? Type90 { get; set; }
+        public global::System.Collections.Generic.IList<global::Zep.GraphitiEntityNode>? Type90 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Zep.ApidataGraphSearchResults? Type91 { get; set; }
+        public global::System.Collections.Generic.IList<global::Zep.ApidataPatternResult>? Type91 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Zep.GraphitiCommunityNode>? Type92 { get; set; }
+        public global::Zep.GraphitiReranker? Type92 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Zep.ApidataGraphEpisode>? Type93 { get; set; }
+        public global::Zep.GraphitiGraphSearchScope? Type93 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Zep.ApidataUpdateGraphRequest? Type94 { get; set; }
+        public global::Zep.GraphitiGraphSearchQuery? Type94 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Zep.ApidataGraphEdgesRequest? Type95 { get; set; }
+        public global::Zep.GraphitiCommunityNode? Type95 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Zep.ApidataUpdateEdgeRequest? Type96 { get; set; }
+        public global::Zep.ApidataGraphSearchResults? Type96 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Zep.ApidataGraphEpisodeResponse? Type97 { get; set; }
+        public global::System.Collections.Generic.IList<global::Zep.GraphitiCommunityNode>? Type97 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Zep.ApidataEpisodeMentions? Type98 { get; set; }
+        public global::System.Collections.Generic.IList<global::Zep.ApidataGraphEpisode>? Type98 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Zep.ApidataGraphNodesRequest? Type99 { get; set; }
+        public global::Zep.ApidataUpdateGraphRequest? Type99 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Zep.ApidataUpdateNodeRequest? Type100 { get; set; }
+        public global::Zep.ApidataGraphEdgesRequest? Type100 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Zep.ApidataCustomInstruction? Type101 { get; set; }
+        public global::Zep.ApidataUpdateEdgeRequest? Type101 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Zep.ApidataListCustomInstructionsResponse? Type102 { get; set; }
+        public global::Zep.ApidataGraphEpisodeResponse? Type102 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Zep.ApidataCustomInstruction>? Type103 { get; set; }
+        public global::Zep.ApidataUpdateEpisodeRequest? Type103 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Zep.ApidataAddCustomInstructionsRequest? Type104 { get; set; }
+        public global::Zep.ApidataEpisodeMentions? Type104 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Zep.ApidataDeleteCustomInstructionsRequest? Type105 { get; set; }
+        public global::Zep.ApidataGraphNodesRequest? Type105 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Zep.ApidataProjectInfo? Type106 { get; set; }
+        public global::Zep.ApidataUpdateNodeRequest? Type106 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Zep.ApidataProjectInfoResponse? Type107 { get; set; }
+        public global::Zep.ApidataCustomInstruction? Type107 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Zep.ApidataTaskErrorResponse? Type108 { get; set; }
+        public global::Zep.ApidataListCustomInstructionsResponse? Type108 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Zep.ApidataTaskProgress? Type109 { get; set; }
+        public global::System.Collections.Generic.IList<global::Zep.ApidataCustomInstruction>? Type109 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Zep.ApidataGetTaskResponse? Type110 { get; set; }
+        public global::Zep.ApidataAddCustomInstructionsRequest? Type110 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Zep.ApidataGraphCommunitiesRequest? Type111 { get; set; }
+        public global::Zep.ApidataDeleteCustomInstructionsRequest? Type111 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Zep.SetOntologyRequest? Type112 { get; set; }
+        public global::Zep.ApidataProjectInfo? Type112 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Zep.ApidataProjectInfoResponse? Type113 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Zep.ApidataTaskErrorResponse? Type114 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Zep.ApidataTaskProgress? Type115 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Zep.ApidataGetTaskResponse? Type116 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Zep.SetOntologyRequest? Type117 { get; set; }
 
         /// <summary>
         /// 
@@ -533,38 +553,46 @@ namespace Zep
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.List<global::System.Collections.Generic.List<global::Zep.GraphitiDateFilter>>? ListType13 { get; set; }
+        public global::System.Collections.Generic.List<global::Zep.GraphitiEpisodeMetadataFilter>? ListType13 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.List<global::Zep.GraphitiDateFilter>? ListType14 { get; set; }
+        public global::System.Collections.Generic.List<global::Zep.GraphitiMetadataFilterGroup>? ListType14 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.List<global::Zep.GraphitiPropertyFilter>? ListType15 { get; set; }
+        public global::System.Collections.Generic.List<global::System.Collections.Generic.List<global::Zep.GraphitiDateFilter>>? ListType15 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.List<global::Zep.GraphitiEntityEdge>? ListType16 { get; set; }
+        public global::System.Collections.Generic.List<global::Zep.GraphitiDateFilter>? ListType16 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.List<global::Zep.GraphitiEntityNode>? ListType17 { get; set; }
+        public global::System.Collections.Generic.List<global::Zep.GraphitiPropertyFilter>? ListType17 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.List<global::Zep.ApidataPatternResult>? ListType18 { get; set; }
+        public global::System.Collections.Generic.List<global::Zep.GraphitiEntityEdge>? ListType18 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.List<global::Zep.GraphitiCommunityNode>? ListType19 { get; set; }
+        public global::System.Collections.Generic.List<global::Zep.GraphitiEntityNode>? ListType19 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.List<global::Zep.ApidataGraphEpisode>? ListType20 { get; set; }
+        public global::System.Collections.Generic.List<global::Zep.ApidataPatternResult>? ListType20 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.List<global::Zep.ApidataCustomInstruction>? ListType21 { get; set; }
+        public global::System.Collections.Generic.List<global::Zep.GraphitiCommunityNode>? ListType21 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::System.Collections.Generic.List<global::Zep.ApidataGraphEpisode>? ListType22 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::System.Collections.Generic.List<global::Zep.ApidataCustomInstruction>? ListType23 { get; set; }
     }
 }
