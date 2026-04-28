@@ -22,6 +22,12 @@ namespace Zep
         public required string Data { get; set; }
 
         /// <summary>
+        /// Optional metadata key-value pairs. Max 10 keys. Values must be strings, numbers, booleans, or arrays of scalars.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("metadata")]
+        public object? Metadata { get; set; }
+
+        /// <summary>
         /// 
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("source_description")]
@@ -36,12 +42,6 @@ namespace Zep
         public required global::Zep.ModelsGraphDataType Type { get; set; }
 
         /// <summary>
-        /// Optional metadata key-value pairs. Max 10 keys. Values must be strings, numbers, booleans, or arrays of scalars.
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("metadata")]
-        public object? Metadata { get; set; }
-
-        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -53,10 +53,10 @@ namespace Zep
         /// <param name="data"></param>
         /// <param name="type"></param>
         /// <param name="createdAt"></param>
-        /// <param name="sourceDescription"></param>
         /// <param name="metadata">
         /// Optional metadata key-value pairs. Max 10 keys. Values must be strings, numbers, booleans, or arrays of scalars.
         /// </param>
+        /// <param name="sourceDescription"></param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -64,14 +64,14 @@ namespace Zep
             string data,
             global::Zep.ModelsGraphDataType type,
             string? createdAt,
-            string? sourceDescription,
-            object? metadata)
+            object? metadata,
+            string? sourceDescription)
         {
             this.CreatedAt = createdAt;
             this.Data = data ?? throw new global::System.ArgumentNullException(nameof(data));
+            this.Metadata = metadata;
             this.SourceDescription = sourceDescription;
             this.Type = type;
-            this.Metadata = metadata;
         }
 
         /// <summary>

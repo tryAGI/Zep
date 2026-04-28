@@ -7,7 +7,7 @@ namespace Zep
     /// If no httpClient is provided, a new one will be created.<br/>
     /// If no baseUri is provided, the default baseUri from OpenAPI spec will be used.
     /// </summary>
-    public partial interface IZepClient : global::System.IDisposable
+    public partial interface ISubpackageThreadSummaryClient : global::System.IDisposable
     {
         /// <summary>
         /// The HttpClient instance.
@@ -43,66 +43,6 @@ namespace Zep
         /// </summary>
         global::System.Text.Json.Serialization.JsonSerializerContext JsonSerializerContext { get; set; }
 
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public SubpackageContextClient SubpackageContext { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public SubpackageDataClient SubpackageData { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public SubpackageEntityClient SubpackageEntity { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public SubpackageEpisodesClient SubpackageEpisodes { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public SubpackageGraphClient SubpackageGraph { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public SubpackageObservationClient SubpackageObservation { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public SubpackageProjectClient SubpackageProject { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public SubpackageSearchClient SubpackageSearch { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public SubpackageTaskClient SubpackageTask { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public SubpackageThreadClient SubpackageThread { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public SubpackageThreadSummaryClient SubpackageThreadSummary { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public SubpackageUserClient SubpackageUser { get; }
 
     }
 }

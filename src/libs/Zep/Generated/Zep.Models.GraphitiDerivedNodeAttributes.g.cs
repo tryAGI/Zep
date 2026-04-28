@@ -4,9 +4,9 @@
 namespace Zep
 {
     /// <summary>
-    /// Additional attributes of the community node.
+    /// Additional attributes of the derived node.
     /// </summary>
-    public sealed partial class GraphitiCommunityNodeAttributes
+    public sealed partial class GraphitiDerivedNodeAttributes
     {
 
         /// <summary>

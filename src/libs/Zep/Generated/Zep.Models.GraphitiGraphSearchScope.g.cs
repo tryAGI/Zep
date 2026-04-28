@@ -11,7 +11,7 @@ namespace Zep
         /// <summary>
         /// 
         /// </summary>
-        Communities,
+        Auto,
         /// <summary>
         /// 
         /// </summary>
@@ -24,6 +24,14 @@ namespace Zep
         /// 
         /// </summary>
         Nodes,
+        /// <summary>
+        /// 
+        /// </summary>
+        Observations,
+        /// <summary>
+        /// 
+        /// </summary>
+        ThreadSummaries,
     }
 
     /// <summary>
@@ -38,10 +46,12 @@ namespace Zep
         {
             return value switch
             {
-                GraphitiGraphSearchScope.Communities => "communities",
+                GraphitiGraphSearchScope.Auto => "auto",
                 GraphitiGraphSearchScope.Edges => "edges",
                 GraphitiGraphSearchScope.Episodes => "episodes",
                 GraphitiGraphSearchScope.Nodes => "nodes",
+                GraphitiGraphSearchScope.Observations => "observations",
+                GraphitiGraphSearchScope.ThreadSummaries => "thread_summaries",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -52,10 +62,12 @@ namespace Zep
         {
             return value switch
             {
-                "communities" => GraphitiGraphSearchScope.Communities,
+                "auto" => GraphitiGraphSearchScope.Auto,
                 "edges" => GraphitiGraphSearchScope.Edges,
                 "episodes" => GraphitiGraphSearchScope.Episodes,
                 "nodes" => GraphitiGraphSearchScope.Nodes,
+                "observations" => GraphitiGraphSearchScope.Observations,
+                "thread_summaries" => GraphitiGraphSearchScope.ThreadSummaries,
                 _ => null,
             };
         }

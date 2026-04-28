@@ -60,6 +60,13 @@ namespace Zep
         public string? InvalidAt { get; set; }
 
         /// <summary>
+        /// Optional metadata key-value pairs for the shadow episode created for this fact triple.<br/>
+        /// Max 10 keys. Values must be strings, numbers, or booleans.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("metadata")]
+        public object? Metadata { get; set; }
+
+        /// <summary>
         /// Additional attributes of the source node. Values must be scalar types (string, number, boolean, or null).<br/>
         /// Nested objects and arrays are not allowed.
         /// </summary>
@@ -134,13 +141,6 @@ namespace Zep
         public string? ValidAt { get; set; }
 
         /// <summary>
-        /// Optional metadata key-value pairs for the shadow episode created for this fact triple.<br/>
-        /// Max 10 keys. Values must be strings, numbers, or booleans.
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("metadata")]
-        public object? Metadata { get; set; }
-
-        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -171,6 +171,10 @@ namespace Zep
         /// <param name="graphId"></param>
         /// <param name="invalidAt">
         /// The time (if any) at which the fact stops being true
+        /// </param>
+        /// <param name="metadata">
+        /// Optional metadata key-value pairs for the shadow episode created for this fact triple.<br/>
+        /// Max 10 keys. Values must be strings, numbers, or booleans.
         /// </param>
         /// <param name="sourceNodeAttributes">
         /// Additional attributes of the source node. Values must be scalar types (string, number, boolean, or null).<br/>
@@ -208,10 +212,6 @@ namespace Zep
         /// <param name="validAt">
         /// The time at which the fact becomes true
         /// </param>
-        /// <param name="metadata">
-        /// Optional metadata key-value pairs for the shadow episode created for this fact triple.<br/>
-        /// Max 10 keys. Values must be strings, numbers, or booleans.
-        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -224,6 +224,7 @@ namespace Zep
             string? factUuid,
             string? graphId,
             string? invalidAt,
+            object? metadata,
             object? sourceNodeAttributes,
             global::System.Collections.Generic.IList<string>? sourceNodeLabels,
             string? sourceNodeName,
@@ -235,8 +236,7 @@ namespace Zep
             string? targetNodeSummary,
             string? targetNodeUuid,
             string? userId,
-            string? validAt,
-            object? metadata)
+            string? validAt)
         {
             this.CreatedAt = createdAt;
             this.EdgeAttributes = edgeAttributes;
@@ -246,6 +246,7 @@ namespace Zep
             this.FactUuid = factUuid;
             this.GraphId = graphId;
             this.InvalidAt = invalidAt;
+            this.Metadata = metadata;
             this.SourceNodeAttributes = sourceNodeAttributes;
             this.SourceNodeLabels = sourceNodeLabels;
             this.SourceNodeName = sourceNodeName;
@@ -258,7 +259,6 @@ namespace Zep
             this.TargetNodeUuid = targetNodeUuid;
             this.UserId = userId;
             this.ValidAt = validAt;
-            this.Metadata = metadata;
         }
 
         /// <summary>

@@ -11,8 +11,8 @@ namespace Zep
         /// <summary>
         /// 
         /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("communities")]
-        public global::System.Collections.Generic.IList<global::Zep.GraphitiCommunityNode>? Communities { get; set; }
+        [global::System.Text.Json.Serialization.JsonPropertyName("context")]
+        public string? Context { get; set; }
 
         /// <summary>
         /// 
@@ -33,6 +33,18 @@ namespace Zep
         public global::System.Collections.Generic.IList<global::Zep.GraphitiEntityNode>? Nodes { get; set; }
 
         /// <summary>
+        /// 
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("observations")]
+        public global::System.Collections.Generic.IList<global::Zep.GraphitiDerivedNode>? Observations { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("thread_summaries")]
+        public global::System.Collections.Generic.IList<global::Zep.GraphitiSagaNode>? ThreadSummaries { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -41,23 +53,29 @@ namespace Zep
         /// <summary>
         /// Initializes a new instance of the <see cref="ApidataGraphSearchResults" /> class.
         /// </summary>
-        /// <param name="communities"></param>
+        /// <param name="context"></param>
         /// <param name="edges"></param>
         /// <param name="episodes"></param>
         /// <param name="nodes"></param>
+        /// <param name="observations"></param>
+        /// <param name="threadSummaries"></param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
         public ApidataGraphSearchResults(
-            global::System.Collections.Generic.IList<global::Zep.GraphitiCommunityNode>? communities,
+            string? context,
             global::System.Collections.Generic.IList<global::Zep.GraphitiEntityEdge>? edges,
             global::System.Collections.Generic.IList<global::Zep.ApidataGraphEpisode>? episodes,
-            global::System.Collections.Generic.IList<global::Zep.GraphitiEntityNode>? nodes)
+            global::System.Collections.Generic.IList<global::Zep.GraphitiEntityNode>? nodes,
+            global::System.Collections.Generic.IList<global::Zep.GraphitiDerivedNode>? observations,
+            global::System.Collections.Generic.IList<global::Zep.GraphitiSagaNode>? threadSummaries)
         {
-            this.Communities = communities;
+            this.Context = context;
             this.Edges = edges;
             this.Episodes = episodes;
             this.Nodes = nodes;
+            this.Observations = observations;
+            this.ThreadSummaries = threadSummaries;
         }
 
         /// <summary>

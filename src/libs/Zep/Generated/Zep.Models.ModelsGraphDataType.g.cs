@@ -11,6 +11,10 @@ namespace Zep
         /// <summary>
         /// 
         /// </summary>
+        FactTriple,
+        /// <summary>
+        /// 
+        /// </summary>
         Json,
         /// <summary>
         /// 
@@ -34,6 +38,7 @@ namespace Zep
         {
             return value switch
             {
+                ModelsGraphDataType.FactTriple => "fact_triple",
                 ModelsGraphDataType.Json => "json",
                 ModelsGraphDataType.Message => "message",
                 ModelsGraphDataType.Text => "text",
@@ -47,6 +52,7 @@ namespace Zep
         {
             return value switch
             {
+                "fact_triple" => ModelsGraphDataType.FactTriple,
                 "json" => ModelsGraphDataType.Json,
                 "message" => ModelsGraphDataType.Message,
                 "text" => ModelsGraphDataType.Text,

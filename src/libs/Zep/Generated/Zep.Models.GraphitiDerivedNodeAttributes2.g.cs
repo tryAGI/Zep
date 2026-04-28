@@ -6,7 +6,7 @@ namespace Zep
     /// <summary>
     /// Any type
     /// </summary>
-    public sealed partial class GraphitiCommunityNodeAttributes2
+    public sealed partial class GraphitiDerivedNodeAttributes2
     {
 
         /// <summary>
