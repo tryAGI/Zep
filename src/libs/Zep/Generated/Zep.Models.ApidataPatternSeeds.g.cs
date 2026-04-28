@@ -21,7 +21,7 @@ namespace Zep
         public global::System.Collections.Generic.IList<string>? NodeLabels { get; set; }
 
         /// <summary>
-        /// Specific node UUIDs to analyze around
+        /// Specific node UUIDs to analyze around. Max 10000 to align with pattern detection seed limits.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("node_uuids")]
         public global::System.Collections.Generic.IList<string>? NodeUuids { get; set; }
@@ -42,7 +42,7 @@ namespace Zep
         /// All nodes with these labels become seeds
         /// </param>
         /// <param name="nodeUuids">
-        /// Specific node UUIDs to analyze around
+        /// Specific node UUIDs to analyze around. Max 10000 to align with pattern detection seed limits.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]

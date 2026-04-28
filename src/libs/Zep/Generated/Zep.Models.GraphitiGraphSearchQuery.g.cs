@@ -33,6 +33,12 @@ namespace Zep
         public int? Limit { get; set; }
 
         /// <summary>
+        /// Maximum total characters across all selected results when scope=auto. Defaults to 2000. Limited to 50000.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("max_characters")]
+        public int? MaxCharacters { get; set; }
+
+        /// <summary>
         /// weighting for maximal marginal relevance
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("mmr_lambda")]
@@ -51,6 +57,12 @@ namespace Zep
         [global::System.Text.Json.Serialization.JsonPropertyName("reranker")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Zep.JsonConverters.GraphitiRerankerJsonConverter))]
         public global::Zep.GraphitiReranker? Reranker { get; set; }
+
+        /// <summary>
+        /// When scope=auto, include the selected raw graph results alongside the materialized context block.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("return_raw_results")]
+        public bool? ReturnRawResults { get; set; }
 
         /// <summary>
         /// Defaults to Edges.
@@ -95,11 +107,17 @@ namespace Zep
         /// <param name="limit">
         /// The maximum number of facts to retrieve. Defaults to 10. Limited to 50.
         /// </param>
+        /// <param name="maxCharacters">
+        /// Maximum total characters across all selected results when scope=auto. Defaults to 2000. Limited to 50000.
+        /// </param>
         /// <param name="mmrLambda">
         /// weighting for maximal marginal relevance
         /// </param>
         /// <param name="reranker">
         /// Defaults to RRF
+        /// </param>
+        /// <param name="returnRawResults">
+        /// When scope=auto, include the selected raw graph results alongside the materialized context block.
         /// </param>
         /// <param name="scope">
         /// Defaults to Edges.
@@ -119,8 +137,10 @@ namespace Zep
             string? centerNodeUuid,
             string? graphId,
             int? limit,
+            int? maxCharacters,
             double? mmrLambda,
             global::Zep.GraphitiReranker? reranker,
+            bool? returnRawResults,
             global::Zep.GraphitiGraphSearchScope? scope,
             global::Zep.GraphitiSearchFilters? searchFilters,
             string? userId)
@@ -129,9 +149,11 @@ namespace Zep
             this.CenterNodeUuid = centerNodeUuid;
             this.GraphId = graphId;
             this.Limit = limit;
+            this.MaxCharacters = maxCharacters;
             this.MmrLambda = mmrLambda;
             this.Query = query ?? throw new global::System.ArgumentNullException(nameof(query));
             this.Reranker = reranker;
+            this.ReturnRawResults = returnRawResults;
             this.Scope = scope;
             this.SearchFilters = searchFilters;
             this.UserId = userId;

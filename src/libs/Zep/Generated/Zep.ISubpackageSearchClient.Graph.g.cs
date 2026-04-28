@@ -33,6 +33,9 @@ namespace Zep
         /// <param name="limit">
         /// The maximum number of facts to retrieve. Defaults to 10. Limited to 50.
         /// </param>
+        /// <param name="maxCharacters">
+        /// Maximum total characters across all selected results when scope=auto. Defaults to 2000. Limited to 50000.
+        /// </param>
         /// <param name="mmrLambda">
         /// weighting for maximal marginal relevance
         /// </param>
@@ -41,6 +44,9 @@ namespace Zep
         /// </param>
         /// <param name="reranker">
         /// Defaults to RRF
+        /// </param>
+        /// <param name="returnRawResults">
+        /// When scope=auto, include the selected raw graph results alongside the materialized context block.
         /// </param>
         /// <param name="scope">
         /// Defaults to Edges.
@@ -60,8 +66,10 @@ namespace Zep
             string? centerNodeUuid = default,
             string? graphId = default,
             int? limit = default,
+            int? maxCharacters = default,
             double? mmrLambda = default,
             global::Zep.GraphitiReranker? reranker = default,
+            bool? returnRawResults = default,
             global::Zep.GraphitiGraphSearchScope? scope = default,
             global::Zep.GraphitiSearchFilters? searchFilters = default,
             string? userId = default,

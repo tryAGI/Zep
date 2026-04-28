@@ -2,7 +2,7 @@
 
 namespace Zep
 {
-    public sealed partial class GraphitiCommunityNodeAttributes2
+    public sealed partial class GraphitiDerivedNodeAttributes2
     {
         /// <summary>
         /// Serializes the current instance to a JSON string using the provided JsonSerializerContext.
@@ -34,14 +34,14 @@ namespace Zep
         /// <summary>
         /// Deserializes a JSON string using the provided JsonSerializerContext.
         /// </summary>
-        public static global::Zep.GraphitiCommunityNodeAttributes2? FromJson(
+        public static global::Zep.GraphitiDerivedNodeAttributes2? FromJson(
             string json,
             global::System.Text.Json.Serialization.JsonSerializerContext jsonSerializerContext)
         {
             return global::System.Text.Json.JsonSerializer.Deserialize(
                 json,
-                typeof(global::Zep.GraphitiCommunityNodeAttributes2),
-                jsonSerializerContext) as global::Zep.GraphitiCommunityNodeAttributes2;
+                typeof(global::Zep.GraphitiDerivedNodeAttributes2),
+                jsonSerializerContext) as global::Zep.GraphitiDerivedNodeAttributes2;
         }
 
         /// <summary>
@@ -51,11 +51,11 @@ namespace Zep
         [global::System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode("JSON serialization and deserialization might require types that cannot be statically analyzed. Use the overload that takes a JsonTypeInfo or JsonSerializerContext, or make sure all of the required types are preserved.")]
         [global::System.Diagnostics.CodeAnalysis.RequiresDynamicCode("JSON serialization and deserialization might require types that cannot be statically analyzed and might need runtime code generation. Use System.Text.Json source generation for native AOT applications.")]
 #endif
-        public static global::Zep.GraphitiCommunityNodeAttributes2? FromJson(
+        public static global::Zep.GraphitiDerivedNodeAttributes2? FromJson(
             string json,
             global::System.Text.Json.JsonSerializerOptions? jsonSerializerOptions = null)
         {
-            return global::System.Text.Json.JsonSerializer.Deserialize<global::Zep.GraphitiCommunityNodeAttributes2>(
+            return global::System.Text.Json.JsonSerializer.Deserialize<global::Zep.GraphitiDerivedNodeAttributes2>(
                 json,
                 jsonSerializerOptions);
         }
@@ -63,14 +63,14 @@ namespace Zep
         /// <summary>
         /// Deserializes a JSON stream using the provided JsonSerializerContext.
         /// </summary>
-        public static async global::System.Threading.Tasks.ValueTask<global::Zep.GraphitiCommunityNodeAttributes2?> FromJsonStreamAsync(
+        public static async global::System.Threading.Tasks.ValueTask<global::Zep.GraphitiDerivedNodeAttributes2?> FromJsonStreamAsync(
             global::System.IO.Stream jsonStream,
             global::System.Text.Json.Serialization.JsonSerializerContext jsonSerializerContext)
         {
             return (await global::System.Text.Json.JsonSerializer.DeserializeAsync(
                 jsonStream,
-                typeof(global::Zep.GraphitiCommunityNodeAttributes2),
-                jsonSerializerContext).ConfigureAwait(false)) as global::Zep.GraphitiCommunityNodeAttributes2;
+                typeof(global::Zep.GraphitiDerivedNodeAttributes2),
+                jsonSerializerContext).ConfigureAwait(false)) as global::Zep.GraphitiDerivedNodeAttributes2;
         }
 
         /// <summary>
@@ -80,11 +80,11 @@ namespace Zep
         [global::System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode("JSON serialization and deserialization might require types that cannot be statically analyzed. Use the overload that takes a JsonTypeInfo or JsonSerializerContext, or make sure all of the required types are preserved.")]
         [global::System.Diagnostics.CodeAnalysis.RequiresDynamicCode("JSON serialization and deserialization might require types that cannot be statically analyzed and might need runtime code generation. Use System.Text.Json source generation for native AOT applications.")]
 #endif
-        public static global::System.Threading.Tasks.ValueTask<global::Zep.GraphitiCommunityNodeAttributes2?> FromJsonStreamAsync(
+        public static global::System.Threading.Tasks.ValueTask<global::Zep.GraphitiDerivedNodeAttributes2?> FromJsonStreamAsync(
             global::System.IO.Stream jsonStream,
             global::System.Text.Json.JsonSerializerOptions? jsonSerializerOptions = null)
         {
-            return global::System.Text.Json.JsonSerializer.DeserializeAsync<global::Zep.GraphitiCommunityNodeAttributes2?>(
+            return global::System.Text.Json.JsonSerializer.DeserializeAsync<global::Zep.GraphitiDerivedNodeAttributes2?>(
                 jsonStream,
                 jsonSerializerOptions);
         }

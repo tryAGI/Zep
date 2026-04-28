@@ -28,6 +28,12 @@ namespace Zep
         public string? GraphId { get; set; }
 
         /// <summary>
+        /// Optional metadata key-value pairs. Max 10 keys. Values must be strings, numbers, booleans, or arrays of scalars.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("metadata")]
+        public object? Metadata { get; set; }
+
+        /// <summary>
         /// 
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("source_description")]
@@ -48,12 +54,6 @@ namespace Zep
         public string? UserId { get; set; }
 
         /// <summary>
-        /// Optional metadata key-value pairs. Max 10 keys. Values must be strings, numbers, booleans, or arrays of scalars.
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("metadata")]
-        public object? Metadata { get; set; }
-
-        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -68,12 +68,12 @@ namespace Zep
         /// <param name="graphId">
         /// graph_id is the ID of the graph to which the data will be added. If adding to the user graph, please use user_id field instead.
         /// </param>
+        /// <param name="metadata">
+        /// Optional metadata key-value pairs. Max 10 keys. Values must be strings, numbers, booleans, or arrays of scalars.
+        /// </param>
         /// <param name="sourceDescription"></param>
         /// <param name="userId">
         /// User ID is the ID of the user to which the data will be added. If not adding to a user graph, please use graph_id field instead.
-        /// </param>
-        /// <param name="metadata">
-        /// Optional metadata key-value pairs. Max 10 keys. Values must be strings, numbers, booleans, or arrays of scalars.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
@@ -83,17 +83,17 @@ namespace Zep
             global::Zep.ModelsGraphDataType type,
             string? createdAt,
             string? graphId,
+            object? metadata,
             string? sourceDescription,
-            string? userId,
-            object? metadata)
+            string? userId)
         {
             this.CreatedAt = createdAt;
             this.Data = data ?? throw new global::System.ArgumentNullException(nameof(data));
             this.GraphId = graphId;
+            this.Metadata = metadata;
             this.SourceDescription = sourceDescription;
             this.Type = type;
             this.UserId = userId;
-            this.Metadata = metadata;
         }
 
         /// <summary>

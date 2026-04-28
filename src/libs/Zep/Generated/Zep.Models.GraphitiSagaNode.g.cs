@@ -6,14 +6,8 @@ namespace Zep
     /// <summary>
     /// 
     /// </summary>
-    public sealed partial class GraphitiCommunityNode
+    public sealed partial class GraphitiSagaNode
     {
-        /// <summary>
-        /// Additional attributes of the community node.
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("attributes")]
-        public object? Attributes { get; set; }
-
         /// <summary>
         /// Creation time of the node
         /// </summary>
@@ -26,6 +20,12 @@ namespace Zep
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("labels")]
         public global::System.Collections.Generic.IList<string>? Labels { get; set; }
+
+        /// <summary>
+        /// Timestamp of the most recent summary update.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("last_summarized_at")]
+        public string? LastSummarizedAt { get; set; }
 
         /// <summary>
         /// Name of the node
@@ -48,7 +48,13 @@ namespace Zep
         public double? Score { get; set; }
 
         /// <summary>
-        /// Region summary of member nodes
+        /// SelectionRank is the global cross-scope rank assigned by auto scope selection.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("selection_rank")]
+        public int? SelectionRank { get; set; }
+
+        /// <summary>
+        /// Incremental summary of the thread.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("summary")]
         public string? Summary { get; set; }
@@ -67,7 +73,7 @@ namespace Zep
         public global::System.Collections.Generic.IDictionary<string, object> AdditionalProperties { get; set; } = new global::System.Collections.Generic.Dictionary<string, object>();
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="GraphitiCommunityNode" /> class.
+        /// Initializes a new instance of the <see cref="GraphitiSagaNode" /> class.
         /// </summary>
         /// <param name="createdAt">
         /// Creation time of the node
@@ -78,11 +84,11 @@ namespace Zep
         /// <param name="uuid">
         /// UUID of the node
         /// </param>
-        /// <param name="attributes">
-        /// Additional attributes of the community node.
-        /// </param>
         /// <param name="labels">
         /// Labels associated with the node
+        /// </param>
+        /// <param name="lastSummarizedAt">
+        /// Timestamp of the most recent summary update.
         /// </param>
         /// <param name="relevance">
         /// Relevance is an experimental rank-aligned score in [0,1] derived from Score via logit transformation.<br/>
@@ -91,36 +97,41 @@ namespace Zep
         /// <param name="score">
         /// Score is the reranker output: sigmoid-distributed logits [0,1] when using cross_encoder reranker, or RRF ordinal rank when using rrf reranker
         /// </param>
+        /// <param name="selectionRank">
+        /// SelectionRank is the global cross-scope rank assigned by auto scope selection.
+        /// </param>
         /// <param name="summary">
-        /// Region summary of member nodes
+        /// Incremental summary of the thread.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
-        public GraphitiCommunityNode(
+        public GraphitiSagaNode(
             string createdAt,
             string name,
             string uuid,
-            object? attributes,
             global::System.Collections.Generic.IList<string>? labels,
+            string? lastSummarizedAt,
             double? relevance,
             double? score,
+            int? selectionRank,
             string? summary)
         {
-            this.Attributes = attributes;
             this.CreatedAt = createdAt ?? throw new global::System.ArgumentNullException(nameof(createdAt));
             this.Labels = labels;
+            this.LastSummarizedAt = lastSummarizedAt;
             this.Name = name ?? throw new global::System.ArgumentNullException(nameof(name));
             this.Relevance = relevance;
             this.Score = score;
+            this.SelectionRank = selectionRank;
             this.Summary = summary;
             this.Uuid = uuid ?? throw new global::System.ArgumentNullException(nameof(uuid));
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="GraphitiCommunityNode" /> class.
+        /// Initializes a new instance of the <see cref="GraphitiSagaNode" /> class.
         /// </summary>
-        public GraphitiCommunityNode()
+        public GraphitiSagaNode()
         {
         }
     }

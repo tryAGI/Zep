@@ -3,11 +3,11 @@
 
 namespace Zep
 {
-    public partial class SubpackageEntityClient
+    public partial class SubpackageThreadClient
     {
 
 
-        private static readonly global::Zep.EndPointSecurityRequirement s_AddFactTripleSecurityRequirement0 =
+        private static readonly global::Zep.EndPointSecurityRequirement s_GetThreadSummaryExperimentalSecurityRequirement0 =
             new global::Zep.EndPointSecurityRequirement
             {
                 Authorizations = new global::Zep.EndPointAuthorizationRequirement[]
@@ -21,53 +21,50 @@ namespace Zep
                     },
                 },
             };
-        private static readonly global::Zep.EndPointSecurityRequirement[] s_AddFactTripleSecurityRequirements =
+        private static readonly global::Zep.EndPointSecurityRequirement[] s_GetThreadSummaryExperimentalSecurityRequirements =
             new global::Zep.EndPointSecurityRequirement[]
-            {                s_AddFactTripleSecurityRequirement0,
+            {                s_GetThreadSummaryExperimentalSecurityRequirement0,
             };
-        partial void PrepareAddFactTripleArguments(
+        partial void PrepareGetThreadSummaryExperimentalArguments(
             global::System.Net.Http.HttpClient httpClient,
-            global::Zep.GraphitiAddTripleRequest request);
-        partial void PrepareAddFactTripleRequest(
+            ref string threadId);
+        partial void PrepareGetThreadSummaryExperimentalRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            global::Zep.GraphitiAddTripleRequest request);
-        partial void ProcessAddFactTripleResponse(
+            string threadId);
+        partial void ProcessGetThreadSummaryExperimentalResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
-        partial void ProcessAddFactTripleResponseContent(
+        partial void ProcessGetThreadSummaryExperimentalResponseContent(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage,
             ref string content);
 
         /// <summary>
-        /// Add Fact Triple<br/>
-        /// Add a fact triple for a user or group
+        /// Get thread summary (Experimental)<br/>
+        /// Returns the incremental summary generated from messages in the thread. Returns 404 if no summary exists for the thread.
         /// </summary>
-        /// <param name="request"></param>
+        /// <param name="threadId"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Zep.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Zep.GraphitiAddTripleResponse> AddFactTripleAsync(
-
-            global::Zep.GraphitiAddTripleRequest request,
+        public async global::System.Threading.Tasks.Task<global::Zep.ApidataThreadSummary> GetThreadSummaryExperimentalAsync(
+            string threadId,
             global::Zep.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            request = request ?? throw new global::System.ArgumentNullException(nameof(request));
-
             PrepareArguments(
                 client: HttpClient);
-            PrepareAddFactTripleArguments(
+            PrepareGetThreadSummaryExperimentalArguments(
                 httpClient: HttpClient,
-                request: request);
+                threadId: ref threadId);
 
 
             var __authorizations = global::Zep.EndPointSecurityResolver.ResolveAuthorizations(
                 availableAuthorizations: Authorizations,
-                securityRequirements: s_AddFactTripleSecurityRequirements,
-                operationName: "AddFactTripleAsync");
+                securityRequirements: s_GetThreadSummaryExperimentalSecurityRequirements,
+                operationName: "GetThreadSummaryExperimentalAsync");
 
             using var __timeoutCancellationTokenSource = global::Zep.AutoSDKRequestOptionsSupport.CreateTimeoutCancellationTokenSource(
                 clientOptions: Options,
@@ -86,7 +83,7 @@ namespace Zep
             global::System.Net.Http.HttpRequestMessage __CreateHttpRequest()
             {
                             var __pathBuilder = new global::Zep.PathBuilder(
-                                path: "/graph/add-fact-triple",
+                                path: $"/threads/{threadId}/summary",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Zep.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -94,7 +91,7 @@ namespace Zep
                     clientParameters: Options.QueryParameters,
                     requestParameters: requestOptions?.QueryParameters);
                 var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
-                    method: global::System.Net.Http.HttpMethod.Post,
+                    method: global::System.Net.Http.HttpMethod.Get,
                     requestUri: new global::System.Uri(__path, global::System.UriKind.RelativeOrAbsolute));
 #if NET6_0_OR_GREATER
                 __httpRequest.Version = global::System.Net.HttpVersion.Version11;
@@ -117,12 +114,6 @@ namespace Zep
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
                 } 
             }
-                            var __httpRequestContentBody = request.ToJson(JsonSerializerContext);
-                            var __httpRequestContent = new global::System.Net.Http.StringContent(
-                                content: __httpRequestContentBody,
-                                encoding: global::System.Text.Encoding.UTF8,
-                                mediaType: "application/json");
-                            __httpRequest.Content = __httpRequestContent;
                 global::Zep.AutoSDKRequestOptionsSupport.ApplyHeaders(
                     request: __httpRequest,
                     clientHeaders: Options.Headers,
@@ -131,10 +122,10 @@ namespace Zep
                 PrepareRequest(
                     client: HttpClient,
                     request: __httpRequest);
-                PrepareAddFactTripleRequest(
+                PrepareGetThreadSummaryExperimentalRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    request: request);
+                    threadId: threadId);
 
                 return __httpRequest;
             }
@@ -151,10 +142,10 @@ namespace Zep
                     await global::Zep.AutoSDKRequestOptionsSupport.OnBeforeRequestAsync(
                             clientOptions: Options,
                             context: global::Zep.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "AddFactTriple",
-                                methodName: "AddFactTripleAsync",
-                                pathTemplate: "\"/graph/add-fact-triple\"",
-                                httpMethod: "POST",
+                                operationId: "GetThreadSummaryExperimental",
+                                methodName: "GetThreadSummaryExperimentalAsync",
+                                pathTemplate: "$\"/threads/{threadId}/summary\"",
+                                httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: null,
@@ -178,10 +169,10 @@ namespace Zep
                         await global::Zep.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Zep.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "AddFactTriple",
-                                methodName: "AddFactTripleAsync",
-                                pathTemplate: "\"/graph/add-fact-triple\"",
-                                httpMethod: "POST",
+                                operationId: "GetThreadSummaryExperimental",
+                                methodName: "GetThreadSummaryExperimentalAsync",
+                                pathTemplate: "$\"/threads/{threadId}/summary\"",
+                                httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: null,
@@ -213,10 +204,10 @@ namespace Zep
                         await global::Zep.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Zep.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "AddFactTriple",
-                                methodName: "AddFactTripleAsync",
-                                pathTemplate: "\"/graph/add-fact-triple\"",
-                                httpMethod: "POST",
+                                operationId: "GetThreadSummaryExperimental",
+                                methodName: "GetThreadSummaryExperimentalAsync",
+                                pathTemplate: "$\"/threads/{threadId}/summary\"",
+                                httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -252,7 +243,7 @@ namespace Zep
                 ProcessResponse(
                     client: HttpClient,
                     response: __response);
-                ProcessAddFactTripleResponse(
+                ProcessGetThreadSummaryExperimentalResponse(
                     httpClient: HttpClient,
                     httpResponseMessage: __response);
                 if (__response.IsSuccessStatusCode)
@@ -260,10 +251,10 @@ namespace Zep
                     await global::Zep.AutoSDKRequestOptionsSupport.OnAfterSuccessAsync(
                             clientOptions: Options,
                             context: global::Zep.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "AddFactTriple",
-                                methodName: "AddFactTripleAsync",
-                                pathTemplate: "\"/graph/add-fact-triple\"",
-                                httpMethod: "POST",
+                                operationId: "GetThreadSummaryExperimental",
+                                methodName: "GetThreadSummaryExperimentalAsync",
+                                pathTemplate: "$\"/threads/{threadId}/summary\"",
+                                httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -280,10 +271,10 @@ namespace Zep
                     await global::Zep.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Zep.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "AddFactTriple",
-                                methodName: "AddFactTripleAsync",
-                                pathTemplate: "\"/graph/add-fact-triple\"",
-                                httpMethod: "POST",
+                                operationId: "GetThreadSummaryExperimental",
+                                methodName: "GetThreadSummaryExperimentalAsync",
+                                pathTemplate: "$\"/threads/{threadId}/summary\"",
+                                httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -295,38 +286,76 @@ namespace Zep
                                 willRetry: false,
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                 }
-                            // Bad Request
-                            if ((int)__response.StatusCode == 400)
+                            // Forbidden
+                            if ((int)__response.StatusCode == 403)
                             {
-                                string? __content_400 = null;
-                                global::System.Exception? __exception_400 = null;
-                                global::Zep.ApidataAPIError? __value_400 = null;
+                                string? __content_403 = null;
+                                global::System.Exception? __exception_403 = null;
+                                global::Zep.ApidataAPIError? __value_403 = null;
                                 try
                                 {
                                     if (__effectiveReadResponseAsString)
                                     {
-                                        __content_400 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_400 = global::Zep.ApidataAPIError.FromJson(__content_400, JsonSerializerContext);
+                                        __content_403 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_403 = global::Zep.ApidataAPIError.FromJson(__content_403, JsonSerializerContext);
                                     }
                                     else
                                     {
-                                        __content_400 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __content_403 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
 
-                                        __value_400 = global::Zep.ApidataAPIError.FromJson(__content_400, JsonSerializerContext);
+                                        __value_403 = global::Zep.ApidataAPIError.FromJson(__content_403, JsonSerializerContext);
                                     }
                                 }
                                 catch (global::System.Exception __ex)
                                 {
-                                    __exception_400 = __ex;
+                                    __exception_403 = __ex;
                                 }
 
                                 throw new global::Zep.ApiException<global::Zep.ApidataAPIError>(
-                                    message: __content_400 ?? __response.ReasonPhrase ?? string.Empty,
-                                    innerException: __exception_400,
+                                    message: __content_403 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_403,
                                     statusCode: __response.StatusCode)
                                 {
-                                    ResponseBody = __content_400,
-                                    ResponseObject = __value_400,
+                                    ResponseBody = __content_403,
+                                    ResponseObject = __value_403,
+                                    ResponseHeaders = global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value),
+                                };
+                            }
+                            // Not Found
+                            if ((int)__response.StatusCode == 404)
+                            {
+                                string? __content_404 = null;
+                                global::System.Exception? __exception_404 = null;
+                                global::Zep.ApidataAPIError? __value_404 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_404 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_404 = global::Zep.ApidataAPIError.FromJson(__content_404, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_404 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_404 = global::Zep.ApidataAPIError.FromJson(__content_404, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_404 = __ex;
+                                }
+
+                                throw new global::Zep.ApiException<global::Zep.ApidataAPIError>(
+                                    message: __content_404 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_404,
+                                    statusCode: __response.StatusCode)
+                                {
+                                    ResponseBody = __content_404,
+                                    ResponseObject = __value_404,
                                     ResponseHeaders = global::System.Linq.Enumerable.ToDictionary(
                                         __response.Headers,
                                         h => h.Key,
@@ -384,7 +413,7 @@ namespace Zep
                                     client: HttpClient,
                                     response: __response,
                                     content: ref __content);
-                                ProcessAddFactTripleResponseContent(
+                                ProcessGetThreadSummaryExperimentalResponseContent(
                                     httpClient: HttpClient,
                                     httpResponseMessage: __response,
                                     content: ref __content);
@@ -394,7 +423,7 @@ namespace Zep
                                     __response.EnsureSuccessStatusCode();
 
                                     return
-                                        global::Zep.GraphitiAddTripleResponse.FromJson(__content, JsonSerializerContext) ??
+                                        global::Zep.ApidataThreadSummary.FromJson(__content, JsonSerializerContext) ??
                                         throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
                                 }
                                 catch (global::System.Exception __ex)
@@ -424,7 +453,7 @@ namespace Zep
                                     ).ConfigureAwait(false);
 
                                     return
-                                        await global::Zep.GraphitiAddTripleResponse.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
+                                        await global::Zep.ApidataThreadSummary.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
                                         throw new global::System.InvalidOperationException("Response deserialization failed.");
                                 }
                                 catch (global::System.Exception __ex)
@@ -462,131 +491,6 @@ namespace Zep
             {
                 __httpRequest?.Dispose();
             }
-        }
-        /// <summary>
-        /// Add Fact Triple<br/>
-        /// Add a fact triple for a user or group
-        /// </summary>
-        /// <param name="createdAt">
-        /// The timestamp of the message
-        /// </param>
-        /// <param name="edgeAttributes">
-        /// Additional attributes of the edge. Values must be scalar types (string, number, boolean, or null).<br/>
-        /// Nested objects and arrays are not allowed.
-        /// </param>
-        /// <param name="expiredAt">
-        /// The time (if any) at which the edge expires
-        /// </param>
-        /// <param name="fact">
-        /// The fact relating the two nodes that this edge represents
-        /// </param>
-        /// <param name="factName">
-        /// The name of the edge to add. Should be all caps using snake case (eg RELATES_TO)
-        /// </param>
-        /// <param name="factUuid">
-        /// The uuid of the edge to add
-        /// </param>
-        /// <param name="graphId"></param>
-        /// <param name="invalidAt">
-        /// The time (if any) at which the fact stops being true
-        /// </param>
-        /// <param name="metadata">
-        /// Optional metadata key-value pairs for the shadow episode created for this fact triple.<br/>
-        /// Max 10 keys. Values must be strings, numbers, or booleans.
-        /// </param>
-        /// <param name="sourceNodeAttributes">
-        /// Additional attributes of the source node. Values must be scalar types (string, number, boolean, or null).<br/>
-        /// Nested objects and arrays are not allowed.
-        /// </param>
-        /// <param name="sourceNodeLabels">
-        /// The labels for the source node
-        /// </param>
-        /// <param name="sourceNodeName">
-        /// The name of the source node to add
-        /// </param>
-        /// <param name="sourceNodeSummary">
-        /// The summary of the source node to add
-        /// </param>
-        /// <param name="sourceNodeUuid">
-        /// The source node uuid
-        /// </param>
-        /// <param name="targetNodeAttributes">
-        /// Additional attributes of the target node. Values must be scalar types (string, number, boolean, or null).<br/>
-        /// Nested objects and arrays are not allowed.
-        /// </param>
-        /// <param name="targetNodeLabels">
-        /// The labels for the target node
-        /// </param>
-        /// <param name="targetNodeName">
-        /// The name of the target node to add
-        /// </param>
-        /// <param name="targetNodeSummary">
-        /// The summary of the target node to add
-        /// </param>
-        /// <param name="targetNodeUuid">
-        /// The target node uuid
-        /// </param>
-        /// <param name="userId"></param>
-        /// <param name="validAt">
-        /// The time at which the fact becomes true
-        /// </param>
-        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
-        /// <param name="cancellationToken">The token to cancel the operation with</param>
-        /// <exception cref="global::System.InvalidOperationException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Zep.GraphitiAddTripleResponse> AddFactTripleAsync(
-            string fact,
-            string factName,
-            string? createdAt = default,
-            object? edgeAttributes = default,
-            string? expiredAt = default,
-            string? factUuid = default,
-            string? graphId = default,
-            string? invalidAt = default,
-            object? metadata = default,
-            object? sourceNodeAttributes = default,
-            global::System.Collections.Generic.IList<string>? sourceNodeLabels = default,
-            string? sourceNodeName = default,
-            string? sourceNodeSummary = default,
-            string? sourceNodeUuid = default,
-            object? targetNodeAttributes = default,
-            global::System.Collections.Generic.IList<string>? targetNodeLabels = default,
-            string? targetNodeName = default,
-            string? targetNodeSummary = default,
-            string? targetNodeUuid = default,
-            string? userId = default,
-            string? validAt = default,
-            global::Zep.AutoSDKRequestOptions? requestOptions = default,
-            global::System.Threading.CancellationToken cancellationToken = default)
-        {
-            var __request = new global::Zep.GraphitiAddTripleRequest
-            {
-                CreatedAt = createdAt,
-                EdgeAttributes = edgeAttributes,
-                ExpiredAt = expiredAt,
-                Fact = fact,
-                FactName = factName,
-                FactUuid = factUuid,
-                GraphId = graphId,
-                InvalidAt = invalidAt,
-                Metadata = metadata,
-                SourceNodeAttributes = sourceNodeAttributes,
-                SourceNodeLabels = sourceNodeLabels,
-                SourceNodeName = sourceNodeName,
-                SourceNodeSummary = sourceNodeSummary,
-                SourceNodeUuid = sourceNodeUuid,
-                TargetNodeAttributes = targetNodeAttributes,
-                TargetNodeLabels = targetNodeLabels,
-                TargetNodeName = targetNodeName,
-                TargetNodeSummary = targetNodeSummary,
-                TargetNodeUuid = targetNodeUuid,
-                UserId = userId,
-                ValidAt = validAt,
-            };
-
-            return await AddFactTripleAsync(
-                request: __request,
-                requestOptions: requestOptions,
-                cancellationToken: cancellationToken).ConfigureAwait(false);
         }
     }
 }

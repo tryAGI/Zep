@@ -61,6 +61,12 @@ namespace Zep
         public double? Score { get; set; }
 
         /// <summary>
+        /// SelectionRank is the global cross-scope rank assigned by auto scope selection.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("selection_rank")]
+        public int? SelectionRank { get; set; }
+
+        /// <summary>
         /// 
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("source")]
@@ -119,6 +125,9 @@ namespace Zep
         /// <param name="score">
         /// Score is the reranker output: sigmoid-distributed logits [0,1] when using cross_encoder reranker, or RRF ordinal rank when using rrf reranker
         /// </param>
+        /// <param name="selectionRank">
+        /// SelectionRank is the global cross-scope rank assigned by auto scope selection.
+        /// </param>
         /// <param name="source"></param>
         /// <param name="sourceDescription"></param>
         /// <param name="taskId">
@@ -140,6 +149,7 @@ namespace Zep
             string? role,
             global::Zep.ApidataRoleType? roleType,
             double? score,
+            int? selectionRank,
             global::Zep.ModelsGraphDataType? source,
             string? sourceDescription,
             string? taskId,
@@ -153,6 +163,7 @@ namespace Zep
             this.Role = role;
             this.RoleType = roleType;
             this.Score = score;
+            this.SelectionRank = selectionRank;
             this.Source = source;
             this.SourceDescription = sourceDescription;
             this.TaskId = taskId;

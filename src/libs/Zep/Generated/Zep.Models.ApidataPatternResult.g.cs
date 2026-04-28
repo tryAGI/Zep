@@ -9,7 +9,8 @@ namespace Zep
     public sealed partial class ApidataPatternResult
     {
         /// <summary>
-        /// Human-readable description of the pattern
+        /// Human-readable structural description of the pattern (e.g. "Person -[KNOWS]-&gt; Person").<br/>
+        /// Omitted in query mode in favor of Summary.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("description")]
         public string? Description { get; set; }
@@ -34,10 +35,18 @@ namespace Zep
         public global::System.Collections.Generic.IList<string>? NodeLabels { get; set; }
 
         /// <summary>
-        /// Raw occurrence count (always unweighted)
+        /// Raw structural occurrence count (always unweighted).<br/>
+        /// Reflects pattern frequency in the graph, not the number of resolved edges after filtering.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("occurrences")]
         public int? Occurrences { get; set; }
+
+        /// <summary>
+        /// Fact-derived summary from top reranked edges. Only populated when query is set.<br/>
+        /// This is the primary display field for QA consumers.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("summary")]
+        public string? Summary { get; set; }
 
         /// <summary>
         /// Pattern type: relationship, path, co_occurrence, hub, cluster
@@ -46,7 +55,8 @@ namespace Zep
         public string? Type { get; set; }
 
         /// <summary>
-        /// Weighted sum — equals occurrences when recency_weight is "none"
+        /// Weighted structural support — equals occurrences when recency_weight is "none".<br/>
+        /// Reflects graph-level support, not post-enrichment edge count.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("weighted_score")]
         public double? WeightedScore { get; set; }
@@ -61,7 +71,8 @@ namespace Zep
         /// Initializes a new instance of the <see cref="ApidataPatternResult" /> class.
         /// </summary>
         /// <param name="description">
-        /// Human-readable description of the pattern
+        /// Human-readable structural description of the pattern (e.g. "Person -[KNOWS]-&gt; Person").<br/>
+        /// Omitted in query mode in favor of Summary.
         /// </param>
         /// <param name="edgeTypes">
         /// Edge types in the pattern structure
@@ -74,13 +85,19 @@ namespace Zep
         /// Node labels in the pattern structure
         /// </param>
         /// <param name="occurrences">
-        /// Raw occurrence count (always unweighted)
+        /// Raw structural occurrence count (always unweighted).<br/>
+        /// Reflects pattern frequency in the graph, not the number of resolved edges after filtering.
+        /// </param>
+        /// <param name="summary">
+        /// Fact-derived summary from top reranked edges. Only populated when query is set.<br/>
+        /// This is the primary display field for QA consumers.
         /// </param>
         /// <param name="type">
         /// Pattern type: relationship, path, co_occurrence, hub, cluster
         /// </param>
         /// <param name="weightedScore">
-        /// Weighted sum — equals occurrences when recency_weight is "none"
+        /// Weighted structural support — equals occurrences when recency_weight is "none".<br/>
+        /// Reflects graph-level support, not post-enrichment edge count.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
@@ -91,6 +108,7 @@ namespace Zep
             global::System.Collections.Generic.IList<global::Zep.GraphitiEntityEdge>? edges,
             global::System.Collections.Generic.IList<string>? nodeLabels,
             int? occurrences,
+            string? summary,
             string? type,
             double? weightedScore)
         {
@@ -99,6 +117,7 @@ namespace Zep
             this.Edges = edges;
             this.NodeLabels = nodeLabels;
             this.Occurrences = occurrences;
+            this.Summary = summary;
             this.Type = type;
             this.WeightedScore = weightedScore;
         }

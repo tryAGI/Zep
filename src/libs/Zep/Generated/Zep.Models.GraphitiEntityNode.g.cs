@@ -48,6 +48,12 @@ namespace Zep
         public double? Score { get; set; }
 
         /// <summary>
+        /// SelectionRank is the global cross-scope rank assigned by auto scope selection.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("selection_rank")]
+        public int? SelectionRank { get; set; }
+
+        /// <summary>
         /// Regional summary of surrounding edges
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("summary")]
@@ -95,6 +101,9 @@ namespace Zep
         /// <param name="score">
         /// Score is the reranker output: sigmoid-distributed logits [0,1] when using cross_encoder reranker, or RRF ordinal rank when using rrf reranker
         /// </param>
+        /// <param name="selectionRank">
+        /// SelectionRank is the global cross-scope rank assigned by auto scope selection.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -106,7 +115,8 @@ namespace Zep
             object? attributes,
             global::System.Collections.Generic.IList<string>? labels,
             double? relevance,
-            double? score)
+            double? score,
+            int? selectionRank)
         {
             this.Attributes = attributes;
             this.CreatedAt = createdAt ?? throw new global::System.ArgumentNullException(nameof(createdAt));
@@ -114,6 +124,7 @@ namespace Zep
             this.Name = name ?? throw new global::System.ArgumentNullException(nameof(name));
             this.Relevance = relevance;
             this.Score = score;
+            this.SelectionRank = selectionRank;
             this.Summary = summary ?? throw new global::System.ArgumentNullException(nameof(summary));
             this.Uuid = uuid ?? throw new global::System.ArgumentNullException(nameof(uuid));
         }
