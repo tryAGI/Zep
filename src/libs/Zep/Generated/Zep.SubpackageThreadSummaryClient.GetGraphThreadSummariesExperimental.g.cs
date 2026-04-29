@@ -139,7 +139,7 @@ namespace Zep
                 PrepareGetGraphThreadSummariesExperimentalRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    graphId: graphId,
+                    graphId: graphId!,
                     request: request);
 
                 return __httpRequest;

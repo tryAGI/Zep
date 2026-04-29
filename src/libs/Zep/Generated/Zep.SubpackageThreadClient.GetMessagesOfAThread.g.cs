@@ -145,7 +145,7 @@ namespace Zep
                 PrepareGetMessagesOfAThreadRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    threadId: threadId,
+                    threadId: threadId!,
                     limit: limit,
                     cursor: cursor,
                     lastn: lastn);

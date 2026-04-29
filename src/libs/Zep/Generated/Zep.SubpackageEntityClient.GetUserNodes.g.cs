@@ -139,7 +139,7 @@ namespace Zep
                 PrepareGetUserNodesRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    userId: userId,
+                    userId: userId!,
                     request: request);
 
                 return __httpRequest;

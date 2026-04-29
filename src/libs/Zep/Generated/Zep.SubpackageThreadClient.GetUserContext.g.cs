@@ -133,7 +133,7 @@ namespace Zep
                 PrepareGetUserContextRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    threadId: threadId,
+                    threadId: threadId!,
                     templateId: templateId);
 
                 return __httpRequest;

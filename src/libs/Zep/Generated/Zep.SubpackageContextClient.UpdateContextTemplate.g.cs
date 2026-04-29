@@ -139,7 +139,7 @@ namespace Zep
                 PrepareUpdateContextTemplateRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    templateId: templateId,
+                    templateId: templateId!,
                     request: request);
 
                 return __httpRequest;

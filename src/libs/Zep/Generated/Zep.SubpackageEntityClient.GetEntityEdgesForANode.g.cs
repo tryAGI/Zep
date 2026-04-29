@@ -125,7 +125,7 @@ namespace Zep
                 PrepareGetEntityEdgesForANodeRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    nodeUuid: nodeUuid);
+                    nodeUuid: nodeUuid!);
 
                 return __httpRequest;
             }

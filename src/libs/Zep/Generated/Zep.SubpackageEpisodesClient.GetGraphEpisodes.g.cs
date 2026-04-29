@@ -133,7 +133,7 @@ namespace Zep
                 PrepareGetGraphEpisodesRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    graphId: graphId,
+                    graphId: graphId!,
                     lastn: lastn);
 
                 return __httpRequest;
