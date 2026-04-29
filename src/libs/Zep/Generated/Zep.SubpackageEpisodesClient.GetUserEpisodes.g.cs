@@ -133,7 +133,7 @@ namespace Zep
                 PrepareGetUserEpisodesRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    userId: userId,
+                    userId: userId!,
                     lastn: lastn);
 
                 return __httpRequest;

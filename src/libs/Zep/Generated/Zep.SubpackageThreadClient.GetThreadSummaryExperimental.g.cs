@@ -125,7 +125,7 @@ namespace Zep
                 PrepareGetThreadSummaryExperimentalRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    threadId: threadId);
+                    threadId: threadId!);
 
                 return __httpRequest;
             }

@@ -125,7 +125,7 @@ namespace Zep
                 PrepareGetTaskRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    taskId: taskId);
+                    taskId: taskId!);
 
                 return __httpRequest;
             }

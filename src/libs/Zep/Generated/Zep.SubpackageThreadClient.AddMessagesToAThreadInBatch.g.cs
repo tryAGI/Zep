@@ -139,7 +139,7 @@ namespace Zep
                 PrepareAddMessagesToAThreadInBatchRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    threadId: threadId,
+                    threadId: threadId!,
                     request: request);
 
                 return __httpRequest;

@@ -125,7 +125,7 @@ namespace Zep
                 PrepareGetEpisodesForANodeRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    nodeUuid: nodeUuid);
+                    nodeUuid: nodeUuid!);
 
                 return __httpRequest;
             }

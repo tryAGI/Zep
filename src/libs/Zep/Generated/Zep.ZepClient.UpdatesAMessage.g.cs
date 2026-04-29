@@ -139,7 +139,7 @@ namespace Zep
                 PrepareUpdatesAMessageRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    messageUUID: messageUUID,
+                    messageUUID: messageUUID!,
                     request: request);
 
                 return __httpRequest;

@@ -139,7 +139,7 @@ namespace Zep
                 PrepareUpdateEpisodeMetadataRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    uuid: uuid,
+                    uuid: uuid!,
                     request: request);
 
                 return __httpRequest;
