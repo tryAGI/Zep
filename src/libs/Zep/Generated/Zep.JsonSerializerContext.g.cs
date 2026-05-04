@@ -45,6 +45,18 @@ namespace Zep
 
             typeof(global::Zep.JsonConverters.GraphitiGraphSearchScopeNullableJsonConverter),
 
+            typeof(global::Zep.JsonConverters.ModelsBatchStatusJsonConverter),
+
+            typeof(global::Zep.JsonConverters.ModelsBatchStatusNullableJsonConverter),
+
+            typeof(global::Zep.JsonConverters.ModelsBatchItemKindJsonConverter),
+
+            typeof(global::Zep.JsonConverters.ModelsBatchItemKindNullableJsonConverter),
+
+            typeof(global::Zep.JsonConverters.ModelsBatchItemStatusJsonConverter),
+
+            typeof(global::Zep.JsonConverters.ModelsBatchItemStatusNullableJsonConverter),
+
             typeof(global::Zep.JsonConverters.UnixTimestampJsonConverter),
         })]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.JsonSerializerContextTypes))]
@@ -170,6 +182,23 @@ namespace Zep
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataTaskErrorResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataTaskProgress))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataGetTaskResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataCreateBatchRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataBatchProgress))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ModelsBatchStatus), TypeInfoPropertyName = "ModelsBatchStatus2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataBatchSummary))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ModelsBatchItemKind), TypeInfoPropertyName = "ModelsBatchItemKind2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataBatchAddItem))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataAddBatchItemsRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Zep.ApidataBatchAddItem>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ModelsBatchItemStatus), TypeInfoPropertyName = "ModelsBatchItemStatus2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataBatchItemDetail))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataBatchInvalidItem))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataBatchInvalidReferencesError))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Zep.ApidataBatchInvalidItem>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataBatchListResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Zep.ApidataBatchSummary>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataBatchItemListResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Zep.ApidataBatchItemDetail>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.SetOntologyRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Zep.ApidataThreadSummary>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Zep.ApidataThread>))]
@@ -197,6 +226,10 @@ namespace Zep
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Zep.GraphitiDerivedNode>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Zep.GraphitiSagaNode>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Zep.ApidataCustomInstruction>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Zep.ApidataBatchAddItem>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Zep.ApidataBatchInvalidItem>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Zep.ApidataBatchSummary>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Zep.ApidataBatchItemDetail>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Zep.ApidataThreadSummary>))]
     public sealed partial class SourceGenerationContext : global::System.Text.Json.Serialization.JsonSerializerContext
     {
