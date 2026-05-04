@@ -34,7 +34,7 @@ namespace Zep
         /// The maximum number of facts to retrieve. Defaults to 10. Limited to 50.
         /// </param>
         /// <param name="maxCharacters">
-        /// Maximum total characters across all selected results when scope=auto. Defaults to 2000. Limited to 50000.
+        /// Maximum total characters across all selected results when scope=auto. Defaults to 2500. Limited to 50000.
         /// </param>
         /// <param name="mmrLambda">
         /// weighting for maximal marginal relevance
@@ -43,10 +43,14 @@ namespace Zep
         /// The string to search for (required)
         /// </param>
         /// <param name="reranker">
-        /// Defaults to RRF
+        /// Defaults to RRF. When scope=auto, this only affects graph-service retrieval<br/>
+        /// shape for graph facts, observations, and thread summaries; source-episode<br/>
+        /// retrieval uses RRF, and auto search applies its own internal rerank after retrieval.
         /// </param>
         /// <param name="returnRawResults">
-        /// When scope=auto, include the selected raw graph results alongside the materialized context block.
+        /// When scope=auto, include the selected raw graph results alongside the materialized context block.<br/>
+        /// For graph-service-backed auto mode, selected raw results may include episodes,<br/>
+        /// edges, nodes, observations, and thread_summaries.
         /// </param>
         /// <param name="scope">
         /// Defaults to Edges.

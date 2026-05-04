@@ -47,6 +47,11 @@ namespace Zep
         /// <summary>
         /// 
         /// </summary>
+        public SubpackageBatchClient SubpackageBatch { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public SubpackageContextClient SubpackageContext { get; }
 
         /// <summary>
