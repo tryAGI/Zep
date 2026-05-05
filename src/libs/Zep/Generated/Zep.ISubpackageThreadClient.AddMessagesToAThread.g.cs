@@ -24,6 +24,21 @@ namespace Zep
         /// Add messages to a thread.
         /// </summary>
         /// <param name="threadId"></param>
+        /// <param name="request"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::Zep.ApiException"></exception>
+        global::System.Threading.Tasks.Task<global::Zep.AutoSDKHttpResponse<global::Zep.ApidataAddThreadMessagesResponse>> AddMessagesToAThreadAsResponseAsync(
+            string threadId,
+
+            global::Zep.ApidataAddThreadMessagesRequest request,
+            global::Zep.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Add messages to a thread<br/>
+        /// Add messages to a thread.
+        /// </summary>
+        /// <param name="threadId"></param>
         /// <param name="ignoreRoles">
         /// Optional list of role types to ignore when adding messages to graph memory.<br/>
         /// The message itself will still be added, retained and used as context for messages<br/>
