@@ -42,7 +42,7 @@ namespace Zep
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageBatchClient SubpackageBatch => new SubpackageBatchClient(HttpClient, authorizations: Authorizations, options: Options)
+        public SubpackageBatchClient SubpackageBatch => new SubpackageBatchClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             JsonSerializerContext = JsonSerializerContext,
@@ -51,7 +51,7 @@ namespace Zep
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageContextClient SubpackageContext => new SubpackageContextClient(HttpClient, authorizations: Authorizations, options: Options)
+        public SubpackageContextClient SubpackageContext => new SubpackageContextClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             JsonSerializerContext = JsonSerializerContext,
@@ -60,7 +60,7 @@ namespace Zep
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageDataClient SubpackageData => new SubpackageDataClient(HttpClient, authorizations: Authorizations, options: Options)
+        public SubpackageDataClient SubpackageData => new SubpackageDataClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             JsonSerializerContext = JsonSerializerContext,
@@ -69,7 +69,7 @@ namespace Zep
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageEntityClient SubpackageEntity => new SubpackageEntityClient(HttpClient, authorizations: Authorizations, options: Options)
+        public SubpackageEntityClient SubpackageEntity => new SubpackageEntityClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             JsonSerializerContext = JsonSerializerContext,
@@ -78,7 +78,7 @@ namespace Zep
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageEpisodesClient SubpackageEpisodes => new SubpackageEpisodesClient(HttpClient, authorizations: Authorizations, options: Options)
+        public SubpackageEpisodesClient SubpackageEpisodes => new SubpackageEpisodesClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             JsonSerializerContext = JsonSerializerContext,
@@ -87,7 +87,7 @@ namespace Zep
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageGraphClient SubpackageGraph => new SubpackageGraphClient(HttpClient, authorizations: Authorizations, options: Options)
+        public SubpackageGraphClient SubpackageGraph => new SubpackageGraphClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             JsonSerializerContext = JsonSerializerContext,
@@ -96,7 +96,7 @@ namespace Zep
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageObservationClient SubpackageObservation => new SubpackageObservationClient(HttpClient, authorizations: Authorizations, options: Options)
+        public SubpackageObservationClient SubpackageObservation => new SubpackageObservationClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             JsonSerializerContext = JsonSerializerContext,
@@ -105,7 +105,7 @@ namespace Zep
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageProjectClient SubpackageProject => new SubpackageProjectClient(HttpClient, authorizations: Authorizations, options: Options)
+        public SubpackageProjectClient SubpackageProject => new SubpackageProjectClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             JsonSerializerContext = JsonSerializerContext,
@@ -114,7 +114,7 @@ namespace Zep
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageSearchClient SubpackageSearch => new SubpackageSearchClient(HttpClient, authorizations: Authorizations, options: Options)
+        public SubpackageSearchClient SubpackageSearch => new SubpackageSearchClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             JsonSerializerContext = JsonSerializerContext,
@@ -123,7 +123,7 @@ namespace Zep
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageTaskClient SubpackageTask => new SubpackageTaskClient(HttpClient, authorizations: Authorizations, options: Options)
+        public SubpackageTaskClient SubpackageTask => new SubpackageTaskClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             JsonSerializerContext = JsonSerializerContext,
@@ -132,7 +132,7 @@ namespace Zep
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageThreadClient SubpackageThread => new SubpackageThreadClient(HttpClient, authorizations: Authorizations, options: Options)
+        public SubpackageThreadClient SubpackageThread => new SubpackageThreadClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             JsonSerializerContext = JsonSerializerContext,
@@ -141,7 +141,7 @@ namespace Zep
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageThreadSummaryClient SubpackageThreadSummary => new SubpackageThreadSummaryClient(HttpClient, authorizations: Authorizations, options: Options)
+        public SubpackageThreadSummaryClient SubpackageThreadSummary => new SubpackageThreadSummaryClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             JsonSerializerContext = JsonSerializerContext,
@@ -150,7 +150,7 @@ namespace Zep
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageUserClient SubpackageUser => new SubpackageUserClient(HttpClient, authorizations: Authorizations, options: Options)
+        public SubpackageUserClient SubpackageUser => new SubpackageUserClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             JsonSerializerContext = JsonSerializerContext,
@@ -189,10 +189,10 @@ namespace Zep
         /// <param name="options">Client-wide request defaults such as headers, query parameters, retries, and timeout.</param>
         /// <param name="disposeHttpClient">Dispose the HttpClient when the instance is disposed. True by default.</param>
         public ZepClient(
-            global::System.Net.Http.HttpClient? httpClient = null,
-            global::System.Uri? baseUri = null,
-            global::System.Collections.Generic.List<global::Zep.EndPointAuthorization>? authorizations = null,
-            global::Zep.AutoSDKClientOptions? options = null,
+            global::System.Net.Http.HttpClient? httpClient,
+            global::System.Uri? baseUri,
+            global::System.Collections.Generic.List<global::Zep.EndPointAuthorization>? authorizations,
+            global::Zep.AutoSDKClientOptions? options,
             bool disposeHttpClient = true)
         {
 

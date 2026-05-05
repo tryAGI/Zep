@@ -23,6 +23,20 @@ namespace Zep
         /// Deprecated. Use the [Batch API](/adding-batch-data) (`client.batch.*`) instead.<br/>
         /// Adds data to the graph in batch mode, processing episodes concurrently.
         /// </summary>
+        /// <param name="request"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::Zep.ApiException"></exception>
+        global::System.Threading.Tasks.Task<global::Zep.AutoSDKHttpResponse<global::System.Collections.Generic.IList<global::Zep.ApidataGraphEpisode>>> AddDataInBatchModeAsResponseAsync(
+
+            global::Zep.ApidataAddDataBatchRequest request,
+            global::Zep.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Add Data in batch mode<br/>
+        /// Deprecated. Use the [Batch API](/adding-batch-data) (`client.batch.*`) instead.<br/>
+        /// Adds data to the graph in batch mode, processing episodes concurrently.
+        /// </summary>
         /// <param name="episodes"></param>
         /// <param name="graphId">
         /// graph_id is the ID of the graph to which the data will be added. If adding to the user graph, please use user_id field instead.
