@@ -385,7 +385,7 @@
       "post": {
         "operationId": "add-messages-to-a-thread-in-batch",
         "summary": "Add messages to a thread in batch",
-        "description": "Add messages to a thread in batch mode. This will process messages concurrently, which is useful for data migrations.",
+        "description": "Deprecated. Use the [Batch API](/adding-batch-data) (`client.batch.*` with `type: \"thread_message\"`) instead.\n\nAdds messages to a thread in batch mode, processing messages concurrently.\n",
         "tags": [
           "subpackage_thread"
         ],
@@ -1651,7 +1651,7 @@
       "post": {
         "operationId": "add-data-in-batch-mode",
         "summary": "Add Data in batch mode",
-        "description": "Add data to the graph in batch mode. Episodes are processed sequentially in the order provided.",
+        "description": "Deprecated. Use the [Batch API](/adding-batch-data) (`client.batch.*`) instead.\n\nAdds data to the graph in batch mode, processing episodes concurrently.\n",
         "tags": [
           "subpackage_data"
         ],

@@ -6,7 +6,8 @@ namespace Zep
     {
         /// <summary>
         /// Add messages to a thread in batch<br/>
-        /// Add messages to a thread in batch mode. This will process messages concurrently, which is useful for data migrations.
+        /// Deprecated. Use the [Batch API](/adding-batch-data) (`client.batch.*` with `type: "thread_message"`) instead.<br/>
+        /// Adds messages to a thread in batch mode, processing messages concurrently.
         /// </summary>
         /// <param name="threadId"></param>
         /// <param name="request"></param>
@@ -21,7 +22,8 @@ namespace Zep
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Add messages to a thread in batch<br/>
-        /// Add messages to a thread in batch mode. This will process messages concurrently, which is useful for data migrations.
+        /// Deprecated. Use the [Batch API](/adding-batch-data) (`client.batch.*` with `type: "thread_message"`) instead.<br/>
+        /// Adds messages to a thread in batch mode, processing messages concurrently.
         /// </summary>
         /// <param name="threadId"></param>
         /// <param name="ignoreRoles">

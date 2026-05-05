@@ -43,7 +43,8 @@ namespace Zep
 
         /// <summary>
         /// Add Data in batch mode<br/>
-        /// Add data to the graph in batch mode. Episodes are processed sequentially in the order provided.
+        /// Deprecated. Use the [Batch API](/adding-batch-data) (`client.batch.*`) instead.<br/>
+        /// Adds data to the graph in batch mode, processing episodes concurrently.
         /// </summary>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
@@ -465,7 +466,8 @@ namespace Zep
         }
         /// <summary>
         /// Add Data in batch mode<br/>
-        /// Add data to the graph in batch mode. Episodes are processed sequentially in the order provided.
+        /// Deprecated. Use the [Batch API](/adding-batch-data) (`client.batch.*`) instead.<br/>
+        /// Adds data to the graph in batch mode, processing episodes concurrently.
         /// </summary>
         /// <param name="episodes"></param>
         /// <param name="graphId">
