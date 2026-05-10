@@ -145,5 +145,6 @@ namespace Zep
         public GraphitiDerivedNode()
         {
         }
+
     }
 }

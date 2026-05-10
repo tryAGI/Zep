@@ -52,5 +52,6 @@ namespace Zep
         public ApidataGraphObservationsRequest()
         {
         }
+
     }
 }

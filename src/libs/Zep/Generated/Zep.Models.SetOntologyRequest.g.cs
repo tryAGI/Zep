@@ -74,5 +74,6 @@ namespace Zep
         public SetOntologyRequest()
         {
         }
+
     }
 }

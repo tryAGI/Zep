@@ -70,5 +70,6 @@ namespace Zep
         public GraphitiPropertyFilter()
         {
         }
+
     }
 }

@@ -140,5 +140,6 @@ namespace Zep
         public ApidataBatchItemDetail()
         {
         }
+
     }
 }

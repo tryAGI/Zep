@@ -112,5 +112,6 @@ namespace Zep
         public ApidataBatchSummary()
         {
         }
+
     }
 }
