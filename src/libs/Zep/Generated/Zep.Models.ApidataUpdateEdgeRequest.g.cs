@@ -96,5 +96,6 @@ namespace Zep
         public ApidataUpdateEdgeRequest()
         {
         }
+
     }
 }

@@ -128,5 +128,6 @@ namespace Zep
         public ApidataPatternResult()
         {
         }
+
     }
 }

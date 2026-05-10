@@ -134,5 +134,6 @@ namespace Zep
         public GraphitiSagaNode()
         {
         }
+
     }
 }

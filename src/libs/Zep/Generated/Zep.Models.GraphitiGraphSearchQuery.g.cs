@@ -173,5 +173,6 @@ namespace Zep
         public GraphitiGraphSearchQuery()
         {
         }
+
     }
 }

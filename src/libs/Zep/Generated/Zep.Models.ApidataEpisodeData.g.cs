@@ -80,5 +80,6 @@ namespace Zep
         public ApidataEpisodeData()
         {
         }
+
     }
 }

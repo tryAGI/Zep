@@ -53,5 +53,6 @@ namespace Zep
         public ApidataAddUserInstructionsRequest()
         {
         }
+
     }
 }

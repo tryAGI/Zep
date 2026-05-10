@@ -85,5 +85,6 @@ namespace Zep
         public ApidataUpdateUserRequest()
         {
         }
+
     }
 }

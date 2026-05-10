@@ -58,5 +58,6 @@ namespace Zep
         public ApidataCreateGraphRequest()
         {
         }
+
     }
 }

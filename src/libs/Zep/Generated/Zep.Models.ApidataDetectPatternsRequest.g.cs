@@ -162,5 +162,6 @@ namespace Zep
         public ApidataDetectPatternsRequest()
         {
         }
+
     }
 }

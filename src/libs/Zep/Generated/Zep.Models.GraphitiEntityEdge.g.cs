@@ -203,5 +203,6 @@ namespace Zep
         public GraphitiEntityEdge()
         {
         }
+
     }
 }

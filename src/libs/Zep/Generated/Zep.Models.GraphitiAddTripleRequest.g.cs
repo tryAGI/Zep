@@ -267,5 +267,6 @@ namespace Zep
         public GraphitiAddTripleRequest()
         {
         }
+
     }
 }

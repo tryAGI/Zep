@@ -65,5 +65,6 @@ namespace Zep
         public GraphitiMetadataFilterGroup()
         {
         }
+
     }
 }
