@@ -588,7 +588,11 @@ namespace Zep
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Zep.ApidataThreadSummary>? Type140 { get; set; }
+        public long? Type140 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::System.Collections.Generic.IList<global::Zep.ApidataThreadSummary>? Type141 { get; set; }
 
         /// <summary>
         /// 

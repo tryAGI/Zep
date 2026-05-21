@@ -18,7 +18,7 @@ namespace Zep
         global::System.Threading.Tasks.Task<global::Zep.ApidataThreadMessageListResponse> GetMessagesOfAThreadAsync(
             string threadId,
             int? limit = default,
-            int? cursor = default,
+            long? cursor = default,
             int? lastn = default,
             global::Zep.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
@@ -36,7 +36,7 @@ namespace Zep
         global::System.Threading.Tasks.Task<global::Zep.AutoSDKHttpResponse<global::Zep.ApidataThreadMessageListResponse>> GetMessagesOfAThreadAsResponseAsync(
             string threadId,
             int? limit = default,
-            int? cursor = default,
+            long? cursor = default,
             int? lastn = default,
             global::Zep.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);

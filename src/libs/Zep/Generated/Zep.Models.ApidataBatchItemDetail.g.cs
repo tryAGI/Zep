@@ -15,7 +15,10 @@ namespace Zep
         public string? CreatedAt { get; set; }
 
         /// <summary>
-        /// 
+        /// EpisodeUUID is the UUID of the episode that will be (or has been) created<br/>
+        /// for this batch item. Populated for every item kind and always equal to<br/>
+        /// SourceUUID — the underlying source row's UUID is reused as the episode<br/>
+        /// UUID during processing.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("episode_uuid")]
         public string? EpisodeUuid { get; set; }
@@ -92,7 +95,12 @@ namespace Zep
         /// Initializes a new instance of the <see cref="ApidataBatchItemDetail" /> class.
         /// </summary>
         /// <param name="createdAt"></param>
-        /// <param name="episodeUuid"></param>
+        /// <param name="episodeUuid">
+        /// EpisodeUUID is the UUID of the episode that will be (or has been) created<br/>
+        /// for this batch item. Populated for every item kind and always equal to<br/>
+        /// SourceUUID — the underlying source row's UUID is reused as the episode<br/>
+        /// UUID during processing.
+        /// </param>
         /// <param name="error"></param>
         /// <param name="graphId"></param>
         /// <param name="itemId"></param>

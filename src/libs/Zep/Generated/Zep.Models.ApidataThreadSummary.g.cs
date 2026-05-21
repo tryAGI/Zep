@@ -15,10 +15,21 @@ namespace Zep
         public string? CreatedAt { get; set; }
 
         /// <summary>
-        /// LastSummarizedAt is the timestamp of the most recent summary update.
+        /// LastSummarizedAt is the wall-clock timestamp of the most recent<br/>
+        /// summary update. This is an ingestion-time watermark; for the<br/>
+        /// event-time recency of the summary's content, use<br/>
+        /// LastSummarizedEpisodeValidAt instead.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("last_summarized_at")]
         public string? LastSummarizedAt { get; set; }
+
+        /// <summary>
+        /// LastSummarizedEpisodeValidAt is the maximum episode reference time<br/>
+        /// (valid_at) covered by the most recent summary. Use this when<br/>
+        /// answering "how recent is this summary's content in event-time?".
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("last_summarized_episode_valid_at")]
+        public string? LastSummarizedEpisodeValidAt { get; set; }
 
         /// <summary>
         /// Summary is the incremental summary content.
@@ -54,7 +65,15 @@ namespace Zep
         /// CreatedAt is when the summary node was first created.
         /// </param>
         /// <param name="lastSummarizedAt">
-        /// LastSummarizedAt is the timestamp of the most recent summary update.
+        /// LastSummarizedAt is the wall-clock timestamp of the most recent<br/>
+        /// summary update. This is an ingestion-time watermark; for the<br/>
+        /// event-time recency of the summary's content, use<br/>
+        /// LastSummarizedEpisodeValidAt instead.
+        /// </param>
+        /// <param name="lastSummarizedEpisodeValidAt">
+        /// LastSummarizedEpisodeValidAt is the maximum episode reference time<br/>
+        /// (valid_at) covered by the most recent summary. Use this when<br/>
+        /// answering "how recent is this summary's content in event-time?".
         /// </param>
         /// <param name="summary">
         /// Summary is the incremental summary content.
@@ -74,12 +93,14 @@ namespace Zep
         public ApidataThreadSummary(
             string? createdAt,
             string? lastSummarizedAt,
+            string? lastSummarizedEpisodeValidAt,
             string? summary,
             string? threadId,
             string? uuid)
         {
             this.CreatedAt = createdAt;
             this.LastSummarizedAt = lastSummarizedAt;
+            this.LastSummarizedEpisodeValidAt = lastSummarizedEpisodeValidAt;
             this.Summary = summary;
             this.ThreadId = threadId;
             this.Uuid = uuid;

@@ -7,7 +7,7 @@ namespace Zep
     {
 
 
-        private static readonly global::Zep.EndPointSecurityRequirement s_GetUserObservationsExperimentalSecurityRequirement0 =
+        private static readonly global::Zep.EndPointSecurityRequirement s_GetObservationSecurityRequirement0 =
             new global::Zep.EndPointSecurityRequirement
             {
                 Authorizations = new global::Zep.EndPointAuthorizationRequirement[]
@@ -21,48 +21,41 @@ namespace Zep
                     },
                 },
             };
-        private static readonly global::Zep.EndPointSecurityRequirement[] s_GetUserObservationsExperimentalSecurityRequirements =
+        private static readonly global::Zep.EndPointSecurityRequirement[] s_GetObservationSecurityRequirements =
             new global::Zep.EndPointSecurityRequirement[]
-            {                s_GetUserObservationsExperimentalSecurityRequirement0,
+            {                s_GetObservationSecurityRequirement0,
             };
-        partial void PrepareGetUserObservationsExperimentalArguments(
+        partial void PrepareGetObservationArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string userId,
-            global::Zep.ApidataGraphObservationsRequest request);
-        partial void PrepareGetUserObservationsExperimentalRequest(
+            ref string uuid);
+        partial void PrepareGetObservationRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string userId,
-            global::Zep.ApidataGraphObservationsRequest request);
-        partial void ProcessGetUserObservationsExperimentalResponse(
+            string uuid);
+        partial void ProcessGetObservationResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
-        partial void ProcessGetUserObservationsExperimentalResponseContent(
+        partial void ProcessGetObservationResponseContent(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage,
             ref string content);
 
         /// <summary>
-        /// Get User Observations (Experimental)<br/>
-        /// Returns read-only observation nodes for a user's graph.
+        /// Get Observation<br/>
+        /// Returns a specific observation node by UUID. Observation nodes are read-only.
         /// </summary>
-        /// <param name="userId"></param>
-        /// <param name="request"></param>
+        /// <param name="uuid"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Zep.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::System.Collections.Generic.IList<global::Zep.GraphitiDerivedNode>> GetUserObservationsExperimentalAsync(
-            string userId,
-
-            global::Zep.ApidataGraphObservationsRequest request,
+        public async global::System.Threading.Tasks.Task<global::Zep.GraphitiDerivedNode> GetObservationAsync(
+            string uuid,
             global::Zep.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __response = await GetUserObservationsExperimentalAsResponseAsync(
-                userId: userId,
-
-                request: request,
+            var __response = await GetObservationAsResponseAsync(
+                uuid: uuid,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
@@ -70,35 +63,29 @@ namespace Zep
             return __response.Body;
         }
         /// <summary>
-        /// Get User Observations (Experimental)<br/>
-        /// Returns read-only observation nodes for a user's graph.
+        /// Get Observation<br/>
+        /// Returns a specific observation node by UUID. Observation nodes are read-only.
         /// </summary>
-        /// <param name="userId"></param>
-        /// <param name="request"></param>
+        /// <param name="uuid"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Zep.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Zep.AutoSDKHttpResponse<global::System.Collections.Generic.IList<global::Zep.GraphitiDerivedNode>>> GetUserObservationsExperimentalAsResponseAsync(
-            string userId,
-
-            global::Zep.ApidataGraphObservationsRequest request,
+        public async global::System.Threading.Tasks.Task<global::Zep.AutoSDKHttpResponse<global::Zep.GraphitiDerivedNode>> GetObservationAsResponseAsync(
+            string uuid,
             global::Zep.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            request = request ?? throw new global::System.ArgumentNullException(nameof(request));
-
             PrepareArguments(
                 client: HttpClient);
-            PrepareGetUserObservationsExperimentalArguments(
+            PrepareGetObservationArguments(
                 httpClient: HttpClient,
-                userId: ref userId,
-                request: request);
+                uuid: ref uuid);
 
 
             var __authorizations = global::Zep.EndPointSecurityResolver.ResolveAuthorizations(
                 availableAuthorizations: Authorizations,
-                securityRequirements: s_GetUserObservationsExperimentalSecurityRequirements,
-                operationName: "GetUserObservationsExperimentalAsync");
+                securityRequirements: s_GetObservationSecurityRequirements,
+                operationName: "GetObservationAsync");
 
             using var __timeoutCancellationTokenSource = global::Zep.AutoSDKRequestOptionsSupport.CreateTimeoutCancellationTokenSource(
                 clientOptions: Options,
@@ -118,7 +105,7 @@ namespace Zep
             {
 
                             var __pathBuilder = new global::Zep.PathBuilder(
-                                path: $"/graph/observation/user/{userId}",
+                                path: $"/graph/observation/{uuid}",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Zep.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -126,7 +113,7 @@ namespace Zep
                     clientParameters: Options.QueryParameters,
                     requestParameters: requestOptions?.QueryParameters);
                 var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
-                    method: global::System.Net.Http.HttpMethod.Post,
+                    method: global::System.Net.Http.HttpMethod.Get,
                     requestUri: new global::System.Uri(__path, global::System.UriKind.RelativeOrAbsolute));
 #if NET6_0_OR_GREATER
                 __httpRequest.Version = global::System.Net.HttpVersion.Version11;
@@ -149,12 +136,6 @@ namespace Zep
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
                 } 
             }
-                            var __httpRequestContentBody = request.ToJson(JsonSerializerContext);
-                            var __httpRequestContent = new global::System.Net.Http.StringContent(
-                                content: __httpRequestContentBody,
-                                encoding: global::System.Text.Encoding.UTF8,
-                                mediaType: "application/json");
-                            __httpRequest.Content = __httpRequestContent;
                 global::Zep.AutoSDKRequestOptionsSupport.ApplyHeaders(
                     request: __httpRequest,
                     clientHeaders: Options.Headers,
@@ -163,11 +144,10 @@ namespace Zep
                 PrepareRequest(
                     client: HttpClient,
                     request: __httpRequest);
-                PrepareGetUserObservationsExperimentalRequest(
+                PrepareGetObservationRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    userId: userId!,
-                    request: request);
+                    uuid: uuid!);
 
                 return __httpRequest;
             }
@@ -184,10 +164,10 @@ namespace Zep
                     await global::Zep.AutoSDKRequestOptionsSupport.OnBeforeRequestAsync(
                             clientOptions: Options,
                             context: global::Zep.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "GetUserObservationsExperimental",
-                                methodName: "GetUserObservationsExperimentalAsync",
-                                pathTemplate: "$\"/graph/observation/user/{userId}\"",
-                                httpMethod: "POST",
+                                operationId: "GetObservation",
+                                methodName: "GetObservationAsync",
+                                pathTemplate: "$\"/graph/observation/{uuid}\"",
+                                httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: null,
@@ -218,10 +198,10 @@ namespace Zep
                         await global::Zep.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Zep.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "GetUserObservationsExperimental",
-                                methodName: "GetUserObservationsExperimentalAsync",
-                                pathTemplate: "$\"/graph/observation/user/{userId}\"",
-                                httpMethod: "POST",
+                                operationId: "GetObservation",
+                                methodName: "GetObservationAsync",
+                                pathTemplate: "$\"/graph/observation/{uuid}\"",
+                                httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: null,
@@ -259,10 +239,10 @@ namespace Zep
                         await global::Zep.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Zep.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "GetUserObservationsExperimental",
-                                methodName: "GetUserObservationsExperimentalAsync",
-                                pathTemplate: "$\"/graph/observation/user/{userId}\"",
-                                httpMethod: "POST",
+                                operationId: "GetObservation",
+                                methodName: "GetObservationAsync",
+                                pathTemplate: "$\"/graph/observation/{uuid}\"",
+                                httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -299,7 +279,7 @@ namespace Zep
                 ProcessResponse(
                     client: HttpClient,
                     response: __response);
-                ProcessGetUserObservationsExperimentalResponse(
+                ProcessGetObservationResponse(
                     httpClient: HttpClient,
                     httpResponseMessage: __response);
                 if (__response.IsSuccessStatusCode)
@@ -307,10 +287,10 @@ namespace Zep
                     await global::Zep.AutoSDKRequestOptionsSupport.OnAfterSuccessAsync(
                             clientOptions: Options,
                             context: global::Zep.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "GetUserObservationsExperimental",
-                                methodName: "GetUserObservationsExperimentalAsync",
-                                pathTemplate: "$\"/graph/observation/user/{userId}\"",
-                                httpMethod: "POST",
+                                operationId: "GetObservation",
+                                methodName: "GetObservationAsync",
+                                pathTemplate: "$\"/graph/observation/{uuid}\"",
+                                httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -329,10 +309,10 @@ namespace Zep
                     await global::Zep.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Zep.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "GetUserObservationsExperimental",
-                                methodName: "GetUserObservationsExperimentalAsync",
-                                pathTemplate: "$\"/graph/observation/user/{userId}\"",
-                                httpMethod: "POST",
+                                operationId: "GetObservation",
+                                methodName: "GetObservationAsync",
+                                pathTemplate: "$\"/graph/observation/{uuid}\"",
+                                httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -473,7 +453,7 @@ namespace Zep
                                     client: HttpClient,
                                     response: __response,
                                     content: ref __content);
-                                ProcessGetUserObservationsExperimentalResponseContent(
+                                ProcessGetObservationResponseContent(
                                     httpClient: HttpClient,
                                     httpResponseMessage: __response,
                                     content: ref __content);
@@ -482,9 +462,9 @@ namespace Zep
                                 {
                                     __response.EnsureSuccessStatusCode();
 
-                                    var __value = (global::System.Collections.Generic.IList<global::Zep.GraphitiDerivedNode>?)global::System.Text.Json.JsonSerializer.Deserialize(__content, typeof(global::System.Collections.Generic.IList<global::Zep.GraphitiDerivedNode>), JsonSerializerContext) ??
+                                    var __value = global::Zep.GraphitiDerivedNode.FromJson(__content, JsonSerializerContext) ??
                                         throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
-                                    return new global::Zep.AutoSDKHttpResponse<global::System.Collections.Generic.IList<global::Zep.GraphitiDerivedNode>>(
+                                    return new global::Zep.AutoSDKHttpResponse<global::Zep.GraphitiDerivedNode>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Zep.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
@@ -516,9 +496,9 @@ namespace Zep
                 #endif
                                     ).ConfigureAwait(false);
 
-                                    var __value = (global::System.Collections.Generic.IList<global::Zep.GraphitiDerivedNode>?)await global::System.Text.Json.JsonSerializer.DeserializeAsync(__content, typeof(global::System.Collections.Generic.IList<global::Zep.GraphitiDerivedNode>), JsonSerializerContext).ConfigureAwait(false) ??
+                                    var __value = await global::Zep.GraphitiDerivedNode.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
                                         throw new global::System.InvalidOperationException("Response deserialization failed.");
-                                    return new global::Zep.AutoSDKHttpResponse<global::System.Collections.Generic.IList<global::Zep.GraphitiDerivedNode>>(
+                                    return new global::Zep.AutoSDKHttpResponse<global::Zep.GraphitiDerivedNode>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Zep.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
@@ -559,39 +539,6 @@ namespace Zep
             {
                 __httpRequest?.Dispose();
             }
-        }
-        /// <summary>
-        /// Get User Observations (Experimental)<br/>
-        /// Returns read-only observation nodes for a user's graph.
-        /// </summary>
-        /// <param name="userId"></param>
-        /// <param name="limit">
-        /// Maximum number of items to return
-        /// </param>
-        /// <param name="uuidCursor">
-        /// UUID based cursor, used for pagination. Should be the UUID of the last item in the previous page
-        /// </param>
-        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
-        /// <param name="cancellationToken">The token to cancel the operation with</param>
-        /// <exception cref="global::System.InvalidOperationException"></exception>
-        public async global::System.Threading.Tasks.Task<global::System.Collections.Generic.IList<global::Zep.GraphitiDerivedNode>> GetUserObservationsExperimentalAsync(
-            string userId,
-            int? limit = default,
-            string? uuidCursor = default,
-            global::Zep.AutoSDKRequestOptions? requestOptions = default,
-            global::System.Threading.CancellationToken cancellationToken = default)
-        {
-            var __request = new global::Zep.ApidataGraphObservationsRequest
-            {
-                Limit = limit,
-                UuidCursor = uuidCursor,
-            };
-
-            return await GetUserObservationsExperimentalAsync(
-                userId: userId,
-                request: __request,
-                requestOptions: requestOptions,
-                cancellationToken: cancellationToken).ConfigureAwait(false);
         }
     }
 }

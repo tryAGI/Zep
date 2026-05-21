@@ -283,7 +283,8 @@
             "description": "Cursor for pagination",
             "required": false,
             "schema": {
-              "type": "integer"
+              "type": "integer",
+              "format": "int64"
             }
           },
           {
@@ -3585,8 +3586,8 @@
     },
     "/graph/observation/graph/{graph_id}": {
       "post": {
-        "operationId": "get-graph-observations-experimental",
-        "summary": "Get Graph Observations (Experimental)",
+        "operationId": "get-graph-observations",
+        "summary": "Get Graph Observations",
         "description": "Returns read-only observation nodes for a graph.",
         "tags": [
           "subpackage_observation"
@@ -3661,8 +3662,8 @@
     },
     "/graph/observation/user/{user_id}": {
       "post": {
-        "operationId": "get-user-observations-experimental",
-        "summary": "Get User Observations (Experimental)",
+        "operationId": "get-user-observations",
+        "summary": "Get User Observations",
         "description": "Returns read-only observation nodes for a user's graph.",
         "tags": [
           "subpackage_observation"
@@ -3737,8 +3738,8 @@
     },
     "/graph/observation/{uuid}": {
       "get": {
-        "operationId": "get-observation-experimental",
-        "summary": "Get Observation (Experimental)",
+        "operationId": "get-observation",
+        "summary": "Get Observation",
         "description": "Returns a specific observation node by UUID. Observation nodes are read-only.",
         "tags": [
           "subpackage_observation"
@@ -4856,7 +4857,11 @@
           },
           "last_summarized_at": {
             "type": "string",
-            "description": "LastSummarizedAt is the timestamp of the most recent summary update."
+            "description": "LastSummarizedAt is the wall-clock timestamp of the most recent\nsummary update. This is an ingestion-time watermark; for the\nevent-time recency of the summary's content, use\nLastSummarizedEpisodeValidAt instead."
+          },
+          "last_summarized_episode_valid_at": {
+            "type": "string",
+            "description": "LastSummarizedEpisodeValidAt is the maximum episode reference time\n(valid_at) covered by the most recent summary. Use this when\nanswering \"how recent is this summary's content in event-time?\"."
           },
           "summary": {
             "type": "string",
@@ -5563,7 +5568,7 @@
             "items": {
               "type": "string"
             },
-            "description": "The labels for the source node"
+            "description": "The labels for the source node. At most one entity-type label may be\nprovided so that manually-added triples remain consistent with automatic\nepisode extraction, which assigns one best-match entity type per node.\nThe base \"Entity\" label is added implicitly by the graph layer on save\nand does not need to be supplied here."
           },
           "source_node_name": {
             "type": "string",
@@ -5589,7 +5594,7 @@
             "items": {
               "type": "string"
             },
-            "description": "The labels for the target node"
+            "description": "The labels for the target node. At most one entity-type label may be\nprovided so that manually-added triples remain consistent with automatic\nepisode extraction, which assigns one best-match entity type per node.\nThe base \"Entity\" label is added implicitly by the graph layer on save\nand does not need to be supplied here."
           },
           "target_node_name": {
             "type": "string",
@@ -6308,7 +6313,7 @@
           },
           "limit": {
             "type": "integer",
-            "description": "The maximum number of facts to retrieve. Defaults to 10. Limited to 50."
+            "description": "The maximum number of facts to retrieve for non-auto scopes. Defaults to 10. Limited to 50. Ignored when scope=auto."
           },
           "max_characters": {
             "type": "integer",
@@ -6325,7 +6330,7 @@
           },
           "reranker": {
             "$ref": "#/components/schemas/GraphitiReranker",
-            "description": "Defaults to RRF. When scope=auto, this only affects graph-service retrieval\nshape for graph facts, observations, and thread summaries; source-episode\nretrieval uses RRF, and auto search applies its own internal rerank after retrieval."
+            "description": "Defaults to RRF. Ignored when scope=auto except node_distance and episode_mentions are rejected;\nauto search always uses RRF retrieval and applies its own internal rerank after retrieval."
           },
           "return_raw_results": {
             "type": "boolean",
@@ -6363,6 +6368,10 @@
             "type": "string",
             "description": "Creation time of the node"
           },
+          "end_at": {
+            "type": "string",
+            "description": "EndAt is the close timestamp of the evidence window. Set when the\nunderlying pattern is no longer supported (closed observations);\nnil for active observations."
+          },
           "episode_ids": {
             "type": "array",
             "items": {
@@ -6376,6 +6385,10 @@
               "type": "string"
             },
             "description": "Labels associated with the node"
+          },
+          "latest_evidence_at": {
+            "type": "string",
+            "description": "LatestEvidenceAt is the most recent source-episode timestamp from\nwhich this observation drew evidence."
           },
           "name": {
             "type": "string",
@@ -6394,6 +6407,10 @@
           "selection_rank": {
             "type": "integer",
             "description": "SelectionRank is the global cross-scope rank assigned by auto scope selection."
+          },
+          "start_at": {
+            "type": "string",
+            "description": "StartAt is the earliest source-episode timestamp from which this\nobservation was derived. Only populated for observation nodes."
           },
           "summary": {
             "type": "string",
@@ -6427,7 +6444,11 @@
           },
           "last_summarized_at": {
             "type": "string",
-            "description": "Timestamp of the most recent summary update."
+            "description": "Wall-clock timestamp of the most recent summary update. Used internally\nas the watermark for filtering new episodes by ingestion time."
+          },
+          "last_summarized_episode_valid_at": {
+            "type": "string",
+            "description": "Maximum episode reference time (valid_at) covered by the most recent\nsummary. Use this field \u2014 not LastSummarizedAt \u2014 when answering \"how\nrecent is this summary's content in event-time?\"."
           },
           "name": {
             "type": "string",
@@ -7037,7 +7058,8 @@
             "type": "string"
           },
           "episode_uuid": {
-            "type": "string"
+            "type": "string",
+            "description": "EpisodeUUID is the UUID of the episode that will be (or has been) created\nfor this batch item. Populated for every item kind and always equal to\nSourceUUID \u2014 the underlying source row's UUID is reused as the episode\nUUID during processing."
           },
           "error": {
             "type": "object",

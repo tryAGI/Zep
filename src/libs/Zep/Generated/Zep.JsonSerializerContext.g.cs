@@ -200,6 +200,7 @@ namespace Zep
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataBatchItemListResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Zep.ApidataBatchItemDetail>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.SetOntologyRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(long))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Zep.ApidataThreadSummary>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Zep.ApidataThread>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Zep.ApidataThreadMessage>))]
