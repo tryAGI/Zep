@@ -27,6 +27,22 @@ namespace Zep
         /// entity and edge types.<br/>
         /// See the [full documentation](/customizing-graph-structure#setting-entity-and-edge-types) for details.
         /// </summary>
+        /// <param name="request"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::Zep.ApiException"></exception>
+        global::System.Threading.Tasks.Task<global::Zep.AutoSDKHttpResponse<global::Zep.ApidataSuccessResponse>> SetOntologyAsResponseAsync(
+
+            global::Zep.SetOntologyRequest request,
+            global::Zep.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Set graph ontology<br/>
+        /// Sets custom entity and edge types for your graph. This wrapper method<br/>
+        /// provides a clean interface for defining your graph schema with custom<br/>
+        /// entity and edge types.<br/>
+        /// See the [full documentation](/customizing-graph-structure#setting-entity-and-edge-types) for details.
+        /// </summary>
         /// <param name="entities">
         /// Dictionary mapping entity type names to their definitions
         /// </param>

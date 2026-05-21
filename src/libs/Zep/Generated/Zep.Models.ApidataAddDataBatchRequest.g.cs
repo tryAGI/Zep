@@ -62,5 +62,6 @@ namespace Zep
         public ApidataAddDataBatchRequest()
         {
         }
+
     }
 }

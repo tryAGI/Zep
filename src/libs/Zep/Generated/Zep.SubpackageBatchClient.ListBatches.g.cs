@@ -3,11 +3,11 @@
 
 namespace Zep
 {
-    public partial class SubpackageThreadClient
+    public partial class SubpackageBatchClient
     {
 
 
-        private static readonly global::Zep.EndPointSecurityRequirement s_GetThreadSummaryExperimentalSecurityRequirement0 =
+        private static readonly global::Zep.EndPointSecurityRequirement s_ListBatchesSecurityRequirement0 =
             new global::Zep.EndPointSecurityRequirement
             {
                 Authorizations = new global::Zep.EndPointAuthorizationRequirement[]
@@ -21,50 +21,87 @@ namespace Zep
                     },
                 },
             };
-        private static readonly global::Zep.EndPointSecurityRequirement[] s_GetThreadSummaryExperimentalSecurityRequirements =
+        private static readonly global::Zep.EndPointSecurityRequirement[] s_ListBatchesSecurityRequirements =
             new global::Zep.EndPointSecurityRequirement[]
-            {                s_GetThreadSummaryExperimentalSecurityRequirement0,
+            {                s_ListBatchesSecurityRequirement0,
             };
-        partial void PrepareGetThreadSummaryExperimentalArguments(
+        partial void PrepareListBatchesArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string threadId);
-        partial void PrepareGetThreadSummaryExperimentalRequest(
+            ref int? limit,
+            ref int? cursor,
+            ref string? status);
+        partial void PrepareListBatchesRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string threadId);
-        partial void ProcessGetThreadSummaryExperimentalResponse(
+            int? limit,
+            int? cursor,
+            string? status);
+        partial void ProcessListBatchesResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
-        partial void ProcessGetThreadSummaryExperimentalResponseContent(
+        partial void ProcessListBatchesResponseContent(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage,
             ref string content);
 
         /// <summary>
-        /// Get thread summary (Experimental)<br/>
-        /// Returns the incremental summary generated from messages in the thread. Returns 404 if no summary exists for the thread.
+        /// List Batches<br/>
+        /// List batches for the current project, optionally filtered by batch status.
         /// </summary>
-        /// <param name="threadId"></param>
+        /// <param name="limit"></param>
+        /// <param name="cursor"></param>
+        /// <param name="status"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Zep.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Zep.ApidataThreadSummary> GetThreadSummaryExperimentalAsync(
-            string threadId,
+        public async global::System.Threading.Tasks.Task<global::Zep.ApidataBatchListResponse> ListBatchesAsync(
+            int? limit = default,
+            int? cursor = default,
+            string? status = default,
+            global::Zep.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default)
+        {
+            var __response = await ListBatchesAsResponseAsync(
+                limit: limit,
+                cursor: cursor,
+                status: status,
+                requestOptions: requestOptions,
+                cancellationToken: cancellationToken
+            ).ConfigureAwait(false);
+
+            return __response.Body;
+        }
+        /// <summary>
+        /// List Batches<br/>
+        /// List batches for the current project, optionally filtered by batch status.
+        /// </summary>
+        /// <param name="limit"></param>
+        /// <param name="cursor"></param>
+        /// <param name="status"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::Zep.ApiException"></exception>
+        public async global::System.Threading.Tasks.Task<global::Zep.AutoSDKHttpResponse<global::Zep.ApidataBatchListResponse>> ListBatchesAsResponseAsync(
+            int? limit = default,
+            int? cursor = default,
+            string? status = default,
             global::Zep.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             PrepareArguments(
                 client: HttpClient);
-            PrepareGetThreadSummaryExperimentalArguments(
+            PrepareListBatchesArguments(
                 httpClient: HttpClient,
-                threadId: ref threadId);
+                limit: ref limit,
+                cursor: ref cursor,
+                status: ref status);
 
 
             var __authorizations = global::Zep.EndPointSecurityResolver.ResolveAuthorizations(
                 availableAuthorizations: Authorizations,
-                securityRequirements: s_GetThreadSummaryExperimentalSecurityRequirements,
-                operationName: "GetThreadSummaryExperimentalAsync");
+                securityRequirements: s_ListBatchesSecurityRequirements,
+                operationName: "ListBatchesAsync");
 
             using var __timeoutCancellationTokenSource = global::Zep.AutoSDKRequestOptionsSupport.CreateTimeoutCancellationTokenSource(
                 clientOptions: Options,
@@ -82,9 +119,15 @@ namespace Zep
 
             global::System.Net.Http.HttpRequestMessage __CreateHttpRequest()
             {
+
                             var __pathBuilder = new global::Zep.PathBuilder(
-                                path: $"/threads/{threadId}/summary",
+                                path: "/batches",
                                 baseUri: HttpClient.BaseAddress);
+                            __pathBuilder
+                                .AddOptionalParameter("limit", limit?.ToString())
+                                .AddOptionalParameter("cursor", cursor?.ToString())
+                                .AddOptionalParameter("status", status)
+                                ;
                             var __path = __pathBuilder.ToString();
                 __path = global::Zep.AutoSDKRequestOptionsSupport.AppendQueryParameters(
                     path: __path,
@@ -122,10 +165,12 @@ namespace Zep
                 PrepareRequest(
                     client: HttpClient,
                     request: __httpRequest);
-                PrepareGetThreadSummaryExperimentalRequest(
+                PrepareListBatchesRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    threadId: threadId!);
+                    limit: limit,
+                    cursor: cursor,
+                    status: status);
 
                 return __httpRequest;
             }
@@ -142,9 +187,9 @@ namespace Zep
                     await global::Zep.AutoSDKRequestOptionsSupport.OnBeforeRequestAsync(
                             clientOptions: Options,
                             context: global::Zep.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "GetThreadSummaryExperimental",
-                                methodName: "GetThreadSummaryExperimentalAsync",
-                                pathTemplate: "$\"/threads/{threadId}/summary\"",
+                                operationId: "ListBatches",
+                                methodName: "ListBatchesAsync",
+                                pathTemplate: "\"/batches\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -155,6 +200,8 @@ namespace Zep
                                 attempt: __attempt,
                                 maxAttempts: __maxAttempts,
                                 willRetry: false,
+                                retryDelay: null,
+                                retryReason: global::System.String.Empty,
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                     try
                     {
@@ -165,13 +212,18 @@ namespace Zep
                     }
                     catch (global::System.Net.Http.HttpRequestException __exception)
                     {
+                        var __retryDelay = global::Zep.AutoSDKRequestOptionsSupport.GetRetryDelay(
+                            clientOptions: Options,
+                            requestOptions: requestOptions,
+                            response: null,
+                            attempt: __attempt);
                         var __willRetry = __attempt < __maxAttempts && !__effectiveCancellationToken.IsCancellationRequested;
                         await global::Zep.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Zep.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "GetThreadSummaryExperimental",
-                                methodName: "GetThreadSummaryExperimentalAsync",
-                                pathTemplate: "$\"/threads/{threadId}/summary\"",
+                                operationId: "ListBatches",
+                                methodName: "ListBatchesAsync",
+                                pathTemplate: "\"/batches\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -182,6 +234,8 @@ namespace Zep
                                 attempt: __attempt,
                                 maxAttempts: __maxAttempts,
                                 willRetry: __willRetry,
+                                retryDelay: __willRetry ? __retryDelay : (global::System.TimeSpan?)null,
+                                retryReason: "exception",
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                         if (!__willRetry)
                         {
@@ -191,8 +245,7 @@ namespace Zep
                         __httpRequest.Dispose();
                         __httpRequest = null;
                         await global::Zep.AutoSDKRequestOptionsSupport.DelayBeforeRetryAsync(
-                            clientOptions: Options,
-                            requestOptions: requestOptions,
+                            retryDelay: __retryDelay,
                             cancellationToken: __effectiveCancellationToken).ConfigureAwait(false);
                         continue;
                     }
@@ -201,12 +254,17 @@ namespace Zep
                         __attempt < __maxAttempts &&
                         global::Zep.AutoSDKRequestOptionsSupport.ShouldRetryStatusCode(__response.StatusCode))
                     {
+                        var __retryDelay = global::Zep.AutoSDKRequestOptionsSupport.GetRetryDelay(
+                            clientOptions: Options,
+                            requestOptions: requestOptions,
+                            response: __response,
+                            attempt: __attempt);
                         await global::Zep.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Zep.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "GetThreadSummaryExperimental",
-                                methodName: "GetThreadSummaryExperimentalAsync",
-                                pathTemplate: "$\"/threads/{threadId}/summary\"",
+                                operationId: "ListBatches",
+                                methodName: "ListBatchesAsync",
+                                pathTemplate: "\"/batches\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -217,14 +275,15 @@ namespace Zep
                                 attempt: __attempt,
                                 maxAttempts: __maxAttempts,
                                 willRetry: true,
+                                retryDelay: __retryDelay,
+                                retryReason: "status:" + ((int)__response.StatusCode).ToString(global::System.Globalization.CultureInfo.InvariantCulture),
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                         __response.Dispose();
                         __response = null;
                         __httpRequest.Dispose();
                         __httpRequest = null;
                         await global::Zep.AutoSDKRequestOptionsSupport.DelayBeforeRetryAsync(
-                            clientOptions: Options,
-                            requestOptions: requestOptions,
+                            retryDelay: __retryDelay,
                             cancellationToken: __effectiveCancellationToken).ConfigureAwait(false);
                         continue;
                     }
@@ -243,7 +302,7 @@ namespace Zep
                 ProcessResponse(
                     client: HttpClient,
                     response: __response);
-                ProcessGetThreadSummaryExperimentalResponse(
+                ProcessListBatchesResponse(
                     httpClient: HttpClient,
                     httpResponseMessage: __response);
                 if (__response.IsSuccessStatusCode)
@@ -251,9 +310,9 @@ namespace Zep
                     await global::Zep.AutoSDKRequestOptionsSupport.OnAfterSuccessAsync(
                             clientOptions: Options,
                             context: global::Zep.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "GetThreadSummaryExperimental",
-                                methodName: "GetThreadSummaryExperimentalAsync",
-                                pathTemplate: "$\"/threads/{threadId}/summary\"",
+                                operationId: "ListBatches",
+                                methodName: "ListBatchesAsync",
+                                pathTemplate: "\"/batches\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -264,6 +323,8 @@ namespace Zep
                                 attempt: __attemptNumber,
                                 maxAttempts: __maxAttempts,
                                 willRetry: false,
+                                retryDelay: null,
+                                retryReason: global::System.String.Empty,
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                 }
                 else
@@ -271,9 +332,9 @@ namespace Zep
                     await global::Zep.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Zep.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "GetThreadSummaryExperimental",
-                                methodName: "GetThreadSummaryExperimentalAsync",
-                                pathTemplate: "$\"/threads/{threadId}/summary\"",
+                                operationId: "ListBatches",
+                                methodName: "ListBatchesAsync",
+                                pathTemplate: "\"/batches\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -284,8 +345,48 @@ namespace Zep
                                 attempt: __attemptNumber,
                                 maxAttempts: __maxAttempts,
                                 willRetry: false,
+                                retryDelay: null,
+                                retryReason: global::System.String.Empty,
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                 }
+                            // Bad Request
+                            if ((int)__response.StatusCode == 400)
+                            {
+                                string? __content_400 = null;
+                                global::System.Exception? __exception_400 = null;
+                                global::Zep.ApidataAPIError? __value_400 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_400 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_400 = global::Zep.ApidataAPIError.FromJson(__content_400, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_400 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_400 = global::Zep.ApidataAPIError.FromJson(__content_400, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_400 = __ex;
+                                }
+
+                                throw new global::Zep.ApiException<global::Zep.ApidataAPIError>(
+                                    message: __content_400 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_400,
+                                    statusCode: __response.StatusCode)
+                                {
+                                    ResponseBody = __content_400,
+                                    ResponseObject = __value_400,
+                                    ResponseHeaders = global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value),
+                                };
+                            }
                             // Forbidden
                             if ((int)__response.StatusCode == 403)
                             {
@@ -318,44 +419,6 @@ namespace Zep
                                 {
                                     ResponseBody = __content_403,
                                     ResponseObject = __value_403,
-                                    ResponseHeaders = global::System.Linq.Enumerable.ToDictionary(
-                                        __response.Headers,
-                                        h => h.Key,
-                                        h => h.Value),
-                                };
-                            }
-                            // Not Found
-                            if ((int)__response.StatusCode == 404)
-                            {
-                                string? __content_404 = null;
-                                global::System.Exception? __exception_404 = null;
-                                global::Zep.ApidataAPIError? __value_404 = null;
-                                try
-                                {
-                                    if (__effectiveReadResponseAsString)
-                                    {
-                                        __content_404 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_404 = global::Zep.ApidataAPIError.FromJson(__content_404, JsonSerializerContext);
-                                    }
-                                    else
-                                    {
-                                        __content_404 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-
-                                        __value_404 = global::Zep.ApidataAPIError.FromJson(__content_404, JsonSerializerContext);
-                                    }
-                                }
-                                catch (global::System.Exception __ex)
-                                {
-                                    __exception_404 = __ex;
-                                }
-
-                                throw new global::Zep.ApiException<global::Zep.ApidataAPIError>(
-                                    message: __content_404 ?? __response.ReasonPhrase ?? string.Empty,
-                                    innerException: __exception_404,
-                                    statusCode: __response.StatusCode)
-                                {
-                                    ResponseBody = __content_404,
-                                    ResponseObject = __value_404,
                                     ResponseHeaders = global::System.Linq.Enumerable.ToDictionary(
                                         __response.Headers,
                                         h => h.Key,
@@ -413,7 +476,7 @@ namespace Zep
                                     client: HttpClient,
                                     response: __response,
                                     content: ref __content);
-                                ProcessGetThreadSummaryExperimentalResponseContent(
+                                ProcessListBatchesResponseContent(
                                     httpClient: HttpClient,
                                     httpResponseMessage: __response,
                                     content: ref __content);
@@ -422,9 +485,13 @@ namespace Zep
                                 {
                                     __response.EnsureSuccessStatusCode();
 
-                                    return
-                                        global::Zep.ApidataThreadSummary.FromJson(__content, JsonSerializerContext) ??
+                                    var __value = global::Zep.ApidataBatchListResponse.FromJson(__content, JsonSerializerContext) ??
                                         throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
+                                    return new global::Zep.AutoSDKHttpResponse<global::Zep.ApidataBatchListResponse>(
+                                        statusCode: __response.StatusCode,
+                                        headers: global::Zep.AutoSDKHttpResponse.CreateHeaders(__response),
+                                        requestUri: __response.RequestMessage?.RequestUri,
+                                        body: __value);
                                 }
                                 catch (global::System.Exception __ex)
                                 {
@@ -452,9 +519,13 @@ namespace Zep
                 #endif
                                     ).ConfigureAwait(false);
 
-                                    return
-                                        await global::Zep.ApidataThreadSummary.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
+                                    var __value = await global::Zep.ApidataBatchListResponse.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
                                         throw new global::System.InvalidOperationException("Response deserialization failed.");
+                                    return new global::Zep.AutoSDKHttpResponse<global::Zep.ApidataBatchListResponse>(
+                                        statusCode: __response.StatusCode,
+                                        headers: global::Zep.AutoSDKHttpResponse.CreateHeaders(__response),
+                                        requestUri: __response.RequestMessage?.RequestUri,
+                                        body: __value);
                                 }
                                 catch (global::System.Exception __ex)
                                 {

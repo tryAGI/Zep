@@ -3,11 +3,11 @@
 
 namespace Zep
 {
-    public partial class SubpackageObservationClient
+    public partial class SubpackageBatchClient
     {
 
 
-        private static readonly global::Zep.EndPointSecurityRequirement s_GetUserObservationsExperimentalSecurityRequirement0 =
+        private static readonly global::Zep.EndPointSecurityRequirement s_DeleteBatchSecurityRequirement0 =
             new global::Zep.EndPointSecurityRequirement
             {
                 Authorizations = new global::Zep.EndPointAuthorizationRequirement[]
@@ -21,58 +21,71 @@ namespace Zep
                     },
                 },
             };
-        private static readonly global::Zep.EndPointSecurityRequirement[] s_GetUserObservationsExperimentalSecurityRequirements =
+        private static readonly global::Zep.EndPointSecurityRequirement[] s_DeleteBatchSecurityRequirements =
             new global::Zep.EndPointSecurityRequirement[]
-            {                s_GetUserObservationsExperimentalSecurityRequirement0,
+            {                s_DeleteBatchSecurityRequirement0,
             };
-        partial void PrepareGetUserObservationsExperimentalArguments(
+        partial void PrepareDeleteBatchArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string userId,
-            global::Zep.ApidataGraphObservationsRequest request);
-        partial void PrepareGetUserObservationsExperimentalRequest(
+            ref string batchId);
+        partial void PrepareDeleteBatchRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string userId,
-            global::Zep.ApidataGraphObservationsRequest request);
-        partial void ProcessGetUserObservationsExperimentalResponse(
+            string batchId);
+        partial void ProcessDeleteBatchResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
-        partial void ProcessGetUserObservationsExperimentalResponseContent(
+        partial void ProcessDeleteBatchResponseContent(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage,
             ref string content);
 
         /// <summary>
-        /// Get User Observations (Experimental)<br/>
-        /// Returns read-only observation nodes for a user's graph.
+        /// Delete Batch<br/>
+        /// Delete a draft or invalid unprocessed batch. Processed batches cannot be deleted.
         /// </summary>
-        /// <param name="userId"></param>
-        /// <param name="request"></param>
+        /// <param name="batchId"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Zep.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::System.Collections.Generic.IList<global::Zep.GraphitiDerivedNode>> GetUserObservationsExperimentalAsync(
-            string userId,
-
-            global::Zep.ApidataGraphObservationsRequest request,
+        public async global::System.Threading.Tasks.Task<global::Zep.ApidataSuccessResponse> DeleteBatchAsync(
+            string batchId,
             global::Zep.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            request = request ?? throw new global::System.ArgumentNullException(nameof(request));
+            var __response = await DeleteBatchAsResponseAsync(
+                batchId: batchId,
+                requestOptions: requestOptions,
+                cancellationToken: cancellationToken
+            ).ConfigureAwait(false);
 
+            return __response.Body;
+        }
+        /// <summary>
+        /// Delete Batch<br/>
+        /// Delete a draft or invalid unprocessed batch. Processed batches cannot be deleted.
+        /// </summary>
+        /// <param name="batchId"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::Zep.ApiException"></exception>
+        public async global::System.Threading.Tasks.Task<global::Zep.AutoSDKHttpResponse<global::Zep.ApidataSuccessResponse>> DeleteBatchAsResponseAsync(
+            string batchId,
+            global::Zep.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default)
+        {
             PrepareArguments(
                 client: HttpClient);
-            PrepareGetUserObservationsExperimentalArguments(
+            PrepareDeleteBatchArguments(
                 httpClient: HttpClient,
-                userId: ref userId,
-                request: request);
+                batchId: ref batchId);
 
 
             var __authorizations = global::Zep.EndPointSecurityResolver.ResolveAuthorizations(
                 availableAuthorizations: Authorizations,
-                securityRequirements: s_GetUserObservationsExperimentalSecurityRequirements,
-                operationName: "GetUserObservationsExperimentalAsync");
+                securityRequirements: s_DeleteBatchSecurityRequirements,
+                operationName: "DeleteBatchAsync");
 
             using var __timeoutCancellationTokenSource = global::Zep.AutoSDKRequestOptionsSupport.CreateTimeoutCancellationTokenSource(
                 clientOptions: Options,
@@ -90,8 +103,9 @@ namespace Zep
 
             global::System.Net.Http.HttpRequestMessage __CreateHttpRequest()
             {
+
                             var __pathBuilder = new global::Zep.PathBuilder(
-                                path: $"/graph/observation/user/{userId}",
+                                path: $"/batches/{batchId}",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Zep.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -99,7 +113,7 @@ namespace Zep
                     clientParameters: Options.QueryParameters,
                     requestParameters: requestOptions?.QueryParameters);
                 var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
-                    method: global::System.Net.Http.HttpMethod.Post,
+                    method: global::System.Net.Http.HttpMethod.Delete,
                     requestUri: new global::System.Uri(__path, global::System.UriKind.RelativeOrAbsolute));
 #if NET6_0_OR_GREATER
                 __httpRequest.Version = global::System.Net.HttpVersion.Version11;
@@ -122,12 +136,6 @@ namespace Zep
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
                 } 
             }
-                            var __httpRequestContentBody = request.ToJson(JsonSerializerContext);
-                            var __httpRequestContent = new global::System.Net.Http.StringContent(
-                                content: __httpRequestContentBody,
-                                encoding: global::System.Text.Encoding.UTF8,
-                                mediaType: "application/json");
-                            __httpRequest.Content = __httpRequestContent;
                 global::Zep.AutoSDKRequestOptionsSupport.ApplyHeaders(
                     request: __httpRequest,
                     clientHeaders: Options.Headers,
@@ -136,11 +144,10 @@ namespace Zep
                 PrepareRequest(
                     client: HttpClient,
                     request: __httpRequest);
-                PrepareGetUserObservationsExperimentalRequest(
+                PrepareDeleteBatchRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    userId: userId!,
-                    request: request);
+                    batchId: batchId!);
 
                 return __httpRequest;
             }
@@ -157,10 +164,10 @@ namespace Zep
                     await global::Zep.AutoSDKRequestOptionsSupport.OnBeforeRequestAsync(
                             clientOptions: Options,
                             context: global::Zep.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "GetUserObservationsExperimental",
-                                methodName: "GetUserObservationsExperimentalAsync",
-                                pathTemplate: "$\"/graph/observation/user/{userId}\"",
-                                httpMethod: "POST",
+                                operationId: "DeleteBatch",
+                                methodName: "DeleteBatchAsync",
+                                pathTemplate: "$\"/batches/{batchId}\"",
+                                httpMethod: "DELETE",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: null,
@@ -170,6 +177,8 @@ namespace Zep
                                 attempt: __attempt,
                                 maxAttempts: __maxAttempts,
                                 willRetry: false,
+                                retryDelay: null,
+                                retryReason: global::System.String.Empty,
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                     try
                     {
@@ -180,14 +189,19 @@ namespace Zep
                     }
                     catch (global::System.Net.Http.HttpRequestException __exception)
                     {
+                        var __retryDelay = global::Zep.AutoSDKRequestOptionsSupport.GetRetryDelay(
+                            clientOptions: Options,
+                            requestOptions: requestOptions,
+                            response: null,
+                            attempt: __attempt);
                         var __willRetry = __attempt < __maxAttempts && !__effectiveCancellationToken.IsCancellationRequested;
                         await global::Zep.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Zep.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "GetUserObservationsExperimental",
-                                methodName: "GetUserObservationsExperimentalAsync",
-                                pathTemplate: "$\"/graph/observation/user/{userId}\"",
-                                httpMethod: "POST",
+                                operationId: "DeleteBatch",
+                                methodName: "DeleteBatchAsync",
+                                pathTemplate: "$\"/batches/{batchId}\"",
+                                httpMethod: "DELETE",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: null,
@@ -197,6 +211,8 @@ namespace Zep
                                 attempt: __attempt,
                                 maxAttempts: __maxAttempts,
                                 willRetry: __willRetry,
+                                retryDelay: __willRetry ? __retryDelay : (global::System.TimeSpan?)null,
+                                retryReason: "exception",
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                         if (!__willRetry)
                         {
@@ -206,8 +222,7 @@ namespace Zep
                         __httpRequest.Dispose();
                         __httpRequest = null;
                         await global::Zep.AutoSDKRequestOptionsSupport.DelayBeforeRetryAsync(
-                            clientOptions: Options,
-                            requestOptions: requestOptions,
+                            retryDelay: __retryDelay,
                             cancellationToken: __effectiveCancellationToken).ConfigureAwait(false);
                         continue;
                     }
@@ -216,13 +231,18 @@ namespace Zep
                         __attempt < __maxAttempts &&
                         global::Zep.AutoSDKRequestOptionsSupport.ShouldRetryStatusCode(__response.StatusCode))
                     {
+                        var __retryDelay = global::Zep.AutoSDKRequestOptionsSupport.GetRetryDelay(
+                            clientOptions: Options,
+                            requestOptions: requestOptions,
+                            response: __response,
+                            attempt: __attempt);
                         await global::Zep.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Zep.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "GetUserObservationsExperimental",
-                                methodName: "GetUserObservationsExperimentalAsync",
-                                pathTemplate: "$\"/graph/observation/user/{userId}\"",
-                                httpMethod: "POST",
+                                operationId: "DeleteBatch",
+                                methodName: "DeleteBatchAsync",
+                                pathTemplate: "$\"/batches/{batchId}\"",
+                                httpMethod: "DELETE",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -232,14 +252,15 @@ namespace Zep
                                 attempt: __attempt,
                                 maxAttempts: __maxAttempts,
                                 willRetry: true,
+                                retryDelay: __retryDelay,
+                                retryReason: "status:" + ((int)__response.StatusCode).ToString(global::System.Globalization.CultureInfo.InvariantCulture),
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                         __response.Dispose();
                         __response = null;
                         __httpRequest.Dispose();
                         __httpRequest = null;
                         await global::Zep.AutoSDKRequestOptionsSupport.DelayBeforeRetryAsync(
-                            clientOptions: Options,
-                            requestOptions: requestOptions,
+                            retryDelay: __retryDelay,
                             cancellationToken: __effectiveCancellationToken).ConfigureAwait(false);
                         continue;
                     }
@@ -258,7 +279,7 @@ namespace Zep
                 ProcessResponse(
                     client: HttpClient,
                     response: __response);
-                ProcessGetUserObservationsExperimentalResponse(
+                ProcessDeleteBatchResponse(
                     httpClient: HttpClient,
                     httpResponseMessage: __response);
                 if (__response.IsSuccessStatusCode)
@@ -266,10 +287,10 @@ namespace Zep
                     await global::Zep.AutoSDKRequestOptionsSupport.OnAfterSuccessAsync(
                             clientOptions: Options,
                             context: global::Zep.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "GetUserObservationsExperimental",
-                                methodName: "GetUserObservationsExperimentalAsync",
-                                pathTemplate: "$\"/graph/observation/user/{userId}\"",
-                                httpMethod: "POST",
+                                operationId: "DeleteBatch",
+                                methodName: "DeleteBatchAsync",
+                                pathTemplate: "$\"/batches/{batchId}\"",
+                                httpMethod: "DELETE",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -279,6 +300,8 @@ namespace Zep
                                 attempt: __attemptNumber,
                                 maxAttempts: __maxAttempts,
                                 willRetry: false,
+                                retryDelay: null,
+                                retryReason: global::System.String.Empty,
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                 }
                 else
@@ -286,10 +309,10 @@ namespace Zep
                     await global::Zep.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Zep.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "GetUserObservationsExperimental",
-                                methodName: "GetUserObservationsExperimentalAsync",
-                                pathTemplate: "$\"/graph/observation/user/{userId}\"",
-                                httpMethod: "POST",
+                                operationId: "DeleteBatch",
+                                methodName: "DeleteBatchAsync",
+                                pathTemplate: "$\"/batches/{batchId}\"",
+                                httpMethod: "DELETE",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -299,6 +322,8 @@ namespace Zep
                                 attempt: __attemptNumber,
                                 maxAttempts: __maxAttempts,
                                 willRetry: false,
+                                retryDelay: null,
+                                retryReason: global::System.String.Empty,
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                 }
                             // Bad Request
@@ -339,6 +364,44 @@ namespace Zep
                                         h => h.Value),
                                 };
                             }
+                            // Forbidden
+                            if ((int)__response.StatusCode == 403)
+                            {
+                                string? __content_403 = null;
+                                global::System.Exception? __exception_403 = null;
+                                global::Zep.ApidataAPIError? __value_403 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_403 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_403 = global::Zep.ApidataAPIError.FromJson(__content_403, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_403 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_403 = global::Zep.ApidataAPIError.FromJson(__content_403, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_403 = __ex;
+                                }
+
+                                throw new global::Zep.ApiException<global::Zep.ApidataAPIError>(
+                                    message: __content_403 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_403,
+                                    statusCode: __response.StatusCode)
+                                {
+                                    ResponseBody = __content_403,
+                                    ResponseObject = __value_403,
+                                    ResponseHeaders = global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value),
+                                };
+                            }
                             // Not Found
                             if ((int)__response.StatusCode == 404)
                             {
@@ -371,6 +434,44 @@ namespace Zep
                                 {
                                     ResponseBody = __content_404,
                                     ResponseObject = __value_404,
+                                    ResponseHeaders = global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value),
+                                };
+                            }
+                            // Conflict
+                            if ((int)__response.StatusCode == 409)
+                            {
+                                string? __content_409 = null;
+                                global::System.Exception? __exception_409 = null;
+                                global::Zep.ApidataAPIError? __value_409 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_409 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_409 = global::Zep.ApidataAPIError.FromJson(__content_409, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_409 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_409 = global::Zep.ApidataAPIError.FromJson(__content_409, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_409 = __ex;
+                                }
+
+                                throw new global::Zep.ApiException<global::Zep.ApidataAPIError>(
+                                    message: __content_409 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_409,
+                                    statusCode: __response.StatusCode)
+                                {
+                                    ResponseBody = __content_409,
+                                    ResponseObject = __value_409,
                                     ResponseHeaders = global::System.Linq.Enumerable.ToDictionary(
                                         __response.Headers,
                                         h => h.Key,
@@ -428,7 +529,7 @@ namespace Zep
                                     client: HttpClient,
                                     response: __response,
                                     content: ref __content);
-                                ProcessGetUserObservationsExperimentalResponseContent(
+                                ProcessDeleteBatchResponseContent(
                                     httpClient: HttpClient,
                                     httpResponseMessage: __response,
                                     content: ref __content);
@@ -437,9 +538,13 @@ namespace Zep
                                 {
                                     __response.EnsureSuccessStatusCode();
 
-                                    return
-                                        (global::System.Collections.Generic.IList<global::Zep.GraphitiDerivedNode>?)global::System.Text.Json.JsonSerializer.Deserialize(__content, typeof(global::System.Collections.Generic.IList<global::Zep.GraphitiDerivedNode>), JsonSerializerContext) ??
+                                    var __value = global::Zep.ApidataSuccessResponse.FromJson(__content, JsonSerializerContext) ??
                                         throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
+                                    return new global::Zep.AutoSDKHttpResponse<global::Zep.ApidataSuccessResponse>(
+                                        statusCode: __response.StatusCode,
+                                        headers: global::Zep.AutoSDKHttpResponse.CreateHeaders(__response),
+                                        requestUri: __response.RequestMessage?.RequestUri,
+                                        body: __value);
                                 }
                                 catch (global::System.Exception __ex)
                                 {
@@ -467,9 +572,13 @@ namespace Zep
                 #endif
                                     ).ConfigureAwait(false);
 
-                                    return
-                                        (global::System.Collections.Generic.IList<global::Zep.GraphitiDerivedNode>?)await global::System.Text.Json.JsonSerializer.DeserializeAsync(__content, typeof(global::System.Collections.Generic.IList<global::Zep.GraphitiDerivedNode>), JsonSerializerContext).ConfigureAwait(false) ??
+                                    var __value = await global::Zep.ApidataSuccessResponse.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
                                         throw new global::System.InvalidOperationException("Response deserialization failed.");
+                                    return new global::Zep.AutoSDKHttpResponse<global::Zep.ApidataSuccessResponse>(
+                                        statusCode: __response.StatusCode,
+                                        headers: global::Zep.AutoSDKHttpResponse.CreateHeaders(__response),
+                                        requestUri: __response.RequestMessage?.RequestUri,
+                                        body: __value);
                                 }
                                 catch (global::System.Exception __ex)
                                 {
@@ -506,39 +615,6 @@ namespace Zep
             {
                 __httpRequest?.Dispose();
             }
-        }
-        /// <summary>
-        /// Get User Observations (Experimental)<br/>
-        /// Returns read-only observation nodes for a user's graph.
-        /// </summary>
-        /// <param name="userId"></param>
-        /// <param name="limit">
-        /// Maximum number of items to return
-        /// </param>
-        /// <param name="uuidCursor">
-        /// UUID based cursor, used for pagination. Should be the UUID of the last item in the previous page
-        /// </param>
-        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
-        /// <param name="cancellationToken">The token to cancel the operation with</param>
-        /// <exception cref="global::System.InvalidOperationException"></exception>
-        public async global::System.Threading.Tasks.Task<global::System.Collections.Generic.IList<global::Zep.GraphitiDerivedNode>> GetUserObservationsExperimentalAsync(
-            string userId,
-            int? limit = default,
-            string? uuidCursor = default,
-            global::Zep.AutoSDKRequestOptions? requestOptions = default,
-            global::System.Threading.CancellationToken cancellationToken = default)
-        {
-            var __request = new global::Zep.ApidataGraphObservationsRequest
-            {
-                Limit = limit,
-                UuidCursor = uuidCursor,
-            };
-
-            return await GetUserObservationsExperimentalAsync(
-                userId: userId,
-                request: __request,
-                requestOptions: requestOptions,
-                cancellationToken: cancellationToken).ConfigureAwait(false);
         }
     }
 }

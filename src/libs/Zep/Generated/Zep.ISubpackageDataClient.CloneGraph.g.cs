@@ -21,6 +21,19 @@ namespace Zep
         /// Clone graph<br/>
         /// Clone a user or group graph.
         /// </summary>
+        /// <param name="request"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::Zep.ApiException"></exception>
+        global::System.Threading.Tasks.Task<global::Zep.AutoSDKHttpResponse<global::Zep.ApidataCloneGraphResponse>> CloneGraphAsResponseAsync(
+
+            global::Zep.ApidataCloneGraphRequest request,
+            global::Zep.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Clone graph<br/>
+        /// Clone a user or group graph.
+        /// </summary>
         /// <param name="sourceGraphId">
         /// source_graph_id is the ID of the graph to be cloned. Required if source_user_id is not provided
         /// </param>

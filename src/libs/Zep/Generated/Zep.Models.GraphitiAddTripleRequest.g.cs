@@ -74,7 +74,11 @@ namespace Zep
         public object? SourceNodeAttributes { get; set; }
 
         /// <summary>
-        /// The labels for the source node
+        /// The labels for the source node. At most one entity-type label may be<br/>
+        /// provided so that manually-added triples remain consistent with automatic<br/>
+        /// episode extraction, which assigns one best-match entity type per node.<br/>
+        /// The base "Entity" label is added implicitly by the graph layer on save<br/>
+        /// and does not need to be supplied here.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("source_node_labels")]
         public global::System.Collections.Generic.IList<string>? SourceNodeLabels { get; set; }
@@ -105,7 +109,11 @@ namespace Zep
         public object? TargetNodeAttributes { get; set; }
 
         /// <summary>
-        /// The labels for the target node
+        /// The labels for the target node. At most one entity-type label may be<br/>
+        /// provided so that manually-added triples remain consistent with automatic<br/>
+        /// episode extraction, which assigns one best-match entity type per node.<br/>
+        /// The base "Entity" label is added implicitly by the graph layer on save<br/>
+        /// and does not need to be supplied here.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("target_node_labels")]
         public global::System.Collections.Generic.IList<string>? TargetNodeLabels { get; set; }
@@ -181,7 +189,11 @@ namespace Zep
         /// Nested objects and arrays are not allowed.
         /// </param>
         /// <param name="sourceNodeLabels">
-        /// The labels for the source node
+        /// The labels for the source node. At most one entity-type label may be<br/>
+        /// provided so that manually-added triples remain consistent with automatic<br/>
+        /// episode extraction, which assigns one best-match entity type per node.<br/>
+        /// The base "Entity" label is added implicitly by the graph layer on save<br/>
+        /// and does not need to be supplied here.
         /// </param>
         /// <param name="sourceNodeName">
         /// The name of the source node to add
@@ -197,7 +209,11 @@ namespace Zep
         /// Nested objects and arrays are not allowed.
         /// </param>
         /// <param name="targetNodeLabels">
-        /// The labels for the target node
+        /// The labels for the target node. At most one entity-type label may be<br/>
+        /// provided so that manually-added triples remain consistent with automatic<br/>
+        /// episode extraction, which assigns one best-match entity type per node.<br/>
+        /// The base "Entity" label is added implicitly by the graph layer on save<br/>
+        /// and does not need to be supplied here.
         /// </param>
         /// <param name="targetNodeName">
         /// The name of the target node to add
@@ -267,5 +283,6 @@ namespace Zep
         public GraphitiAddTripleRequest()
         {
         }
+
     }
 }

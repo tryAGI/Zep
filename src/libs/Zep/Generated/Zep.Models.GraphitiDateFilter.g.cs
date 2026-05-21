@@ -56,5 +56,6 @@ namespace Zep
         public GraphitiDateFilter()
         {
         }
+
     }
 }

@@ -27,6 +27,22 @@ namespace Zep
         /// When a query is provided, uses hybrid search to discover seed nodes,<br/>
         /// detects triple-frequency patterns, and returns resolved edges ranked by relevance.
         /// </summary>
+        /// <param name="request"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::Zep.ApiException"></exception>
+        global::System.Threading.Tasks.Task<global::Zep.AutoSDKHttpResponse<global::Zep.ApidataDetectPatternsResponse>> DetectPatternsExperimentalAsResponseAsync(
+
+            global::Zep.ApidataDetectPatternsRequest request,
+            global::Zep.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Detect Patterns (Experimental)<br/>
+        /// Detects structural patterns in a knowledge graph including relationship frequencies,<br/>
+        /// multi-hop paths, co-occurrences, hubs, and clusters.<br/>
+        /// When a query is provided, uses hybrid search to discover seed nodes,<br/>
+        /// detects triple-frequency patterns, and returns resolved edges ranked by relevance.
+        /// </summary>
         /// <param name="detect">
         /// Which pattern types to detect with type-specific configuration.<br/>
         /// Omit to detect all types with defaults. Ignored when query is set.

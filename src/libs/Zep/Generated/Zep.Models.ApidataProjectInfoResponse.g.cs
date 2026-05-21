@@ -39,5 +39,6 @@ namespace Zep
         public ApidataProjectInfoResponse()
         {
         }
+
     }
 }

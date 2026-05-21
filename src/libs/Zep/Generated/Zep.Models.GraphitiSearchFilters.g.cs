@@ -185,5 +185,6 @@ namespace Zep
         public GraphitiSearchFilters()
         {
         }
+
     }
 }

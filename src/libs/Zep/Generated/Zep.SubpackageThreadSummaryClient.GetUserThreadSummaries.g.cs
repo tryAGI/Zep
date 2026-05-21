@@ -7,7 +7,7 @@ namespace Zep
     {
 
 
-        private static readonly global::Zep.EndPointSecurityRequirement s_GetGraphThreadSummariesExperimentalSecurityRequirement0 =
+        private static readonly global::Zep.EndPointSecurityRequirement s_GetUserThreadSummariesSecurityRequirement0 =
             new global::Zep.EndPointSecurityRequirement
             {
                 Authorizations = new global::Zep.EndPointAuthorizationRequirement[]
@@ -21,39 +21,65 @@ namespace Zep
                     },
                 },
             };
-        private static readonly global::Zep.EndPointSecurityRequirement[] s_GetGraphThreadSummariesExperimentalSecurityRequirements =
+        private static readonly global::Zep.EndPointSecurityRequirement[] s_GetUserThreadSummariesSecurityRequirements =
             new global::Zep.EndPointSecurityRequirement[]
-            {                s_GetGraphThreadSummariesExperimentalSecurityRequirement0,
+            {                s_GetUserThreadSummariesSecurityRequirement0,
             };
-        partial void PrepareGetGraphThreadSummariesExperimentalArguments(
+        partial void PrepareGetUserThreadSummariesArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string graphId,
+            ref string userId,
             global::Zep.ApidataGraphThreadSummariesRequest request);
-        partial void PrepareGetGraphThreadSummariesExperimentalRequest(
+        partial void PrepareGetUserThreadSummariesRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string graphId,
+            string userId,
             global::Zep.ApidataGraphThreadSummariesRequest request);
-        partial void ProcessGetGraphThreadSummariesExperimentalResponse(
+        partial void ProcessGetUserThreadSummariesResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
-        partial void ProcessGetGraphThreadSummariesExperimentalResponseContent(
+        partial void ProcessGetUserThreadSummariesResponseContent(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage,
             ref string content);
 
         /// <summary>
-        /// Get Graph Thread Summaries (Experimental)<br/>
-        /// Returns incremental thread summaries associated with the graph.
+        /// Get User Thread Summaries<br/>
+        /// Returns incremental thread summaries generated from messages in each thread associated with the user's graph.
         /// </summary>
-        /// <param name="graphId"></param>
+        /// <param name="userId"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Zep.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::System.Collections.Generic.IList<global::Zep.ApidataThreadSummary>> GetGraphThreadSummariesExperimentalAsync(
-            string graphId,
+        public async global::System.Threading.Tasks.Task<global::System.Collections.Generic.IList<global::Zep.ApidataThreadSummary>> GetUserThreadSummariesAsync(
+            string userId,
+
+            global::Zep.ApidataGraphThreadSummariesRequest request,
+            global::Zep.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default)
+        {
+            var __response = await GetUserThreadSummariesAsResponseAsync(
+                userId: userId,
+
+                request: request,
+                requestOptions: requestOptions,
+                cancellationToken: cancellationToken
+            ).ConfigureAwait(false);
+
+            return __response.Body;
+        }
+        /// <summary>
+        /// Get User Thread Summaries<br/>
+        /// Returns incremental thread summaries generated from messages in each thread associated with the user's graph.
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="request"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::Zep.ApiException"></exception>
+        public async global::System.Threading.Tasks.Task<global::Zep.AutoSDKHttpResponse<global::System.Collections.Generic.IList<global::Zep.ApidataThreadSummary>>> GetUserThreadSummariesAsResponseAsync(
+            string userId,
 
             global::Zep.ApidataGraphThreadSummariesRequest request,
             global::Zep.AutoSDKRequestOptions? requestOptions = default,
@@ -63,16 +89,16 @@ namespace Zep
 
             PrepareArguments(
                 client: HttpClient);
-            PrepareGetGraphThreadSummariesExperimentalArguments(
+            PrepareGetUserThreadSummariesArguments(
                 httpClient: HttpClient,
-                graphId: ref graphId,
+                userId: ref userId,
                 request: request);
 
 
             var __authorizations = global::Zep.EndPointSecurityResolver.ResolveAuthorizations(
                 availableAuthorizations: Authorizations,
-                securityRequirements: s_GetGraphThreadSummariesExperimentalSecurityRequirements,
-                operationName: "GetGraphThreadSummariesExperimentalAsync");
+                securityRequirements: s_GetUserThreadSummariesSecurityRequirements,
+                operationName: "GetUserThreadSummariesAsync");
 
             using var __timeoutCancellationTokenSource = global::Zep.AutoSDKRequestOptionsSupport.CreateTimeoutCancellationTokenSource(
                 clientOptions: Options,
@@ -90,8 +116,9 @@ namespace Zep
 
             global::System.Net.Http.HttpRequestMessage __CreateHttpRequest()
             {
+
                             var __pathBuilder = new global::Zep.PathBuilder(
-                                path: $"/graph/thread-summary/graph/{graphId}",
+                                path: $"/graph/thread-summary/user/{userId}",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Zep.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -136,10 +163,10 @@ namespace Zep
                 PrepareRequest(
                     client: HttpClient,
                     request: __httpRequest);
-                PrepareGetGraphThreadSummariesExperimentalRequest(
+                PrepareGetUserThreadSummariesRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    graphId: graphId!,
+                    userId: userId!,
                     request: request);
 
                 return __httpRequest;
@@ -157,9 +184,9 @@ namespace Zep
                     await global::Zep.AutoSDKRequestOptionsSupport.OnBeforeRequestAsync(
                             clientOptions: Options,
                             context: global::Zep.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "GetGraphThreadSummariesExperimental",
-                                methodName: "GetGraphThreadSummariesExperimentalAsync",
-                                pathTemplate: "$\"/graph/thread-summary/graph/{graphId}\"",
+                                operationId: "GetUserThreadSummaries",
+                                methodName: "GetUserThreadSummariesAsync",
+                                pathTemplate: "$\"/graph/thread-summary/user/{userId}\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -170,6 +197,8 @@ namespace Zep
                                 attempt: __attempt,
                                 maxAttempts: __maxAttempts,
                                 willRetry: false,
+                                retryDelay: null,
+                                retryReason: global::System.String.Empty,
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                     try
                     {
@@ -180,13 +209,18 @@ namespace Zep
                     }
                     catch (global::System.Net.Http.HttpRequestException __exception)
                     {
+                        var __retryDelay = global::Zep.AutoSDKRequestOptionsSupport.GetRetryDelay(
+                            clientOptions: Options,
+                            requestOptions: requestOptions,
+                            response: null,
+                            attempt: __attempt);
                         var __willRetry = __attempt < __maxAttempts && !__effectiveCancellationToken.IsCancellationRequested;
                         await global::Zep.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Zep.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "GetGraphThreadSummariesExperimental",
-                                methodName: "GetGraphThreadSummariesExperimentalAsync",
-                                pathTemplate: "$\"/graph/thread-summary/graph/{graphId}\"",
+                                operationId: "GetUserThreadSummaries",
+                                methodName: "GetUserThreadSummariesAsync",
+                                pathTemplate: "$\"/graph/thread-summary/user/{userId}\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -197,6 +231,8 @@ namespace Zep
                                 attempt: __attempt,
                                 maxAttempts: __maxAttempts,
                                 willRetry: __willRetry,
+                                retryDelay: __willRetry ? __retryDelay : (global::System.TimeSpan?)null,
+                                retryReason: "exception",
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                         if (!__willRetry)
                         {
@@ -206,8 +242,7 @@ namespace Zep
                         __httpRequest.Dispose();
                         __httpRequest = null;
                         await global::Zep.AutoSDKRequestOptionsSupport.DelayBeforeRetryAsync(
-                            clientOptions: Options,
-                            requestOptions: requestOptions,
+                            retryDelay: __retryDelay,
                             cancellationToken: __effectiveCancellationToken).ConfigureAwait(false);
                         continue;
                     }
@@ -216,12 +251,17 @@ namespace Zep
                         __attempt < __maxAttempts &&
                         global::Zep.AutoSDKRequestOptionsSupport.ShouldRetryStatusCode(__response.StatusCode))
                     {
+                        var __retryDelay = global::Zep.AutoSDKRequestOptionsSupport.GetRetryDelay(
+                            clientOptions: Options,
+                            requestOptions: requestOptions,
+                            response: __response,
+                            attempt: __attempt);
                         await global::Zep.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Zep.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "GetGraphThreadSummariesExperimental",
-                                methodName: "GetGraphThreadSummariesExperimentalAsync",
-                                pathTemplate: "$\"/graph/thread-summary/graph/{graphId}\"",
+                                operationId: "GetUserThreadSummaries",
+                                methodName: "GetUserThreadSummariesAsync",
+                                pathTemplate: "$\"/graph/thread-summary/user/{userId}\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -232,14 +272,15 @@ namespace Zep
                                 attempt: __attempt,
                                 maxAttempts: __maxAttempts,
                                 willRetry: true,
+                                retryDelay: __retryDelay,
+                                retryReason: "status:" + ((int)__response.StatusCode).ToString(global::System.Globalization.CultureInfo.InvariantCulture),
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                         __response.Dispose();
                         __response = null;
                         __httpRequest.Dispose();
                         __httpRequest = null;
                         await global::Zep.AutoSDKRequestOptionsSupport.DelayBeforeRetryAsync(
-                            clientOptions: Options,
-                            requestOptions: requestOptions,
+                            retryDelay: __retryDelay,
                             cancellationToken: __effectiveCancellationToken).ConfigureAwait(false);
                         continue;
                     }
@@ -258,7 +299,7 @@ namespace Zep
                 ProcessResponse(
                     client: HttpClient,
                     response: __response);
-                ProcessGetGraphThreadSummariesExperimentalResponse(
+                ProcessGetUserThreadSummariesResponse(
                     httpClient: HttpClient,
                     httpResponseMessage: __response);
                 if (__response.IsSuccessStatusCode)
@@ -266,9 +307,9 @@ namespace Zep
                     await global::Zep.AutoSDKRequestOptionsSupport.OnAfterSuccessAsync(
                             clientOptions: Options,
                             context: global::Zep.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "GetGraphThreadSummariesExperimental",
-                                methodName: "GetGraphThreadSummariesExperimentalAsync",
-                                pathTemplate: "$\"/graph/thread-summary/graph/{graphId}\"",
+                                operationId: "GetUserThreadSummaries",
+                                methodName: "GetUserThreadSummariesAsync",
+                                pathTemplate: "$\"/graph/thread-summary/user/{userId}\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -279,6 +320,8 @@ namespace Zep
                                 attempt: __attemptNumber,
                                 maxAttempts: __maxAttempts,
                                 willRetry: false,
+                                retryDelay: null,
+                                retryReason: global::System.String.Empty,
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                 }
                 else
@@ -286,9 +329,9 @@ namespace Zep
                     await global::Zep.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Zep.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "GetGraphThreadSummariesExperimental",
-                                methodName: "GetGraphThreadSummariesExperimentalAsync",
-                                pathTemplate: "$\"/graph/thread-summary/graph/{graphId}\"",
+                                operationId: "GetUserThreadSummaries",
+                                methodName: "GetUserThreadSummariesAsync",
+                                pathTemplate: "$\"/graph/thread-summary/user/{userId}\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -299,6 +342,8 @@ namespace Zep
                                 attempt: __attemptNumber,
                                 maxAttempts: __maxAttempts,
                                 willRetry: false,
+                                retryDelay: null,
+                                retryReason: global::System.String.Empty,
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                 }
                             // Bad Request
@@ -428,7 +473,7 @@ namespace Zep
                                     client: HttpClient,
                                     response: __response,
                                     content: ref __content);
-                                ProcessGetGraphThreadSummariesExperimentalResponseContent(
+                                ProcessGetUserThreadSummariesResponseContent(
                                     httpClient: HttpClient,
                                     httpResponseMessage: __response,
                                     content: ref __content);
@@ -437,9 +482,13 @@ namespace Zep
                                 {
                                     __response.EnsureSuccessStatusCode();
 
-                                    return
-                                        (global::System.Collections.Generic.IList<global::Zep.ApidataThreadSummary>?)global::System.Text.Json.JsonSerializer.Deserialize(__content, typeof(global::System.Collections.Generic.IList<global::Zep.ApidataThreadSummary>), JsonSerializerContext) ??
+                                    var __value = (global::System.Collections.Generic.IList<global::Zep.ApidataThreadSummary>?)global::System.Text.Json.JsonSerializer.Deserialize(__content, typeof(global::System.Collections.Generic.IList<global::Zep.ApidataThreadSummary>), JsonSerializerContext) ??
                                         throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
+                                    return new global::Zep.AutoSDKHttpResponse<global::System.Collections.Generic.IList<global::Zep.ApidataThreadSummary>>(
+                                        statusCode: __response.StatusCode,
+                                        headers: global::Zep.AutoSDKHttpResponse.CreateHeaders(__response),
+                                        requestUri: __response.RequestMessage?.RequestUri,
+                                        body: __value);
                                 }
                                 catch (global::System.Exception __ex)
                                 {
@@ -467,9 +516,13 @@ namespace Zep
                 #endif
                                     ).ConfigureAwait(false);
 
-                                    return
-                                        (global::System.Collections.Generic.IList<global::Zep.ApidataThreadSummary>?)await global::System.Text.Json.JsonSerializer.DeserializeAsync(__content, typeof(global::System.Collections.Generic.IList<global::Zep.ApidataThreadSummary>), JsonSerializerContext).ConfigureAwait(false) ??
+                                    var __value = (global::System.Collections.Generic.IList<global::Zep.ApidataThreadSummary>?)await global::System.Text.Json.JsonSerializer.DeserializeAsync(__content, typeof(global::System.Collections.Generic.IList<global::Zep.ApidataThreadSummary>), JsonSerializerContext).ConfigureAwait(false) ??
                                         throw new global::System.InvalidOperationException("Response deserialization failed.");
+                                    return new global::Zep.AutoSDKHttpResponse<global::System.Collections.Generic.IList<global::Zep.ApidataThreadSummary>>(
+                                        statusCode: __response.StatusCode,
+                                        headers: global::Zep.AutoSDKHttpResponse.CreateHeaders(__response),
+                                        requestUri: __response.RequestMessage?.RequestUri,
+                                        body: __value);
                                 }
                                 catch (global::System.Exception __ex)
                                 {
@@ -508,10 +561,10 @@ namespace Zep
             }
         }
         /// <summary>
-        /// Get Graph Thread Summaries (Experimental)<br/>
-        /// Returns incremental thread summaries associated with the graph.
+        /// Get User Thread Summaries<br/>
+        /// Returns incremental thread summaries generated from messages in each thread associated with the user's graph.
         /// </summary>
-        /// <param name="graphId"></param>
+        /// <param name="userId"></param>
         /// <param name="limit">
         /// Maximum number of items to return
         /// </param>
@@ -521,8 +574,8 @@ namespace Zep
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
-        public async global::System.Threading.Tasks.Task<global::System.Collections.Generic.IList<global::Zep.ApidataThreadSummary>> GetGraphThreadSummariesExperimentalAsync(
-            string graphId,
+        public async global::System.Threading.Tasks.Task<global::System.Collections.Generic.IList<global::Zep.ApidataThreadSummary>> GetUserThreadSummariesAsync(
+            string userId,
             int? limit = default,
             string? uuidCursor = default,
             global::Zep.AutoSDKRequestOptions? requestOptions = default,
@@ -534,8 +587,8 @@ namespace Zep
                 UuidCursor = uuidCursor,
             };
 
-            return await GetGraphThreadSummariesExperimentalAsync(
-                graphId: graphId,
+            return await GetUserThreadSummariesAsync(
+                userId: userId,
                 request: __request,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken).ConfigureAwait(false);

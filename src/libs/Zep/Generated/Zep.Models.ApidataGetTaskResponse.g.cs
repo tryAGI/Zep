@@ -120,5 +120,6 @@ namespace Zep
         public ApidataGetTaskResponse()
         {
         }
+
     }
 }

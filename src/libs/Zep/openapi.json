@@ -283,7 +283,8 @@
             "description": "Cursor for pagination",
             "required": false,
             "schema": {
-              "type": "integer"
+              "type": "integer",
+              "format": "int64"
             }
           },
           {
@@ -385,7 +386,7 @@
       "post": {
         "operationId": "add-messages-to-a-thread-in-batch",
         "summary": "Add messages to a thread in batch",
-        "description": "Add messages to a thread in batch mode. This will process messages concurrently, which is useful for data migrations.",
+        "description": "Deprecated. Use the [Batch API](/adding-batch-data) (`client.batch.*` with `type: \"thread_message\"`) instead.\n\nAdds messages to a thread in batch mode, processing messages concurrently.\n",
         "tags": [
           "subpackage_thread"
         ],
@@ -436,8 +437,8 @@
     },
     "/threads/{threadId}/summary": {
       "get": {
-        "operationId": "get-thread-summary-experimental",
-        "summary": "Get thread summary (Experimental)",
+        "operationId": "get-thread-summary",
+        "summary": "Get thread summary",
         "description": "Returns the incremental summary generated from messages in the thread. Returns 404 if no summary exists for the thread.",
         "tags": [
           "subpackage_thread"
@@ -1651,7 +1652,7 @@
       "post": {
         "operationId": "add-data-in-batch-mode",
         "summary": "Add Data in batch mode",
-        "description": "Add data to the graph in batch mode. Episodes are processed sequentially in the order provided.",
+        "description": "Deprecated. Use the [Batch API](/adding-batch-data) (`client.batch.*`) instead.\n\nAdds data to the graph in batch mode, processing episodes concurrently.\n",
         "tags": [
           "subpackage_data"
         ],
@@ -3585,8 +3586,8 @@
     },
     "/graph/observation/graph/{graph_id}": {
       "post": {
-        "operationId": "get-graph-observations-experimental",
-        "summary": "Get Graph Observations (Experimental)",
+        "operationId": "get-graph-observations",
+        "summary": "Get Graph Observations",
         "description": "Returns read-only observation nodes for a graph.",
         "tags": [
           "subpackage_observation"
@@ -3661,8 +3662,8 @@
     },
     "/graph/observation/user/{user_id}": {
       "post": {
-        "operationId": "get-user-observations-experimental",
-        "summary": "Get User Observations (Experimental)",
+        "operationId": "get-user-observations",
+        "summary": "Get User Observations",
         "description": "Returns read-only observation nodes for a user's graph.",
         "tags": [
           "subpackage_observation"
@@ -3737,8 +3738,8 @@
     },
     "/graph/observation/{uuid}": {
       "get": {
-        "operationId": "get-observation-experimental",
-        "summary": "Get Observation (Experimental)",
+        "operationId": "get-observation",
+        "summary": "Get Observation",
         "description": "Returns a specific observation node by UUID. Observation nodes are read-only.",
         "tags": [
           "subpackage_observation"
@@ -3800,8 +3801,8 @@
     },
     "/graph/thread-summary/graph/{graph_id}": {
       "post": {
-        "operationId": "get-graph-thread-summaries-experimental",
-        "summary": "Get Graph Thread Summaries (Experimental)",
+        "operationId": "get-graph-thread-summaries",
+        "summary": "Get Graph Thread Summaries",
         "description": "Returns incremental thread summaries associated with the graph.",
         "tags": [
           "subpackage_threadSummary"
@@ -3876,8 +3877,8 @@
     },
     "/graph/thread-summary/user/{user_id}": {
       "post": {
-        "operationId": "get-user-thread-summaries-experimental",
-        "summary": "Get User Thread Summaries (Experimental)",
+        "operationId": "get-user-thread-summaries",
+        "summary": "Get User Thread Summaries",
         "description": "Returns incremental thread summaries generated from messages in each thread associated with the user's graph.",
         "tags": [
           "subpackage_threadSummary"
@@ -4034,6 +4035,578 @@
           },
           "404": {
             "description": "Task not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/batches": {
+      "post": {
+        "operationId": "create-batch",
+        "summary": "Create Batch",
+        "description": "Create a draft batch that can be filled with graph episodes and thread messages.",
+        "tags": [
+          "subpackage_batch"
+        ],
+        "responses": {
+          "200": {
+            "description": "Created batch",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataBatchSummary"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "Create batch request",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApidataCreateBatchRequest"
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "list-batches",
+        "summary": "List Batches",
+        "description": "List batches for the current project, optionally filtered by batch status.",
+        "tags": [
+          "subpackage_batch"
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of batches to return.",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "description": "Pagination cursor from a previous response.",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "Batch status filter.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Batch list",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataBatchListResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/batches/{batchId}/items": {
+      "post": {
+        "operationId": "add-batch-items",
+        "summary": "Add Batch Items",
+        "description": "Add graph episodes and thread messages to a draft batch. Items are appended in request order.",
+        "tags": [
+          "subpackage_batch"
+        ],
+        "parameters": [
+          {
+            "name": "batchId",
+            "in": "path",
+            "description": "The batch ID.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Added batch items",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ApidataBatchItemDetail"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "Batch items to add",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApidataAddBatchItemsRequest"
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "list-batch-items",
+        "summary": "List Batch Items",
+        "description": "List items in a batch, including derived runtime status when the batch has been processed.",
+        "tags": [
+          "subpackage_batch"
+        ],
+        "parameters": [
+          {
+            "name": "batchId",
+            "in": "path",
+            "description": "The batch ID.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of batch items to return.",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "description": "Pagination cursor from a previous response.",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "Batch item status filter.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Batch item list",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataBatchItemListResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/batches/{batchId}/process": {
+      "post": {
+        "operationId": "process-batch",
+        "summary": "Process Batch",
+        "description": "Start processing a filled batch. Repeated calls return the existing batch run.",
+        "tags": [
+          "subpackage_batch"
+        ],
+        "parameters": [
+          {
+            "name": "batchId",
+            "in": "path",
+            "description": "The batch ID.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Batch processing state",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataBatchSummary"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataBatchInvalidReferencesError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/batches/{batchId}": {
+      "get": {
+        "operationId": "get-batch",
+        "summary": "Get Batch",
+        "description": "Get a batch summary, including runtime progress when the batch has been processed.",
+        "tags": [
+          "subpackage_batch"
+        ],
+        "parameters": [
+          {
+            "name": "batchId",
+            "in": "path",
+            "description": "The batch ID.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Batch summary",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataBatchSummary"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "delete-batch",
+        "summary": "Delete Batch",
+        "description": "Delete a draft or invalid unprocessed batch. Processed batches cannot be deleted.",
+        "tags": [
+          "subpackage_batch"
+        ],
+        "parameters": [
+          {
+            "name": "batchId",
+            "in": "path",
+            "description": "The batch ID.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deleted batch",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataSuccessResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
             "content": {
               "application/json": {
                 "schema": {
@@ -4284,7 +4857,11 @@
           },
           "last_summarized_at": {
             "type": "string",
-            "description": "LastSummarizedAt is the timestamp of the most recent summary update."
+            "description": "LastSummarizedAt is the wall-clock timestamp of the most recent\nsummary update. This is an ingestion-time watermark; for the\nevent-time recency of the summary's content, use\nLastSummarizedEpisodeValidAt instead."
+          },
+          "last_summarized_episode_valid_at": {
+            "type": "string",
+            "description": "LastSummarizedEpisodeValidAt is the maximum episode reference time\n(valid_at) covered by the most recent summary. Use this when\nanswering \"how recent is this summary's content in event-time?\"."
           },
           "summary": {
             "type": "string",
@@ -4991,7 +5568,7 @@
             "items": {
               "type": "string"
             },
-            "description": "The labels for the source node"
+            "description": "The labels for the source node. At most one entity-type label may be\nprovided so that manually-added triples remain consistent with automatic\nepisode extraction, which assigns one best-match entity type per node.\nThe base \"Entity\" label is added implicitly by the graph layer on save\nand does not need to be supplied here."
           },
           "source_node_name": {
             "type": "string",
@@ -5017,7 +5594,7 @@
             "items": {
               "type": "string"
             },
-            "description": "The labels for the target node"
+            "description": "The labels for the target node. At most one entity-type label may be\nprovided so that manually-added triples remain consistent with automatic\nepisode extraction, which assigns one best-match entity type per node.\nThe base \"Entity\" label is added implicitly by the graph layer on save\nand does not need to be supplied here."
           },
           "target_node_name": {
             "type": "string",
@@ -5736,11 +6313,11 @@
           },
           "limit": {
             "type": "integer",
-            "description": "The maximum number of facts to retrieve. Defaults to 10. Limited to 50."
+            "description": "The maximum number of facts to retrieve for non-auto scopes. Defaults to 10. Limited to 50. Ignored when scope=auto."
           },
           "max_characters": {
             "type": "integer",
-            "description": "Maximum total characters across all selected results when scope=auto. Defaults to 2000. Limited to 50000."
+            "description": "Maximum total characters across all selected results when scope=auto. Defaults to 2500. Limited to 50000."
           },
           "mmr_lambda": {
             "type": "number",
@@ -5753,11 +6330,11 @@
           },
           "reranker": {
             "$ref": "#/components/schemas/GraphitiReranker",
-            "description": "Defaults to RRF"
+            "description": "Defaults to RRF. Ignored when scope=auto except node_distance and episode_mentions are rejected;\nauto search always uses RRF retrieval and applies its own internal rerank after retrieval."
           },
           "return_raw_results": {
             "type": "boolean",
-            "description": "When scope=auto, include the selected raw graph results alongside the materialized context block."
+            "description": "When scope=auto, include the selected raw graph results alongside the materialized context block.\nFor graph-service-backed auto mode, selected raw results may include episodes,\nedges, nodes, observations, and thread_summaries."
           },
           "scope": {
             "$ref": "#/components/schemas/GraphitiGraphSearchScope",
@@ -5791,6 +6368,10 @@
             "type": "string",
             "description": "Creation time of the node"
           },
+          "end_at": {
+            "type": "string",
+            "description": "EndAt is the close timestamp of the evidence window. Set when the\nunderlying pattern is no longer supported (closed observations);\nnil for active observations."
+          },
           "episode_ids": {
             "type": "array",
             "items": {
@@ -5804,6 +6385,10 @@
               "type": "string"
             },
             "description": "Labels associated with the node"
+          },
+          "latest_evidence_at": {
+            "type": "string",
+            "description": "LatestEvidenceAt is the most recent source-episode timestamp from\nwhich this observation drew evidence."
           },
           "name": {
             "type": "string",
@@ -5822,6 +6407,10 @@
           "selection_rank": {
             "type": "integer",
             "description": "SelectionRank is the global cross-scope rank assigned by auto scope selection."
+          },
+          "start_at": {
+            "type": "string",
+            "description": "StartAt is the earliest source-episode timestamp from which this\nobservation was derived. Only populated for observation nodes."
           },
           "summary": {
             "type": "string",
@@ -5855,7 +6444,11 @@
           },
           "last_summarized_at": {
             "type": "string",
-            "description": "Timestamp of the most recent summary update."
+            "description": "Wall-clock timestamp of the most recent summary update. Used internally\nas the watermark for filtering new episodes by ingestion time."
+          },
+          "last_summarized_episode_valid_at": {
+            "type": "string",
+            "description": "Maximum episode reference time (valid_at) covered by the most recent\nsummary. Use this field \u2014 not LastSummarizedAt \u2014 when answering \"how\nrecent is this summary's content in event-time?\"."
           },
           "name": {
             "type": "string",
@@ -6285,6 +6878,299 @@
           }
         },
         "title": "ApidataGetTaskResponse"
+      },
+      "ApidataCreateBatchRequest": {
+        "type": "object",
+        "properties": {
+          "metadata": {
+            "type": "object",
+            "additionalProperties": {
+              "description": "Any type"
+            }
+          }
+        },
+        "title": "ApidataCreateBatchRequest"
+      },
+      "ApidataBatchProgress": {
+        "type": "object",
+        "properties": {
+          "failed_items": {
+            "type": "integer"
+          },
+          "percent_complete": {
+            "type": "number",
+            "format": "double"
+          },
+          "processing_items": {
+            "type": "integer"
+          },
+          "queued_items": {
+            "type": "integer"
+          },
+          "skipped_items": {
+            "type": "integer"
+          },
+          "succeeded_items": {
+            "type": "integer"
+          },
+          "total_items": {
+            "type": "integer"
+          }
+        },
+        "title": "ApidataBatchProgress"
+      },
+      "ModelsBatchStatus": {
+        "type": "string",
+        "enum": [
+          "draft",
+          "invalid",
+          "queued",
+          "processing",
+          "succeeded",
+          "partial",
+          "failed"
+        ],
+        "title": "ModelsBatchStatus"
+      },
+      "ApidataBatchSummary": {
+        "type": "object",
+        "properties": {
+          "batch_id": {
+            "type": "string"
+          },
+          "completed_at": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string"
+          },
+          "item_count": {
+            "type": "integer"
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": {
+              "description": "Any type"
+            }
+          },
+          "processed_at": {
+            "type": "string"
+          },
+          "progress": {
+            "$ref": "#/components/schemas/ApidataBatchProgress"
+          },
+          "status": {
+            "$ref": "#/components/schemas/ModelsBatchStatus"
+          },
+          "updated_at": {
+            "type": "string"
+          }
+        },
+        "title": "ApidataBatchSummary"
+      },
+      "ModelsBatchItemKind": {
+        "type": "string",
+        "enum": [
+          "graph_episode",
+          "thread_message"
+        ],
+        "title": "ModelsBatchItemKind"
+      },
+      "ApidataBatchAddItem": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string"
+          },
+          "data": {
+            "type": "string"
+          },
+          "data_type": {
+            "$ref": "#/components/schemas/ModelsGraphDataType"
+          },
+          "graph_id": {
+            "type": "string"
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": {
+              "description": "Any type"
+            }
+          },
+          "name": {
+            "type": "string"
+          },
+          "role": {
+            "$ref": "#/components/schemas/ApidataRoleType"
+          },
+          "source_description": {
+            "type": "string"
+          },
+          "thread_id": {
+            "type": "string"
+          },
+          "type": {
+            "$ref": "#/components/schemas/ModelsBatchItemKind"
+          },
+          "user_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "type"
+        ],
+        "title": "ApidataBatchAddItem"
+      },
+      "ApidataAddBatchItemsRequest": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApidataBatchAddItem"
+            }
+          }
+        },
+        "required": [
+          "items"
+        ],
+        "title": "ApidataAddBatchItemsRequest"
+      },
+      "ModelsBatchItemStatus": {
+        "type": "string",
+        "enum": [
+          "pending",
+          "queued",
+          "processing",
+          "succeeded",
+          "failed",
+          "skipped"
+        ],
+        "title": "ModelsBatchItemStatus"
+      },
+      "ApidataBatchItemDetail": {
+        "type": "object",
+        "properties": {
+          "created_at": {
+            "type": "string"
+          },
+          "episode_uuid": {
+            "type": "string",
+            "description": "EpisodeUUID is the UUID of the episode that will be (or has been) created\nfor this batch item. Populated for every item kind and always equal to\nSourceUUID \u2014 the underlying source row's UUID is reused as the episode\nUUID during processing."
+          },
+          "error": {
+            "type": "object",
+            "additionalProperties": {
+              "description": "Any type"
+            }
+          },
+          "graph_id": {
+            "type": "string"
+          },
+          "item_id": {
+            "type": "string"
+          },
+          "kind": {
+            "$ref": "#/components/schemas/ModelsBatchItemKind"
+          },
+          "sequence_index": {
+            "type": "integer"
+          },
+          "source_uuid": {
+            "type": "string"
+          },
+          "status": {
+            "$ref": "#/components/schemas/ModelsBatchItemStatus"
+          },
+          "thread_id": {
+            "type": "string"
+          },
+          "updated_at": {
+            "type": "string"
+          },
+          "user_id": {
+            "type": "string"
+          }
+        },
+        "title": "ApidataBatchItemDetail"
+      },
+      "ApidataBatchInvalidItem": {
+        "type": "object",
+        "properties": {
+          "graph_id": {
+            "type": "string"
+          },
+          "item_id": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          },
+          "sequence_index": {
+            "type": "integer"
+          },
+          "source_uuid": {
+            "type": "string"
+          },
+          "thread_id": {
+            "type": "string"
+          },
+          "user_id": {
+            "type": "string"
+          }
+        },
+        "title": "ApidataBatchInvalidItem"
+      },
+      "ApidataBatchInvalidReferencesError": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "invalid_items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApidataBatchInvalidItem"
+            }
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "title": "ApidataBatchInvalidReferencesError"
+      },
+      "ApidataBatchListResponse": {
+        "type": "object",
+        "properties": {
+          "batches": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApidataBatchSummary"
+            }
+          },
+          "next_cursor": {
+            "type": "integer"
+          }
+        },
+        "title": "ApidataBatchListResponse"
+      },
+      "ApidataBatchItemListResponse": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApidataBatchItemDetail"
+            }
+          },
+          "next_cursor": {
+            "type": "integer"
+          }
+        },
+        "title": "ApidataBatchItemListResponse"
       }
     },
     "securitySchemes": {

@@ -24,6 +24,21 @@ namespace Zep
         /// Updates an entity node by UUID.
         /// </summary>
         /// <param name="uuid"></param>
+        /// <param name="request"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::Zep.ApiException"></exception>
+        global::System.Threading.Tasks.Task<global::Zep.AutoSDKHttpResponse<global::Zep.GraphitiEntityNode>> UpdateNodeAsResponseAsync(
+            string uuid,
+
+            global::Zep.ApidataUpdateNodeRequest request,
+            global::Zep.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Update Node<br/>
+        /// Updates an entity node by UUID.
+        /// </summary>
+        /// <param name="uuid"></param>
         /// <param name="attributes">
         /// Updated attributes. Merged with existing attributes. Set a key to null to delete it.
         /// </param>

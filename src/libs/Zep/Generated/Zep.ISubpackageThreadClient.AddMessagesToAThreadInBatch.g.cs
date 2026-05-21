@@ -6,7 +6,8 @@ namespace Zep
     {
         /// <summary>
         /// Add messages to a thread in batch<br/>
-        /// Add messages to a thread in batch mode. This will process messages concurrently, which is useful for data migrations.
+        /// Deprecated. Use the [Batch API](/adding-batch-data) (`client.batch.*` with `type: "thread_message"`) instead.<br/>
+        /// Adds messages to a thread in batch mode, processing messages concurrently.
         /// </summary>
         /// <param name="threadId"></param>
         /// <param name="request"></param>
@@ -21,7 +22,24 @@ namespace Zep
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Add messages to a thread in batch<br/>
-        /// Add messages to a thread in batch mode. This will process messages concurrently, which is useful for data migrations.
+        /// Deprecated. Use the [Batch API](/adding-batch-data) (`client.batch.*` with `type: "thread_message"`) instead.<br/>
+        /// Adds messages to a thread in batch mode, processing messages concurrently.
+        /// </summary>
+        /// <param name="threadId"></param>
+        /// <param name="request"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::Zep.ApiException"></exception>
+        global::System.Threading.Tasks.Task<global::Zep.AutoSDKHttpResponse<global::Zep.ApidataAddThreadMessagesResponse>> AddMessagesToAThreadInBatchAsResponseAsync(
+            string threadId,
+
+            global::Zep.ApidataAddThreadMessagesRequest request,
+            global::Zep.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Add messages to a thread in batch<br/>
+        /// Deprecated. Use the [Batch API](/adding-batch-data) (`client.batch.*` with `type: "thread_message"`) instead.<br/>
+        /// Adds messages to a thread in batch mode, processing messages concurrently.
         /// </summary>
         /// <param name="threadId"></param>
         /// <param name="ignoreRoles">

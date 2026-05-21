@@ -57,5 +57,6 @@ namespace Zep
         public ApidataTaskErrorResponse()
         {
         }
+
     }
 }

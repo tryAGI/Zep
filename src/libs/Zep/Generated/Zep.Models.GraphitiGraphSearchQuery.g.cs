@@ -27,13 +27,13 @@ namespace Zep
         public string? GraphId { get; set; }
 
         /// <summary>
-        /// The maximum number of facts to retrieve. Defaults to 10. Limited to 50.
+        /// The maximum number of facts to retrieve for non-auto scopes. Defaults to 10. Limited to 50. Ignored when scope=auto.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("limit")]
         public int? Limit { get; set; }
 
         /// <summary>
-        /// Maximum total characters across all selected results when scope=auto. Defaults to 2000. Limited to 50000.
+        /// Maximum total characters across all selected results when scope=auto. Defaults to 2500. Limited to 50000.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("max_characters")]
         public int? MaxCharacters { get; set; }
@@ -52,14 +52,17 @@ namespace Zep
         public required string Query { get; set; }
 
         /// <summary>
-        /// Defaults to RRF
+        /// Defaults to RRF. Ignored when scope=auto except node_distance and episode_mentions are rejected;<br/>
+        /// auto search always uses RRF retrieval and applies its own internal rerank after retrieval.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("reranker")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Zep.JsonConverters.GraphitiRerankerJsonConverter))]
         public global::Zep.GraphitiReranker? Reranker { get; set; }
 
         /// <summary>
-        /// When scope=auto, include the selected raw graph results alongside the materialized context block.
+        /// When scope=auto, include the selected raw graph results alongside the materialized context block.<br/>
+        /// For graph-service-backed auto mode, selected raw results may include episodes,<br/>
+        /// edges, nodes, observations, and thread_summaries.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("return_raw_results")]
         public bool? ReturnRawResults { get; set; }
@@ -105,19 +108,22 @@ namespace Zep
         /// The graph_id to search in. When searching user graph, please use user_id instead.
         /// </param>
         /// <param name="limit">
-        /// The maximum number of facts to retrieve. Defaults to 10. Limited to 50.
+        /// The maximum number of facts to retrieve for non-auto scopes. Defaults to 10. Limited to 50. Ignored when scope=auto.
         /// </param>
         /// <param name="maxCharacters">
-        /// Maximum total characters across all selected results when scope=auto. Defaults to 2000. Limited to 50000.
+        /// Maximum total characters across all selected results when scope=auto. Defaults to 2500. Limited to 50000.
         /// </param>
         /// <param name="mmrLambda">
         /// weighting for maximal marginal relevance
         /// </param>
         /// <param name="reranker">
-        /// Defaults to RRF
+        /// Defaults to RRF. Ignored when scope=auto except node_distance and episode_mentions are rejected;<br/>
+        /// auto search always uses RRF retrieval and applies its own internal rerank after retrieval.
         /// </param>
         /// <param name="returnRawResults">
-        /// When scope=auto, include the selected raw graph results alongside the materialized context block.
+        /// When scope=auto, include the selected raw graph results alongside the materialized context block.<br/>
+        /// For graph-service-backed auto mode, selected raw results may include episodes,<br/>
+        /// edges, nodes, observations, and thread_summaries.
         /// </param>
         /// <param name="scope">
         /// Defaults to Edges.
@@ -165,5 +171,6 @@ namespace Zep
         public GraphitiGraphSearchQuery()
         {
         }
+
     }
 }
