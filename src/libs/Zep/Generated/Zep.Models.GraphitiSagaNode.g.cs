@@ -22,10 +22,19 @@ namespace Zep
         public global::System.Collections.Generic.IList<string>? Labels { get; set; }
 
         /// <summary>
-        /// Timestamp of the most recent summary update.
+        /// Wall-clock timestamp of the most recent summary update. Used internally<br/>
+        /// as the watermark for filtering new episodes by ingestion time.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("last_summarized_at")]
         public string? LastSummarizedAt { get; set; }
+
+        /// <summary>
+        /// Maximum episode reference time (valid_at) covered by the most recent<br/>
+        /// summary. Use this field — not LastSummarizedAt — when answering "how<br/>
+        /// recent is this summary's content in event-time?".
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("last_summarized_episode_valid_at")]
+        public string? LastSummarizedEpisodeValidAt { get; set; }
 
         /// <summary>
         /// Name of the node
@@ -88,7 +97,13 @@ namespace Zep
         /// Labels associated with the node
         /// </param>
         /// <param name="lastSummarizedAt">
-        /// Timestamp of the most recent summary update.
+        /// Wall-clock timestamp of the most recent summary update. Used internally<br/>
+        /// as the watermark for filtering new episodes by ingestion time.
+        /// </param>
+        /// <param name="lastSummarizedEpisodeValidAt">
+        /// Maximum episode reference time (valid_at) covered by the most recent<br/>
+        /// summary. Use this field — not LastSummarizedAt — when answering "how<br/>
+        /// recent is this summary's content in event-time?".
         /// </param>
         /// <param name="relevance">
         /// Relevance is an experimental rank-aligned score in [0,1] derived from Score via logit transformation.<br/>
@@ -112,6 +127,7 @@ namespace Zep
             string uuid,
             global::System.Collections.Generic.IList<string>? labels,
             string? lastSummarizedAt,
+            string? lastSummarizedEpisodeValidAt,
             double? relevance,
             double? score,
             int? selectionRank,
@@ -120,6 +136,7 @@ namespace Zep
             this.CreatedAt = createdAt ?? throw new global::System.ArgumentNullException(nameof(createdAt));
             this.Labels = labels;
             this.LastSummarizedAt = lastSummarizedAt;
+            this.LastSummarizedEpisodeValidAt = lastSummarizedEpisodeValidAt;
             this.Name = name ?? throw new global::System.ArgumentNullException(nameof(name));
             this.Relevance = relevance;
             this.Score = score;

@@ -5,40 +5,40 @@ namespace Zep
     public partial interface ISubpackageObservationClient
     {
         /// <summary>
-        /// Get User Observations (Experimental)<br/>
-        /// Returns read-only observation nodes for a user's graph.
+        /// Get Graph Observations<br/>
+        /// Returns read-only observation nodes for a graph.
         /// </summary>
-        /// <param name="userId"></param>
+        /// <param name="graphId"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Zep.ApiException"></exception>
-        global::System.Threading.Tasks.Task<global::System.Collections.Generic.IList<global::Zep.GraphitiDerivedNode>> GetUserObservationsExperimentalAsync(
-            string userId,
+        global::System.Threading.Tasks.Task<global::System.Collections.Generic.IList<global::Zep.GraphitiDerivedNode>> GetGraphObservationsAsync(
+            string graphId,
 
             global::Zep.ApidataGraphObservationsRequest request,
             global::Zep.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Get User Observations (Experimental)<br/>
-        /// Returns read-only observation nodes for a user's graph.
+        /// Get Graph Observations<br/>
+        /// Returns read-only observation nodes for a graph.
         /// </summary>
-        /// <param name="userId"></param>
+        /// <param name="graphId"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Zep.ApiException"></exception>
-        global::System.Threading.Tasks.Task<global::Zep.AutoSDKHttpResponse<global::System.Collections.Generic.IList<global::Zep.GraphitiDerivedNode>>> GetUserObservationsExperimentalAsResponseAsync(
-            string userId,
+        global::System.Threading.Tasks.Task<global::Zep.AutoSDKHttpResponse<global::System.Collections.Generic.IList<global::Zep.GraphitiDerivedNode>>> GetGraphObservationsAsResponseAsync(
+            string graphId,
 
             global::Zep.ApidataGraphObservationsRequest request,
             global::Zep.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Get User Observations (Experimental)<br/>
-        /// Returns read-only observation nodes for a user's graph.
+        /// Get Graph Observations<br/>
+        /// Returns read-only observation nodes for a graph.
         /// </summary>
-        /// <param name="userId"></param>
+        /// <param name="graphId"></param>
         /// <param name="limit">
         /// Maximum number of items to return
         /// </param>
@@ -48,8 +48,8 @@ namespace Zep
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
-        global::System.Threading.Tasks.Task<global::System.Collections.Generic.IList<global::Zep.GraphitiDerivedNode>> GetUserObservationsExperimentalAsync(
-            string userId,
+        global::System.Threading.Tasks.Task<global::System.Collections.Generic.IList<global::Zep.GraphitiDerivedNode>> GetGraphObservationsAsync(
+            string graphId,
             int? limit = default,
             string? uuidCursor = default,
             global::Zep.AutoSDKRequestOptions? requestOptions = default,
