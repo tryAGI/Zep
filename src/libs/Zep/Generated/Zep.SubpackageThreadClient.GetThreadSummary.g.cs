@@ -3,11 +3,11 @@
 
 namespace Zep
 {
-    public partial class SubpackageThreadSummaryClient
+    public partial class SubpackageThreadClient
     {
 
 
-        private static readonly global::Zep.EndPointSecurityRequirement s_GetGraphThreadSummariesExperimentalSecurityRequirement0 =
+        private static readonly global::Zep.EndPointSecurityRequirement s_GetThreadSummarySecurityRequirement0 =
             new global::Zep.EndPointSecurityRequirement
             {
                 Authorizations = new global::Zep.EndPointAuthorizationRequirement[]
@@ -21,48 +21,41 @@ namespace Zep
                     },
                 },
             };
-        private static readonly global::Zep.EndPointSecurityRequirement[] s_GetGraphThreadSummariesExperimentalSecurityRequirements =
+        private static readonly global::Zep.EndPointSecurityRequirement[] s_GetThreadSummarySecurityRequirements =
             new global::Zep.EndPointSecurityRequirement[]
-            {                s_GetGraphThreadSummariesExperimentalSecurityRequirement0,
+            {                s_GetThreadSummarySecurityRequirement0,
             };
-        partial void PrepareGetGraphThreadSummariesExperimentalArguments(
+        partial void PrepareGetThreadSummaryArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string graphId,
-            global::Zep.ApidataGraphThreadSummariesRequest request);
-        partial void PrepareGetGraphThreadSummariesExperimentalRequest(
+            ref string threadId);
+        partial void PrepareGetThreadSummaryRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string graphId,
-            global::Zep.ApidataGraphThreadSummariesRequest request);
-        partial void ProcessGetGraphThreadSummariesExperimentalResponse(
+            string threadId);
+        partial void ProcessGetThreadSummaryResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
-        partial void ProcessGetGraphThreadSummariesExperimentalResponseContent(
+        partial void ProcessGetThreadSummaryResponseContent(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage,
             ref string content);
 
         /// <summary>
-        /// Get Graph Thread Summaries (Experimental)<br/>
-        /// Returns incremental thread summaries associated with the graph.
+        /// Get thread summary<br/>
+        /// Returns the incremental summary generated from messages in the thread. Returns 404 if no summary exists for the thread.
         /// </summary>
-        /// <param name="graphId"></param>
-        /// <param name="request"></param>
+        /// <param name="threadId"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Zep.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::System.Collections.Generic.IList<global::Zep.ApidataThreadSummary>> GetGraphThreadSummariesExperimentalAsync(
-            string graphId,
-
-            global::Zep.ApidataGraphThreadSummariesRequest request,
+        public async global::System.Threading.Tasks.Task<global::Zep.ApidataThreadSummary> GetThreadSummaryAsync(
+            string threadId,
             global::Zep.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __response = await GetGraphThreadSummariesExperimentalAsResponseAsync(
-                graphId: graphId,
-
-                request: request,
+            var __response = await GetThreadSummaryAsResponseAsync(
+                threadId: threadId,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
@@ -70,35 +63,29 @@ namespace Zep
             return __response.Body;
         }
         /// <summary>
-        /// Get Graph Thread Summaries (Experimental)<br/>
-        /// Returns incremental thread summaries associated with the graph.
+        /// Get thread summary<br/>
+        /// Returns the incremental summary generated from messages in the thread. Returns 404 if no summary exists for the thread.
         /// </summary>
-        /// <param name="graphId"></param>
-        /// <param name="request"></param>
+        /// <param name="threadId"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Zep.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Zep.AutoSDKHttpResponse<global::System.Collections.Generic.IList<global::Zep.ApidataThreadSummary>>> GetGraphThreadSummariesExperimentalAsResponseAsync(
-            string graphId,
-
-            global::Zep.ApidataGraphThreadSummariesRequest request,
+        public async global::System.Threading.Tasks.Task<global::Zep.AutoSDKHttpResponse<global::Zep.ApidataThreadSummary>> GetThreadSummaryAsResponseAsync(
+            string threadId,
             global::Zep.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            request = request ?? throw new global::System.ArgumentNullException(nameof(request));
-
             PrepareArguments(
                 client: HttpClient);
-            PrepareGetGraphThreadSummariesExperimentalArguments(
+            PrepareGetThreadSummaryArguments(
                 httpClient: HttpClient,
-                graphId: ref graphId,
-                request: request);
+                threadId: ref threadId);
 
 
             var __authorizations = global::Zep.EndPointSecurityResolver.ResolveAuthorizations(
                 availableAuthorizations: Authorizations,
-                securityRequirements: s_GetGraphThreadSummariesExperimentalSecurityRequirements,
-                operationName: "GetGraphThreadSummariesExperimentalAsync");
+                securityRequirements: s_GetThreadSummarySecurityRequirements,
+                operationName: "GetThreadSummaryAsync");
 
             using var __timeoutCancellationTokenSource = global::Zep.AutoSDKRequestOptionsSupport.CreateTimeoutCancellationTokenSource(
                 clientOptions: Options,
@@ -118,7 +105,7 @@ namespace Zep
             {
 
                             var __pathBuilder = new global::Zep.PathBuilder(
-                                path: $"/graph/thread-summary/graph/{graphId}",
+                                path: $"/threads/{threadId}/summary",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Zep.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -126,7 +113,7 @@ namespace Zep
                     clientParameters: Options.QueryParameters,
                     requestParameters: requestOptions?.QueryParameters);
                 var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
-                    method: global::System.Net.Http.HttpMethod.Post,
+                    method: global::System.Net.Http.HttpMethod.Get,
                     requestUri: new global::System.Uri(__path, global::System.UriKind.RelativeOrAbsolute));
 #if NET6_0_OR_GREATER
                 __httpRequest.Version = global::System.Net.HttpVersion.Version11;
@@ -149,12 +136,6 @@ namespace Zep
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
                 } 
             }
-                            var __httpRequestContentBody = request.ToJson(JsonSerializerContext);
-                            var __httpRequestContent = new global::System.Net.Http.StringContent(
-                                content: __httpRequestContentBody,
-                                encoding: global::System.Text.Encoding.UTF8,
-                                mediaType: "application/json");
-                            __httpRequest.Content = __httpRequestContent;
                 global::Zep.AutoSDKRequestOptionsSupport.ApplyHeaders(
                     request: __httpRequest,
                     clientHeaders: Options.Headers,
@@ -163,11 +144,10 @@ namespace Zep
                 PrepareRequest(
                     client: HttpClient,
                     request: __httpRequest);
-                PrepareGetGraphThreadSummariesExperimentalRequest(
+                PrepareGetThreadSummaryRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    graphId: graphId!,
-                    request: request);
+                    threadId: threadId!);
 
                 return __httpRequest;
             }
@@ -184,10 +164,10 @@ namespace Zep
                     await global::Zep.AutoSDKRequestOptionsSupport.OnBeforeRequestAsync(
                             clientOptions: Options,
                             context: global::Zep.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "GetGraphThreadSummariesExperimental",
-                                methodName: "GetGraphThreadSummariesExperimentalAsync",
-                                pathTemplate: "$\"/graph/thread-summary/graph/{graphId}\"",
-                                httpMethod: "POST",
+                                operationId: "GetThreadSummary",
+                                methodName: "GetThreadSummaryAsync",
+                                pathTemplate: "$\"/threads/{threadId}/summary\"",
+                                httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: null,
@@ -218,10 +198,10 @@ namespace Zep
                         await global::Zep.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Zep.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "GetGraphThreadSummariesExperimental",
-                                methodName: "GetGraphThreadSummariesExperimentalAsync",
-                                pathTemplate: "$\"/graph/thread-summary/graph/{graphId}\"",
-                                httpMethod: "POST",
+                                operationId: "GetThreadSummary",
+                                methodName: "GetThreadSummaryAsync",
+                                pathTemplate: "$\"/threads/{threadId}/summary\"",
+                                httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: null,
@@ -259,10 +239,10 @@ namespace Zep
                         await global::Zep.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Zep.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "GetGraphThreadSummariesExperimental",
-                                methodName: "GetGraphThreadSummariesExperimentalAsync",
-                                pathTemplate: "$\"/graph/thread-summary/graph/{graphId}\"",
-                                httpMethod: "POST",
+                                operationId: "GetThreadSummary",
+                                methodName: "GetThreadSummaryAsync",
+                                pathTemplate: "$\"/threads/{threadId}/summary\"",
+                                httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -299,7 +279,7 @@ namespace Zep
                 ProcessResponse(
                     client: HttpClient,
                     response: __response);
-                ProcessGetGraphThreadSummariesExperimentalResponse(
+                ProcessGetThreadSummaryResponse(
                     httpClient: HttpClient,
                     httpResponseMessage: __response);
                 if (__response.IsSuccessStatusCode)
@@ -307,10 +287,10 @@ namespace Zep
                     await global::Zep.AutoSDKRequestOptionsSupport.OnAfterSuccessAsync(
                             clientOptions: Options,
                             context: global::Zep.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "GetGraphThreadSummariesExperimental",
-                                methodName: "GetGraphThreadSummariesExperimentalAsync",
-                                pathTemplate: "$\"/graph/thread-summary/graph/{graphId}\"",
-                                httpMethod: "POST",
+                                operationId: "GetThreadSummary",
+                                methodName: "GetThreadSummaryAsync",
+                                pathTemplate: "$\"/threads/{threadId}/summary\"",
+                                httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -329,10 +309,10 @@ namespace Zep
                     await global::Zep.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Zep.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "GetGraphThreadSummariesExperimental",
-                                methodName: "GetGraphThreadSummariesExperimentalAsync",
-                                pathTemplate: "$\"/graph/thread-summary/graph/{graphId}\"",
-                                httpMethod: "POST",
+                                operationId: "GetThreadSummary",
+                                methodName: "GetThreadSummaryAsync",
+                                pathTemplate: "$\"/threads/{threadId}/summary\"",
+                                httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -346,38 +326,38 @@ namespace Zep
                                 retryReason: global::System.String.Empty,
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                 }
-                            // Bad Request
-                            if ((int)__response.StatusCode == 400)
+                            // Forbidden
+                            if ((int)__response.StatusCode == 403)
                             {
-                                string? __content_400 = null;
-                                global::System.Exception? __exception_400 = null;
-                                global::Zep.ApidataAPIError? __value_400 = null;
+                                string? __content_403 = null;
+                                global::System.Exception? __exception_403 = null;
+                                global::Zep.ApidataAPIError? __value_403 = null;
                                 try
                                 {
                                     if (__effectiveReadResponseAsString)
                                     {
-                                        __content_400 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_400 = global::Zep.ApidataAPIError.FromJson(__content_400, JsonSerializerContext);
+                                        __content_403 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_403 = global::Zep.ApidataAPIError.FromJson(__content_403, JsonSerializerContext);
                                     }
                                     else
                                     {
-                                        __content_400 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __content_403 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
 
-                                        __value_400 = global::Zep.ApidataAPIError.FromJson(__content_400, JsonSerializerContext);
+                                        __value_403 = global::Zep.ApidataAPIError.FromJson(__content_403, JsonSerializerContext);
                                     }
                                 }
                                 catch (global::System.Exception __ex)
                                 {
-                                    __exception_400 = __ex;
+                                    __exception_403 = __ex;
                                 }
 
                                 throw new global::Zep.ApiException<global::Zep.ApidataAPIError>(
-                                    message: __content_400 ?? __response.ReasonPhrase ?? string.Empty,
-                                    innerException: __exception_400,
+                                    message: __content_403 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_403,
                                     statusCode: __response.StatusCode)
                                 {
-                                    ResponseBody = __content_400,
-                                    ResponseObject = __value_400,
+                                    ResponseBody = __content_403,
+                                    ResponseObject = __value_403,
                                     ResponseHeaders = global::System.Linq.Enumerable.ToDictionary(
                                         __response.Headers,
                                         h => h.Key,
@@ -473,7 +453,7 @@ namespace Zep
                                     client: HttpClient,
                                     response: __response,
                                     content: ref __content);
-                                ProcessGetGraphThreadSummariesExperimentalResponseContent(
+                                ProcessGetThreadSummaryResponseContent(
                                     httpClient: HttpClient,
                                     httpResponseMessage: __response,
                                     content: ref __content);
@@ -482,9 +462,9 @@ namespace Zep
                                 {
                                     __response.EnsureSuccessStatusCode();
 
-                                    var __value = (global::System.Collections.Generic.IList<global::Zep.ApidataThreadSummary>?)global::System.Text.Json.JsonSerializer.Deserialize(__content, typeof(global::System.Collections.Generic.IList<global::Zep.ApidataThreadSummary>), JsonSerializerContext) ??
+                                    var __value = global::Zep.ApidataThreadSummary.FromJson(__content, JsonSerializerContext) ??
                                         throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
-                                    return new global::Zep.AutoSDKHttpResponse<global::System.Collections.Generic.IList<global::Zep.ApidataThreadSummary>>(
+                                    return new global::Zep.AutoSDKHttpResponse<global::Zep.ApidataThreadSummary>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Zep.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
@@ -516,9 +496,9 @@ namespace Zep
                 #endif
                                     ).ConfigureAwait(false);
 
-                                    var __value = (global::System.Collections.Generic.IList<global::Zep.ApidataThreadSummary>?)await global::System.Text.Json.JsonSerializer.DeserializeAsync(__content, typeof(global::System.Collections.Generic.IList<global::Zep.ApidataThreadSummary>), JsonSerializerContext).ConfigureAwait(false) ??
+                                    var __value = await global::Zep.ApidataThreadSummary.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
                                         throw new global::System.InvalidOperationException("Response deserialization failed.");
-                                    return new global::Zep.AutoSDKHttpResponse<global::System.Collections.Generic.IList<global::Zep.ApidataThreadSummary>>(
+                                    return new global::Zep.AutoSDKHttpResponse<global::Zep.ApidataThreadSummary>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Zep.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
@@ -559,39 +539,6 @@ namespace Zep
             {
                 __httpRequest?.Dispose();
             }
-        }
-        /// <summary>
-        /// Get Graph Thread Summaries (Experimental)<br/>
-        /// Returns incremental thread summaries associated with the graph.
-        /// </summary>
-        /// <param name="graphId"></param>
-        /// <param name="limit">
-        /// Maximum number of items to return
-        /// </param>
-        /// <param name="uuidCursor">
-        /// UUID based cursor, used for pagination. Should be the UUID of the last item in the previous page
-        /// </param>
-        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
-        /// <param name="cancellationToken">The token to cancel the operation with</param>
-        /// <exception cref="global::System.InvalidOperationException"></exception>
-        public async global::System.Threading.Tasks.Task<global::System.Collections.Generic.IList<global::Zep.ApidataThreadSummary>> GetGraphThreadSummariesExperimentalAsync(
-            string graphId,
-            int? limit = default,
-            string? uuidCursor = default,
-            global::Zep.AutoSDKRequestOptions? requestOptions = default,
-            global::System.Threading.CancellationToken cancellationToken = default)
-        {
-            var __request = new global::Zep.ApidataGraphThreadSummariesRequest
-            {
-                Limit = limit,
-                UuidCursor = uuidCursor,
-            };
-
-            return await GetGraphThreadSummariesExperimentalAsync(
-                graphId: graphId,
-                request: __request,
-                requestOptions: requestOptions,
-                cancellationToken: cancellationToken).ConfigureAwait(false);
         }
     }
 }
