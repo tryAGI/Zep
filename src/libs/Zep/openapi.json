@@ -437,8 +437,8 @@
     },
     "/threads/{threadId}/summary": {
       "get": {
-        "operationId": "get-thread-summary-experimental",
-        "summary": "Get thread summary (Experimental)",
+        "operationId": "get-thread-summary",
+        "summary": "Get thread summary",
         "description": "Returns the incremental summary generated from messages in the thread. Returns 404 if no summary exists for the thread.",
         "tags": [
           "subpackage_thread"
@@ -3801,8 +3801,8 @@
     },
     "/graph/thread-summary/graph/{graph_id}": {
       "post": {
-        "operationId": "get-graph-thread-summaries-experimental",
-        "summary": "Get Graph Thread Summaries (Experimental)",
+        "operationId": "get-graph-thread-summaries",
+        "summary": "Get Graph Thread Summaries",
         "description": "Returns incremental thread summaries associated with the graph.",
         "tags": [
           "subpackage_threadSummary"
@@ -3877,8 +3877,8 @@
     },
     "/graph/thread-summary/user/{user_id}": {
       "post": {
-        "operationId": "get-user-thread-summaries-experimental",
-        "summary": "Get User Thread Summaries (Experimental)",
+        "operationId": "get-user-thread-summaries",
+        "summary": "Get User Thread Summaries",
         "description": "Returns incremental thread summaries generated from messages in each thread associated with the user's graph.",
         "tags": [
           "subpackage_threadSummary"
