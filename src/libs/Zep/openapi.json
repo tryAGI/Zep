@@ -6428,6 +6428,16 @@
         ],
         "title": "GraphitiDerivedNode"
       },
+      "ApidataGraphSearchResponseMetadata": {
+        "type": "object",
+        "properties": {
+          "server_latency_ms": {
+            "type": "integer",
+            "description": "Server-side processing latency in milliseconds."
+          }
+        },
+        "title": "ApidataGraphSearchResponseMetadata"
+      },
       "GraphitiSagaNode": {
         "type": "object",
         "properties": {
@@ -6513,6 +6523,9 @@
             "items": {
               "$ref": "#/components/schemas/GraphitiDerivedNode"
             }
+          },
+          "response": {
+            "$ref": "#/components/schemas/ApidataGraphSearchResponseMetadata"
           },
           "thread_summaries": {
             "type": "array",

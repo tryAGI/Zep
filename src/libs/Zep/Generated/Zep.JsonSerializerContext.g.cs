@@ -157,6 +157,7 @@ namespace Zep
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.GraphitiGraphSearchScope), TypeInfoPropertyName = "GraphitiGraphSearchScope2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.GraphitiGraphSearchQuery))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.GraphitiDerivedNode))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataGraphSearchResponseMetadata))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.GraphitiSagaNode))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataGraphSearchResults))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Zep.ApidataGraphEpisode>))]
