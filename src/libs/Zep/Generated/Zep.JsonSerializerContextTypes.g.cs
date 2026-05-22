@@ -416,183 +416,187 @@ namespace Zep
         /// <summary>
         /// 
         /// </summary>
-        public global::Zep.GraphitiSagaNode? Type97 { get; set; }
+        public global::Zep.ApidataGraphSearchResponseMetadata? Type97 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Zep.ApidataGraphSearchResults? Type98 { get; set; }
+        public global::Zep.GraphitiSagaNode? Type98 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Zep.ApidataGraphEpisode>? Type99 { get; set; }
+        public global::Zep.ApidataGraphSearchResults? Type99 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Zep.GraphitiDerivedNode>? Type100 { get; set; }
+        public global::System.Collections.Generic.IList<global::Zep.ApidataGraphEpisode>? Type100 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Zep.GraphitiSagaNode>? Type101 { get; set; }
+        public global::System.Collections.Generic.IList<global::Zep.GraphitiDerivedNode>? Type101 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Zep.ApidataUpdateGraphRequest? Type102 { get; set; }
+        public global::System.Collections.Generic.IList<global::Zep.GraphitiSagaNode>? Type102 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Zep.ApidataGraphEdgesRequest? Type103 { get; set; }
+        public global::Zep.ApidataUpdateGraphRequest? Type103 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Zep.ApidataUpdateEdgeRequest? Type104 { get; set; }
+        public global::Zep.ApidataGraphEdgesRequest? Type104 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Zep.ApidataGraphEpisodeResponse? Type105 { get; set; }
+        public global::Zep.ApidataUpdateEdgeRequest? Type105 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Zep.ApidataUpdateEpisodeRequest? Type106 { get; set; }
+        public global::Zep.ApidataGraphEpisodeResponse? Type106 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Zep.ApidataEpisodeMentions? Type107 { get; set; }
+        public global::Zep.ApidataUpdateEpisodeRequest? Type107 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Zep.ApidataGraphNodesRequest? Type108 { get; set; }
+        public global::Zep.ApidataEpisodeMentions? Type108 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Zep.ApidataUpdateNodeRequest? Type109 { get; set; }
+        public global::Zep.ApidataGraphNodesRequest? Type109 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Zep.ApidataCustomInstruction? Type110 { get; set; }
+        public global::Zep.ApidataUpdateNodeRequest? Type110 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Zep.ApidataListCustomInstructionsResponse? Type111 { get; set; }
+        public global::Zep.ApidataCustomInstruction? Type111 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Zep.ApidataCustomInstruction>? Type112 { get; set; }
+        public global::Zep.ApidataListCustomInstructionsResponse? Type112 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Zep.ApidataAddCustomInstructionsRequest? Type113 { get; set; }
+        public global::System.Collections.Generic.IList<global::Zep.ApidataCustomInstruction>? Type113 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Zep.ApidataDeleteCustomInstructionsRequest? Type114 { get; set; }
+        public global::Zep.ApidataAddCustomInstructionsRequest? Type114 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Zep.ApidataGraphObservationsRequest? Type115 { get; set; }
+        public global::Zep.ApidataDeleteCustomInstructionsRequest? Type115 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Zep.ApidataGraphThreadSummariesRequest? Type116 { get; set; }
+        public global::Zep.ApidataGraphObservationsRequest? Type116 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Zep.ApidataProjectInfo? Type117 { get; set; }
+        public global::Zep.ApidataGraphThreadSummariesRequest? Type117 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Zep.ApidataProjectInfoResponse? Type118 { get; set; }
+        public global::Zep.ApidataProjectInfo? Type118 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Zep.ApidataTaskErrorResponse? Type119 { get; set; }
+        public global::Zep.ApidataProjectInfoResponse? Type119 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Zep.ApidataTaskProgress? Type120 { get; set; }
+        public global::Zep.ApidataTaskErrorResponse? Type120 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Zep.ApidataGetTaskResponse? Type121 { get; set; }
+        public global::Zep.ApidataTaskProgress? Type121 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Zep.ApidataCreateBatchRequest? Type122 { get; set; }
+        public global::Zep.ApidataGetTaskResponse? Type122 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Zep.ApidataBatchProgress? Type123 { get; set; }
+        public global::Zep.ApidataCreateBatchRequest? Type123 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Zep.ModelsBatchStatus? Type124 { get; set; }
+        public global::Zep.ApidataBatchProgress? Type124 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Zep.ApidataBatchSummary? Type125 { get; set; }
+        public global::Zep.ModelsBatchStatus? Type125 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Zep.ModelsBatchItemKind? Type126 { get; set; }
+        public global::Zep.ApidataBatchSummary? Type126 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Zep.ApidataBatchAddItem? Type127 { get; set; }
+        public global::Zep.ModelsBatchItemKind? Type127 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Zep.ApidataAddBatchItemsRequest? Type128 { get; set; }
+        public global::Zep.ApidataBatchAddItem? Type128 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Zep.ApidataBatchAddItem>? Type129 { get; set; }
+        public global::Zep.ApidataAddBatchItemsRequest? Type129 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Zep.ModelsBatchItemStatus? Type130 { get; set; }
+        public global::System.Collections.Generic.IList<global::Zep.ApidataBatchAddItem>? Type130 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Zep.ApidataBatchItemDetail? Type131 { get; set; }
+        public global::Zep.ModelsBatchItemStatus? Type131 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Zep.ApidataBatchInvalidItem? Type132 { get; set; }
+        public global::Zep.ApidataBatchItemDetail? Type132 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Zep.ApidataBatchInvalidReferencesError? Type133 { get; set; }
+        public global::Zep.ApidataBatchInvalidItem? Type133 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Zep.ApidataBatchInvalidItem>? Type134 { get; set; }
+        public global::Zep.ApidataBatchInvalidReferencesError? Type134 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Zep.ApidataBatchListResponse? Type135 { get; set; }
+        public global::System.Collections.Generic.IList<global::Zep.ApidataBatchInvalidItem>? Type135 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Zep.ApidataBatchSummary>? Type136 { get; set; }
+        public global::Zep.ApidataBatchListResponse? Type136 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Zep.ApidataBatchItemListResponse? Type137 { get; set; }
+        public global::System.Collections.Generic.IList<global::Zep.ApidataBatchSummary>? Type137 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Zep.ApidataBatchItemDetail>? Type138 { get; set; }
+        public global::Zep.ApidataBatchItemListResponse? Type138 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Zep.SetOntologyRequest? Type139 { get; set; }
+        public global::System.Collections.Generic.IList<global::Zep.ApidataBatchItemDetail>? Type139 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public long? Type140 { get; set; }
+        public global::Zep.SetOntologyRequest? Type140 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Zep.ApidataThreadSummary>? Type141 { get; set; }
+        public long? Type141 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::System.Collections.Generic.IList<global::Zep.ApidataThreadSummary>? Type142 { get; set; }
 
         /// <summary>
         /// 

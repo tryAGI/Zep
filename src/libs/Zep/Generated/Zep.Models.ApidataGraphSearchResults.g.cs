@@ -41,6 +41,12 @@ namespace Zep
         /// <summary>
         /// 
         /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("response")]
+        public global::Zep.ApidataGraphSearchResponseMetadata? Response { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("thread_summaries")]
         public global::System.Collections.Generic.IList<global::Zep.GraphitiSagaNode>? ThreadSummaries { get; set; }
 
@@ -58,6 +64,7 @@ namespace Zep
         /// <param name="episodes"></param>
         /// <param name="nodes"></param>
         /// <param name="observations"></param>
+        /// <param name="response"></param>
         /// <param name="threadSummaries"></param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
@@ -68,6 +75,7 @@ namespace Zep
             global::System.Collections.Generic.IList<global::Zep.ApidataGraphEpisode>? episodes,
             global::System.Collections.Generic.IList<global::Zep.GraphitiEntityNode>? nodes,
             global::System.Collections.Generic.IList<global::Zep.GraphitiDerivedNode>? observations,
+            global::Zep.ApidataGraphSearchResponseMetadata? response,
             global::System.Collections.Generic.IList<global::Zep.GraphitiSagaNode>? threadSummaries)
         {
             this.Context = context;
@@ -75,6 +83,7 @@ namespace Zep
             this.Episodes = episodes;
             this.Nodes = nodes;
             this.Observations = observations;
+            this.Response = response;
             this.ThreadSummaries = threadSummaries;
         }
 
