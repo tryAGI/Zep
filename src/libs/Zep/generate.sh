@@ -55,22 +55,34 @@ download_candidate_spec() {
   local api_id="$1"
   local attempts="${2:-2}"
 
+  download_candidate_spec_url "${OPENAPI_INDEX_URL}?api=${api_id}" "$attempts"
+}
+
+download_candidate_spec_url() {
+  local spec_url="$1"
+  local attempts="${2:-2}"
+
   download_url \
     "$tmp_spec" \
-    "${OPENAPI_INDEX_URL}?api=${api_id}" \
+    "$spec_url" \
     "$attempts" || return 1
 
   is_threads_api_spec "$tmp_spec"
 }
 
-selected_api_id=""
+selected_spec_source=""
 if download_candidate_spec "$KNOWN_THREADS_API_ID" 3; then
-  selected_api_id="$KNOWN_THREADS_API_ID"
+  selected_spec_source="api=$KNOWN_THREADS_API_ID"
 else
   download_url "$tmp_index" "$OPENAPI_INDEX_URL" 3
 
-  mapfile -t candidate_api_ids < <(
-    python3 - <<'PY' "$tmp_index"
+  while IFS= read -r api_id; do
+    if download_candidate_spec "$api_id" 2; then
+      selected_spec_source="api=$api_id"
+      break
+    fi
+  done < <(
+    python3 - "$tmp_index" <<'PY'
 import re
 import sys
 
@@ -86,26 +98,45 @@ for api_id in re.findall(r"[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a
 PY
   )
 
-  for api_id in "${candidate_api_ids[@]}"; do
-    if download_candidate_spec "$api_id" 2; then
-      selected_api_id="$api_id"
-      break
-    fi
-  done
+  if [[ -z "$selected_spec_source" ]]; then
+    while IFS= read -r spec_url; do
+      if download_candidate_spec_url "$spec_url" 2; then
+        selected_spec_source="$spec_url"
+        break
+      fi
+    done < <(
+      python3 -c '
+import re
+import sys
+from urllib.parse import urljoin
+
+with open(sys.argv[1], encoding="utf-8") as f:
+    html = f.read()
+
+seen = set()
+for href in re.findall(r"href=\"([^\"]*openapi/[^\"]+\.json)\"", html):
+    spec_url = urljoin(sys.argv[2], href)
+    if spec_url in seen:
+        continue
+    seen.add(spec_url)
+    print(spec_url)
+' "$tmp_index" "$OPENAPI_INDEX_URL"
+    )
+  fi
 fi
 
-if [[ -z "$selected_api_id" ]]; then
+if [[ -z "$selected_spec_source" ]]; then
   echo "Could not resolve the Zep Threads API spec from $OPENAPI_INDEX_URL" >&2
   exit 1
 fi
 
 mv "$tmp_spec" openapi.json
 tmp_spec="$(mktemp)"
-echo "Downloaded Zep Threads API spec using api=$selected_api_id"
+echo "Downloaded Zep Threads API spec using $selected_spec_source"
 
 # Fix dotted schema names (apidata.Foo -> ApidataFoo, graphiti.Foo -> GraphitiFoo, models.Foo -> ModelsFoo)
 # Also inject securitySchemes (Bearer token) and top-level security array
-python3 -c "
+python3 - <<'PY'
 import json, re, sys
 
 with open('openapi.json') as f:
@@ -141,7 +172,7 @@ with open('openapi.json', 'w') as f:
     json.dump(spec, f, indent=2)
 
 print('Spec fixed: dotted names renamed, bearer auth injected')
-"
+PY
 
 autosdk generate openapi.json \
   --namespace Zep \
