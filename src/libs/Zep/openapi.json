@@ -2257,6 +2257,59 @@
         }
       }
     },
+    "/graph/{graphId}/warm": {
+      "get": {
+        "operationId": "warm-graph-cache",
+        "summary": "Warm Graph Cache",
+        "description": "Hints Zep to warm a graph for low-latency search",
+        "tags": [
+          "subpackage_graph"
+        ],
+        "parameters": [
+          {
+            "name": "graphId",
+            "in": "path",
+            "description": "The graph_id of the graph to warm.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Warm hint accepted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataSuccessResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Graph not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/graph/edge/graph/{graph_id}": {
       "post": {
         "operationId": "get-graph-edges",
@@ -6895,6 +6948,13 @@
       "ApidataCreateBatchRequest": {
         "type": "object",
         "properties": {
+          "ignore_roles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApidataRoleType"
+            },
+            "description": "Optional list of message role types to skip during graph ingestion for\nthread_message items in this batch. The messages are still stored and\nretained as context, but no graph extraction is performed for them.\nHas no effect on graph_episode items."
+          },
           "metadata": {
             "type": "object",
             "additionalProperties": {
@@ -6907,6 +6967,9 @@
       "ApidataBatchProgress": {
         "type": "object",
         "properties": {
+          "canceled_items": {
+            "type": "integer"
+          },
           "failed_items": {
             "type": "integer"
           },
@@ -6941,7 +7004,8 @@
           "processing",
           "succeeded",
           "partial",
-          "failed"
+          "failed",
+          "canceled"
         ],
         "title": "ModelsBatchStatus"
       },
@@ -6956,6 +7020,12 @@
           },
           "created_at": {
             "type": "string"
+          },
+          "ignore_roles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApidataRoleType"
+            }
           },
           "item_count": {
             "type": "integer"
@@ -7060,7 +7130,8 @@
           "processing",
           "succeeded",
           "failed",
-          "skipped"
+          "skipped",
+          "canceled"
         ],
         "title": "ModelsBatchItemStatus"
       },

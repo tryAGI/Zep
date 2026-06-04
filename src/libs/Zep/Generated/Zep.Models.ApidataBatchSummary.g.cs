@@ -29,6 +29,12 @@ namespace Zep
         /// <summary>
         /// 
         /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("ignore_roles")]
+        public global::System.Collections.Generic.IList<global::Zep.ApidataRoleType>? IgnoreRoles { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("item_count")]
         public int? ItemCount { get; set; }
 
@@ -75,6 +81,7 @@ namespace Zep
         /// <param name="batchId"></param>
         /// <param name="completedAt"></param>
         /// <param name="createdAt"></param>
+        /// <param name="ignoreRoles"></param>
         /// <param name="itemCount"></param>
         /// <param name="metadata"></param>
         /// <param name="processedAt"></param>
@@ -88,6 +95,7 @@ namespace Zep
             string? batchId,
             string? completedAt,
             string? createdAt,
+            global::System.Collections.Generic.IList<global::Zep.ApidataRoleType>? ignoreRoles,
             int? itemCount,
             object? metadata,
             string? processedAt,
@@ -98,6 +106,7 @@ namespace Zep
             this.BatchId = batchId;
             this.CompletedAt = completedAt;
             this.CreatedAt = createdAt;
+            this.IgnoreRoles = ignoreRoles;
             this.ItemCount = itemCount;
             this.Metadata = metadata;
             this.ProcessedAt = processedAt;
