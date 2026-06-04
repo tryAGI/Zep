@@ -3,11 +3,11 @@
 
 namespace Zep
 {
-    public partial class SubpackageBatchClient
+    public partial class SubpackageGraphClient
     {
 
 
-        private static readonly global::Zep.EndPointSecurityRequirement s_CreateBatchSecurityRequirement0 =
+        private static readonly global::Zep.EndPointSecurityRequirement s_WarmGraphCacheSecurityRequirement0 =
             new global::Zep.EndPointSecurityRequirement
             {
                 Authorizations = new global::Zep.EndPointAuthorizationRequirement[]
@@ -21,43 +21,41 @@ namespace Zep
                     },
                 },
             };
-        private static readonly global::Zep.EndPointSecurityRequirement[] s_CreateBatchSecurityRequirements =
+        private static readonly global::Zep.EndPointSecurityRequirement[] s_WarmGraphCacheSecurityRequirements =
             new global::Zep.EndPointSecurityRequirement[]
-            {                s_CreateBatchSecurityRequirement0,
+            {                s_WarmGraphCacheSecurityRequirement0,
             };
-        partial void PrepareCreateBatchArguments(
+        partial void PrepareWarmGraphCacheArguments(
             global::System.Net.Http.HttpClient httpClient,
-            global::Zep.ApidataCreateBatchRequest request);
-        partial void PrepareCreateBatchRequest(
+            ref string graphId);
+        partial void PrepareWarmGraphCacheRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            global::Zep.ApidataCreateBatchRequest request);
-        partial void ProcessCreateBatchResponse(
+            string graphId);
+        partial void ProcessWarmGraphCacheResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
-        partial void ProcessCreateBatchResponseContent(
+        partial void ProcessWarmGraphCacheResponseContent(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage,
             ref string content);
 
         /// <summary>
-        /// Create Batch<br/>
-        /// Create a draft batch that can be filled with graph episodes and thread messages.
+        /// Warm Graph Cache<br/>
+        /// Hints Zep to warm a graph for low-latency search
         /// </summary>
-        /// <param name="request"></param>
+        /// <param name="graphId"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Zep.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Zep.ApidataBatchSummary> CreateBatchAsync(
-
-            global::Zep.ApidataCreateBatchRequest request,
+        public async global::System.Threading.Tasks.Task<global::Zep.ApidataSuccessResponse> WarmGraphCacheAsync(
+            string graphId,
             global::Zep.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __response = await CreateBatchAsResponseAsync(
-
-                request: request,
+            var __response = await WarmGraphCacheAsResponseAsync(
+                graphId: graphId,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
@@ -65,32 +63,29 @@ namespace Zep
             return __response.Body;
         }
         /// <summary>
-        /// Create Batch<br/>
-        /// Create a draft batch that can be filled with graph episodes and thread messages.
+        /// Warm Graph Cache<br/>
+        /// Hints Zep to warm a graph for low-latency search
         /// </summary>
-        /// <param name="request"></param>
+        /// <param name="graphId"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Zep.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Zep.AutoSDKHttpResponse<global::Zep.ApidataBatchSummary>> CreateBatchAsResponseAsync(
-
-            global::Zep.ApidataCreateBatchRequest request,
+        public async global::System.Threading.Tasks.Task<global::Zep.AutoSDKHttpResponse<global::Zep.ApidataSuccessResponse>> WarmGraphCacheAsResponseAsync(
+            string graphId,
             global::Zep.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            request = request ?? throw new global::System.ArgumentNullException(nameof(request));
-
             PrepareArguments(
                 client: HttpClient);
-            PrepareCreateBatchArguments(
+            PrepareWarmGraphCacheArguments(
                 httpClient: HttpClient,
-                request: request);
+                graphId: ref graphId);
 
 
             var __authorizations = global::Zep.EndPointSecurityResolver.ResolveAuthorizations(
                 availableAuthorizations: Authorizations,
-                securityRequirements: s_CreateBatchSecurityRequirements,
-                operationName: "CreateBatchAsync");
+                securityRequirements: s_WarmGraphCacheSecurityRequirements,
+                operationName: "WarmGraphCacheAsync");
 
             using var __timeoutCancellationTokenSource = global::Zep.AutoSDKRequestOptionsSupport.CreateTimeoutCancellationTokenSource(
                 clientOptions: Options,
@@ -110,7 +105,7 @@ namespace Zep
             {
 
                             var __pathBuilder = new global::Zep.PathBuilder(
-                                path: "/batches",
+                                path: $"/graph/{graphId}/warm",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Zep.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -118,7 +113,7 @@ namespace Zep
                     clientParameters: Options.QueryParameters,
                     requestParameters: requestOptions?.QueryParameters);
                 var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
-                    method: global::System.Net.Http.HttpMethod.Post,
+                    method: global::System.Net.Http.HttpMethod.Get,
                     requestUri: new global::System.Uri(__path, global::System.UriKind.RelativeOrAbsolute));
 #if NET6_0_OR_GREATER
                 __httpRequest.Version = global::System.Net.HttpVersion.Version11;
@@ -141,12 +136,6 @@ namespace Zep
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
                 } 
             }
-                            var __httpRequestContentBody = request.ToJson(JsonSerializerContext);
-                            var __httpRequestContent = new global::System.Net.Http.StringContent(
-                                content: __httpRequestContentBody,
-                                encoding: global::System.Text.Encoding.UTF8,
-                                mediaType: "application/json");
-                            __httpRequest.Content = __httpRequestContent;
                 global::Zep.AutoSDKRequestOptionsSupport.ApplyHeaders(
                     request: __httpRequest,
                     clientHeaders: Options.Headers,
@@ -155,10 +144,10 @@ namespace Zep
                 PrepareRequest(
                     client: HttpClient,
                     request: __httpRequest);
-                PrepareCreateBatchRequest(
+                PrepareWarmGraphCacheRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    request: request);
+                    graphId: graphId!);
 
                 return __httpRequest;
             }
@@ -175,10 +164,10 @@ namespace Zep
                     await global::Zep.AutoSDKRequestOptionsSupport.OnBeforeRequestAsync(
                             clientOptions: Options,
                             context: global::Zep.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "CreateBatch",
-                                methodName: "CreateBatchAsync",
-                                pathTemplate: "\"/batches\"",
-                                httpMethod: "POST",
+                                operationId: "WarmGraphCache",
+                                methodName: "WarmGraphCacheAsync",
+                                pathTemplate: "$\"/graph/{graphId}/warm\"",
+                                httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: null,
@@ -209,10 +198,10 @@ namespace Zep
                         await global::Zep.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Zep.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "CreateBatch",
-                                methodName: "CreateBatchAsync",
-                                pathTemplate: "\"/batches\"",
-                                httpMethod: "POST",
+                                operationId: "WarmGraphCache",
+                                methodName: "WarmGraphCacheAsync",
+                                pathTemplate: "$\"/graph/{graphId}/warm\"",
+                                httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: null,
@@ -250,10 +239,10 @@ namespace Zep
                         await global::Zep.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Zep.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "CreateBatch",
-                                methodName: "CreateBatchAsync",
-                                pathTemplate: "\"/batches\"",
-                                httpMethod: "POST",
+                                operationId: "WarmGraphCache",
+                                methodName: "WarmGraphCacheAsync",
+                                pathTemplate: "$\"/graph/{graphId}/warm\"",
+                                httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -290,7 +279,7 @@ namespace Zep
                 ProcessResponse(
                     client: HttpClient,
                     response: __response);
-                ProcessCreateBatchResponse(
+                ProcessWarmGraphCacheResponse(
                     httpClient: HttpClient,
                     httpResponseMessage: __response);
                 if (__response.IsSuccessStatusCode)
@@ -298,10 +287,10 @@ namespace Zep
                     await global::Zep.AutoSDKRequestOptionsSupport.OnAfterSuccessAsync(
                             clientOptions: Options,
                             context: global::Zep.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "CreateBatch",
-                                methodName: "CreateBatchAsync",
-                                pathTemplate: "\"/batches\"",
-                                httpMethod: "POST",
+                                operationId: "WarmGraphCache",
+                                methodName: "WarmGraphCacheAsync",
+                                pathTemplate: "$\"/graph/{graphId}/warm\"",
+                                httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -320,10 +309,10 @@ namespace Zep
                     await global::Zep.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Zep.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "CreateBatch",
-                                methodName: "CreateBatchAsync",
-                                pathTemplate: "\"/batches\"",
-                                httpMethod: "POST",
+                                operationId: "WarmGraphCache",
+                                methodName: "WarmGraphCacheAsync",
+                                pathTemplate: "$\"/graph/{graphId}/warm\"",
+                                httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -337,75 +326,38 @@ namespace Zep
                                 retryReason: global::System.String.Empty,
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                 }
-                            // Bad Request
-                            if ((int)__response.StatusCode == 400)
+                            // Graph not found
+                            if ((int)__response.StatusCode == 404)
                             {
-                                string? __content_400 = null;
-                                global::System.Exception? __exception_400 = null;
-                                global::Zep.ApidataAPIError? __value_400 = null;
+                                string? __content_404 = null;
+                                global::System.Exception? __exception_404 = null;
+                                global::Zep.ApidataAPIError? __value_404 = null;
                                 try
                                 {
                                     if (__effectiveReadResponseAsString)
                                     {
-                                        __content_400 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_400 = global::Zep.ApidataAPIError.FromJson(__content_400, JsonSerializerContext);
+                                        __content_404 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_404 = global::Zep.ApidataAPIError.FromJson(__content_404, JsonSerializerContext);
                                     }
                                     else
                                     {
-                                        __content_400 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __content_404 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
 
-                                        __value_400 = global::Zep.ApidataAPIError.FromJson(__content_400, JsonSerializerContext);
+                                        __value_404 = global::Zep.ApidataAPIError.FromJson(__content_404, JsonSerializerContext);
                                     }
                                 }
                                 catch (global::System.Exception __ex)
                                 {
-                                    __exception_400 = __ex;
+                                    __exception_404 = __ex;
                                 }
 
 
                                 throw global::Zep.ApiException<global::Zep.ApidataAPIError>.Create(
                                     statusCode: __response.StatusCode,
-                                    message: __content_400 ?? __response.ReasonPhrase ?? string.Empty,
-                                    innerException: __exception_400,
-                                    responseBody: __content_400,
-                                    responseObject: __value_400,
-                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
-                                        __response.Headers,
-                                        h => h.Key,
-                                        h => h.Value));
-                            }
-                            // Forbidden
-                            if ((int)__response.StatusCode == 403)
-                            {
-                                string? __content_403 = null;
-                                global::System.Exception? __exception_403 = null;
-                                global::Zep.ApidataAPIError? __value_403 = null;
-                                try
-                                {
-                                    if (__effectiveReadResponseAsString)
-                                    {
-                                        __content_403 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_403 = global::Zep.ApidataAPIError.FromJson(__content_403, JsonSerializerContext);
-                                    }
-                                    else
-                                    {
-                                        __content_403 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-
-                                        __value_403 = global::Zep.ApidataAPIError.FromJson(__content_403, JsonSerializerContext);
-                                    }
-                                }
-                                catch (global::System.Exception __ex)
-                                {
-                                    __exception_403 = __ex;
-                                }
-
-
-                                throw global::Zep.ApiException<global::Zep.ApidataAPIError>.Create(
-                                    statusCode: __response.StatusCode,
-                                    message: __content_403 ?? __response.ReasonPhrase ?? string.Empty,
-                                    innerException: __exception_403,
-                                    responseBody: __content_403,
-                                    responseObject: __value_403,
+                                    message: __content_404 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_404,
+                                    responseBody: __content_404,
+                                    responseObject: __value_404,
                                     responseHeaders: global::System.Linq.Enumerable.ToDictionary(
                                         __response.Headers,
                                         h => h.Key,
@@ -461,7 +413,7 @@ namespace Zep
                                     client: HttpClient,
                                     response: __response,
                                     content: ref __content);
-                                ProcessCreateBatchResponseContent(
+                                ProcessWarmGraphCacheResponseContent(
                                     httpClient: HttpClient,
                                     httpResponseMessage: __response,
                                     content: ref __content);
@@ -470,9 +422,9 @@ namespace Zep
                                 {
                                     __response.EnsureSuccessStatusCode();
 
-                                    var __value = global::Zep.ApidataBatchSummary.FromJson(__content, JsonSerializerContext) ??
+                                    var __value = global::Zep.ApidataSuccessResponse.FromJson(__content, JsonSerializerContext) ??
                                         throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
-                                    return new global::Zep.AutoSDKHttpResponse<global::Zep.ApidataBatchSummary>(
+                                    return new global::Zep.AutoSDKHttpResponse<global::Zep.ApidataSuccessResponse>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Zep.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
@@ -502,9 +454,9 @@ namespace Zep
                 #endif
                                     ).ConfigureAwait(false);
 
-                                    var __value = await global::Zep.ApidataBatchSummary.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
+                                    var __value = await global::Zep.ApidataSuccessResponse.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
                                         throw new global::System.InvalidOperationException("Response deserialization failed.");
-                                    return new global::Zep.AutoSDKHttpResponse<global::Zep.ApidataBatchSummary>(
+                                    return new global::Zep.AutoSDKHttpResponse<global::Zep.ApidataSuccessResponse>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Zep.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
@@ -543,37 +495,6 @@ namespace Zep
             {
                 __httpRequest?.Dispose();
             }
-        }
-        /// <summary>
-        /// Create Batch<br/>
-        /// Create a draft batch that can be filled with graph episodes and thread messages.
-        /// </summary>
-        /// <param name="ignoreRoles">
-        /// Optional list of message role types to skip during graph ingestion for<br/>
-        /// thread_message items in this batch. The messages are still stored and<br/>
-        /// retained as context, but no graph extraction is performed for them.<br/>
-        /// Has no effect on graph_episode items.
-        /// </param>
-        /// <param name="metadata"></param>
-        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
-        /// <param name="cancellationToken">The token to cancel the operation with</param>
-        /// <exception cref="global::System.InvalidOperationException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Zep.ApidataBatchSummary> CreateBatchAsync(
-            global::System.Collections.Generic.IList<global::Zep.ApidataRoleType>? ignoreRoles = default,
-            object? metadata = default,
-            global::Zep.AutoSDKRequestOptions? requestOptions = default,
-            global::System.Threading.CancellationToken cancellationToken = default)
-        {
-            var __request = new global::Zep.ApidataCreateBatchRequest
-            {
-                IgnoreRoles = ignoreRoles,
-                Metadata = metadata,
-            };
-
-            return await CreateBatchAsync(
-                request: __request,
-                requestOptions: requestOptions,
-                cancellationToken: cancellationToken).ConfigureAwait(false);
         }
     }
 }
