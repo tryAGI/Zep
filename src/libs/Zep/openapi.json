@@ -4684,7 +4684,8 @@
   },
   "servers": [
     {
-      "url": "https://api.getzep.com/api/v2"
+      "url": "https://api.getzep.com/api/v2",
+      "description": "https://api.getzep.com/api/v2"
     }
   ],
   "components": {
