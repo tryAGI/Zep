@@ -10,7 +10,7 @@ namespace Zep
     public sealed partial class SubpackageBatchClient : global::Zep.ISubpackageBatchClient, global::System.IDisposable
     {
         /// <summary>
-        /// 
+        /// https://api.getzep.com/api/v2
         /// </summary>
         public const string DefaultBaseUrl = "https://api.getzep.com/api/v2";
 
