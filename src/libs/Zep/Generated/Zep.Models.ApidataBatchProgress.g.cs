@@ -11,6 +11,12 @@ namespace Zep
         /// <summary>
         /// 
         /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("canceled_items")]
+        public int? CanceledItems { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("failed_items")]
         public int? FailedItems { get; set; }
 
@@ -59,6 +65,7 @@ namespace Zep
         /// <summary>
         /// Initializes a new instance of the <see cref="ApidataBatchProgress" /> class.
         /// </summary>
+        /// <param name="canceledItems"></param>
         /// <param name="failedItems"></param>
         /// <param name="percentComplete"></param>
         /// <param name="processingItems"></param>
@@ -70,6 +77,7 @@ namespace Zep
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
         public ApidataBatchProgress(
+            int? canceledItems,
             int? failedItems,
             double? percentComplete,
             int? processingItems,
@@ -78,6 +86,7 @@ namespace Zep
             int? succeededItems,
             int? totalItems)
         {
+            this.CanceledItems = canceledItems;
             this.FailedItems = failedItems;
             this.PercentComplete = percentComplete;
             this.ProcessingItems = processingItems;

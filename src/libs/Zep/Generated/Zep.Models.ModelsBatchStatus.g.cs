@@ -11,6 +11,10 @@ namespace Zep
         /// <summary>
         /// 
         /// </summary>
+        Canceled,
+        /// <summary>
+        /// 
+        /// </summary>
         Draft,
         /// <summary>
         /// 
@@ -50,6 +54,7 @@ namespace Zep
         {
             return value switch
             {
+                ModelsBatchStatus.Canceled => "canceled",
                 ModelsBatchStatus.Draft => "draft",
                 ModelsBatchStatus.Failed => "failed",
                 ModelsBatchStatus.Invalid => "invalid",
@@ -67,6 +72,7 @@ namespace Zep
         {
             return value switch
             {
+                "canceled" => ModelsBatchStatus.Canceled,
                 "draft" => ModelsBatchStatus.Draft,
                 "failed" => ModelsBatchStatus.Failed,
                 "invalid" => ModelsBatchStatus.Invalid,
