@@ -7,7 +7,7 @@ namespace Zep
     /// If no httpClient is provided, a new one will be created.<br/>
     /// If no baseUri is provided, the default baseUri from OpenAPI spec will be used.
     /// </summary>
-    public partial interface IZepClient : global::System.IDisposable
+    public partial interface IEpisodesClient : global::System.IDisposable
     {
         /// <summary>
         /// The HttpClient instance.
@@ -43,71 +43,6 @@ namespace Zep
         /// </summary>
         global::System.Text.Json.Serialization.JsonSerializerContext JsonSerializerContext { get; set; }
 
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public BatchClient Batch { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public ContextClient Context { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public DataClient Data { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public EntityClient Entity { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public EpisodesClient Episodes { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public GraphClient Graph { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public ObservationClient Observation { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public ProjectClient Project { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public SearchClient Search { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public TaskClient Task { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public ThreadClient Thread { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public ThreadSummaryClient ThreadSummary { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public UserClient User { get; }
 
     }
 }

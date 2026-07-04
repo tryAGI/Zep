@@ -11,7 +11,7 @@
         "summary": "Get threads",
         "description": "Returns all threads.",
         "tags": [
-          "subpackage_thread"
+          "thread"
         ],
         "parameters": [
           {
@@ -89,7 +89,7 @@
         "summary": "Start a new thread.",
         "description": "Start a new thread.",
         "tags": [
-          "subpackage_thread"
+          "thread"
         ],
         "responses": {
           "201": {
@@ -141,7 +141,7 @@
         "summary": "Delete thread",
         "description": "Deletes a thread.",
         "tags": [
-          "subpackage_thread"
+          "thread"
         ],
         "parameters": [
           {
@@ -194,7 +194,7 @@
         "summary": "Get user context",
         "description": "Returns most relevant context from the user graph (including memory from any/all past threads) based on the content of the past few messages of the given thread.",
         "tags": [
-          "subpackage_thread"
+          "thread"
         ],
         "parameters": [
           {
@@ -256,7 +256,7 @@
         "summary": "Get messages of a thread",
         "description": "Returns messages for a thread.",
         "tags": [
-          "subpackage_thread"
+          "thread"
         ],
         "parameters": [
           {
@@ -335,7 +335,7 @@
         "summary": "Add messages to a thread",
         "description": "Add messages to a thread.",
         "tags": [
-          "subpackage_thread"
+          "thread"
         ],
         "parameters": [
           {
@@ -388,7 +388,7 @@
         "summary": "Add messages to a thread in batch",
         "description": "Deprecated. Use the [Batch API](/adding-batch-data) (`client.batch.*` with `type: \"thread_message\"`) instead.\n\nAdds messages to a thread in batch mode, processing messages concurrently.\n",
         "tags": [
-          "subpackage_thread"
+          "thread"
         ],
         "parameters": [
           {
@@ -441,7 +441,7 @@
         "summary": "Get thread summary",
         "description": "Returns the incremental summary generated from messages in the thread. Returns 404 if no summary exists for the thread.",
         "tags": [
-          "subpackage_thread"
+          "thread"
         ],
         "parameters": [
           {
@@ -567,7 +567,7 @@
         "summary": "Add User",
         "description": "Adds a user.",
         "tags": [
-          "subpackage_user"
+          "user"
         ],
         "responses": {
           "201": {
@@ -619,7 +619,7 @@
         "summary": "Get Users",
         "description": "Returns all users.",
         "tags": [
-          "subpackage_user"
+          "user"
         ],
         "parameters": [
           {
@@ -708,7 +708,7 @@
         "summary": "Get User",
         "description": "Returns a user.",
         "tags": [
-          "subpackage_user"
+          "user"
         ],
         "parameters": [
           {
@@ -759,7 +759,7 @@
         "summary": "Delete User",
         "description": "Deletes a user.",
         "tags": [
-          "subpackage_user"
+          "user"
         ],
         "parameters": [
           {
@@ -810,7 +810,7 @@
         "summary": "Update User",
         "description": "Updates a user.",
         "tags": [
-          "subpackage_user"
+          "user"
         ],
         "parameters": [
           {
@@ -883,7 +883,7 @@
         "summary": "Get User Node",
         "description": "Returns a user's node.",
         "tags": [
-          "subpackage_user"
+          "user"
         ],
         "parameters": [
           {
@@ -936,7 +936,7 @@
         "summary": "Get User Threads",
         "description": "Returns all threads for a user.",
         "tags": [
-          "subpackage_user"
+          "user"
         ],
         "parameters": [
           {
@@ -982,7 +982,7 @@
         "summary": "Warm User Cache",
         "description": "Hints Zep to warm a user's graph for low-latency search",
         "tags": [
-          "subpackage_user"
+          "user"
         ],
         "parameters": [
           {
@@ -1035,7 +1035,7 @@
         "summary": "List User Instructions",
         "description": "Lists all user summary instructions for a project, user.",
         "tags": [
-          "subpackage_user"
+          "user"
         ],
         "parameters": [
           {
@@ -1096,7 +1096,7 @@
         "summary": "Add User Instructions",
         "description": "Adds new summary instructions for users graphs without removing existing ones. If user_ids is empty, adds to project-wide default instructions.",
         "tags": [
-          "subpackage_user"
+          "user"
         ],
         "responses": {
           "200": {
@@ -1156,7 +1156,7 @@
         "summary": "Delete User Instructions",
         "description": "Deletes user summary/instructions for users or project wide defaults.",
         "tags": [
-          "subpackage_user"
+          "user"
         ],
         "responses": {
           "200": {
@@ -1218,7 +1218,7 @@
         "summary": "Create Context Template",
         "description": "Creates a new context template.",
         "tags": [
-          "subpackage_context"
+          "context"
         ],
         "responses": {
           "200": {
@@ -1268,7 +1268,7 @@
         "summary": "List Context Templates",
         "description": "Lists all context templates.",
         "tags": [
-          "subpackage_context"
+          "context"
         ],
         "responses": {
           "200": {
@@ -1310,7 +1310,7 @@
         "summary": "Get Context Template",
         "description": "Retrieves a context template by template_id.",
         "tags": [
-          "subpackage_context"
+          "context"
         ],
         "parameters": [
           {
@@ -1371,7 +1371,7 @@
         "summary": "Update Context Template",
         "description": "Updates an existing context template by template_id.",
         "tags": [
-          "subpackage_context"
+          "context"
         ],
         "parameters": [
           {
@@ -1442,7 +1442,7 @@
         "summary": "Delete Context Template",
         "description": "Deletes a context template by template_id.",
         "tags": [
-          "subpackage_context"
+          "context"
         ],
         "parameters": [
           {
@@ -1505,7 +1505,7 @@
         "summary": "Set graph ontology",
         "description": "Sets custom entity and edge types for your graph. This wrapper method\nprovides a clean interface for defining your graph schema with custom\nentity and edge types.\n\nSee the [full documentation](/customizing-graph-structure#setting-entity-and-edge-types) for details.\n",
         "tags": [
-          "subpackage_graph"
+          "graph"
         ],
         "responses": {
           "200": {
@@ -1560,7 +1560,7 @@
         "summary": "List graph ontology",
         "description": "Retrieves the current entity and edge types configured for your graph.\n\nSee the [full documentation](/customizing-graph-structure) for details.\n",
         "tags": [
-          "subpackage_graph"
+          "graph"
         ],
         "responses": {
           "200": {
@@ -1602,7 +1602,7 @@
         "summary": "Add Data",
         "description": "Add data to the graph.",
         "tags": [
-          "subpackage_data"
+          "data"
         ],
         "responses": {
           "202": {
@@ -1654,7 +1654,7 @@
         "summary": "Add Data in batch mode",
         "description": "Deprecated. Use the [Batch API](/adding-batch-data) (`client.batch.*`) instead.\n\nAdds data to the graph in batch mode, processing episodes concurrently.\n",
         "tags": [
-          "subpackage_data"
+          "data"
         ],
         "responses": {
           "202": {
@@ -1709,7 +1709,7 @@
         "summary": "Add Fact Triple",
         "description": "Add a fact triple for a user or group",
         "tags": [
-          "subpackage_entity"
+          "entity"
         ],
         "responses": {
           "200": {
@@ -1761,7 +1761,7 @@
         "summary": "Clone graph",
         "description": "Clone a user or group graph.",
         "tags": [
-          "subpackage_data"
+          "data"
         ],
         "responses": {
           "202": {
@@ -1813,7 +1813,7 @@
         "summary": "Create Graph",
         "description": "Creates a new graph.",
         "tags": [
-          "subpackage_graph"
+          "graph"
         ],
         "responses": {
           "201": {
@@ -1865,7 +1865,7 @@
         "summary": "List all graphs.",
         "description": "Returns all graphs. In order to list users, use user.list_ordered instead",
         "tags": [
-          "subpackage_graph"
+          "graph"
         ],
         "parameters": [
           {
@@ -1954,7 +1954,7 @@
         "summary": "Detect Patterns (Experimental)",
         "description": "Detects structural patterns in a knowledge graph including relationship frequencies,\nmulti-hop paths, co-occurrences, hubs, and clusters.\nWhen a query is provided, uses hybrid search to discover seed nodes,\ndetects triple-frequency patterns, and returns resolved edges ranked by relevance.",
         "tags": [
-          "subpackage_graph"
+          "graph"
         ],
         "responses": {
           "200": {
@@ -2026,7 +2026,7 @@
         "summary": "Search Graph",
         "description": "Perform a graph search query.",
         "tags": [
-          "subpackage_search"
+          "search"
         ],
         "responses": {
           "200": {
@@ -2078,7 +2078,7 @@
         "summary": "Get Graph",
         "description": "Returns a graph.",
         "tags": [
-          "subpackage_graph"
+          "graph"
         ],
         "parameters": [
           {
@@ -2129,7 +2129,7 @@
         "summary": "Delete Graph",
         "description": "Deletes a graph. If you would like to delete a user graph, make sure to use user.delete instead.",
         "tags": [
-          "subpackage_graph"
+          "graph"
         ],
         "parameters": [
           {
@@ -2190,7 +2190,7 @@
         "summary": "Update Graph.",
         "description": "Updates information about a graph.",
         "tags": [
-          "subpackage_graph"
+          "graph"
         ],
         "parameters": [
           {
@@ -2263,7 +2263,7 @@
         "summary": "Warm Graph Cache",
         "description": "Hints Zep to warm a graph for low-latency search",
         "tags": [
-          "subpackage_graph"
+          "graph"
         ],
         "parameters": [
           {
@@ -2316,7 +2316,7 @@
         "summary": "Get Graph Edges",
         "description": "Returns all edges for a graph.",
         "tags": [
-          "subpackage_entity"
+          "entity"
         ],
         "parameters": [
           {
@@ -2382,7 +2382,7 @@
         "summary": "Get User Edges",
         "description": "Returns all edges for a user.",
         "tags": [
-          "subpackage_entity"
+          "entity"
         ],
         "parameters": [
           {
@@ -2448,7 +2448,7 @@
         "summary": "Get Edge",
         "description": "Returns a specific edge by its UUID.",
         "tags": [
-          "subpackage_entity"
+          "entity"
         ],
         "parameters": [
           {
@@ -2509,7 +2509,7 @@
         "summary": "Update Edge",
         "description": "Updates an entity edge by UUID.",
         "tags": [
-          "subpackage_graph"
+          "graph"
         ],
         "parameters": [
           {
@@ -2580,7 +2580,7 @@
         "summary": "Delete Edge",
         "description": "Deletes an edge by UUID.",
         "tags": [
-          "subpackage_entity"
+          "entity"
         ],
         "parameters": [
           {
@@ -2643,7 +2643,7 @@
         "summary": "Get Graph Episodes",
         "description": "Returns episodes by graph id.",
         "tags": [
-          "subpackage_episodes"
+          "episodes"
         ],
         "parameters": [
           {
@@ -2705,7 +2705,7 @@
         "summary": "Get User Episodes",
         "description": "Returns episodes by user id.",
         "tags": [
-          "subpackage_episodes"
+          "episodes"
         ],
         "parameters": [
           {
@@ -2767,7 +2767,7 @@
         "summary": "Get Episode",
         "description": "Returns episodes by UUID",
         "tags": [
-          "subpackage_episodes"
+          "episodes"
         ],
         "parameters": [
           {
@@ -2818,7 +2818,7 @@
         "summary": "Update Episode Metadata",
         "description": "Update episode metadata with merge semantics. Supplied keys overwrite or add to existing metadata; keys set to null are removed.",
         "tags": [
-          "subpackage_episodes"
+          "episodes"
         ],
         "parameters": [
           {
@@ -2899,7 +2899,7 @@
         "summary": "Delete Episode",
         "description": "Deletes an episode by its UUID.",
         "tags": [
-          "subpackage_entity"
+          "entity"
         ],
         "parameters": [
           {
@@ -2962,7 +2962,7 @@
         "summary": "Return any nodes and edges mentioned in an episode",
         "description": "Returns nodes and edges mentioned in an episode",
         "tags": [
-          "subpackage_episodes"
+          "episodes"
         ],
         "parameters": [
           {
@@ -3015,7 +3015,7 @@
         "summary": "Get Graph Nodes",
         "description": "Returns all nodes for a graph.",
         "tags": [
-          "subpackage_entity"
+          "entity"
         ],
         "parameters": [
           {
@@ -3081,7 +3081,7 @@
         "summary": "Get User Nodes",
         "description": "Returns all nodes for a user",
         "tags": [
-          "subpackage_entity"
+          "entity"
         ],
         "parameters": [
           {
@@ -3147,7 +3147,7 @@
         "summary": "Get Entity Edges for a node",
         "description": "Returns all edges for a node",
         "tags": [
-          "subpackage_entity"
+          "entity"
         ],
         "parameters": [
           {
@@ -3203,7 +3203,7 @@
         "summary": "Get Episodes for a node",
         "description": "Returns all episodes that mentioned a given node",
         "tags": [
-          "subpackage_entity"
+          "entity"
         ],
         "parameters": [
           {
@@ -3256,7 +3256,7 @@
         "summary": "Get Node",
         "description": "Returns a specific node by its UUID.",
         "tags": [
-          "subpackage_entity"
+          "entity"
         ],
         "parameters": [
           {
@@ -3317,7 +3317,7 @@
         "summary": "Update Node",
         "description": "Updates an entity node by UUID.",
         "tags": [
-          "subpackage_graph"
+          "graph"
         ],
         "parameters": [
           {
@@ -3388,7 +3388,7 @@
         "summary": "Delete Node",
         "description": "Deletes a node by UUID.",
         "tags": [
-          "subpackage_entity"
+          "entity"
         ],
         "parameters": [
           {
@@ -3451,7 +3451,7 @@
         "summary": "List Custom Instructions",
         "description": "Lists all custom instructions for a project, user, or graph.",
         "tags": [
-          "subpackage_graph"
+          "graph"
         ],
         "parameters": [
           {
@@ -3521,7 +3521,7 @@
         "summary": "Add Custom Instructions",
         "description": "Adds new custom instructions for graphs without removing existing ones. If user_ids or graph_ids is empty, adds to project-wide default instructions.",
         "tags": [
-          "subpackage_graph"
+          "graph"
         ],
         "responses": {
           "200": {
@@ -3581,7 +3581,7 @@
         "summary": "Delete Custom Instructions",
         "description": "Deletes custom instructions for graphs or project wide defaults.",
         "tags": [
-          "subpackage_graph"
+          "graph"
         ],
         "responses": {
           "200": {
@@ -3643,7 +3643,7 @@
         "summary": "Get Graph Observations",
         "description": "Returns read-only observation nodes for a graph.",
         "tags": [
-          "subpackage_observation"
+          "observation"
         ],
         "parameters": [
           {
@@ -3719,7 +3719,7 @@
         "summary": "Get User Observations",
         "description": "Returns read-only observation nodes for a user's graph.",
         "tags": [
-          "subpackage_observation"
+          "observation"
         ],
         "parameters": [
           {
@@ -3795,7 +3795,7 @@
         "summary": "Get Observation",
         "description": "Returns a specific observation node by UUID. Observation nodes are read-only.",
         "tags": [
-          "subpackage_observation"
+          "observation"
         ],
         "parameters": [
           {
@@ -3858,7 +3858,7 @@
         "summary": "Get Graph Thread Summaries",
         "description": "Returns incremental thread summaries associated with the graph.",
         "tags": [
-          "subpackage_threadSummary"
+          "thread-summary"
         ],
         "parameters": [
           {
@@ -3934,7 +3934,7 @@
         "summary": "Get User Thread Summaries",
         "description": "Returns incremental thread summaries generated from messages in each thread associated with the user's graph.",
         "tags": [
-          "subpackage_threadSummary"
+          "thread-summary"
         ],
         "parameters": [
           {
@@ -4010,7 +4010,7 @@
         "summary": "Retrieves project information",
         "description": "Retrieve project info based on the provided api key.",
         "tags": [
-          "subpackage_project"
+          "project"
         ],
         "responses": {
           "200": {
@@ -4062,7 +4062,7 @@
         "summary": "Get Task",
         "description": "Gets a task by its ID",
         "tags": [
-          "subpackage_task"
+          "task"
         ],
         "parameters": [
           {
@@ -4115,7 +4115,7 @@
         "summary": "Create Batch",
         "description": "Create a draft batch that can be filled with graph episodes and thread messages.",
         "tags": [
-          "subpackage_batch"
+          "batch"
         ],
         "responses": {
           "200": {
@@ -4175,7 +4175,7 @@
         "summary": "List Batches",
         "description": "List batches for the current project, optionally filtered by batch status.",
         "tags": [
-          "subpackage_batch"
+          "batch"
         ],
         "parameters": [
           {
@@ -4256,7 +4256,7 @@
         "summary": "Add Batch Items",
         "description": "Add graph episodes and thread messages to a draft batch. Items are appended in request order.",
         "tags": [
-          "subpackage_batch"
+          "batch"
         ],
         "parameters": [
           {
@@ -4350,7 +4350,7 @@
         "summary": "List Batch Items",
         "description": "List items in a batch, including derived runtime status when the batch has been processed.",
         "tags": [
-          "subpackage_batch"
+          "batch"
         ],
         "parameters": [
           {
@@ -4450,7 +4450,7 @@
         "summary": "Process Batch",
         "description": "Start processing a filled batch. Repeated calls return the existing batch run.",
         "tags": [
-          "subpackage_batch"
+          "batch"
         ],
         "parameters": [
           {
@@ -4533,7 +4533,7 @@
         "summary": "Get Batch",
         "description": "Get a batch summary, including runtime progress when the batch has been processed.",
         "tags": [
-          "subpackage_batch"
+          "batch"
         ],
         "parameters": [
           {
@@ -4604,7 +4604,7 @@
         "summary": "Delete Batch",
         "description": "Delete a draft or invalid unprocessed batch. Processed batches cannot be deleted.",
         "tags": [
-          "subpackage_batch"
+          "batch"
         ],
         "parameters": [
           {
