@@ -6,7 +6,7 @@ namespace Zep
     {
         /// <summary>
         /// Process Batch<br/>
-        /// Start processing a filled batch. Repeated calls return the existing batch run.
+        /// Start processing a filled batch. Repeated calls return a conflict.
         /// </summary>
         /// <param name="batchId"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
@@ -18,7 +18,7 @@ namespace Zep
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Process Batch<br/>
-        /// Start processing a filled batch. Repeated calls return the existing batch run.
+        /// Start processing a filled batch. Repeated calls return a conflict.
         /// </summary>
         /// <param name="batchId"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
