@@ -4448,7 +4448,7 @@
       "post": {
         "operationId": "process-batch",
         "summary": "Process Batch",
-        "description": "Start processing a filled batch. Repeated calls return the existing batch run.",
+        "description": "Start processing a filled batch. Repeated calls return a conflict.",
         "tags": [
           "batch"
         ],
