@@ -6605,13 +6605,29 @@
       "ApidataGraphEdgesRequest": {
         "type": "object",
         "properties": {
+          "cursor": {
+            "type": "string",
+            "description": "Opaque cursor for pagination, obtained from the Zep-Next-Cursor response header\nof the previous page. Encodes the sort field, direction, and continuation position."
+          },
+          "direction": {
+            "type": "string",
+            "description": "Sort direction. One of \"asc\" or \"desc\" (default \"desc\")."
+          },
+          "filters": {
+            "$ref": "#/components/schemas/GraphitiSearchFilters",
+            "description": "Optional filters applied to the listed artifacts. Reuses the graph.search filter type."
+          },
           "limit": {
             "type": "integer",
             "description": "Maximum number of items to return"
           },
+          "order_by": {
+            "type": "string",
+            "description": "Field to sort by. One of \"created_at\" or \"uuid\" (default \"uuid\")."
+          },
           "uuid_cursor": {
             "type": "string",
-            "description": "UUID based cursor, used for pagination. Should be the UUID of the last item in the previous page"
+            "description": "UUID based cursor, used for pagination. Should be the UUID of the last item in the previous page.\n\nDeprecated: prefer Cursor, the opaque cursor returned via the Zep-Next-Cursor response header."
           }
         },
         "title": "ApidataGraphEdgesRequest"
@@ -6698,13 +6714,29 @@
       "ApidataGraphNodesRequest": {
         "type": "object",
         "properties": {
+          "cursor": {
+            "type": "string",
+            "description": "Opaque cursor for pagination, obtained from the Zep-Next-Cursor response header\nof the previous page. Encodes the sort field, direction, and continuation position."
+          },
+          "direction": {
+            "type": "string",
+            "description": "Sort direction. One of \"asc\" or \"desc\" (default \"desc\")."
+          },
+          "filters": {
+            "$ref": "#/components/schemas/GraphitiSearchFilters",
+            "description": "Optional filters applied to the listed artifacts. Reuses the graph.search filter type."
+          },
           "limit": {
             "type": "integer",
             "description": "Maximum number of items to return"
           },
+          "order_by": {
+            "type": "string",
+            "description": "Field to sort by. One of \"created_at\" or \"uuid\" (default \"uuid\")."
+          },
           "uuid_cursor": {
             "type": "string",
-            "description": "UUID based cursor, used for pagination. Should be the UUID of the last item in the previous page"
+            "description": "UUID based cursor, used for pagination. Should be the UUID of the last item in the previous page.\n\nDeprecated: prefer Cursor, the opaque cursor returned via the Zep-Next-Cursor response header."
           }
         },
         "title": "ApidataGraphNodesRequest"
@@ -6825,13 +6857,29 @@
       "ApidataGraphObservationsRequest": {
         "type": "object",
         "properties": {
+          "cursor": {
+            "type": "string",
+            "description": "Opaque cursor for pagination, obtained from the Zep-Next-Cursor response header\nof the previous page. Encodes the sort field, direction, and continuation position."
+          },
+          "direction": {
+            "type": "string",
+            "description": "Sort direction. One of \"asc\" or \"desc\" (default \"desc\")."
+          },
+          "filters": {
+            "$ref": "#/components/schemas/GraphitiSearchFilters",
+            "description": "Optional filters applied to the listed artifacts. Reuses the graph.search filter type."
+          },
           "limit": {
             "type": "integer",
             "description": "Maximum number of items to return"
           },
+          "order_by": {
+            "type": "string",
+            "description": "Field to sort by. One of \"created_at\" or \"uuid\" (default \"uuid\")."
+          },
           "uuid_cursor": {
             "type": "string",
-            "description": "UUID based cursor, used for pagination. Should be the UUID of the last item in the previous page"
+            "description": "UUID based cursor, used for pagination. Should be the UUID of the last item in the previous page.\n\nDeprecated: prefer Cursor, the opaque cursor returned via the Zep-Next-Cursor response header."
           }
         },
         "title": "ApidataGraphObservationsRequest"
@@ -6839,13 +6887,29 @@
       "ApidataGraphThreadSummariesRequest": {
         "type": "object",
         "properties": {
+          "cursor": {
+            "type": "string",
+            "description": "Opaque cursor for pagination, obtained from the Zep-Next-Cursor response header\nof the previous page. Encodes the sort field, direction, and continuation position."
+          },
+          "direction": {
+            "type": "string",
+            "description": "Sort direction. One of \"asc\" or \"desc\" (default \"desc\")."
+          },
+          "filters": {
+            "$ref": "#/components/schemas/GraphitiSearchFilters",
+            "description": "Optional filters applied to the listed artifacts. Reuses the graph.search filter type."
+          },
           "limit": {
             "type": "integer",
             "description": "Maximum number of items to return"
           },
+          "order_by": {
+            "type": "string",
+            "description": "Field to sort by. One of \"created_at\" or \"uuid\" (default \"uuid\")."
+          },
           "uuid_cursor": {
             "type": "string",
-            "description": "UUID based cursor, used for pagination. Should be the UUID of the last item in the previous page"
+            "description": "UUID based cursor, used for pagination. Should be the UUID of the last item in the previous page.\n\nDeprecated: prefer Cursor, the opaque cursor returned via the Zep-Next-Cursor response header."
           }
         },
         "title": "ApidataGraphThreadSummariesRequest"
