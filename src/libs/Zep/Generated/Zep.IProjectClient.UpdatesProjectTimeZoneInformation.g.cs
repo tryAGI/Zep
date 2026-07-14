@@ -2,70 +2,46 @@
 
 namespace Zep
 {
-    public partial interface IUserClient
+    public partial interface IProjectClient
     {
         /// <summary>
-        /// Add User<br/>
-        /// Adds a user.
+        /// Updates project time-zone information<br/>
+        /// Sets or clears the project-level fallback time zone for the API key's project.
         /// </summary>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Zep.ApiException"></exception>
-        global::System.Threading.Tasks.Task<global::Zep.ApidataUser> AddAsync(
+        global::System.Threading.Tasks.Task<global::Zep.ApidataProjectInfoResponse> UpdatesProjectTimeZoneInformationAsync(
 
-            global::Zep.ApidataCreateUserRequest request,
+            global::Zep.ApidataUpdateProjectInfoRequest request,
             global::Zep.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Add User<br/>
-        /// Adds a user.
+        /// Updates project time-zone information<br/>
+        /// Sets or clears the project-level fallback time zone for the API key's project.
         /// </summary>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Zep.ApiException"></exception>
-        global::System.Threading.Tasks.Task<global::Zep.AutoSDKHttpResponse<global::Zep.ApidataUser>> AddAsResponseAsync(
+        global::System.Threading.Tasks.Task<global::Zep.AutoSDKHttpResponse<global::Zep.ApidataProjectInfoResponse>> UpdatesProjectTimeZoneInformationAsResponseAsync(
 
-            global::Zep.ApidataCreateUserRequest request,
+            global::Zep.ApidataUpdateProjectInfoRequest request,
             global::Zep.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Add User<br/>
-        /// Adds a user.
+        /// Updates project time-zone information<br/>
+        /// Sets or clears the project-level fallback time zone for the API key's project.
         /// </summary>
-        /// <param name="disableDefaultOntology">
-        /// When true, disables the use of default/fallback ontology for the user's graph.
-        /// </param>
-        /// <param name="email">
-        /// The email address of the user.
-        /// </param>
-        /// <param name="firstName">
-        /// The first name of the user.
-        /// </param>
-        /// <param name="lastName">
-        /// The last name of the user.
-        /// </param>
-        /// <param name="metadata">
-        /// The metadata associated with the user.
-        /// </param>
-        /// <param name="timeZone">
-        /// The user's IANA time zone. Null or omission leaves it unset at creation.
-        /// </param>
-        /// <param name="userId">
-        /// The unique identifier of the user.
+        /// <param name="defaultTimeZone">
+        /// The project's IANA fallback time zone. Null clears the existing value.
         /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
-        global::System.Threading.Tasks.Task<global::Zep.ApidataUser> AddAsync(
-            string userId,
-            bool? disableDefaultOntology = default,
-            string? email = default,
-            string? firstName = default,
-            string? lastName = default,
-            object? metadata = default,
-            string? timeZone = default,
+        global::System.Threading.Tasks.Task<global::Zep.ApidataProjectInfoResponse> UpdatesProjectTimeZoneInformationAsync(
+            string? defaultTimeZone = default,
             global::Zep.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
     }

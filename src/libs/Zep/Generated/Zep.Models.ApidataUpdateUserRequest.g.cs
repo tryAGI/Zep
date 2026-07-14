@@ -39,6 +39,12 @@ namespace Zep
         public object? Metadata { get; set; }
 
         /// <summary>
+        /// The user's IANA time zone. Null clears the existing value.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("time_zone")]
+        public string? TimeZone { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -62,6 +68,9 @@ namespace Zep
         /// <param name="metadata">
         /// The metadata to update
         /// </param>
+        /// <param name="timeZone">
+        /// The user's IANA time zone. Null clears the existing value.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -70,13 +79,15 @@ namespace Zep
             string? email,
             string? firstName,
             string? lastName,
-            object? metadata)
+            object? metadata,
+            string? timeZone)
         {
             this.DisableDefaultOntology = disableDefaultOntology;
             this.Email = email;
             this.FirstName = firstName;
             this.LastName = lastName;
             this.Metadata = metadata;
+            this.TimeZone = timeZone;
         }
 
         /// <summary>

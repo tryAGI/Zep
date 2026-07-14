@@ -28,6 +28,12 @@ namespace Zep
         public string? Name { get; set; }
 
         /// <summary>
+        /// The graph's IANA time zone. Stored on its group-backed subject.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("time_zone")]
+        public string? TimeZone { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -39,17 +45,22 @@ namespace Zep
         /// <param name="graphId"></param>
         /// <param name="description"></param>
         /// <param name="name"></param>
+        /// <param name="timeZone">
+        /// The graph's IANA time zone. Stored on its group-backed subject.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
         public ApidataCreateGraphRequest(
             string graphId,
             string? description,
-            string? name)
+            string? name,
+            string? timeZone)
         {
             this.Description = description;
             this.GraphId = graphId ?? throw new global::System.ArgumentNullException(nameof(graphId));
             this.Name = name;
+            this.TimeZone = timeZone;
         }
 
         /// <summary>

@@ -526,6 +526,9 @@ namespace Zep
         /// <param name="metadata">
         /// The metadata associated with the user.
         /// </param>
+        /// <param name="timeZone">
+        /// The user's IANA time zone. Null or omission leaves it unset at creation.
+        /// </param>
         /// <param name="userId">
         /// The unique identifier of the user.
         /// </param>
@@ -539,6 +542,7 @@ namespace Zep
             string? firstName = default,
             string? lastName = default,
             object? metadata = default,
+            string? timeZone = default,
             global::Zep.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -549,6 +553,7 @@ namespace Zep
                 FirstName = firstName,
                 LastName = lastName,
                 Metadata = metadata,
+                TimeZone = timeZone,
                 UserId = userId,
             };
 

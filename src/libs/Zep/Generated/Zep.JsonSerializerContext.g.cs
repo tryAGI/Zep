@@ -180,6 +180,7 @@ namespace Zep
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataGraphThreadSummariesRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataProjectInfo))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataProjectInfoResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataUpdateProjectInfoRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataTaskErrorResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataTaskProgress))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataGetTaskResponse))]
