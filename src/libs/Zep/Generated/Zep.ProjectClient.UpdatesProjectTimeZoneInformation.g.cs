@@ -3,11 +3,11 @@
 
 namespace Zep
 {
-    public partial class UserClient
+    public partial class ProjectClient
     {
 
 
-        private static readonly global::Zep.EndPointSecurityRequirement s_UpdateSecurityRequirement0 =
+        private static readonly global::Zep.EndPointSecurityRequirement s_UpdatesProjectTimeZoneInformationSecurityRequirement0 =
             new global::Zep.EndPointSecurityRequirement
             {
                 Authorizations = new global::Zep.EndPointAuthorizationRequirement[]
@@ -21,46 +21,41 @@ namespace Zep
                     },
                 },
             };
-        private static readonly global::Zep.EndPointSecurityRequirement[] s_UpdateSecurityRequirements =
+        private static readonly global::Zep.EndPointSecurityRequirement[] s_UpdatesProjectTimeZoneInformationSecurityRequirements =
             new global::Zep.EndPointSecurityRequirement[]
-            {                s_UpdateSecurityRequirement0,
+            {                s_UpdatesProjectTimeZoneInformationSecurityRequirement0,
             };
-        partial void PrepareUpdateArguments(
+        partial void PrepareUpdatesProjectTimeZoneInformationArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string userId,
-            global::Zep.ApidataUpdateUserRequest request);
-        partial void PrepareUpdateRequest(
+            global::Zep.ApidataUpdateProjectInfoRequest request);
+        partial void PrepareUpdatesProjectTimeZoneInformationRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string userId,
-            global::Zep.ApidataUpdateUserRequest request);
-        partial void ProcessUpdateResponse(
+            global::Zep.ApidataUpdateProjectInfoRequest request);
+        partial void ProcessUpdatesProjectTimeZoneInformationResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
-        partial void ProcessUpdateResponseContent(
+        partial void ProcessUpdatesProjectTimeZoneInformationResponseContent(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage,
             ref string content);
 
         /// <summary>
-        /// Update User<br/>
-        /// Updates a user.
+        /// Updates project time-zone information<br/>
+        /// Sets or clears the project-level fallback time zone for the API key's project.
         /// </summary>
-        /// <param name="userId"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Zep.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Zep.ApidataUser> UpdateAsync(
-            string userId,
+        public async global::System.Threading.Tasks.Task<global::Zep.ApidataProjectInfoResponse> UpdatesProjectTimeZoneInformationAsync(
 
-            global::Zep.ApidataUpdateUserRequest request,
+            global::Zep.ApidataUpdateProjectInfoRequest request,
             global::Zep.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __response = await UpdateAsResponseAsync(
-                userId: userId,
+            var __response = await UpdatesProjectTimeZoneInformationAsResponseAsync(
 
                 request: request,
                 requestOptions: requestOptions,
@@ -70,18 +65,16 @@ namespace Zep
             return __response.Body;
         }
         /// <summary>
-        /// Update User<br/>
-        /// Updates a user.
+        /// Updates project time-zone information<br/>
+        /// Sets or clears the project-level fallback time zone for the API key's project.
         /// </summary>
-        /// <param name="userId"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Zep.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Zep.AutoSDKHttpResponse<global::Zep.ApidataUser>> UpdateAsResponseAsync(
-            string userId,
+        public async global::System.Threading.Tasks.Task<global::Zep.AutoSDKHttpResponse<global::Zep.ApidataProjectInfoResponse>> UpdatesProjectTimeZoneInformationAsResponseAsync(
 
-            global::Zep.ApidataUpdateUserRequest request,
+            global::Zep.ApidataUpdateProjectInfoRequest request,
             global::Zep.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -89,16 +82,15 @@ namespace Zep
 
             PrepareArguments(
                 client: HttpClient);
-            PrepareUpdateArguments(
+            PrepareUpdatesProjectTimeZoneInformationArguments(
                 httpClient: HttpClient,
-                userId: ref userId,
                 request: request);
 
 
             var __authorizations = global::Zep.EndPointSecurityResolver.ResolveAuthorizations(
                 availableAuthorizations: Authorizations,
-                securityRequirements: s_UpdateSecurityRequirements,
-                operationName: "UpdateAsync");
+                securityRequirements: s_UpdatesProjectTimeZoneInformationSecurityRequirements,
+                operationName: "UpdatesProjectTimeZoneInformationAsync");
 
             using var __timeoutCancellationTokenSource = global::Zep.AutoSDKRequestOptionsSupport.CreateTimeoutCancellationTokenSource(
                 clientOptions: Options,
@@ -118,7 +110,7 @@ namespace Zep
             {
 
                             var __pathBuilder = new global::Zep.PathBuilder(
-                                path: $"/users/{userId}",
+                                path: "/projects/info",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Zep.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -163,10 +155,9 @@ namespace Zep
                 PrepareRequest(
                     client: HttpClient,
                     request: __httpRequest);
-                PrepareUpdateRequest(
+                PrepareUpdatesProjectTimeZoneInformationRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    userId: userId!,
                     request: request);
 
                 return __httpRequest;
@@ -184,9 +175,9 @@ namespace Zep
                     await global::Zep.AutoSDKRequestOptionsSupport.OnBeforeRequestAsync(
                             clientOptions: Options,
                             context: global::Zep.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "Update",
-                                methodName: "UpdateAsync",
-                                pathTemplate: "$\"/users/{userId}\"",
+                                operationId: "UpdatesProjectTimeZoneInformation",
+                                methodName: "UpdatesProjectTimeZoneInformationAsync",
+                                pathTemplate: "\"/projects/info\"",
                                 httpMethod: "PATCH",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -218,9 +209,9 @@ namespace Zep
                         await global::Zep.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Zep.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "Update",
-                                methodName: "UpdateAsync",
-                                pathTemplate: "$\"/users/{userId}\"",
+                                operationId: "UpdatesProjectTimeZoneInformation",
+                                methodName: "UpdatesProjectTimeZoneInformationAsync",
+                                pathTemplate: "\"/projects/info\"",
                                 httpMethod: "PATCH",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -259,9 +250,9 @@ namespace Zep
                         await global::Zep.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Zep.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "Update",
-                                methodName: "UpdateAsync",
-                                pathTemplate: "$\"/users/{userId}\"",
+                                operationId: "UpdatesProjectTimeZoneInformation",
+                                methodName: "UpdatesProjectTimeZoneInformationAsync",
+                                pathTemplate: "\"/projects/info\"",
                                 httpMethod: "PATCH",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -299,7 +290,7 @@ namespace Zep
                 ProcessResponse(
                     client: HttpClient,
                     response: __response);
-                ProcessUpdateResponse(
+                ProcessUpdatesProjectTimeZoneInformationResponse(
                     httpClient: HttpClient,
                     httpResponseMessage: __response);
                 if (__response.IsSuccessStatusCode)
@@ -307,9 +298,9 @@ namespace Zep
                     await global::Zep.AutoSDKRequestOptionsSupport.OnAfterSuccessAsync(
                             clientOptions: Options,
                             context: global::Zep.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "Update",
-                                methodName: "UpdateAsync",
-                                pathTemplate: "$\"/users/{userId}\"",
+                                operationId: "UpdatesProjectTimeZoneInformation",
+                                methodName: "UpdatesProjectTimeZoneInformationAsync",
+                                pathTemplate: "\"/projects/info\"",
                                 httpMethod: "PATCH",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -329,9 +320,9 @@ namespace Zep
                     await global::Zep.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Zep.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "Update",
-                                methodName: "UpdateAsync",
-                                pathTemplate: "$\"/users/{userId}\"",
+                                operationId: "UpdatesProjectTimeZoneInformation",
+                                methodName: "UpdatesProjectTimeZoneInformationAsync",
+                                pathTemplate: "\"/projects/info\"",
                                 httpMethod: "PATCH",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -470,7 +461,7 @@ namespace Zep
                                     client: HttpClient,
                                     response: __response,
                                     content: ref __content);
-                                ProcessUpdateResponseContent(
+                                ProcessUpdatesProjectTimeZoneInformationResponseContent(
                                     httpClient: HttpClient,
                                     httpResponseMessage: __response,
                                     content: ref __content);
@@ -479,9 +470,9 @@ namespace Zep
                                 {
                                     __response.EnsureSuccessStatusCode();
 
-                                    var __value = global::Zep.ApidataUser.FromJson(__content, JsonSerializerContext) ??
+                                    var __value = global::Zep.ApidataProjectInfoResponse.FromJson(__content, JsonSerializerContext) ??
                                         throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
-                                    return new global::Zep.AutoSDKHttpResponse<global::Zep.ApidataUser>(
+                                    return new global::Zep.AutoSDKHttpResponse<global::Zep.ApidataProjectInfoResponse>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Zep.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
@@ -511,9 +502,9 @@ namespace Zep
                 #endif
                                     ).ConfigureAwait(false);
 
-                                    var __value = await global::Zep.ApidataUser.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
+                                    var __value = await global::Zep.ApidataProjectInfoResponse.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
                                         throw new global::System.InvalidOperationException("Response deserialization failed.");
-                                    return new global::Zep.AutoSDKHttpResponse<global::Zep.ApidataUser>(
+                                    return new global::Zep.AutoSDKHttpResponse<global::Zep.ApidataProjectInfoResponse>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Zep.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
@@ -554,54 +545,26 @@ namespace Zep
             }
         }
         /// <summary>
-        /// Update User<br/>
-        /// Updates a user.
+        /// Updates project time-zone information<br/>
+        /// Sets or clears the project-level fallback time zone for the API key's project.
         /// </summary>
-        /// <param name="userId"></param>
-        /// <param name="disableDefaultOntology">
-        /// When true, disables the use of default/fallback ontology for the user's graph.
-        /// </param>
-        /// <param name="email">
-        /// The email address of the user.
-        /// </param>
-        /// <param name="firstName">
-        /// The first name of the user.
-        /// </param>
-        /// <param name="lastName">
-        /// The last name of the user.
-        /// </param>
-        /// <param name="metadata">
-        /// The metadata to update
-        /// </param>
-        /// <param name="timeZone">
-        /// The user's IANA time zone. Null clears the existing value.
+        /// <param name="defaultTimeZone">
+        /// The project's IANA fallback time zone. Null clears the existing value.
         /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Zep.ApidataUser> UpdateAsync(
-            string userId,
-            bool? disableDefaultOntology = default,
-            string? email = default,
-            string? firstName = default,
-            string? lastName = default,
-            object? metadata = default,
-            string? timeZone = default,
+        public async global::System.Threading.Tasks.Task<global::Zep.ApidataProjectInfoResponse> UpdatesProjectTimeZoneInformationAsync(
+            string? defaultTimeZone = default,
             global::Zep.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __request = new global::Zep.ApidataUpdateUserRequest
+            var __request = new global::Zep.ApidataUpdateProjectInfoRequest
             {
-                DisableDefaultOntology = disableDefaultOntology,
-                Email = email,
-                FirstName = firstName,
-                LastName = lastName,
-                Metadata = metadata,
-                TimeZone = timeZone,
+                DefaultTimeZone = defaultTimeZone,
             };
 
-            return await UpdateAsync(
-                userId: userId,
+            return await UpdatesProjectTimeZoneInformationAsync(
                 request: __request,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken).ConfigureAwait(false);

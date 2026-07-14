@@ -69,6 +69,12 @@ namespace Zep
         public int? SessionCount { get; set; }
 
         /// <summary>
+        /// 
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("time_zone")]
+        public string? TimeZone { get; set; }
+
+        /// <summary>
         /// Deprecated
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("updated_at")]
@@ -109,6 +115,7 @@ namespace Zep
         /// <param name="sessionCount">
         /// Deprecated
         /// </param>
+        /// <param name="timeZone"></param>
         /// <param name="updatedAt">
         /// Deprecated
         /// </param>
@@ -128,6 +135,7 @@ namespace Zep
             object? metadata,
             string? projectUuid,
             int? sessionCount,
+            string? timeZone,
             string? updatedAt,
             string? userId,
             string? uuid)
@@ -142,6 +150,7 @@ namespace Zep
             this.Metadata = metadata;
             this.ProjectUuid = projectUuid;
             this.SessionCount = sessionCount;
+            this.TimeZone = timeZone;
             this.UpdatedAt = updatedAt;
             this.UserId = userId;
             this.Uuid = uuid;

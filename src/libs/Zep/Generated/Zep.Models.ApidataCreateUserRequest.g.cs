@@ -39,6 +39,12 @@ namespace Zep
         public object? Metadata { get; set; }
 
         /// <summary>
+        /// The user's IANA time zone. Null or omission leaves it unset at creation.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("time_zone")]
+        public string? TimeZone { get; set; }
+
+        /// <summary>
         /// The unique identifier of the user.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("user_id")]
@@ -72,6 +78,9 @@ namespace Zep
         /// <param name="metadata">
         /// The metadata associated with the user.
         /// </param>
+        /// <param name="timeZone">
+        /// The user's IANA time zone. Null or omission leaves it unset at creation.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -81,13 +90,15 @@ namespace Zep
             string? email,
             string? firstName,
             string? lastName,
-            object? metadata)
+            object? metadata,
+            string? timeZone)
         {
             this.DisableDefaultOntology = disableDefaultOntology;
             this.Email = email;
             this.FirstName = firstName;
             this.LastName = lastName;
             this.Metadata = metadata;
+            this.TimeZone = timeZone;
             this.UserId = userId ?? throw new global::System.ArgumentNullException(nameof(userId));
         }
 

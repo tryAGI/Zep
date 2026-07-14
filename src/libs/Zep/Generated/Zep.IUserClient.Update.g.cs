@@ -54,6 +54,9 @@ namespace Zep
         /// <param name="metadata">
         /// The metadata to update
         /// </param>
+        /// <param name="timeZone">
+        /// The user's IANA time zone. Null clears the existing value.
+        /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
@@ -64,6 +67,7 @@ namespace Zep
             string? firstName = default,
             string? lastName = default,
             object? metadata = default,
+            string? timeZone = default,
             global::Zep.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
     }

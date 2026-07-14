@@ -47,6 +47,12 @@ namespace Zep
         /// <summary>
         /// 
         /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("time_zone")]
+        public string? TimeZone { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("uuid")]
         public string? Uuid { get; set; }
 
@@ -65,6 +71,7 @@ namespace Zep
         /// <param name="id"></param>
         /// <param name="name"></param>
         /// <param name="projectUuid"></param>
+        /// <param name="timeZone"></param>
         /// <param name="uuid"></param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
@@ -76,6 +83,7 @@ namespace Zep
             int? id,
             string? name,
             string? projectUuid,
+            string? timeZone,
             string? uuid)
         {
             this.CreatedAt = createdAt;
@@ -84,6 +92,7 @@ namespace Zep
             this.Id = id;
             this.Name = name;
             this.ProjectUuid = projectUuid;
+            this.TimeZone = timeZone;
             this.Uuid = uuid;
         }
 

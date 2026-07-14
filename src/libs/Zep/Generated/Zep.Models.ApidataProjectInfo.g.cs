@@ -17,6 +17,12 @@ namespace Zep
         /// <summary>
         /// 
         /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("default_time_zone")]
+        public string? DefaultTimeZone { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("description")]
         public string? Description { get; set; }
 
@@ -42,6 +48,7 @@ namespace Zep
         /// Initializes a new instance of the <see cref="ApidataProjectInfo" /> class.
         /// </summary>
         /// <param name="createdAt"></param>
+        /// <param name="defaultTimeZone"></param>
         /// <param name="description"></param>
         /// <param name="name"></param>
         /// <param name="uuid"></param>
@@ -50,11 +57,13 @@ namespace Zep
 #endif
         public ApidataProjectInfo(
             string? createdAt,
+            string? defaultTimeZone,
             string? description,
             string? name,
             string? uuid)
         {
             this.CreatedAt = createdAt;
+            this.DefaultTimeZone = defaultTimeZone;
             this.Description = description;
             this.Name = name;
             this.Uuid = uuid;

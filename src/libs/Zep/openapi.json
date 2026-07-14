@@ -4054,6 +4054,66 @@
             }
           }
         }
+      },
+      "patch": {
+        "operationId": "updates-project-time-zone-information",
+        "summary": "Updates project time-zone information",
+        "description": "Sets or clears the project-level fallback time zone for the API key's project.",
+        "tags": [
+          "project"
+        ],
+        "responses": {
+          "200": {
+            "description": "Updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataProjectInfoResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "Project time-zone update",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApidataUpdateProjectInfoRequest"
+              }
+            }
+          }
+        }
       }
     },
     "/tasks/{task_id}": {
@@ -4973,6 +5033,13 @@
             },
             "description": "The metadata associated with the user."
           },
+          "time_zone": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The user's IANA time zone. Null or omission leaves it unset at creation."
+          },
           "user_id": {
             "type": "string",
             "description": "The unique identifier of the user."
@@ -5020,6 +5087,12 @@
           "session_count": {
             "type": "integer",
             "description": "Deprecated"
+          },
+          "time_zone": {
+            "type": [
+              "string",
+              "null"
+            ]
           },
           "updated_at": {
             "type": "string",
@@ -5077,6 +5150,13 @@
               "description": "Any type"
             },
             "description": "The metadata to update"
+          },
+          "time_zone": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The user's IANA time zone. Null clears the existing value."
           }
         },
         "title": "ApidataUpdateUserRequest"
@@ -5827,6 +5907,13 @@
           },
           "name": {
             "type": "string"
+          },
+          "time_zone": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The graph's IANA time zone. Stored on its group-backed subject."
           }
         },
         "required": [
@@ -5854,6 +5941,12 @@
           },
           "project_uuid": {
             "type": "string"
+          },
+          "time_zone": {
+            "type": [
+              "string",
+              "null"
+            ]
           },
           "uuid": {
             "type": "string"
@@ -6598,6 +6691,13 @@
           },
           "name": {
             "type": "string"
+          },
+          "time_zone": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The graph's IANA time zone. Stored on its group-backed subject."
           }
         },
         "title": "ApidataUpdateGraphRequest"
@@ -6920,6 +7020,12 @@
           "created_at": {
             "type": "string"
           },
+          "default_time_zone": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
           "description": {
             "type": "string"
           },
@@ -6940,6 +7046,19 @@
           }
         },
         "title": "ApidataProjectInfoResponse"
+      },
+      "ApidataUpdateProjectInfoRequest": {
+        "type": "object",
+        "properties": {
+          "default_time_zone": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The project's IANA fallback time zone. Null clears the existing value."
+          }
+        },
+        "title": "ApidataUpdateProjectInfoRequest"
       },
       "ApidataTaskErrorResponse": {
         "type": "object",
