@@ -6,7 +6,7 @@ namespace Zep
     /// <summary>
     /// 
     /// </summary>
-    public sealed partial class ApidataEntityType
+    public sealed partial class ApidataObservationType
     {
         /// <summary>
         /// 
@@ -18,21 +18,9 @@ namespace Zep
         /// <summary>
         /// 
         /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("identity_properties")]
-        public global::System.Collections.Generic.IList<string>? IdentityProperties { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("name")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required string Name { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("properties")]
-        public global::System.Collections.Generic.IList<global::Zep.ApidataEntityProperty>? Properties { get; set; }
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema
@@ -41,31 +29,25 @@ namespace Zep
         public global::System.Collections.Generic.IDictionary<string, object> AdditionalProperties { get; set; } = new global::System.Collections.Generic.Dictionary<string, object>();
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ApidataEntityType" /> class.
+        /// Initializes a new instance of the <see cref="ApidataObservationType" /> class.
         /// </summary>
         /// <param name="description"></param>
         /// <param name="name"></param>
-        /// <param name="identityProperties"></param>
-        /// <param name="properties"></param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
-        public ApidataEntityType(
+        public ApidataObservationType(
             string description,
-            string name,
-            global::System.Collections.Generic.IList<string>? identityProperties,
-            global::System.Collections.Generic.IList<global::Zep.ApidataEntityProperty>? properties)
+            string name)
         {
             this.Description = description ?? throw new global::System.ArgumentNullException(nameof(description));
-            this.IdentityProperties = identityProperties;
             this.Name = name ?? throw new global::System.ArgumentNullException(nameof(name));
-            this.Properties = properties;
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ApidataEntityType" /> class.
+        /// Initializes a new instance of the <see cref="ApidataObservationType" /> class.
         /// </summary>
-        public ApidataEntityType()
+        public ApidataObservationType()
         {
         }
 

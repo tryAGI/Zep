@@ -40,6 +40,12 @@ namespace Zep
         public string? SourceDescription { get; set; }
 
         /// <summary>
+        /// When true, prevents extraction of generic Entity nodes that do not match the configured ontology.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("strict_ontology")]
+        public bool? StrictOntology { get; set; }
+
+        /// <summary>
         /// 
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("type")]
@@ -72,6 +78,9 @@ namespace Zep
         /// Optional metadata key-value pairs. Max 10 keys. Values must be strings, numbers, booleans, or arrays of scalars.
         /// </param>
         /// <param name="sourceDescription"></param>
+        /// <param name="strictOntology">
+        /// When true, prevents extraction of generic Entity nodes that do not match the configured ontology.
+        /// </param>
         /// <param name="userId">
         /// User ID is the ID of the user to which the data will be added. If not adding to a user graph, please use graph_id field instead.
         /// </param>
@@ -85,6 +94,7 @@ namespace Zep
             string? graphId,
             object? metadata,
             string? sourceDescription,
+            bool? strictOntology,
             string? userId)
         {
             this.CreatedAt = createdAt;
@@ -92,6 +102,7 @@ namespace Zep
             this.GraphId = graphId;
             this.Metadata = metadata;
             this.SourceDescription = sourceDescription;
+            this.StrictOntology = strictOntology;
             this.Type = type;
             this.UserId = userId;
         }

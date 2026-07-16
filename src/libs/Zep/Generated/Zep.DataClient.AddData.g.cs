@@ -520,6 +520,9 @@ namespace Zep
         /// Optional metadata key-value pairs. Max 10 keys. Values must be strings, numbers, booleans, or arrays of scalars.
         /// </param>
         /// <param name="sourceDescription"></param>
+        /// <param name="strictOntology">
+        /// When true, prevents extraction of generic Entity nodes that do not match the configured ontology.
+        /// </param>
         /// <param name="type"></param>
         /// <param name="userId">
         /// User ID is the ID of the user to which the data will be added. If not adding to a user graph, please use graph_id field instead.
@@ -534,6 +537,7 @@ namespace Zep
             string? graphId = default,
             object? metadata = default,
             string? sourceDescription = default,
+            bool? strictOntology = default,
             string? userId = default,
             global::Zep.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
@@ -545,6 +549,7 @@ namespace Zep
                 GraphId = graphId,
                 Metadata = metadata,
                 SourceDescription = sourceDescription,
+                StrictOntology = strictOntology,
                 Type = type,
                 UserId = userId,
             };

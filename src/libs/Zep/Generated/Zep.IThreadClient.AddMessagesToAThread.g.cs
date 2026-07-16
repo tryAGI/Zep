@@ -50,6 +50,9 @@ namespace Zep
         /// <param name="returnContext">
         /// Optionally return context block relevant to the most recent messages.
         /// </param>
+        /// <param name="strictOntology">
+        /// When true, prevents extraction of generic Entity nodes that do not match the configured ontology.
+        /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
@@ -58,6 +61,7 @@ namespace Zep
             global::System.Collections.Generic.IList<global::Zep.ApidataThreadMessage> messages,
             global::System.Collections.Generic.IList<global::Zep.ApidataRoleType>? ignoreRoles = default,
             bool? returnContext = default,
+            bool? strictOntology = default,
             global::Zep.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
     }

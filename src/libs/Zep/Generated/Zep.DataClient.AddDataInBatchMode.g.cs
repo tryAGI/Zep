@@ -518,6 +518,9 @@ namespace Zep
         /// <param name="graphId">
         /// graph_id is the ID of the graph to which the data will be added. If adding to the user graph, please use user_id field instead.
         /// </param>
+        /// <param name="strictOntology">
+        /// When true, prevents extraction of generic Entity nodes that do not match the configured ontology.
+        /// </param>
         /// <param name="userId">
         /// User ID is the ID of the user to which the data will be added. If not adding to a user graph, please use graph_id field instead.
         /// </param>
@@ -527,6 +530,7 @@ namespace Zep
         public async global::System.Threading.Tasks.Task<global::System.Collections.Generic.IList<global::Zep.ApidataGraphEpisode>> AddDataInBatchModeAsync(
             global::System.Collections.Generic.IList<global::Zep.ApidataEpisodeData> episodes,
             string? graphId = default,
+            bool? strictOntology = default,
             string? userId = default,
             global::Zep.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
@@ -535,6 +539,7 @@ namespace Zep
             {
                 Episodes = episodes,
                 GraphId = graphId,
+                StrictOntology = strictOntology,
                 UserId = userId,
             };
 

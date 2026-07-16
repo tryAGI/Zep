@@ -29,14 +29,14 @@ namespace Zep
             global::System.Net.Http.HttpClient httpClient,
             ref string threadId,
             ref int? limit,
-            ref long? cursor,
+            ref int? cursor,
             ref int? lastn);
         partial void PrepareGetMessagesOfAThreadRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
             string threadId,
             int? limit,
-            long? cursor,
+            int? cursor,
             int? lastn);
         partial void ProcessGetMessagesOfAThreadResponse(
             global::System.Net.Http.HttpClient httpClient,
@@ -61,7 +61,7 @@ namespace Zep
         public async global::System.Threading.Tasks.Task<global::Zep.ApidataThreadMessageListResponse> GetMessagesOfAThreadAsync(
             string threadId,
             int? limit = default,
-            long? cursor = default,
+            int? cursor = default,
             int? lastn = default,
             global::Zep.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
@@ -91,7 +91,7 @@ namespace Zep
         public async global::System.Threading.Tasks.Task<global::Zep.AutoSDKHttpResponse<global::Zep.ApidataThreadMessageListResponse>> GetMessagesOfAThreadAsResponseAsync(
             string threadId,
             int? limit = default,
-            long? cursor = default,
+            int? cursor = default,
             int? lastn = default,
             global::Zep.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)

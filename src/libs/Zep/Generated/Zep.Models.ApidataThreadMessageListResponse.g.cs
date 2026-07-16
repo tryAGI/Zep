@@ -39,6 +39,12 @@ namespace Zep
         public string? UserId { get; set; }
 
         /// <summary>
+        /// The opaque user identifier used by dashboard routes.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("user_uuid")]
+        public string? UserUuid { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -62,6 +68,9 @@ namespace Zep
         /// <param name="userId">
         /// The user ID associated with this thread.
         /// </param>
+        /// <param name="userUuid">
+        /// The opaque user identifier used by dashboard routes.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -70,13 +79,15 @@ namespace Zep
             int? rowCount,
             string? threadCreatedAt,
             int? totalCount,
-            string? userId)
+            string? userId,
+            string? userUuid)
         {
             this.Messages = messages;
             this.RowCount = rowCount;
             this.ThreadCreatedAt = threadCreatedAt;
             this.TotalCount = totalCount;
             this.UserId = userId;
+            this.UserUuid = userUuid;
         }
 
         /// <summary>

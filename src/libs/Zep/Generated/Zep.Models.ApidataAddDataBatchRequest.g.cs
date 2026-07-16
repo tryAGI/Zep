@@ -22,6 +22,12 @@ namespace Zep
         public string? GraphId { get; set; }
 
         /// <summary>
+        /// When true, prevents extraction of generic Entity nodes that do not match the configured ontology.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("strict_ontology")]
+        public bool? StrictOntology { get; set; }
+
+        /// <summary>
         /// User ID is the ID of the user to which the data will be added. If not adding to a user graph, please use graph_id field instead.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("user_id")]
@@ -40,6 +46,9 @@ namespace Zep
         /// <param name="graphId">
         /// graph_id is the ID of the graph to which the data will be added. If adding to the user graph, please use user_id field instead.
         /// </param>
+        /// <param name="strictOntology">
+        /// When true, prevents extraction of generic Entity nodes that do not match the configured ontology.
+        /// </param>
         /// <param name="userId">
         /// User ID is the ID of the user to which the data will be added. If not adding to a user graph, please use graph_id field instead.
         /// </param>
@@ -49,10 +58,12 @@ namespace Zep
         public ApidataAddDataBatchRequest(
             global::System.Collections.Generic.IList<global::Zep.ApidataEpisodeData> episodes,
             string? graphId,
+            bool? strictOntology,
             string? userId)
         {
             this.Episodes = episodes ?? throw new global::System.ArgumentNullException(nameof(episodes));
             this.GraphId = graphId;
+            this.StrictOntology = strictOntology;
             this.UserId = userId;
         }
 
