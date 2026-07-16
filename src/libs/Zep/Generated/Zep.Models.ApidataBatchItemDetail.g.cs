@@ -38,6 +38,12 @@ namespace Zep
         /// <summary>
         /// 
         /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("graph_uuid")]
+        public string? GraphUuid { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("item_id")]
         public string? ItemId { get; set; }
 
@@ -86,6 +92,12 @@ namespace Zep
         public string? UserId { get; set; }
 
         /// <summary>
+        /// 
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("user_uuid")]
+        public string? UserUuid { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -103,6 +115,7 @@ namespace Zep
         /// </param>
         /// <param name="error"></param>
         /// <param name="graphId"></param>
+        /// <param name="graphUuid"></param>
         /// <param name="itemId"></param>
         /// <param name="kind"></param>
         /// <param name="sequenceIndex"></param>
@@ -111,6 +124,7 @@ namespace Zep
         /// <param name="threadId"></param>
         /// <param name="updatedAt"></param>
         /// <param name="userId"></param>
+        /// <param name="userUuid"></param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -119,6 +133,7 @@ namespace Zep
             string? episodeUuid,
             object? error,
             string? graphId,
+            string? graphUuid,
             string? itemId,
             global::Zep.ModelsBatchItemKind? kind,
             int? sequenceIndex,
@@ -126,12 +141,14 @@ namespace Zep
             global::Zep.ModelsBatchItemStatus? status,
             string? threadId,
             string? updatedAt,
-            string? userId)
+            string? userId,
+            string? userUuid)
         {
             this.CreatedAt = createdAt;
             this.EpisodeUuid = episodeUuid;
             this.Error = error;
             this.GraphId = graphId;
+            this.GraphUuid = graphUuid;
             this.ItemId = itemId;
             this.Kind = kind;
             this.SequenceIndex = sequenceIndex;
@@ -140,6 +157,7 @@ namespace Zep
             this.ThreadId = threadId;
             this.UpdatedAt = updatedAt;
             this.UserId = userId;
+            this.UserUuid = userUuid;
         }
 
         /// <summary>

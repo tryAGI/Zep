@@ -283,8 +283,7 @@
             "description": "Cursor for pagination",
             "required": false,
             "schema": {
-              "type": "integer",
-              "format": "int64"
+              "type": "integer"
             }
           },
           {
@@ -3009,6 +3008,58 @@
         }
       }
     },
+    "/graph/nodes": {
+      "post": {
+        "operationId": "add-nodes",
+        "summary": "Add Nodes",
+        "description": "Add entity nodes to a user or graph directly, without episode ingestion. Up to 100 nodes per request.",
+        "tags": [
+          "entity"
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GraphitiAddNodesResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "Nodes to add",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GraphitiAddNodesRequest"
+              }
+            }
+          }
+        }
+      }
+    },
     "/graph/node/graph/{graph_id}": {
       "post": {
         "operationId": "get-graph-nodes",
@@ -4116,6 +4167,138 @@
         }
       }
     },
+    "/projects/observation-steering": {
+      "get": {
+        "operationId": "retrieves-observation-steering-configuration-experimental",
+        "summary": "Retrieves observation steering configuration (Experimental)",
+        "description": "Returns project steering or the effective user/graph steering with project fallback. This API is experimental and may change in future releases.",
+        "tags": [
+          "project"
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "description": "User ID for user-specific steering",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "graph_id",
+            "in": "query",
+            "description": "Graph ID for graph-specific steering",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataObservationSteeringConfig"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Not entitled",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "operationId": "replaces-observation-steering-configuration-experimental",
+        "summary": "Replaces observation steering configuration (Experimental)",
+        "description": "Replaces project, user, or graph steering. An empty configuration clears the project default or removes the user/graph override. Changes affect later materializer runs only. This API is experimental and may change in future releases.",
+        "tags": [
+          "project"
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "description": "User ID for user-specific steering",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "graph_id",
+            "in": "query",
+            "description": "Graph ID for graph-specific steering",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataObservationSteeringConfig"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "Observation steering configuration",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApidataObservationSteeringConfig"
+              }
+            }
+          }
+        }
+      }
+    },
     "/tasks/{task_id}": {
       "get": {
         "operationId": "get-task",
@@ -4765,6 +4948,9 @@
           "user_id": {
             "type": "string"
           },
+          "user_uuid": {
+            "type": "string"
+          },
           "uuid": {
             "type": "string"
           }
@@ -4913,6 +5099,10 @@
           "user_id": {
             "type": "string",
             "description": "The user ID associated with this thread."
+          },
+          "user_uuid": {
+            "type": "string",
+            "description": "The opaque user identifier used by dashboard routes."
           }
         },
         "title": "ApidataThreadMessageListResponse"
@@ -4937,6 +5127,10 @@
           "return_context": {
             "type": "boolean",
             "description": "Optionally return context block relevant to the most recent messages."
+          },
+          "strict_ontology": {
+            "type": "boolean",
+            "description": "When true, prevents extraction of generic Entity nodes that do not match the configured ontology."
           }
         },
         "required": [
@@ -5448,6 +5642,12 @@
           "description": {
             "type": "string"
           },
+          "identity_properties": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
           "name": {
             "type": "string"
           },
@@ -5514,6 +5714,10 @@
           },
           "source_description": {
             "type": "string"
+          },
+          "strict_ontology": {
+            "type": "boolean",
+            "description": "When true, prevents extraction of generic Entity nodes that do not match the configured ontology."
           },
           "type": {
             "$ref": "#/components/schemas/ModelsGraphDataType"
@@ -5635,6 +5839,10 @@
           "graph_id": {
             "type": "string",
             "description": "graph_id is the ID of the graph to which the data will be added. If adding to the user graph, please use user_id field instead."
+          },
+          "strict_ontology": {
+            "type": "boolean",
+            "description": "When true, prevents extraction of generic Entity nodes that do not match the configured ontology."
           },
           "user_id": {
             "type": "string",
@@ -6811,6 +7019,88 @@
         },
         "title": "ApidataEpisodeMentions"
       },
+      "GraphitiAddNodeItem": {
+        "type": "object",
+        "properties": {
+          "attributes": {
+            "type": "object",
+            "additionalProperties": {
+              "description": "Any type"
+            },
+            "description": "Additional attributes of the node. Values must be scalar types (string,\nnumber, boolean, or null). Nested objects and arrays are not allowed."
+          },
+          "created_at": {
+            "type": "string",
+            "description": "The node creation time. Defaults to the request time when absent."
+          },
+          "label": {
+            "type": "string",
+            "description": "The node's entity type. At most one; the base \"Entity\" label is added\nimplicitly by the graph layer on save and does not need to be supplied."
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": {
+              "description": "Any type"
+            },
+            "description": "Optional metadata attached to the node's shadow episode. Max 10 scalar\nkey-value pairs."
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the node. Used to derive the node's search embedding."
+          },
+          "summary": {
+            "type": "string",
+            "description": "A regional summary of the node."
+          },
+          "uuid": {
+            "type": "string",
+            "description": "Optional caller-supplied node UUID. When it matches an existing node the\nnode is upserted; when well-formed but unknown the node is created with\nthis UUID; when absent the server assigns one. This is the node's only\nidentity/dedup key -- there is no name-based resolution."
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "title": "GraphitiAddNodeItem"
+      },
+      "GraphitiAddNodesRequest": {
+        "type": "object",
+        "properties": {
+          "graph_id": {
+            "type": "string"
+          },
+          "nodes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GraphitiAddNodeItem"
+            },
+            "description": "The nodes to add. 1 to 100 items."
+          },
+          "user_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "nodes"
+        ],
+        "title": "GraphitiAddNodesRequest"
+      },
+      "GraphitiAddNodesResponse": {
+        "type": "object",
+        "properties": {
+          "nodes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GraphitiAddNodeItem"
+            },
+            "description": "The accepted nodes, each carrying its resolved (server-assigned or\ncaller-supplied) UUID, in request order."
+          },
+          "task_id": {
+            "type": "string",
+            "description": "Task ID of the async add-nodes task."
+          }
+        },
+        "title": "GraphitiAddNodesResponse"
+      },
       "ApidataGraphNodesRequest": {
         "type": "object",
         "properties": {
@@ -7059,6 +7349,40 @@
           }
         },
         "title": "ApidataUpdateProjectInfoRequest"
+      },
+      "ApidataObservationType": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "description",
+          "name"
+        ],
+        "title": "ApidataObservationType"
+      },
+      "ApidataObservationSteeringConfig": {
+        "type": "object",
+        "properties": {
+          "instruction": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "types": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApidataObservationType"
+            }
+          }
+        },
+        "title": "ApidataObservationSteeringConfig"
       },
       "ApidataTaskErrorResponse": {
         "type": "object",
@@ -7338,6 +7662,9 @@
           "graph_id": {
             "type": "string"
           },
+          "graph_uuid": {
+            "type": "string"
+          },
           "item_id": {
             "type": "string"
           },
@@ -7360,6 +7687,9 @@
             "type": "string"
           },
           "user_id": {
+            "type": "string"
+          },
+          "user_uuid": {
             "type": "string"
           }
         },

@@ -3,11 +3,11 @@
 
 namespace Zep
 {
-    public partial class ThreadClient
+    public partial class ProjectClient
     {
 
 
-        private static readonly global::Zep.EndPointSecurityRequirement s_AddMessagesToAThreadSecurityRequirement0 =
+        private static readonly global::Zep.EndPointSecurityRequirement s_ReplacesObservationSteeringConfigurationExperimentalSecurityRequirement0 =
             new global::Zep.EndPointSecurityRequirement
             {
                 Authorizations = new global::Zep.EndPointAuthorizationRequirement[]
@@ -21,48 +21,53 @@ namespace Zep
                     },
                 },
             };
-        private static readonly global::Zep.EndPointSecurityRequirement[] s_AddMessagesToAThreadSecurityRequirements =
+        private static readonly global::Zep.EndPointSecurityRequirement[] s_ReplacesObservationSteeringConfigurationExperimentalSecurityRequirements =
             new global::Zep.EndPointSecurityRequirement[]
-            {                s_AddMessagesToAThreadSecurityRequirement0,
+            {                s_ReplacesObservationSteeringConfigurationExperimentalSecurityRequirement0,
             };
-        partial void PrepareAddMessagesToAThreadArguments(
+        partial void PrepareReplacesObservationSteeringConfigurationExperimentalArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string threadId,
-            global::Zep.ApidataAddThreadMessagesRequest request);
-        partial void PrepareAddMessagesToAThreadRequest(
+            ref string? userId,
+            ref string? graphId,
+            global::Zep.ApidataObservationSteeringConfig request);
+        partial void PrepareReplacesObservationSteeringConfigurationExperimentalRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string threadId,
-            global::Zep.ApidataAddThreadMessagesRequest request);
-        partial void ProcessAddMessagesToAThreadResponse(
+            string? userId,
+            string? graphId,
+            global::Zep.ApidataObservationSteeringConfig request);
+        partial void ProcessReplacesObservationSteeringConfigurationExperimentalResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
-        partial void ProcessAddMessagesToAThreadResponseContent(
+        partial void ProcessReplacesObservationSteeringConfigurationExperimentalResponseContent(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage,
             ref string content);
 
         /// <summary>
-        /// Add messages to a thread<br/>
-        /// Add messages to a thread.
+        /// Replaces observation steering configuration (Experimental)<br/>
+        /// Replaces project, user, or graph steering. An empty configuration clears the project default or removes the user/graph override. Changes affect later materializer runs only. This API is experimental and may change in future releases.
         /// </summary>
-        /// <param name="threadId"></param>
+        /// <param name="userId"></param>
+        /// <param name="graphId"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Zep.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Zep.ApidataAddThreadMessagesResponse> AddMessagesToAThreadAsync(
-            string threadId,
+        public async global::System.Threading.Tasks.Task<global::Zep.ApidataObservationSteeringConfig> ReplacesObservationSteeringConfigurationExperimentalAsync(
 
-            global::Zep.ApidataAddThreadMessagesRequest request,
+            global::Zep.ApidataObservationSteeringConfig request,
+            string? userId = default,
+            string? graphId = default,
             global::Zep.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __response = await AddMessagesToAThreadAsResponseAsync(
-                threadId: threadId,
+            var __response = await ReplacesObservationSteeringConfigurationExperimentalAsResponseAsync(
 
                 request: request,
+                userId: userId,
+                graphId: graphId,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
@@ -70,18 +75,20 @@ namespace Zep
             return __response.Body;
         }
         /// <summary>
-        /// Add messages to a thread<br/>
-        /// Add messages to a thread.
+        /// Replaces observation steering configuration (Experimental)<br/>
+        /// Replaces project, user, or graph steering. An empty configuration clears the project default or removes the user/graph override. Changes affect later materializer runs only. This API is experimental and may change in future releases.
         /// </summary>
-        /// <param name="threadId"></param>
+        /// <param name="userId"></param>
+        /// <param name="graphId"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Zep.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Zep.AutoSDKHttpResponse<global::Zep.ApidataAddThreadMessagesResponse>> AddMessagesToAThreadAsResponseAsync(
-            string threadId,
+        public async global::System.Threading.Tasks.Task<global::Zep.AutoSDKHttpResponse<global::Zep.ApidataObservationSteeringConfig>> ReplacesObservationSteeringConfigurationExperimentalAsResponseAsync(
 
-            global::Zep.ApidataAddThreadMessagesRequest request,
+            global::Zep.ApidataObservationSteeringConfig request,
+            string? userId = default,
+            string? graphId = default,
             global::Zep.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -89,16 +96,17 @@ namespace Zep
 
             PrepareArguments(
                 client: HttpClient);
-            PrepareAddMessagesToAThreadArguments(
+            PrepareReplacesObservationSteeringConfigurationExperimentalArguments(
                 httpClient: HttpClient,
-                threadId: ref threadId,
+                userId: ref userId,
+                graphId: ref graphId,
                 request: request);
 
 
             var __authorizations = global::Zep.EndPointSecurityResolver.ResolveAuthorizations(
                 availableAuthorizations: Authorizations,
-                securityRequirements: s_AddMessagesToAThreadSecurityRequirements,
-                operationName: "AddMessagesToAThreadAsync");
+                securityRequirements: s_ReplacesObservationSteeringConfigurationExperimentalSecurityRequirements,
+                operationName: "ReplacesObservationSteeringConfigurationExperimentalAsync");
 
             using var __timeoutCancellationTokenSource = global::Zep.AutoSDKRequestOptionsSupport.CreateTimeoutCancellationTokenSource(
                 clientOptions: Options,
@@ -118,15 +126,19 @@ namespace Zep
             {
 
                             var __pathBuilder = new global::Zep.PathBuilder(
-                                path: $"/threads/{threadId}/messages",
+                                path: "/projects/observation-steering",
                                 baseUri: HttpClient.BaseAddress);
+                            __pathBuilder
+                                .AddOptionalParameter("user_id", userId)
+                                .AddOptionalParameter("graph_id", graphId)
+                                ;
                             var __path = __pathBuilder.ToString();
                 __path = global::Zep.AutoSDKRequestOptionsSupport.AppendQueryParameters(
                     path: __path,
                     clientParameters: Options.QueryParameters,
                     requestParameters: requestOptions?.QueryParameters);
                 var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
-                    method: global::System.Net.Http.HttpMethod.Post,
+                    method: global::System.Net.Http.HttpMethod.Put,
                     requestUri: new global::System.Uri(__path, global::System.UriKind.RelativeOrAbsolute));
 #if NET6_0_OR_GREATER
                 __httpRequest.Version = global::System.Net.HttpVersion.Version11;
@@ -163,10 +175,11 @@ namespace Zep
                 PrepareRequest(
                     client: HttpClient,
                     request: __httpRequest);
-                PrepareAddMessagesToAThreadRequest(
+                PrepareReplacesObservationSteeringConfigurationExperimentalRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    threadId: threadId!,
+                    userId: userId,
+                    graphId: graphId,
                     request: request);
 
                 return __httpRequest;
@@ -184,10 +197,10 @@ namespace Zep
                     await global::Zep.AutoSDKRequestOptionsSupport.OnBeforeRequestAsync(
                             clientOptions: Options,
                             context: global::Zep.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "AddMessagesToAThread",
-                                methodName: "AddMessagesToAThreadAsync",
-                                pathTemplate: "$\"/threads/{threadId}/messages\"",
-                                httpMethod: "POST",
+                                operationId: "ReplacesObservationSteeringConfigurationExperimental",
+                                methodName: "ReplacesObservationSteeringConfigurationExperimentalAsync",
+                                pathTemplate: "\"/projects/observation-steering\"",
+                                httpMethod: "PUT",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: null,
@@ -218,10 +231,10 @@ namespace Zep
                         await global::Zep.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Zep.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "AddMessagesToAThread",
-                                methodName: "AddMessagesToAThreadAsync",
-                                pathTemplate: "$\"/threads/{threadId}/messages\"",
-                                httpMethod: "POST",
+                                operationId: "ReplacesObservationSteeringConfigurationExperimental",
+                                methodName: "ReplacesObservationSteeringConfigurationExperimentalAsync",
+                                pathTemplate: "\"/projects/observation-steering\"",
+                                httpMethod: "PUT",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: null,
@@ -259,10 +272,10 @@ namespace Zep
                         await global::Zep.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Zep.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "AddMessagesToAThread",
-                                methodName: "AddMessagesToAThreadAsync",
-                                pathTemplate: "$\"/threads/{threadId}/messages\"",
-                                httpMethod: "POST",
+                                operationId: "ReplacesObservationSteeringConfigurationExperimental",
+                                methodName: "ReplacesObservationSteeringConfigurationExperimentalAsync",
+                                pathTemplate: "\"/projects/observation-steering\"",
+                                httpMethod: "PUT",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -299,7 +312,7 @@ namespace Zep
                 ProcessResponse(
                     client: HttpClient,
                     response: __response);
-                ProcessAddMessagesToAThreadResponse(
+                ProcessReplacesObservationSteeringConfigurationExperimentalResponse(
                     httpClient: HttpClient,
                     httpResponseMessage: __response);
                 if (__response.IsSuccessStatusCode)
@@ -307,10 +320,10 @@ namespace Zep
                     await global::Zep.AutoSDKRequestOptionsSupport.OnAfterSuccessAsync(
                             clientOptions: Options,
                             context: global::Zep.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "AddMessagesToAThread",
-                                methodName: "AddMessagesToAThreadAsync",
-                                pathTemplate: "$\"/threads/{threadId}/messages\"",
-                                httpMethod: "POST",
+                                operationId: "ReplacesObservationSteeringConfigurationExperimental",
+                                methodName: "ReplacesObservationSteeringConfigurationExperimentalAsync",
+                                pathTemplate: "\"/projects/observation-steering\"",
+                                httpMethod: "PUT",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -329,10 +342,10 @@ namespace Zep
                     await global::Zep.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Zep.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "AddMessagesToAThread",
-                                methodName: "AddMessagesToAThreadAsync",
-                                pathTemplate: "$\"/threads/{threadId}/messages\"",
-                                httpMethod: "POST",
+                                operationId: "ReplacesObservationSteeringConfigurationExperimental",
+                                methodName: "ReplacesObservationSteeringConfigurationExperimentalAsync",
+                                pathTemplate: "\"/projects/observation-steering\"",
+                                httpMethod: "PUT",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -346,6 +359,43 @@ namespace Zep
                                 retryReason: global::System.String.Empty,
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                 }
+                            // Bad Request
+                            if ((int)__response.StatusCode == 400)
+                            {
+                                string? __content_400 = null;
+                                global::System.Exception? __exception_400 = null;
+                                global::Zep.ApidataAPIError? __value_400 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_400 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_400 = global::Zep.ApidataAPIError.FromJson(__content_400, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_400 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_400 = global::Zep.ApidataAPIError.FromJson(__content_400, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_400 = __ex;
+                                }
+
+
+                                throw global::Zep.ApiException<global::Zep.ApidataAPIError>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_400 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_400,
+                                    responseBody: __content_400,
+                                    responseObject: __value_400,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
                             // Internal Server Error
                             if ((int)__response.StatusCode == 500)
                             {
@@ -396,7 +446,7 @@ namespace Zep
                                     client: HttpClient,
                                     response: __response,
                                     content: ref __content);
-                                ProcessAddMessagesToAThreadResponseContent(
+                                ProcessReplacesObservationSteeringConfigurationExperimentalResponseContent(
                                     httpClient: HttpClient,
                                     httpResponseMessage: __response,
                                     content: ref __content);
@@ -405,9 +455,9 @@ namespace Zep
                                 {
                                     __response.EnsureSuccessStatusCode();
 
-                                    var __value = global::Zep.ApidataAddThreadMessagesResponse.FromJson(__content, JsonSerializerContext) ??
+                                    var __value = global::Zep.ApidataObservationSteeringConfig.FromJson(__content, JsonSerializerContext) ??
                                         throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
-                                    return new global::Zep.AutoSDKHttpResponse<global::Zep.ApidataAddThreadMessagesResponse>(
+                                    return new global::Zep.AutoSDKHttpResponse<global::Zep.ApidataObservationSteeringConfig>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Zep.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
@@ -437,9 +487,9 @@ namespace Zep
                 #endif
                                     ).ConfigureAwait(false);
 
-                                    var __value = await global::Zep.ApidataAddThreadMessagesResponse.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
+                                    var __value = await global::Zep.ApidataObservationSteeringConfig.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
                                         throw new global::System.InvalidOperationException("Response deserialization failed.");
-                                    return new global::Zep.AutoSDKHttpResponse<global::Zep.ApidataAddThreadMessagesResponse>(
+                                    return new global::Zep.AutoSDKHttpResponse<global::Zep.ApidataObservationSteeringConfig>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Zep.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
@@ -480,46 +530,33 @@ namespace Zep
             }
         }
         /// <summary>
-        /// Add messages to a thread<br/>
-        /// Add messages to a thread.
+        /// Replaces observation steering configuration (Experimental)<br/>
+        /// Replaces project, user, or graph steering. An empty configuration clears the project default or removes the user/graph override. Changes affect later materializer runs only. This API is experimental and may change in future releases.
         /// </summary>
-        /// <param name="threadId"></param>
-        /// <param name="ignoreRoles">
-        /// Optional list of role types to ignore when adding messages to graph memory.<br/>
-        /// The message itself will still be added, retained and used as context for messages<br/>
-        /// that are added to a user's graph.
-        /// </param>
-        /// <param name="messages">
-        /// A list of message objects, where each message contains a role and content.
-        /// </param>
-        /// <param name="returnContext">
-        /// Optionally return context block relevant to the most recent messages.
-        /// </param>
-        /// <param name="strictOntology">
-        /// When true, prevents extraction of generic Entity nodes that do not match the configured ontology.
-        /// </param>
+        /// <param name="userId"></param>
+        /// <param name="graphId"></param>
+        /// <param name="instruction"></param>
+        /// <param name="types"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Zep.ApidataAddThreadMessagesResponse> AddMessagesToAThreadAsync(
-            string threadId,
-            global::System.Collections.Generic.IList<global::Zep.ApidataThreadMessage> messages,
-            global::System.Collections.Generic.IList<global::Zep.ApidataRoleType>? ignoreRoles = default,
-            bool? returnContext = default,
-            bool? strictOntology = default,
+        public async global::System.Threading.Tasks.Task<global::Zep.ApidataObservationSteeringConfig> ReplacesObservationSteeringConfigurationExperimentalAsync(
+            string? userId = default,
+            string? graphId = default,
+            string? instruction = default,
+            global::System.Collections.Generic.IList<global::Zep.ApidataObservationType>? types = default,
             global::Zep.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __request = new global::Zep.ApidataAddThreadMessagesRequest
+            var __request = new global::Zep.ApidataObservationSteeringConfig
             {
-                IgnoreRoles = ignoreRoles,
-                Messages = messages,
-                ReturnContext = returnContext,
-                StrictOntology = strictOntology,
+                Instruction = instruction,
+                Types = types,
             };
 
-            return await AddMessagesToAThreadAsync(
-                threadId: threadId,
+            return await ReplacesObservationSteeringConfigurationExperimentalAsync(
+                userId: userId,
+                graphId: graphId,
                 request: __request,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken).ConfigureAwait(false);
