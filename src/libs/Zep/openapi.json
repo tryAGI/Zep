@@ -5880,10 +5880,6 @@
             "type": "string",
             "description": "The name of the edge to add. Should be all caps using snake case (eg RELATES_TO)"
           },
-          "fact_uuid": {
-            "type": "string",
-            "description": "The uuid of the edge to add"
-          },
           "graph_id": {
             "type": "string"
           },
@@ -7051,10 +7047,6 @@
           "summary": {
             "type": "string",
             "description": "A regional summary of the node."
-          },
-          "uuid": {
-            "type": "string",
-            "description": "Optional caller-supplied node UUID. When it matches an existing node the\nnode is upserted; when well-formed but unknown the node is created with\nthis UUID; when absent the server assigns one. This is the node's only\nidentity/dedup key -- there is no name-based resolution."
           }
         },
         "required": [
@@ -7084,15 +7076,58 @@
         ],
         "title": "GraphitiAddNodesRequest"
       },
+      "GraphitiAddedNode": {
+        "type": "object",
+        "properties": {
+          "attributes": {
+            "type": "object",
+            "additionalProperties": {
+              "description": "Any type"
+            },
+            "description": "Additional attributes of the node."
+          },
+          "created_at": {
+            "type": "string",
+            "description": "The node creation time."
+          },
+          "label": {
+            "type": "string",
+            "description": "The node's entity type."
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": {
+              "description": "Any type"
+            },
+            "description": "Metadata attached to the node's shadow episode."
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the node."
+          },
+          "summary": {
+            "type": "string",
+            "description": "A regional summary of the node."
+          },
+          "uuid": {
+            "type": "string",
+            "description": "The node UUID, assigned by Zep."
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "title": "GraphitiAddedNode"
+      },
       "GraphitiAddNodesResponse": {
         "type": "object",
         "properties": {
           "nodes": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/GraphitiAddNodeItem"
+              "$ref": "#/components/schemas/GraphitiAddedNode"
             },
-            "description": "The accepted nodes, each carrying its resolved (server-assigned or\ncaller-supplied) UUID, in request order."
+            "description": "The accepted nodes, each carrying the UUID Zep assigned to it, in request\norder."
           },
           "task_id": {
             "type": "string",

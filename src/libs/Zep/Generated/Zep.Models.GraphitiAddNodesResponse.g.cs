@@ -9,11 +9,11 @@ namespace Zep
     public sealed partial class GraphitiAddNodesResponse
     {
         /// <summary>
-        /// The accepted nodes, each carrying its resolved (server-assigned or<br/>
-        /// caller-supplied) UUID, in request order.
+        /// The accepted nodes, each carrying the UUID Zep assigned to it, in request<br/>
+        /// order.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("nodes")]
-        public global::System.Collections.Generic.IList<global::Zep.GraphitiAddNodeItem>? Nodes { get; set; }
+        public global::System.Collections.Generic.IList<global::Zep.GraphitiAddedNode>? Nodes { get; set; }
 
         /// <summary>
         /// Task ID of the async add-nodes task.
@@ -31,8 +31,8 @@ namespace Zep
         /// Initializes a new instance of the <see cref="GraphitiAddNodesResponse" /> class.
         /// </summary>
         /// <param name="nodes">
-        /// The accepted nodes, each carrying its resolved (server-assigned or<br/>
-        /// caller-supplied) UUID, in request order.
+        /// The accepted nodes, each carrying the UUID Zep assigned to it, in request<br/>
+        /// order.
         /// </param>
         /// <param name="taskId">
         /// Task ID of the async add-nodes task.
@@ -41,7 +41,7 @@ namespace Zep
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
         public GraphitiAddNodesResponse(
-            global::System.Collections.Generic.IList<global::Zep.GraphitiAddNodeItem>? nodes,
+            global::System.Collections.Generic.IList<global::Zep.GraphitiAddedNode>? nodes,
             string? taskId)
         {
             this.Nodes = nodes;
