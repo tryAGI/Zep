@@ -50,9 +50,6 @@ namespace Zep
         /// <param name="factName">
         /// The name of the edge to add. Should be all caps using snake case (eg RELATES_TO)
         /// </param>
-        /// <param name="factUuid">
-        /// The uuid of the edge to add
-        /// </param>
         /// <param name="graphId"></param>
         /// <param name="invalidAt">
         /// The time (if any) at which the fact stops being true
@@ -114,7 +111,6 @@ namespace Zep
             string? createdAt = default,
             object? edgeAttributes = default,
             string? expiredAt = default,
-            string? factUuid = default,
             string? graphId = default,
             string? invalidAt = default,
             object? metadata = default,

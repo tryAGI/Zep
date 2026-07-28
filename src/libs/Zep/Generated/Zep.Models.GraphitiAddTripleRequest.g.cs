@@ -42,12 +42,6 @@ namespace Zep
         public required string FactName { get; set; }
 
         /// <summary>
-        /// The uuid of the edge to add
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("fact_uuid")]
-        public string? FactUuid { get; set; }
-
-        /// <summary>
         /// 
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("graph_id")]
@@ -173,9 +167,6 @@ namespace Zep
         /// <param name="expiredAt">
         /// The time (if any) at which the edge expires
         /// </param>
-        /// <param name="factUuid">
-        /// The uuid of the edge to add
-        /// </param>
         /// <param name="graphId"></param>
         /// <param name="invalidAt">
         /// The time (if any) at which the fact stops being true
@@ -237,7 +228,6 @@ namespace Zep
             string? createdAt,
             object? edgeAttributes,
             string? expiredAt,
-            string? factUuid,
             string? graphId,
             string? invalidAt,
             object? metadata,
@@ -259,7 +249,6 @@ namespace Zep
             this.ExpiredAt = expiredAt;
             this.Fact = fact ?? throw new global::System.ArgumentNullException(nameof(fact));
             this.FactName = factName ?? throw new global::System.ArgumentNullException(nameof(factName));
-            this.FactUuid = factUuid;
             this.GraphId = graphId;
             this.InvalidAt = invalidAt;
             this.Metadata = metadata;
