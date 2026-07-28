@@ -572,7 +572,7 @@ namespace Zep
         /// Maximum number of items to return
         /// </param>
         /// <param name="orderBy">
-        /// Field to sort by. One of "created_at" or "uuid" (default "uuid").
+        /// Field to sort by. One of "created_at", "valid_at", or "uuid" (default "uuid").
         /// </param>
         /// <param name="uuidCursor">
         /// UUID based cursor, used for pagination. Should be the UUID of the last item in the previous page.<br/>

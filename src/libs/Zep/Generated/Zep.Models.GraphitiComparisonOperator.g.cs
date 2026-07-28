@@ -44,6 +44,10 @@ namespace Zep
         /// 
         /// </summary>
         IsNull,
+        /// <summary>
+        /// 
+        /// </summary>
+        IsNull2,
     }
 
     /// <summary>
@@ -67,6 +71,7 @@ namespace Zep
                 GraphitiComparisonOperator.Contains => "CONTAINS",
                 GraphitiComparisonOperator.IsNotNull => "IS NOT NULL",
                 GraphitiComparisonOperator.IsNull => "IS NULL",
+                GraphitiComparisonOperator.IsNull2 => "is_null",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -86,6 +91,7 @@ namespace Zep
                 "CONTAINS" => GraphitiComparisonOperator.Contains,
                 "IS NOT NULL" => GraphitiComparisonOperator.IsNotNull,
                 "IS NULL" => GraphitiComparisonOperator.IsNull,
+                "is_null" => GraphitiComparisonOperator.IsNull2,
                 _ => null,
             };
         }
