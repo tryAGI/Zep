@@ -6262,6 +6262,7 @@
           ">=",
           "<=",
           "IS NULL",
+          "is_null",
           "IS NOT NULL",
           "CONTAINS"
         ],
@@ -6927,7 +6928,7 @@
           },
           "order_by": {
             "type": "string",
-            "description": "Field to sort by. One of \"created_at\" or \"uuid\" (default \"uuid\")."
+            "description": "Field to sort by. One of \"created_at\", \"valid_at\", or \"uuid\" (default \"uuid\")."
           },
           "uuid_cursor": {
             "type": "string",
@@ -7157,7 +7158,7 @@
           },
           "order_by": {
             "type": "string",
-            "description": "Field to sort by. One of \"created_at\" or \"uuid\" (default \"uuid\")."
+            "description": "Field to sort by. One of \"created_at\", \"valid_at\", or \"uuid\" (default \"uuid\")."
           },
           "uuid_cursor": {
             "type": "string",
@@ -7300,7 +7301,7 @@
           },
           "order_by": {
             "type": "string",
-            "description": "Field to sort by. One of \"created_at\" or \"uuid\" (default \"uuid\")."
+            "description": "Field to sort by. One of \"created_at\", \"valid_at\", or \"uuid\" (default \"uuid\")."
           },
           "uuid_cursor": {
             "type": "string",
@@ -7330,7 +7331,7 @@
           },
           "order_by": {
             "type": "string",
-            "description": "Field to sort by. One of \"created_at\" or \"uuid\" (default \"uuid\")."
+            "description": "Field to sort by. One of \"created_at\", \"valid_at\", or \"uuid\" (default \"uuid\")."
           },
           "uuid_cursor": {
             "type": "string",
