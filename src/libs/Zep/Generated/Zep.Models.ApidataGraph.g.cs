@@ -53,6 +53,12 @@ namespace Zep
         /// <summary>
         /// 
         /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("updated_at")]
+        public string? UpdatedAt { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("uuid")]
         public string? Uuid { get; set; }
 
@@ -72,6 +78,7 @@ namespace Zep
         /// <param name="name"></param>
         /// <param name="projectUuid"></param>
         /// <param name="timeZone"></param>
+        /// <param name="updatedAt"></param>
         /// <param name="uuid"></param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
@@ -84,6 +91,7 @@ namespace Zep
             string? name,
             string? projectUuid,
             string? timeZone,
+            string? updatedAt,
             string? uuid)
         {
             this.CreatedAt = createdAt;
@@ -93,6 +101,7 @@ namespace Zep
             this.Name = name;
             this.ProjectUuid = projectUuid;
             this.TimeZone = timeZone;
+            this.UpdatedAt = updatedAt;
             this.Uuid = uuid;
         }
 
