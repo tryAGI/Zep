@@ -17,6 +17,18 @@ namespace Zep
         /// <summary>
         /// 
         /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("page_number")]
+        public int? PageNumber { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("page_size")]
+        public int? PageSize { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("row_count")]
         public int? RowCount { get; set; }
 
@@ -36,6 +48,8 @@ namespace Zep
         /// Initializes a new instance of the <see cref="ApidataGraphListResponse" /> class.
         /// </summary>
         /// <param name="graphs"></param>
+        /// <param name="pageNumber"></param>
+        /// <param name="pageSize"></param>
         /// <param name="rowCount"></param>
         /// <param name="totalCount"></param>
 #if NET7_0_OR_GREATER
@@ -43,10 +57,14 @@ namespace Zep
 #endif
         public ApidataGraphListResponse(
             global::System.Collections.Generic.IList<global::Zep.ApidataGraph>? graphs,
+            int? pageNumber,
+            int? pageSize,
             int? rowCount,
             int? totalCount)
         {
             this.Graphs = graphs;
+            this.PageNumber = pageNumber;
+            this.PageSize = pageSize;
             this.RowCount = rowCount;
             this.TotalCount = totalCount;
         }

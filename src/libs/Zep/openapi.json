@@ -1879,7 +1879,7 @@
           {
             "name": "pageSize",
             "in": "query",
-            "description": "Number of graphs to retrieve per page.",
+            "description": "Number of graphs to retrieve per page (default 50, range 1-100; explicit 0 is invalid).",
             "required": false,
             "schema": {
               "type": "integer"
@@ -1888,7 +1888,7 @@
           {
             "name": "search",
             "in": "query",
-            "description": "Search term for filtering graphs by graph_id.",
+            "description": "Search term for filtering graphs by graph_id, name, or description. Queries longer than 200 Unicode code points after whitespace normalization are invalid.",
             "required": false,
             "schema": {
               "type": "string"
@@ -1897,7 +1897,7 @@
           {
             "name": "order_by",
             "in": "query",
-            "description": "Column to sort by (created_at, group_id, name).",
+            "description": "Column to sort by (created_at, graph_id, name).",
             "required": false,
             "schema": {
               "type": "string"
@@ -6152,6 +6152,9 @@
               "null"
             ]
           },
+          "updated_at": {
+            "type": "string"
+          },
           "uuid": {
             "type": "string"
           }
@@ -6166,6 +6169,12 @@
             "items": {
               "$ref": "#/components/schemas/ApidataGraph"
             }
+          },
+          "page_number": {
+            "type": "integer"
+          },
+          "page_size": {
+            "type": "integer"
           },
           "row_count": {
             "type": "integer"
@@ -6892,10 +6901,16 @@
         "type": "object",
         "properties": {
           "description": {
-            "type": "string"
+            "type": [
+              "string",
+              "null"
+            ]
           },
           "name": {
-            "type": "string"
+            "type": [
+              "string",
+              "null"
+            ]
           },
           "time_zone": {
             "type": [
