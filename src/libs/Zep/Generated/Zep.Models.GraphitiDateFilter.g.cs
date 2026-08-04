@@ -18,7 +18,7 @@ namespace Zep
 
         /// <summary>
         /// Date to filter on. Required for non-null operators (=, \&lt;\&gt;, \&gt;, \&lt;, \&gt;=, \&lt;=).<br/>
-        /// Should be omitted for IS NULL and IS NOT NULL operators.
+        /// Should be omitted for IS NULL (or is_null) and IS NOT NULL operators.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("date")]
         public string? Date { get; set; }
@@ -37,7 +37,7 @@ namespace Zep
         /// </param>
         /// <param name="date">
         /// Date to filter on. Required for non-null operators (=, \&lt;\&gt;, \&gt;, \&lt;, \&gt;=, \&lt;=).<br/>
-        /// Should be omitted for IS NULL and IS NOT NULL operators.
+        /// Should be omitted for IS NULL (or is_null) and IS NOT NULL operators.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
