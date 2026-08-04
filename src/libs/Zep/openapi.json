@@ -6286,7 +6286,7 @@
           },
           "date": {
             "type": "string",
-            "description": "Date to filter on. Required for non-null operators (=, \\<\\>, \\>, \\<, \\>=, \\<=).\nShould be omitted for IS NULL and IS NOT NULL operators."
+            "description": "Date to filter on. Required for non-null operators (=, \\<\\>, \\>, \\<, \\>=, \\<=).\nShould be omitted for IS NULL (or is_null) and IS NOT NULL operators."
           }
         },
         "required": [
