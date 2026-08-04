@@ -17,6 +17,10 @@ namespace Zep
 
             typeof(global::Zep.JsonConverters.ApidataRoleTypeNullableJsonConverter),
 
+            typeof(global::Zep.JsonConverters.ModelsUserGroupKindJsonConverter),
+
+            typeof(global::Zep.JsonConverters.ModelsUserGroupKindNullableJsonConverter),
+
             typeof(global::Zep.JsonConverters.ModelsEntityPropertyTypeJsonConverter),
 
             typeof(global::Zep.JsonConverters.ModelsEntityPropertyTypeNullableJsonConverter),
@@ -94,6 +98,22 @@ namespace Zep
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Zep.ApidataUserInstruction>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataAddUserInstructionsRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataDeleteUserInstructionsRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ModelsUserGroupQuota))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ModelsUserGroupKind), TypeInfoPropertyName = "ModelsUserGroupKind2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ModelsUserGroup))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataUserGroupListResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Zep.ModelsUserGroup>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataCreateUserGroupRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataUserGroupResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataUserMembershipGroupsResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataUpdateUserGroupRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataUserGroupMembersResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataMutateUserGroupMembersRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataUserGroupMembershipResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataPolicySetSummaryResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataAttachedPolicySetsResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Zep.ApidataPolicySetSummaryResponse>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataAttachPolicySetRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataCreateContextTemplateRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataContextTemplateResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataUpdateContextTemplateRequest))]
@@ -218,6 +238,8 @@ namespace Zep
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<string>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Zep.ApidataUser>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Zep.ApidataUserInstruction>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Zep.ModelsUserGroup>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Zep.ApidataPolicySetSummaryResponse>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Zep.ApidataContextTemplateResponse>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Zep.ApidataEntityProperty>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Zep.ApidataEntityEdgeSourceTarget>))]
