@@ -1211,6 +1211,1062 @@
         }
       }
     },
+    "/user-groups": {
+      "get": {
+        "operationId": "list",
+        "summary": "List UserGroups",
+        "tags": [
+          "userGroup"
+        ],
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "query",
+            "description": "Project UUID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "description": "Page number",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Page size",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "description": "Name search",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataUserGroupListResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "create",
+        "summary": "Create a managed UserGroup",
+        "tags": [
+          "userGroup"
+        ],
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "query",
+            "description": "Project UUID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataUserGroupResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "Managed group",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApidataCreateUserGroupRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user-groups/users/{userUUID}": {
+      "get": {
+        "operationId": "list-for-user",
+        "summary": "List effective UserGroups for a User",
+        "tags": [
+          "userGroup"
+        ],
+        "parameters": [
+          {
+            "name": "userUUID",
+            "in": "path",
+            "description": "User UUID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "projectId",
+            "in": "query",
+            "description": "Project UUID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataUserMembershipGroupsResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user-groups/{groupUUID}": {
+      "get": {
+        "operationId": "get",
+        "summary": "Get a UserGroup",
+        "tags": [
+          "userGroup"
+        ],
+        "parameters": [
+          {
+            "name": "groupUUID",
+            "in": "path",
+            "description": "UserGroup UUID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "projectId",
+            "in": "query",
+            "description": "Project UUID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataUserGroupResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "update",
+        "summary": "Update a managed UserGroup",
+        "tags": [
+          "userGroup"
+        ],
+        "parameters": [
+          {
+            "name": "groupUUID",
+            "in": "path",
+            "description": "UserGroup UUID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "projectId",
+            "in": "query",
+            "description": "Project UUID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataUserGroupResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "Updated group",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApidataUpdateUserGroupRequest"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "delete",
+        "summary": "Delete a managed UserGroup",
+        "tags": [
+          "userGroup"
+        ],
+        "parameters": [
+          {
+            "name": "groupUUID",
+            "in": "path",
+            "description": "UserGroup UUID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "projectId",
+            "in": "query",
+            "description": "Project UUID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user-groups/{groupUUID}/members": {
+      "get": {
+        "operationId": "list-members",
+        "summary": "List UserGroup members",
+        "tags": [
+          "userGroup"
+        ],
+        "parameters": [
+          {
+            "name": "groupUUID",
+            "in": "path",
+            "description": "UserGroup UUID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "projectId",
+            "in": "query",
+            "description": "Project UUID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "description": "Page number",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Page size",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "description": "User search",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataUserGroupMembersResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "add-members",
+        "summary": "Add members to a managed UserGroup",
+        "tags": [
+          "userGroup"
+        ],
+        "parameters": [
+          {
+            "name": "groupUUID",
+            "in": "path",
+            "description": "UserGroup UUID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "projectId",
+            "in": "query",
+            "description": "Project UUID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataUserGroupMembershipResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "User UUIDs",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApidataMutateUserGroupMembersRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user-groups/{groupUUID}/members/bulk-remove": {
+      "post": {
+        "operationId": "remove-members",
+        "summary": "Remove members from a managed UserGroup",
+        "tags": [
+          "userGroup"
+        ],
+        "parameters": [
+          {
+            "name": "groupUUID",
+            "in": "path",
+            "description": "UserGroup UUID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "projectId",
+            "in": "query",
+            "description": "Project UUID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataUserGroupMembershipResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "User UUIDs",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApidataMutateUserGroupMembersRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user-groups/{groupUUID}/members/candidates": {
+      "get": {
+        "operationId": "list-member-candidates",
+        "summary": "List Users eligible to join a UserGroup",
+        "tags": [
+          "userGroup"
+        ],
+        "parameters": [
+          {
+            "name": "groupUUID",
+            "in": "path",
+            "description": "UserGroup UUID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "projectId",
+            "in": "query",
+            "description": "Project UUID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "description": "Page number",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Page size",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "description": "User search",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataUserGroupMembersResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user-groups/{groupUUID}/members/{userUUID}": {
+      "delete": {
+        "operationId": "remove-member",
+        "summary": "Remove one member from a managed UserGroup",
+        "tags": [
+          "userGroup"
+        ],
+        "parameters": [
+          {
+            "name": "groupUUID",
+            "in": "path",
+            "description": "UserGroup UUID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "userUUID",
+            "in": "path",
+            "description": "User UUID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "projectId",
+            "in": "query",
+            "description": "Project UUID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataUserGroupMembershipResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/abac/user-groups/{groupUUID}/policy-sets": {
+      "get": {
+        "operationId": "list-policy-sets",
+        "summary": "List policy sets attached to a UserGroup",
+        "tags": [
+          "userGroup"
+        ],
+        "parameters": [
+          {
+            "name": "groupUUID",
+            "in": "path",
+            "description": "UserGroup UUID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "projectId",
+            "in": "query",
+            "description": "Project UUID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAttachedPolicySetsResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "attach-policy-set",
+        "summary": "Attach a policy set to a UserGroup",
+        "tags": [
+          "userGroup"
+        ],
+        "parameters": [
+          {
+            "name": "groupUUID",
+            "in": "path",
+            "description": "UserGroup UUID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "projectId",
+            "in": "query",
+            "description": "Project UUID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAttachedPolicySetsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "Policy set UUID",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApidataAttachPolicySetRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/abac/user-groups/{groupUUID}/policy-sets/{policySetUUID}": {
+      "delete": {
+        "operationId": "detach-policy-set",
+        "summary": "Detach a policy set from a UserGroup",
+        "tags": [
+          "userGroup"
+        ],
+        "parameters": [
+          {
+            "name": "groupUUID",
+            "in": "path",
+            "description": "UserGroup UUID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "policySetUUID",
+            "in": "path",
+            "description": "Policy set UUID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "projectId",
+            "in": "query",
+            "description": "Project UUID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAttachedPolicySetsResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/context-templates": {
       "post": {
         "operationId": "create-context-template",
@@ -5490,6 +6546,263 @@
           }
         },
         "title": "ApidataDeleteUserInstructionsRequest"
+      },
+      "ModelsUserGroupQuota": {
+        "type": "object",
+        "properties": {
+          "active_managed": {
+            "type": "integer"
+          },
+          "allocation": {
+            "type": "integer"
+          },
+          "has_feature": {
+            "type": "boolean"
+          },
+          "resolved": {
+            "type": "boolean"
+          },
+          "unlimited": {
+            "type": "boolean"
+          }
+        },
+        "title": "ModelsUserGroupQuota"
+      },
+      "ModelsUserGroupKind": {
+        "type": "string",
+        "enum": [
+          "managed",
+          "virtual"
+        ],
+        "title": "ModelsUserGroupKind"
+      },
+      "ModelsUserGroup": {
+        "type": "object",
+        "properties": {
+          "attached_policy_set_count": {
+            "type": "integer"
+          },
+          "created_at": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "kind": {
+            "$ref": "#/components/schemas/ModelsUserGroupKind"
+          },
+          "member_count": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "project_uuid": {
+            "type": "string"
+          },
+          "updated_at": {
+            "type": "string"
+          },
+          "uuid": {
+            "type": "string"
+          },
+          "version": {
+            "type": "integer"
+          }
+        },
+        "title": "ModelsUserGroup"
+      },
+      "ApidataUserGroupListResponse": {
+        "type": "object",
+        "properties": {
+          "quota": {
+            "$ref": "#/components/schemas/ModelsUserGroupQuota"
+          },
+          "row_count": {
+            "type": "integer"
+          },
+          "total_count": {
+            "type": "integer"
+          },
+          "user_groups": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ModelsUserGroup"
+            }
+          }
+        },
+        "title": "ApidataUserGroupListResponse"
+      },
+      "ApidataCreateUserGroupRequest": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "title": "ApidataCreateUserGroupRequest"
+      },
+      "ApidataUserGroupResponse": {
+        "type": "object",
+        "properties": {
+          "attached_policy_set_count": {
+            "type": "integer"
+          },
+          "created_at": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "kind": {
+            "$ref": "#/components/schemas/ModelsUserGroupKind"
+          },
+          "member_count": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "project_uuid": {
+            "type": "string"
+          },
+          "updated_at": {
+            "type": "string"
+          },
+          "uuid": {
+            "type": "string"
+          },
+          "version": {
+            "type": "integer"
+          }
+        },
+        "title": "ApidataUserGroupResponse"
+      },
+      "ApidataUserMembershipGroupsResponse": {
+        "type": "object",
+        "properties": {
+          "user_groups": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ModelsUserGroup"
+            }
+          }
+        },
+        "title": "ApidataUserMembershipGroupsResponse"
+      },
+      "ApidataUpdateUserGroupRequest": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "expected_version": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "expected_version"
+        ],
+        "title": "ApidataUpdateUserGroupRequest"
+      },
+      "ApidataUserGroupMembersResponse": {
+        "type": "object",
+        "properties": {
+          "row_count": {
+            "type": "integer"
+          },
+          "total_count": {
+            "type": "integer"
+          },
+          "users": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApidataUser"
+            }
+          }
+        },
+        "title": "ApidataUserGroupMembersResponse"
+      },
+      "ApidataMutateUserGroupMembersRequest": {
+        "type": "object",
+        "properties": {
+          "user_uuids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "user_uuids"
+        ],
+        "title": "ApidataMutateUserGroupMembersRequest"
+      },
+      "ApidataUserGroupMembershipResponse": {
+        "type": "object",
+        "properties": {
+          "added_count": {
+            "type": "integer"
+          },
+          "no_op_count": {
+            "type": "integer"
+          },
+          "removed_count": {
+            "type": "integer"
+          }
+        },
+        "title": "ApidataUserGroupMembershipResponse"
+      },
+      "ApidataPolicySetSummaryResponse": {
+        "type": "object",
+        "properties": {
+          "mode": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "uuid": {
+            "type": "string"
+          },
+          "version": {
+            "type": "integer"
+          }
+        },
+        "title": "ApidataPolicySetSummaryResponse"
+      },
+      "ApidataAttachedPolicySetsResponse": {
+        "type": "object",
+        "properties": {
+          "policy_sets": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApidataPolicySetSummaryResponse"
+            }
+          }
+        },
+        "title": "ApidataAttachedPolicySetsResponse"
+      },
+      "ApidataAttachPolicySetRequest": {
+        "type": "object",
+        "properties": {
+          "policy_set_uuid": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "policy_set_uuid"
+        ],
+        "title": "ApidataAttachPolicySetRequest"
       },
       "ApidataCreateContextTemplateRequest": {
         "type": "object",
