@@ -26,7 +26,7 @@ namespace Zep
         /// <summary>
         /// Property value to match on. Accepted types: string, int, float64, bool, or nil.<br/>
         /// Invalid types (e.g., arrays, objects) will be rejected by validation.<br/>
-        /// Must be non-nil for non-null operators (=, \&lt;\&gt;, \&gt;, \&lt;, \&gt;=, \&lt;=).
+        /// Must be non-nil for non-null operators (`=`, `&lt;&gt;`, `&gt;`, `&lt;`, `&gt;=`, `&lt;=`).
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("property_value")]
         public object? PropertyValue { get; set; }
@@ -49,7 +49,7 @@ namespace Zep
         /// <param name="propertyValue">
         /// Property value to match on. Accepted types: string, int, float64, bool, or nil.<br/>
         /// Invalid types (e.g., arrays, objects) will be rejected by validation.<br/>
-        /// Must be non-nil for non-null operators (=, \&lt;\&gt;, \&gt;, \&lt;, \&gt;=, \&lt;=).
+        /// Must be non-nil for non-null operators (`=`, `&lt;&gt;`, `&gt;`, `&lt;`, `&gt;=`, `&lt;=`).
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]

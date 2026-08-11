@@ -12,8 +12,8 @@ namespace Zep
         /// 2D array of date filters for the created_at field.<br/>
         /// The outer array elements are combined with OR logic.<br/>
         /// The inner array elements are combined with AND logic.<br/>
-        /// Example: [[\{"\&gt;", date1\}, \{"\&lt;", date2\}], [\{"=", date3\}]]<br/>
-        /// This translates to: (created_at \&gt; date1 AND created_at \&lt; date2) OR (created_at = date3)
+        /// Example: `[[{"&gt;", date1}, {"&lt;", date2}], [{"=", date3}]]`<br/>
+        /// This translates to: `(created_at &gt; date1 AND created_at &lt; date2) OR (created_at = date3)`
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("created_at")]
         public global::System.Collections.Generic.IList<global::System.Collections.Generic.IList<global::Zep.GraphitiDateFilter>>? CreatedAt { get; set; }
@@ -53,8 +53,8 @@ namespace Zep
         /// 2D array of date filters for the expired_at field.<br/>
         /// The outer array elements are combined with OR logic.<br/>
         /// The inner array elements are combined with AND logic.<br/>
-        /// Example: [[\{"\&gt;", date1\}, \{"\&lt;", date2\}], [\{"=", date3\}]]<br/>
-        /// This translates to: (expired_at \&gt; date1 AND expired_at \&lt; date2) OR (expired_at = date3)
+        /// Example: `[[{"&gt;", date1}, {"&lt;", date2}], [{"=", date3}]]`<br/>
+        /// This translates to: `(expired_at &gt; date1 AND expired_at &lt; date2) OR (expired_at = date3)`
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("expired_at")]
         public global::System.Collections.Generic.IList<global::System.Collections.Generic.IList<global::Zep.GraphitiDateFilter>>? ExpiredAt { get; set; }
@@ -63,8 +63,8 @@ namespace Zep
         /// 2D array of date filters for the invalid_at field.<br/>
         /// The outer array elements are combined with OR logic.<br/>
         /// The inner array elements are combined with AND logic.<br/>
-        /// Example: [[\{"\&gt;", date1\}, \{"\&lt;", date2\}], [\{"=", date3\}]]<br/>
-        /// This translates to: (invalid_at \&gt; date1 AND invalid_at \&lt; date2) OR (invalid_at = date3)
+        /// Example: `[[{"&gt;", date1}, {"&lt;", date2}], [{"=", date3}]]`<br/>
+        /// This translates to: `(invalid_at &gt; date1 AND invalid_at &lt; date2) OR (invalid_at = date3)`
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("invalid_at")]
         public global::System.Collections.Generic.IList<global::System.Collections.Generic.IList<global::Zep.GraphitiDateFilter>>? InvalidAt { get; set; }
@@ -85,8 +85,8 @@ namespace Zep
         /// 2D array of date filters for the valid_at field.<br/>
         /// The outer array elements are combined with OR logic.<br/>
         /// The inner array elements are combined with AND logic.<br/>
-        /// Example: [[\{"\&gt;", date1\}, \{"\&lt;", date2\}], [\{"=", date3\}]]<br/>
-        /// This translates to: (valid_at \&gt; date1 AND valid_at \&lt; date2) OR (valid_at = date3)
+        /// Example: `[[{"&gt;", date1}, {"&lt;", date2}], [{"=", date3}]]`<br/>
+        /// This translates to: `(valid_at &gt; date1 AND valid_at &lt; date2) OR (valid_at = date3)`
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("valid_at")]
         public global::System.Collections.Generic.IList<global::System.Collections.Generic.IList<global::Zep.GraphitiDateFilter>>? ValidAt { get; set; }
@@ -104,8 +104,8 @@ namespace Zep
         /// 2D array of date filters for the created_at field.<br/>
         /// The outer array elements are combined with OR logic.<br/>
         /// The inner array elements are combined with AND logic.<br/>
-        /// Example: [[\{"\&gt;", date1\}, \{"\&lt;", date2\}], [\{"=", date3\}]]<br/>
-        /// This translates to: (created_at \&gt; date1 AND created_at \&lt; date2) OR (created_at = date3)
+        /// Example: `[[{"&gt;", date1}, {"&lt;", date2}], [{"=", date3}]]`<br/>
+        /// This translates to: `(created_at &gt; date1 AND created_at &lt; date2) OR (created_at = date3)`
         /// </param>
         /// <param name="edgeTypes">
         /// List of edge types to filter on
@@ -127,15 +127,15 @@ namespace Zep
         /// 2D array of date filters for the expired_at field.<br/>
         /// The outer array elements are combined with OR logic.<br/>
         /// The inner array elements are combined with AND logic.<br/>
-        /// Example: [[\{"\&gt;", date1\}, \{"\&lt;", date2\}], [\{"=", date3\}]]<br/>
-        /// This translates to: (expired_at \&gt; date1 AND expired_at \&lt; date2) OR (expired_at = date3)
+        /// Example: `[[{"&gt;", date1}, {"&lt;", date2}], [{"=", date3}]]`<br/>
+        /// This translates to: `(expired_at &gt; date1 AND expired_at &lt; date2) OR (expired_at = date3)`
         /// </param>
         /// <param name="invalidAt">
         /// 2D array of date filters for the invalid_at field.<br/>
         /// The outer array elements are combined with OR logic.<br/>
         /// The inner array elements are combined with AND logic.<br/>
-        /// Example: [[\{"\&gt;", date1\}, \{"\&lt;", date2\}], [\{"=", date3\}]]<br/>
-        /// This translates to: (invalid_at \&gt; date1 AND invalid_at \&lt; date2) OR (invalid_at = date3)
+        /// Example: `[[{"&gt;", date1}, {"&lt;", date2}], [{"=", date3}]]`<br/>
+        /// This translates to: `(invalid_at &gt; date1 AND invalid_at &lt; date2) OR (invalid_at = date3)`
         /// </param>
         /// <param name="nodeLabels">
         /// List of node labels to filter on
@@ -147,8 +147,8 @@ namespace Zep
         /// 2D array of date filters for the valid_at field.<br/>
         /// The outer array elements are combined with OR logic.<br/>
         /// The inner array elements are combined with AND logic.<br/>
-        /// Example: [[\{"\&gt;", date1\}, \{"\&lt;", date2\}], [\{"=", date3\}]]<br/>
-        /// This translates to: (valid_at \&gt; date1 AND valid_at \&lt; date2) OR (valid_at = date3)
+        /// Example: `[[{"&gt;", date1}, {"&lt;", date2}], [{"=", date3}]]`<br/>
+        /// This translates to: `(valid_at &gt; date1 AND valid_at &lt; date2) OR (valid_at = date3)`
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
