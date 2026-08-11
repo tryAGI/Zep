@@ -7599,7 +7599,7 @@
           },
           "date": {
             "type": "string",
-            "description": "Date to filter on. Required for non-null operators (=, \\<\\>, \\>, \\<, \\>=, \\<=).\nShould be omitted for IS NULL (or is_null) and IS NOT NULL operators."
+            "description": "Date to filter on. Required for non-null operators (`=`, `<>`, `>`, `<`, `>=`, `<=`).\nShould be omitted for IS NULL (or is_null) and IS NOT NULL operators."
           }
         },
         "required": [
@@ -7676,7 +7676,7 @@
             "description": "Property name to filter on"
           },
           "property_value": {
-            "description": "Property value to match on. Accepted types: string, int, float64, bool, or nil.\nInvalid types (e.g., arrays, objects) will be rejected by validation.\nMust be non-nil for non-null operators (=, \\<\\>, \\>, \\<, \\>=, \\<=)."
+            "description": "Property value to match on. Accepted types: string, int, float64, bool, or nil.\nInvalid types (e.g., arrays, objects) will be rejected by validation.\nMust be non-nil for non-null operators (`=`, `<>`, `>`, `<`, `>=`, `<=`)."
           }
         },
         "required": [
@@ -7696,7 +7696,7 @@
                 "$ref": "#/components/schemas/GraphitiDateFilter"
               }
             },
-            "description": "2D array of date filters for the created_at field.\nThe outer array elements are combined with OR logic.\nThe inner array elements are combined with AND logic.\nExample: [[\\{\"\\>\", date1\\}, \\{\"\\<\", date2\\}], [\\{\"=\", date3\\}]]\nThis translates to: (created_at \\> date1 AND created_at \\< date2) OR (created_at = date3)"
+            "description": "2D array of date filters for the created_at field.\nThe outer array elements are combined with OR logic.\nThe inner array elements are combined with AND logic.\nExample: `[[{\">\", date1}, {\"<\", date2}], [{\"=\", date3}]]`\nThis translates to: `(created_at > date1 AND created_at < date2) OR (created_at = date3)`"
           },
           "edge_types": {
             "type": "array",
@@ -7738,7 +7738,7 @@
                 "$ref": "#/components/schemas/GraphitiDateFilter"
               }
             },
-            "description": "2D array of date filters for the expired_at field.\nThe outer array elements are combined with OR logic.\nThe inner array elements are combined with AND logic.\nExample: [[\\{\"\\>\", date1\\}, \\{\"\\<\", date2\\}], [\\{\"=\", date3\\}]]\nThis translates to: (expired_at \\> date1 AND expired_at \\< date2) OR (expired_at = date3)"
+            "description": "2D array of date filters for the expired_at field.\nThe outer array elements are combined with OR logic.\nThe inner array elements are combined with AND logic.\nExample: `[[{\">\", date1}, {\"<\", date2}], [{\"=\", date3}]]`\nThis translates to: `(expired_at > date1 AND expired_at < date2) OR (expired_at = date3)`"
           },
           "invalid_at": {
             "type": "array",
@@ -7748,7 +7748,7 @@
                 "$ref": "#/components/schemas/GraphitiDateFilter"
               }
             },
-            "description": "2D array of date filters for the invalid_at field.\nThe outer array elements are combined with OR logic.\nThe inner array elements are combined with AND logic.\nExample: [[\\{\"\\>\", date1\\}, \\{\"\\<\", date2\\}], [\\{\"=\", date3\\}]]\nThis translates to: (invalid_at \\> date1 AND invalid_at \\< date2) OR (invalid_at = date3)"
+            "description": "2D array of date filters for the invalid_at field.\nThe outer array elements are combined with OR logic.\nThe inner array elements are combined with AND logic.\nExample: `[[{\">\", date1}, {\"<\", date2}], [{\"=\", date3}]]`\nThis translates to: `(invalid_at > date1 AND invalid_at < date2) OR (invalid_at = date3)`"
           },
           "node_labels": {
             "type": "array",
@@ -7772,7 +7772,7 @@
                 "$ref": "#/components/schemas/GraphitiDateFilter"
               }
             },
-            "description": "2D array of date filters for the valid_at field.\nThe outer array elements are combined with OR logic.\nThe inner array elements are combined with AND logic.\nExample: [[\\{\"\\>\", date1\\}, \\{\"\\<\", date2\\}], [\\{\"=\", date3\\}]]\nThis translates to: (valid_at \\> date1 AND valid_at \\< date2) OR (valid_at = date3)"
+            "description": "2D array of date filters for the valid_at field.\nThe outer array elements are combined with OR logic.\nThe inner array elements are combined with AND logic.\nExample: `[[{\">\", date1}, {\"<\", date2}], [{\"=\", date3}]]`\nThis translates to: `(valid_at > date1 AND valid_at < date2) OR (valid_at = date3)`"
           }
         },
         "title": "GraphitiSearchFilters"

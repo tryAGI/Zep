@@ -17,7 +17,7 @@ namespace Zep
         public required global::Zep.GraphitiComparisonOperator ComparisonOperator { get; set; }
 
         /// <summary>
-        /// Date to filter on. Required for non-null operators (=, \&lt;\&gt;, \&gt;, \&lt;, \&gt;=, \&lt;=).<br/>
+        /// Date to filter on. Required for non-null operators (`=`, `&lt;&gt;`, `&gt;`, `&lt;`, `&gt;=`, `&lt;=`).<br/>
         /// Should be omitted for IS NULL (or is_null) and IS NOT NULL operators.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("date")]
@@ -36,7 +36,7 @@ namespace Zep
         /// Comparison operator for date filter
         /// </param>
         /// <param name="date">
-        /// Date to filter on. Required for non-null operators (=, \&lt;\&gt;, \&gt;, \&lt;, \&gt;=, \&lt;=).<br/>
+        /// Date to filter on. Required for non-null operators (`=`, `&lt;&gt;`, `&gt;`, `&lt;`, `&gt;=`, `&lt;=`).<br/>
         /// Should be omitted for IS NULL (or is_null) and IS NOT NULL operators.
         /// </param>
 #if NET7_0_OR_GREATER
