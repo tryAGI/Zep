@@ -9,6 +9,14 @@ namespace Zep
     public sealed partial class GraphitiSearchFilters
     {
         /// <summary>
+        /// List of node UUIDs to filter edges on: an edge matches if its source OR<br/>
+        /// target node UUID is in this list. Applies to edges only; rejected on<br/>
+        /// requests whose result type contains no edges. Max 256 entries.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("connected_node_uuids")]
+        public global::System.Collections.Generic.IList<string>? ConnectedNodeUuids { get; set; }
+
+        /// <summary>
         /// 2D array of date filters for the created_at field.<br/>
         /// The outer array elements are combined with OR logic.<br/>
         /// The inner array elements are combined with AND logic.<br/>
@@ -36,6 +44,15 @@ namespace Zep
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("episode_metadata_filters")]
         public global::Zep.GraphitiMetadataFilterGroup? EpisodeMetadataFilters { get; set; }
+
+        /// <summary>
+        /// List of episode UUIDs to filter on. An edge matches if it was derived<br/>
+        /// from any listed episode; a node matches if it is mentioned by any<br/>
+        /// listed episode. Valid for both edge and node result types. Max 256<br/>
+        /// entries.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("episode_uuids")]
+        public global::System.Collections.Generic.IList<string>? EpisodeUuids { get; set; }
 
         /// <summary>
         /// List of edge types to exclude from results
@@ -82,6 +99,22 @@ namespace Zep
         public global::System.Collections.Generic.IList<global::Zep.GraphitiPropertyFilter>? PropertyFilters { get; set; }
 
         /// <summary>
+        /// List of node UUIDs to filter edges on: an edge matches if its source<br/>
+        /// node UUID is in this list. Applies to edges only; rejected on requests<br/>
+        /// whose result type contains no edges. Max 256 entries.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("source_node_uuids")]
+        public global::System.Collections.Generic.IList<string>? SourceNodeUuids { get; set; }
+
+        /// <summary>
+        /// List of node UUIDs to filter edges on: an edge matches if its target<br/>
+        /// node UUID is in this list. Applies to edges only; rejected on requests<br/>
+        /// whose result type contains no edges. Max 256 entries.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("target_node_uuids")]
+        public global::System.Collections.Generic.IList<string>? TargetNodeUuids { get; set; }
+
+        /// <summary>
         /// 2D array of date filters for the valid_at field.<br/>
         /// The outer array elements are combined with OR logic.<br/>
         /// The inner array elements are combined with AND logic.<br/>
@@ -100,6 +133,11 @@ namespace Zep
         /// <summary>
         /// Initializes a new instance of the <see cref="GraphitiSearchFilters" /> class.
         /// </summary>
+        /// <param name="connectedNodeUuids">
+        /// List of node UUIDs to filter edges on: an edge matches if its source OR<br/>
+        /// target node UUID is in this list. Applies to edges only; rejected on<br/>
+        /// requests whose result type contains no edges. Max 256 entries.
+        /// </param>
         /// <param name="createdAt">
         /// 2D array of date filters for the created_at field.<br/>
         /// The outer array elements are combined with OR logic.<br/>
@@ -116,6 +154,12 @@ namespace Zep
         /// <param name="episodeMetadataFilters">
         /// [Experimental] Episode metadata filter. Restricts results to edges/nodes derived from episodes<br/>
         /// matching the metadata predicates. Uses explicit AND/OR groups. This feature is experimental and may change in future releases.
+        /// </param>
+        /// <param name="episodeUuids">
+        /// List of episode UUIDs to filter on. An edge matches if it was derived<br/>
+        /// from any listed episode; a node matches if it is mentioned by any<br/>
+        /// listed episode. Valid for both edge and node result types. Max 256<br/>
+        /// entries.
         /// </param>
         /// <param name="excludeEdgeTypes">
         /// List of edge types to exclude from results
@@ -143,6 +187,16 @@ namespace Zep
         /// <param name="propertyFilters">
         /// List of property filters to apply to nodes and edges
         /// </param>
+        /// <param name="sourceNodeUuids">
+        /// List of node UUIDs to filter edges on: an edge matches if its source<br/>
+        /// node UUID is in this list. Applies to edges only; rejected on requests<br/>
+        /// whose result type contains no edges. Max 256 entries.
+        /// </param>
+        /// <param name="targetNodeUuids">
+        /// List of node UUIDs to filter edges on: an edge matches if its target<br/>
+        /// node UUID is in this list. Applies to edges only; rejected on requests<br/>
+        /// whose result type contains no edges. Max 256 entries.
+        /// </param>
         /// <param name="validAt">
         /// 2D array of date filters for the valid_at field.<br/>
         /// The outer array elements are combined with OR logic.<br/>
@@ -154,28 +208,36 @@ namespace Zep
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
         public GraphitiSearchFilters(
+            global::System.Collections.Generic.IList<string>? connectedNodeUuids,
             global::System.Collections.Generic.IList<global::System.Collections.Generic.IList<global::Zep.GraphitiDateFilter>>? createdAt,
             global::System.Collections.Generic.IList<string>? edgeTypes,
             global::System.Collections.Generic.IList<string>? edgeUuids,
             global::Zep.GraphitiMetadataFilterGroup? episodeMetadataFilters,
+            global::System.Collections.Generic.IList<string>? episodeUuids,
             global::System.Collections.Generic.IList<string>? excludeEdgeTypes,
             global::System.Collections.Generic.IList<string>? excludeNodeLabels,
             global::System.Collections.Generic.IList<global::System.Collections.Generic.IList<global::Zep.GraphitiDateFilter>>? expiredAt,
             global::System.Collections.Generic.IList<global::System.Collections.Generic.IList<global::Zep.GraphitiDateFilter>>? invalidAt,
             global::System.Collections.Generic.IList<string>? nodeLabels,
             global::System.Collections.Generic.IList<global::Zep.GraphitiPropertyFilter>? propertyFilters,
+            global::System.Collections.Generic.IList<string>? sourceNodeUuids,
+            global::System.Collections.Generic.IList<string>? targetNodeUuids,
             global::System.Collections.Generic.IList<global::System.Collections.Generic.IList<global::Zep.GraphitiDateFilter>>? validAt)
         {
+            this.ConnectedNodeUuids = connectedNodeUuids;
             this.CreatedAt = createdAt;
             this.EdgeTypes = edgeTypes;
             this.EdgeUuids = edgeUuids;
             this.EpisodeMetadataFilters = episodeMetadataFilters;
+            this.EpisodeUuids = episodeUuids;
             this.ExcludeEdgeTypes = excludeEdgeTypes;
             this.ExcludeNodeLabels = excludeNodeLabels;
             this.ExpiredAt = expiredAt;
             this.InvalidAt = invalidAt;
             this.NodeLabels = nodeLabels;
             this.PropertyFilters = propertyFilters;
+            this.SourceNodeUuids = sourceNodeUuids;
+            this.TargetNodeUuids = targetNodeUuids;
             this.ValidAt = validAt;
         }
 

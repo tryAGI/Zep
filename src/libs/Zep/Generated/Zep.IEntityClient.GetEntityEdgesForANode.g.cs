@@ -6,7 +6,7 @@ namespace Zep
     {
         /// <summary>
         /// Get Entity Edges for a node<br/>
-        /// Returns all edges for a node
+        /// Deprecated. Use edge listing with `filters.connected_node_uuids`, or the neighbors endpoint (`POST /graph/node/{node_uuid}/neighbors`), instead. Returns all edges for a node, subject to an internal cap; responses reduced by that cap set the Zep-Truncated header.
         /// </summary>
         /// <param name="nodeUuid"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
@@ -18,7 +18,7 @@ namespace Zep
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Get Entity Edges for a node<br/>
-        /// Returns all edges for a node
+        /// Deprecated. Use edge listing with `filters.connected_node_uuids`, or the neighbors endpoint (`POST /graph/node/{node_uuid}/neighbors`), instead. Returns all edges for a node, subject to an internal cap; responses reduced by that cap set the Zep-Truncated header.
         /// </summary>
         /// <param name="nodeUuid"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>

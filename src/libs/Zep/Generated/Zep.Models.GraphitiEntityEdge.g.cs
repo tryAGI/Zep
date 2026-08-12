@@ -79,11 +79,42 @@ namespace Zep
         public int? SelectionRank { get; set; }
 
         /// <summary>
+        /// SourceNodeLabels are the labels of the source node at read time. Same<br/>
+        /// read-time-projection semantics as SourceNodeName (spec-2 §4).
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("source_node_labels")]
+        public global::System.Collections.Generic.IList<string>? SourceNodeLabels { get; set; }
+
+        /// <summary>
+        /// SourceNodeName is the name of the source node at read time. It is a<br/>
+        /// read-time projection of current node state, not a stored edge<br/>
+        /// attribute: a subsequent node rename is reflected on the next read.<br/>
+        /// Omitted (the edge is still returned) if the source node cannot be<br/>
+        /// resolved, for example if it was deleted concurrently (spec-2 §4).
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("source_node_name")]
+        public string? SourceNodeName { get; set; }
+
+        /// <summary>
         /// UUID of the source node
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("source_node_uuid")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required string SourceNodeUuid { get; set; }
+
+        /// <summary>
+        /// TargetNodeLabels are the labels of the target node at read time. Same<br/>
+        /// read-time-projection semantics as SourceNodeName (spec-2 §4).
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("target_node_labels")]
+        public global::System.Collections.Generic.IList<string>? TargetNodeLabels { get; set; }
+
+        /// <summary>
+        /// TargetNodeName is the name of the target node at read time. Same<br/>
+        /// read-time-projection semantics as SourceNodeName (spec-2 §4).
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("target_node_name")]
+        public string? TargetNodeName { get; set; }
 
         /// <summary>
         /// UUID of the target node
@@ -157,6 +188,25 @@ namespace Zep
         /// <param name="selectionRank">
         /// SelectionRank is the global cross-scope rank assigned by auto scope selection.
         /// </param>
+        /// <param name="sourceNodeLabels">
+        /// SourceNodeLabels are the labels of the source node at read time. Same<br/>
+        /// read-time-projection semantics as SourceNodeName (spec-2 §4).
+        /// </param>
+        /// <param name="sourceNodeName">
+        /// SourceNodeName is the name of the source node at read time. It is a<br/>
+        /// read-time projection of current node state, not a stored edge<br/>
+        /// attribute: a subsequent node rename is reflected on the next read.<br/>
+        /// Omitted (the edge is still returned) if the source node cannot be<br/>
+        /// resolved, for example if it was deleted concurrently (spec-2 §4).
+        /// </param>
+        /// <param name="targetNodeLabels">
+        /// TargetNodeLabels are the labels of the target node at read time. Same<br/>
+        /// read-time-projection semantics as SourceNodeName (spec-2 §4).
+        /// </param>
+        /// <param name="targetNodeName">
+        /// TargetNodeName is the name of the target node at read time. Same<br/>
+        /// read-time-projection semantics as SourceNodeName (spec-2 §4).
+        /// </param>
         /// <param name="validAt">
         /// Datetime of when the fact became true
         /// </param>
@@ -178,6 +228,10 @@ namespace Zep
             string? scope,
             double? score,
             int? selectionRank,
+            global::System.Collections.Generic.IList<string>? sourceNodeLabels,
+            string? sourceNodeName,
+            global::System.Collections.Generic.IList<string>? targetNodeLabels,
+            string? targetNodeName,
             string? validAt)
         {
             this.Attributes = attributes;
@@ -191,7 +245,11 @@ namespace Zep
             this.Scope = scope;
             this.Score = score;
             this.SelectionRank = selectionRank;
+            this.SourceNodeLabels = sourceNodeLabels;
+            this.SourceNodeName = sourceNodeName;
             this.SourceNodeUuid = sourceNodeUuid ?? throw new global::System.ArgumentNullException(nameof(sourceNodeUuid));
+            this.TargetNodeLabels = targetNodeLabels;
+            this.TargetNodeName = targetNodeName;
             this.TargetNodeUuid = targetNodeUuid ?? throw new global::System.ArgumentNullException(nameof(targetNodeUuid));
             this.Uuid = uuid ?? throw new global::System.ArgumentNullException(nameof(uuid));
             this.ValidAt = validAt;

@@ -53,7 +53,10 @@ namespace Zep
 
         /// <summary>
         /// Defaults to RRF. Ignored when scope=auto except node_distance and episode_mentions are rejected;<br/>
-        /// auto search always uses RRF retrieval and applies its own internal rerank after retrieval.
+        /// auto search always uses RRF retrieval and applies its own internal rerank after retrieval.<br/>
+        /// episode_mentions ranks edge candidates by how many of the episodes listed<br/>
+        /// in search_filters.episode_uuids mention them; without episode_uuids it has<br/>
+        /// no effect and results are ranked as if no reranker were specified.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("reranker")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Zep.JsonConverters.GraphitiRerankerJsonConverter))]
@@ -118,7 +121,10 @@ namespace Zep
         /// </param>
         /// <param name="reranker">
         /// Defaults to RRF. Ignored when scope=auto except node_distance and episode_mentions are rejected;<br/>
-        /// auto search always uses RRF retrieval and applies its own internal rerank after retrieval.
+        /// auto search always uses RRF retrieval and applies its own internal rerank after retrieval.<br/>
+        /// episode_mentions ranks edge candidates by how many of the episodes listed<br/>
+        /// in search_filters.episode_uuids mention them; without episode_uuids it has<br/>
+        /// no effect and results are ranked as if no reranker were specified.
         /// </param>
         /// <param name="returnRawResults">
         /// When scope=auto, include the selected raw graph results alongside the materialized context block.<br/>

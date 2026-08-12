@@ -3,11 +3,11 @@
 
 namespace Zep
 {
-    public partial class EntityClient
+    public partial class GraphClient
     {
 
 
-        private static readonly global::Zep.EndPointSecurityRequirement s_GetEntityEdgesForANodeSecurityRequirement0 =
+        private static readonly global::Zep.EndPointSecurityRequirement s_GetSubgraphSecurityRequirement0 =
             new global::Zep.EndPointSecurityRequirement
             {
                 Authorizations = new global::Zep.EndPointAuthorizationRequirement[]
@@ -21,41 +21,43 @@ namespace Zep
                     },
                 },
             };
-        private static readonly global::Zep.EndPointSecurityRequirement[] s_GetEntityEdgesForANodeSecurityRequirements =
+        private static readonly global::Zep.EndPointSecurityRequirement[] s_GetSubgraphSecurityRequirements =
             new global::Zep.EndPointSecurityRequirement[]
-            {                s_GetEntityEdgesForANodeSecurityRequirement0,
+            {                s_GetSubgraphSecurityRequirement0,
             };
-        partial void PrepareGetEntityEdgesForANodeArguments(
+        partial void PrepareGetSubgraphArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string nodeUuid);
-        partial void PrepareGetEntityEdgesForANodeRequest(
+            global::Zep.ApidataGraphSubgraphRequest request);
+        partial void PrepareGetSubgraphRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string nodeUuid);
-        partial void ProcessGetEntityEdgesForANodeResponse(
+            global::Zep.ApidataGraphSubgraphRequest request);
+        partial void ProcessGetSubgraphResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
-        partial void ProcessGetEntityEdgesForANodeResponseContent(
+        partial void ProcessGetSubgraphResponseContent(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage,
             ref string content);
 
         /// <summary>
-        /// Get Entity Edges for a node<br/>
-        /// Deprecated. Use edge listing with `filters.connected_node_uuids`, or the neighbors endpoint (`POST /graph/node/{node_uuid}/neighbors`), instead. Returns all edges for a node, subject to an internal cap; responses reduced by that cap set the Zep-Truncated header.
+        /// Get Subgraph<br/>
+        /// Returns the bounded neighborhood of a set of seed nodes as a single {nodes, edges} payload: breadth-first expansion up to a caller-specified depth, subject to explicit budgets, with explicit truncation reporting.
         /// </summary>
-        /// <param name="nodeUuid"></param>
+        /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Zep.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::System.Collections.Generic.IList<global::Zep.GraphitiEntityEdge>> GetEntityEdgesForANodeAsync(
-            string nodeUuid,
+        public async global::System.Threading.Tasks.Task<global::Zep.ApidataGraphSubgraphResponse> GetSubgraphAsync(
+
+            global::Zep.ApidataGraphSubgraphRequest request,
             global::Zep.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __response = await GetEntityEdgesForANodeAsResponseAsync(
-                nodeUuid: nodeUuid,
+            var __response = await GetSubgraphAsResponseAsync(
+
+                request: request,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
@@ -63,29 +65,32 @@ namespace Zep
             return __response.Body;
         }
         /// <summary>
-        /// Get Entity Edges for a node<br/>
-        /// Deprecated. Use edge listing with `filters.connected_node_uuids`, or the neighbors endpoint (`POST /graph/node/{node_uuid}/neighbors`), instead. Returns all edges for a node, subject to an internal cap; responses reduced by that cap set the Zep-Truncated header.
+        /// Get Subgraph<br/>
+        /// Returns the bounded neighborhood of a set of seed nodes as a single {nodes, edges} payload: breadth-first expansion up to a caller-specified depth, subject to explicit budgets, with explicit truncation reporting.
         /// </summary>
-        /// <param name="nodeUuid"></param>
+        /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Zep.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Zep.AutoSDKHttpResponse<global::System.Collections.Generic.IList<global::Zep.GraphitiEntityEdge>>> GetEntityEdgesForANodeAsResponseAsync(
-            string nodeUuid,
+        public async global::System.Threading.Tasks.Task<global::Zep.AutoSDKHttpResponse<global::Zep.ApidataGraphSubgraphResponse>> GetSubgraphAsResponseAsync(
+
+            global::Zep.ApidataGraphSubgraphRequest request,
             global::Zep.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
+            request = request ?? throw new global::System.ArgumentNullException(nameof(request));
+
             PrepareArguments(
                 client: HttpClient);
-            PrepareGetEntityEdgesForANodeArguments(
+            PrepareGetSubgraphArguments(
                 httpClient: HttpClient,
-                nodeUuid: ref nodeUuid);
+                request: request);
 
 
             var __authorizations = global::Zep.EndPointSecurityResolver.ResolveAuthorizations(
                 availableAuthorizations: Authorizations,
-                securityRequirements: s_GetEntityEdgesForANodeSecurityRequirements,
-                operationName: "GetEntityEdgesForANodeAsync");
+                securityRequirements: s_GetSubgraphSecurityRequirements,
+                operationName: "GetSubgraphAsync");
 
             using var __timeoutCancellationTokenSource = global::Zep.AutoSDKRequestOptionsSupport.CreateTimeoutCancellationTokenSource(
                 clientOptions: Options,
@@ -105,7 +110,7 @@ namespace Zep
             {
 
                             var __pathBuilder = new global::Zep.PathBuilder(
-                                path: $"/graph/node/{nodeUuid}/entity-edges",
+                                path: "/graph/subgraph",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Zep.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -113,7 +118,7 @@ namespace Zep
                     clientParameters: Options.QueryParameters,
                     requestParameters: requestOptions?.QueryParameters);
                 var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
-                    method: global::System.Net.Http.HttpMethod.Get,
+                    method: global::System.Net.Http.HttpMethod.Post,
                     requestUri: new global::System.Uri(__path, global::System.UriKind.RelativeOrAbsolute));
 #if NET6_0_OR_GREATER
                 __httpRequest.Version = global::System.Net.HttpVersion.Version11;
@@ -136,6 +141,12 @@ namespace Zep
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
                 } 
             }
+                            var __httpRequestContentBody = request.ToJson(JsonSerializerContext);
+                            var __httpRequestContent = new global::System.Net.Http.StringContent(
+                                content: __httpRequestContentBody,
+                                encoding: global::System.Text.Encoding.UTF8,
+                                mediaType: "application/json");
+                            __httpRequest.Content = __httpRequestContent;
                 global::Zep.AutoSDKRequestOptionsSupport.ApplyHeaders(
                     request: __httpRequest,
                     clientHeaders: Options.Headers,
@@ -144,10 +155,10 @@ namespace Zep
                 PrepareRequest(
                     client: HttpClient,
                     request: __httpRequest);
-                PrepareGetEntityEdgesForANodeRequest(
+                PrepareGetSubgraphRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    nodeUuid: nodeUuid!);
+                    request: request);
 
                 return __httpRequest;
             }
@@ -164,10 +175,10 @@ namespace Zep
                     await global::Zep.AutoSDKRequestOptionsSupport.OnBeforeRequestAsync(
                             clientOptions: Options,
                             context: global::Zep.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "GetEntityEdgesForANode",
-                                methodName: "GetEntityEdgesForANodeAsync",
-                                pathTemplate: "$\"/graph/node/{nodeUuid}/entity-edges\"",
-                                httpMethod: "GET",
+                                operationId: "GetSubgraph",
+                                methodName: "GetSubgraphAsync",
+                                pathTemplate: "\"/graph/subgraph\"",
+                                httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: null,
@@ -198,10 +209,10 @@ namespace Zep
                         await global::Zep.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Zep.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "GetEntityEdgesForANode",
-                                methodName: "GetEntityEdgesForANodeAsync",
-                                pathTemplate: "$\"/graph/node/{nodeUuid}/entity-edges\"",
-                                httpMethod: "GET",
+                                operationId: "GetSubgraph",
+                                methodName: "GetSubgraphAsync",
+                                pathTemplate: "\"/graph/subgraph\"",
+                                httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: null,
@@ -239,10 +250,10 @@ namespace Zep
                         await global::Zep.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Zep.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "GetEntityEdgesForANode",
-                                methodName: "GetEntityEdgesForANodeAsync",
-                                pathTemplate: "$\"/graph/node/{nodeUuid}/entity-edges\"",
-                                httpMethod: "GET",
+                                operationId: "GetSubgraph",
+                                methodName: "GetSubgraphAsync",
+                                pathTemplate: "\"/graph/subgraph\"",
+                                httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -279,7 +290,7 @@ namespace Zep
                 ProcessResponse(
                     client: HttpClient,
                     response: __response);
-                ProcessGetEntityEdgesForANodeResponse(
+                ProcessGetSubgraphResponse(
                     httpClient: HttpClient,
                     httpResponseMessage: __response);
                 if (__response.IsSuccessStatusCode)
@@ -287,10 +298,10 @@ namespace Zep
                     await global::Zep.AutoSDKRequestOptionsSupport.OnAfterSuccessAsync(
                             clientOptions: Options,
                             context: global::Zep.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "GetEntityEdgesForANode",
-                                methodName: "GetEntityEdgesForANodeAsync",
-                                pathTemplate: "$\"/graph/node/{nodeUuid}/entity-edges\"",
-                                httpMethod: "GET",
+                                operationId: "GetSubgraph",
+                                methodName: "GetSubgraphAsync",
+                                pathTemplate: "\"/graph/subgraph\"",
+                                httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -309,10 +320,10 @@ namespace Zep
                     await global::Zep.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Zep.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "GetEntityEdgesForANode",
-                                methodName: "GetEntityEdgesForANodeAsync",
-                                pathTemplate: "$\"/graph/node/{nodeUuid}/entity-edges\"",
-                                httpMethod: "GET",
+                                operationId: "GetSubgraph",
+                                methodName: "GetSubgraphAsync",
+                                pathTemplate: "\"/graph/subgraph\"",
+                                httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -358,6 +369,80 @@ namespace Zep
                                     innerException: __exception_400,
                                     responseBody: __content_400,
                                     responseObject: __value_400,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
+                            // Forbidden
+                            if ((int)__response.StatusCode == 403)
+                            {
+                                string? __content_403 = null;
+                                global::System.Exception? __exception_403 = null;
+                                global::Zep.ApidataAPIError? __value_403 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_403 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_403 = global::Zep.ApidataAPIError.FromJson(__content_403, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_403 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_403 = global::Zep.ApidataAPIError.FromJson(__content_403, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_403 = __ex;
+                                }
+
+
+                                throw global::Zep.ApiException<global::Zep.ApidataAPIError>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_403 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_403,
+                                    responseBody: __content_403,
+                                    responseObject: __value_403,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
+                            // Not Found
+                            if ((int)__response.StatusCode == 404)
+                            {
+                                string? __content_404 = null;
+                                global::System.Exception? __exception_404 = null;
+                                global::Zep.ApidataAPIError? __value_404 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_404 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_404 = global::Zep.ApidataAPIError.FromJson(__content_404, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_404 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_404 = global::Zep.ApidataAPIError.FromJson(__content_404, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_404 = __ex;
+                                }
+
+
+                                throw global::Zep.ApiException<global::Zep.ApidataAPIError>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_404 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_404,
+                                    responseBody: __content_404,
+                                    responseObject: __value_404,
                                     responseHeaders: global::System.Linq.Enumerable.ToDictionary(
                                         __response.Headers,
                                         h => h.Key,
@@ -413,7 +498,7 @@ namespace Zep
                                     client: HttpClient,
                                     response: __response,
                                     content: ref __content);
-                                ProcessGetEntityEdgesForANodeResponseContent(
+                                ProcessGetSubgraphResponseContent(
                                     httpClient: HttpClient,
                                     httpResponseMessage: __response,
                                     content: ref __content);
@@ -422,9 +507,9 @@ namespace Zep
                                 {
                                     __response.EnsureSuccessStatusCode();
 
-                                    var __value = (global::System.Collections.Generic.IList<global::Zep.GraphitiEntityEdge>?)global::System.Text.Json.JsonSerializer.Deserialize(__content, typeof(global::System.Collections.Generic.IList<global::Zep.GraphitiEntityEdge>), JsonSerializerContext) ??
+                                    var __value = global::Zep.ApidataGraphSubgraphResponse.FromJson(__content, JsonSerializerContext) ??
                                         throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
-                                    return new global::Zep.AutoSDKHttpResponse<global::System.Collections.Generic.IList<global::Zep.GraphitiEntityEdge>>(
+                                    return new global::Zep.AutoSDKHttpResponse<global::Zep.ApidataGraphSubgraphResponse>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Zep.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
@@ -454,9 +539,9 @@ namespace Zep
                 #endif
                                     ).ConfigureAwait(false);
 
-                                    var __value = (global::System.Collections.Generic.IList<global::Zep.GraphitiEntityEdge>?)await global::System.Text.Json.JsonSerializer.DeserializeAsync(__content, typeof(global::System.Collections.Generic.IList<global::Zep.GraphitiEntityEdge>), JsonSerializerContext).ConfigureAwait(false) ??
+                                    var __value = await global::Zep.ApidataGraphSubgraphResponse.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
                                         throw new global::System.InvalidOperationException("Response deserialization failed.");
-                                    return new global::Zep.AutoSDKHttpResponse<global::System.Collections.Generic.IList<global::Zep.GraphitiEntityEdge>>(
+                                    return new global::Zep.AutoSDKHttpResponse<global::Zep.ApidataGraphSubgraphResponse>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Zep.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
@@ -495,6 +580,75 @@ namespace Zep
             {
                 __httpRequest?.Dispose();
             }
+        }
+        /// <summary>
+        /// Get Subgraph<br/>
+        /// Returns the bounded neighborhood of a set of seed nodes as a single {nodes, edges} payload: breadth-first expansion up to a caller-specified depth, subject to explicit budgets, with explicit truncation reporting.
+        /// </summary>
+        /// <param name="depth">
+        /// Maximum traversal depth from the seeds. 1-3. Defaults to 1.
+        /// </param>
+        /// <param name="direction">
+        /// Edge orientation followed during expansion, relative to each frontier<br/>
+        /// node: "in" | "out" | "both". Defaults to "both".
+        /// </param>
+        /// <param name="graphId">
+        /// graph_id identifies the target named graph. Exactly one of user_id or<br/>
+        /// graph_id is required.
+        /// </param>
+        /// <param name="maxEdges">
+        /// Maximum number of edges in the response. 1-1000. Defaults to 200.
+        /// </param>
+        /// <param name="maxNodes">
+        /// Maximum number of nodes in the response, including admitted seeds.<br/>
+        /// 1-500. Defaults to 100.
+        /// </param>
+        /// <param name="searchFilters">
+        /// Filters constraining traversed edges and included nodes. Reuses the<br/>
+        /// graph.search filter type. search_filters.episode_metadata_filters is<br/>
+        /// rejected: it cannot be enforced during graph traversal (spec-2 §9.4).
+        /// </param>
+        /// <param name="seedNodeUuids">
+        /// Seed node UUIDs to expand from, in traversal-priority order: seeds are<br/>
+        /// admitted before any expansion, in this order, and count toward<br/>
+        /// max_nodes first. 1-20 entries, required. Seeds that do not exist in<br/>
+        /// the target graph are ignored, not an error.
+        /// </param>
+        /// <param name="userId">
+        /// user_id identifies the target user graph. Exactly one of user_id or<br/>
+        /// graph_id is required.
+        /// </param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::System.InvalidOperationException"></exception>
+        public async global::System.Threading.Tasks.Task<global::Zep.ApidataGraphSubgraphResponse> GetSubgraphAsync(
+            global::System.Collections.Generic.IList<string> seedNodeUuids,
+            int? depth = default,
+            string? direction = default,
+            string? graphId = default,
+            int? maxEdges = default,
+            int? maxNodes = default,
+            global::Zep.GraphitiSearchFilters? searchFilters = default,
+            string? userId = default,
+            global::Zep.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default)
+        {
+            var __request = new global::Zep.ApidataGraphSubgraphRequest
+            {
+                Depth = depth,
+                Direction = direction,
+                GraphId = graphId,
+                MaxEdges = maxEdges,
+                MaxNodes = maxNodes,
+                SearchFilters = searchFilters,
+                SeedNodeUuids = seedNodeUuids,
+                UserId = userId,
+            };
+
+            return await GetSubgraphAsync(
+                request: __request,
+                requestOptions: requestOptions,
+                cancellationToken: cancellationToken).ConfigureAwait(false);
         }
     }
 }

@@ -6,7 +6,7 @@ namespace Zep
     {
         /// <summary>
         /// Return any nodes and edges mentioned in an episode<br/>
-        /// Returns nodes and edges mentioned in an episode
+        /// Deprecated. Use edge and node listing with `filters.episode_uuids` instead. Returns nodes and edges mentioned in an episode, subject to an internal cap; responses reduced by that cap set the Zep-Truncated header.
         /// </summary>
         /// <param name="uuid"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
@@ -18,7 +18,7 @@ namespace Zep
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Return any nodes and edges mentioned in an episode<br/>
-        /// Returns nodes and edges mentioned in an episode
+        /// Deprecated. Use edge and node listing with `filters.episode_uuids` instead. Returns nodes and edges mentioned in an episode, subject to an internal cap; responses reduced by that cap set the Zep-Truncated header.
         /// </summary>
         /// <param name="uuid"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>

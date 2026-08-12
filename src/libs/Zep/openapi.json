@@ -3127,6 +3127,78 @@
         }
       }
     },
+    "/graph/subgraph": {
+      "post": {
+        "operationId": "get-subgraph",
+        "summary": "Get Subgraph",
+        "description": "Returns the bounded neighborhood of a set of seed nodes as a single {nodes, edges} payload: breadth-first expansion up to a caller-specified depth, subject to explicit budgets, with explicit truncation reporting.",
+        "tags": [
+          "graph"
+        ],
+        "responses": {
+          "200": {
+            "description": "Subgraph",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataGraphSubgraphResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "Subgraph request",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApidataGraphSubgraphRequest"
+              }
+            }
+          }
+        }
+      }
+    },
     "/graph/{graphId}": {
       "get": {
         "operationId": "get-graph",
@@ -3752,6 +3824,70 @@
             }
           }
         }
+      },
+      "post": {
+        "operationId": "list-by-graph-id",
+        "summary": "List Graph Episodes",
+        "description": "Returns a paginated, filterable list of episodes for a graph.",
+        "tags": [
+          "graph > episode"
+        ],
+        "parameters": [
+          {
+            "name": "graph_id",
+            "in": "path",
+            "description": "Graph ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Episodes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ApidataGraphEpisode"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "Episode listing request",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApidataGraphEpisodeListRequest"
+              }
+            }
+          }
+        }
       }
     },
     "/graph/episodes/user/{user_id}": {
@@ -3810,6 +3946,70 @@
                 "schema": {
                   "$ref": "#/components/schemas/ApidataAPIError"
                 }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "list-by-user-id",
+        "summary": "List User Episodes",
+        "description": "Returns a paginated, filterable list of episodes for a user's graph.",
+        "tags": [
+          "graph > episode"
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "description": "User ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Episodes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ApidataGraphEpisode"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "Episode listing request",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApidataGraphEpisodeListRequest"
               }
             }
           }
@@ -4015,7 +4215,7 @@
       "get": {
         "operationId": "return-any-nodes-and-edges-mentioned-in-an-episode",
         "summary": "Return any nodes and edges mentioned in an episode",
-        "description": "Returns nodes and edges mentioned in an episode",
+        "description": "Deprecated. Use edge and node listing with `filters.episode_uuids` instead. Returns nodes and edges mentioned in an episode, subject to an internal cap; responses reduced by that cap set the Zep-Truncated header.",
         "tags": [
           "episodes"
         ],
@@ -4252,7 +4452,7 @@
       "get": {
         "operationId": "get-entity-edges-for-a-node",
         "summary": "Get Entity Edges for a node",
-        "description": "Returns all edges for a node",
+        "description": "Deprecated. Use edge listing with `filters.connected_node_uuids`, or the neighbors endpoint (`POST /graph/node/{node_uuid}/neighbors`), instead. Returns all edges for a node, subject to an internal cap; responses reduced by that cap set the Zep-Truncated header.",
         "tags": [
           "entity"
         ],
@@ -4308,7 +4508,7 @@
       "get": {
         "operationId": "get-episodes-for-a-node",
         "summary": "Get Episodes for a node",
-        "description": "Returns all episodes that mentioned a given node",
+        "description": "Deprecated. Use episode listing with `mentioned_node_uuids` (`POST /graph/episodes/graph/{graph_id}` or `POST /graph/episodes/user/{user_id}`) instead. Returns episodes that mentioned a given node, subject to an internal cap; responses reduced by that cap set the Zep-Truncated header.",
         "tags": [
           "entity"
         ],
@@ -4351,6 +4551,82 @@
                 "schema": {
                   "$ref": "#/components/schemas/ApidataAPIError"
                 }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/graph/node/{node_uuid}/neighbors": {
+      "post": {
+        "operationId": "get-neighbors",
+        "summary": "Get Node Neighbors",
+        "description": "Enumerates the distinct entity nodes directly connected to a node, together with the edges connecting each to it.",
+        "tags": [
+          "graph > node"
+        ],
+        "parameters": [
+          {
+            "name": "node_uuid",
+            "in": "path",
+            "description": "Node UUID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Neighbors",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ApidataGraphNodeNeighbor"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "Neighbors request",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApidataGraphNodeNeighborsRequest"
               }
             }
           }
@@ -7328,9 +7604,31 @@
             "type": "integer",
             "description": "SelectionRank is the global cross-scope rank assigned by auto scope selection."
           },
+          "source_node_labels": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "SourceNodeLabels are the labels of the source node at read time. Same\nread-time-projection semantics as SourceNodeName (spec-2 \u00a74)."
+          },
+          "source_node_name": {
+            "type": "string",
+            "description": "SourceNodeName is the name of the source node at read time. It is a\nread-time projection of current node state, not a stored edge\nattribute: a subsequent node rename is reflected on the next read.\nOmitted (the edge is still returned) if the source node cannot be\nresolved, for example if it was deleted concurrently (spec-2 \u00a74)."
+          },
           "source_node_uuid": {
             "type": "string",
             "description": "UUID of the source node"
+          },
+          "target_node_labels": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "TargetNodeLabels are the labels of the target node at read time. Same\nread-time-projection semantics as SourceNodeName (spec-2 \u00a74)."
+          },
+          "target_node_name": {
+            "type": "string",
+            "description": "TargetNodeName is the name of the target node at read time. Same\nread-time-projection semantics as SourceNodeName (spec-2 \u00a74)."
           },
           "target_node_uuid": {
             "type": "string",
@@ -7688,6 +7986,13 @@
       "GraphitiSearchFilters": {
         "type": "object",
         "properties": {
+          "connected_node_uuids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of node UUIDs to filter edges on: an edge matches if its source OR\ntarget node UUID is in this list. Applies to edges only; rejected on\nrequests whose result type contains no edges. Max 256 entries."
+          },
           "created_at": {
             "type": "array",
             "items": {
@@ -7715,6 +8020,13 @@
           "episode_metadata_filters": {
             "$ref": "#/components/schemas/GraphitiMetadataFilterGroup",
             "description": "[Experimental] Episode metadata filter. Restricts results to edges/nodes derived from episodes\nmatching the metadata predicates. Uses explicit AND/OR groups. This feature is experimental and may change in future releases."
+          },
+          "episode_uuids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of episode UUIDs to filter on. An edge matches if it was derived\nfrom any listed episode; a node matches if it is mentioned by any\nlisted episode. Valid for both edge and node result types. Max 256\nentries."
           },
           "exclude_edge_types": {
             "type": "array",
@@ -7763,6 +8075,20 @@
               "$ref": "#/components/schemas/GraphitiPropertyFilter"
             },
             "description": "List of property filters to apply to nodes and edges"
+          },
+          "source_node_uuids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of node UUIDs to filter edges on: an edge matches if its source\nnode UUID is in this list. Applies to edges only; rejected on requests\nwhose result type contains no edges. Max 256 entries."
+          },
+          "target_node_uuids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of node UUIDs to filter edges on: an edge matches if its target\nnode UUID is in this list. Applies to edges only; rejected on requests\nwhose result type contains no edges. Max 256 entries."
           },
           "valid_at": {
             "type": "array",
@@ -8004,7 +8330,7 @@
           },
           "reranker": {
             "$ref": "#/components/schemas/GraphitiReranker",
-            "description": "Defaults to RRF. Ignored when scope=auto except node_distance and episode_mentions are rejected;\nauto search always uses RRF retrieval and applies its own internal rerank after retrieval."
+            "description": "Defaults to RRF. Ignored when scope=auto except node_distance and episode_mentions are rejected;\nauto search always uses RRF retrieval and applies its own internal rerank after retrieval.\nepisode_mentions ranks edge candidates by how many of the episodes listed\nin search_filters.episode_uuids mention them; without episode_uuids it has\nno effect and results are ranked as if no reranker were specified."
           },
           "return_raw_results": {
             "type": "boolean",
@@ -8210,6 +8536,78 @@
         },
         "title": "ApidataGraphSearchResults"
       },
+      "ApidataGraphSubgraphRequest": {
+        "type": "object",
+        "properties": {
+          "depth": {
+            "type": "integer",
+            "description": "Maximum traversal depth from the seeds. 1-3. Defaults to 1."
+          },
+          "direction": {
+            "type": "string",
+            "description": "Edge orientation followed during expansion, relative to each frontier\nnode: \"in\" | \"out\" | \"both\". Defaults to \"both\"."
+          },
+          "graph_id": {
+            "type": "string",
+            "description": "graph_id identifies the target named graph. Exactly one of user_id or\ngraph_id is required."
+          },
+          "max_edges": {
+            "type": "integer",
+            "description": "Maximum number of edges in the response. 1-1000. Defaults to 200."
+          },
+          "max_nodes": {
+            "type": "integer",
+            "description": "Maximum number of nodes in the response, including admitted seeds.\n1-500. Defaults to 100."
+          },
+          "search_filters": {
+            "$ref": "#/components/schemas/GraphitiSearchFilters",
+            "description": "Filters constraining traversed edges and included nodes. Reuses the\ngraph.search filter type. search_filters.episode_metadata_filters is\nrejected: it cannot be enforced during graph traversal (spec-2 \u00a79.4)."
+          },
+          "seed_node_uuids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Seed node UUIDs to expand from, in traversal-priority order: seeds are\nadmitted before any expansion, in this order, and count toward\nmax_nodes first. 1-20 entries, required. Seeds that do not exist in\nthe target graph are ignored, not an error."
+          },
+          "user_id": {
+            "type": "string",
+            "description": "user_id identifies the target user graph. Exactly one of user_id or\ngraph_id is required."
+          }
+        },
+        "required": [
+          "seed_node_uuids"
+        ],
+        "title": "ApidataGraphSubgraphRequest"
+      },
+      "ApidataGraphSubgraphResponse": {
+        "type": "object",
+        "properties": {
+          "edges": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GraphitiEntityEdge"
+            },
+            "description": "Every traversed edge that passed the request filters. Both endpoints\nof every edge are present in Nodes (edge-endpoint closure)."
+          },
+          "nodes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GraphitiEntityNode"
+            },
+            "description": "Every admitted seed and every node reached within budget."
+          },
+          "truncated": {
+            "type": "boolean",
+            "description": "True whenever any budget or internal limit reduced the result."
+          },
+          "truncation_reason": {
+            "type": "string",
+            "description": "Names the binding limit (for example \"max_nodes\", \"max_edges\") when\nTruncated is true; nil otherwise."
+          }
+        },
+        "title": "ApidataGraphSubgraphResponse"
+      },
       "ApidataUpdateGraphRequest": {
         "type": "object",
         "properties": {
@@ -8309,6 +8707,35 @@
           }
         },
         "title": "ApidataGraphEpisodeResponse"
+      },
+      "ApidataGraphEpisodeListRequest": {
+        "type": "object",
+        "properties": {
+          "cursor": {
+            "type": "string",
+            "description": "Opaque cursor for pagination, obtained from the Zep-Next-Cursor\nresponse header of the previous page."
+          },
+          "direction": {
+            "type": "string",
+            "description": "Sort direction. One of \"asc\" or \"desc\". Defaults to \"desc\"."
+          },
+          "limit": {
+            "type": "integer",
+            "description": "Maximum number of episodes to return. An explicit value is clamped to\n50; when omitted, the default page size (100) applies."
+          },
+          "mentioned_node_uuids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Restricts results to episodes that mention any of the listed node\nUUIDs. At most 256 entries; each must be a syntactically valid UUID."
+          },
+          "order_by": {
+            "type": "string",
+            "description": "Field to sort by. One of \"uuid\" or \"created_at\". Defaults to \"uuid\"."
+          }
+        },
+        "title": "ApidataGraphEpisodeListRequest"
       },
       "ApidataUpdateEpisodeRequest": {
         "type": "object",
@@ -8494,6 +8921,51 @@
           }
         },
         "title": "ApidataGraphNodesRequest"
+      },
+      "ApidataGraphNodeNeighborsRequest": {
+        "type": "object",
+        "properties": {
+          "cursor": {
+            "type": "string",
+            "description": "Opaque cursor for pagination, obtained from the Zep-Next-Cursor\nresponse header of the previous page."
+          },
+          "direction": {
+            "type": "string",
+            "description": "Orientation of the connecting edge relative to the anchor node: \"out\"\n(anchor is the edge's source), \"in\" (anchor is the edge's target), or\n\"both\" (either). Defaults to \"both\"."
+          },
+          "direction_sort": {
+            "type": "string",
+            "description": "Sort direction for order_by. One of \"asc\" or \"desc\". Defaults to\n\"desc\". Named direction_sort to avoid clashing with the traversal\nDirection field above."
+          },
+          "filters": {
+            "$ref": "#/components/schemas/GraphitiSearchFilters",
+            "description": "Filters constraining the connecting edges (edge types, dates, and the\nsection-3 node-/episode-anchored fields) and the neighbor nodes\n(node_labels/exclude_node_labels). Reuses the graph.search filter\ntype."
+          },
+          "limit": {
+            "type": "integer",
+            "description": "Maximum number of neighbor nodes to return. An explicit value is\nclamped to 50; when omitted, the default page size (100) applies."
+          },
+          "order_by": {
+            "type": "string",
+            "description": "Field to sort neighbor nodes by. One of \"uuid\" or \"created_at\".\nDefaults to \"uuid\"."
+          }
+        },
+        "title": "ApidataGraphNodeNeighborsRequest"
+      },
+      "ApidataGraphNodeNeighbor": {
+        "type": "object",
+        "properties": {
+          "edges": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GraphitiEntityEdge"
+            }
+          },
+          "node": {
+            "$ref": "#/components/schemas/GraphitiEntityNode"
+          }
+        },
+        "title": "ApidataGraphNodeNeighbor"
       },
       "ApidataUpdateNodeRequest": {
         "type": "object",
