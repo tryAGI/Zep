@@ -44,7 +44,7 @@ namespace Zep
         /// <summary>
         /// Filters constraining traversed edges and included nodes. Reuses the<br/>
         /// graph.search filter type. search_filters.episode_metadata_filters is<br/>
-        /// rejected: it cannot be enforced during graph traversal (spec-2 §9.4).
+        /// rejected: it cannot be enforced during graph traversal.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("search_filters")]
         public global::Zep.GraphitiSearchFilters? SearchFilters { get; set; }
@@ -102,7 +102,7 @@ namespace Zep
         /// <param name="searchFilters">
         /// Filters constraining traversed edges and included nodes. Reuses the<br/>
         /// graph.search filter type. search_filters.episode_metadata_filters is<br/>
-        /// rejected: it cannot be enforced during graph traversal (spec-2 §9.4).
+        /// rejected: it cannot be enforced during graph traversal.
         /// </param>
         /// <param name="userId">
         /// user_id identifies the target user graph. Exactly one of user_id or<br/>

@@ -80,7 +80,7 @@ namespace Zep
 
         /// <summary>
         /// SourceNodeLabels are the labels of the source node at read time. Same<br/>
-        /// read-time-projection semantics as SourceNodeName (spec-2 §4).
+        /// read-time-projection semantics as SourceNodeName.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("source_node_labels")]
         public global::System.Collections.Generic.IList<string>? SourceNodeLabels { get; set; }
@@ -90,7 +90,7 @@ namespace Zep
         /// read-time projection of current node state, not a stored edge<br/>
         /// attribute: a subsequent node rename is reflected on the next read.<br/>
         /// Omitted (the edge is still returned) if the source node cannot be<br/>
-        /// resolved, for example if it was deleted concurrently (spec-2 §4).
+        /// resolved, for example if it was deleted concurrently.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("source_node_name")]
         public string? SourceNodeName { get; set; }
@@ -104,14 +104,14 @@ namespace Zep
 
         /// <summary>
         /// TargetNodeLabels are the labels of the target node at read time. Same<br/>
-        /// read-time-projection semantics as SourceNodeName (spec-2 §4).
+        /// read-time-projection semantics as SourceNodeName.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("target_node_labels")]
         public global::System.Collections.Generic.IList<string>? TargetNodeLabels { get; set; }
 
         /// <summary>
         /// TargetNodeName is the name of the target node at read time. Same<br/>
-        /// read-time-projection semantics as SourceNodeName (spec-2 §4).
+        /// read-time-projection semantics as SourceNodeName.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("target_node_name")]
         public string? TargetNodeName { get; set; }
@@ -190,22 +190,22 @@ namespace Zep
         /// </param>
         /// <param name="sourceNodeLabels">
         /// SourceNodeLabels are the labels of the source node at read time. Same<br/>
-        /// read-time-projection semantics as SourceNodeName (spec-2 §4).
+        /// read-time-projection semantics as SourceNodeName.
         /// </param>
         /// <param name="sourceNodeName">
         /// SourceNodeName is the name of the source node at read time. It is a<br/>
         /// read-time projection of current node state, not a stored edge<br/>
         /// attribute: a subsequent node rename is reflected on the next read.<br/>
         /// Omitted (the edge is still returned) if the source node cannot be<br/>
-        /// resolved, for example if it was deleted concurrently (spec-2 §4).
+        /// resolved, for example if it was deleted concurrently.
         /// </param>
         /// <param name="targetNodeLabels">
         /// TargetNodeLabels are the labels of the target node at read time. Same<br/>
-        /// read-time-projection semantics as SourceNodeName (spec-2 §4).
+        /// read-time-projection semantics as SourceNodeName.
         /// </param>
         /// <param name="targetNodeName">
         /// TargetNodeName is the name of the target node at read time. Same<br/>
-        /// read-time-projection semantics as SourceNodeName (spec-2 §4).
+        /// read-time-projection semantics as SourceNodeName.
         /// </param>
         /// <param name="validAt">
         /// Datetime of when the fact became true

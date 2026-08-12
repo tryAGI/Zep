@@ -606,7 +606,7 @@ namespace Zep
         /// <param name="searchFilters">
         /// Filters constraining traversed edges and included nodes. Reuses the<br/>
         /// graph.search filter type. search_filters.episode_metadata_filters is<br/>
-        /// rejected: it cannot be enforced during graph traversal (spec-2 §9.4).
+        /// rejected: it cannot be enforced during graph traversal.
         /// </param>
         /// <param name="seedNodeUuids">
         /// Seed node UUIDs to expand from, in traversal-priority order: seeds are<br/>
