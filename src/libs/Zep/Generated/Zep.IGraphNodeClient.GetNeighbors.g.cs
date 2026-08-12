@@ -55,7 +55,7 @@ namespace Zep
         /// </param>
         /// <param name="filters">
         /// Filters constraining the connecting edges (edge types, dates, and the<br/>
-        /// section-3 node-/episode-anchored fields) and the neighbor nodes<br/>
+        /// node- and episode-anchored UUID fields) and the neighbor nodes<br/>
         /// (node_labels/exclude_node_labels). Reuses the graph.search filter<br/>
         /// type.
         /// </param>

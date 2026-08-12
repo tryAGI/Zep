@@ -7609,11 +7609,11 @@
             "items": {
               "type": "string"
             },
-            "description": "SourceNodeLabels are the labels of the source node at read time. Same\nread-time-projection semantics as SourceNodeName (spec-2 \u00a74)."
+            "description": "SourceNodeLabels are the labels of the source node at read time. Same\nread-time-projection semantics as SourceNodeName."
           },
           "source_node_name": {
             "type": "string",
-            "description": "SourceNodeName is the name of the source node at read time. It is a\nread-time projection of current node state, not a stored edge\nattribute: a subsequent node rename is reflected on the next read.\nOmitted (the edge is still returned) if the source node cannot be\nresolved, for example if it was deleted concurrently (spec-2 \u00a74)."
+            "description": "SourceNodeName is the name of the source node at read time. It is a\nread-time projection of current node state, not a stored edge\nattribute: a subsequent node rename is reflected on the next read.\nOmitted (the edge is still returned) if the source node cannot be\nresolved, for example if it was deleted concurrently."
           },
           "source_node_uuid": {
             "type": "string",
@@ -7624,11 +7624,11 @@
             "items": {
               "type": "string"
             },
-            "description": "TargetNodeLabels are the labels of the target node at read time. Same\nread-time-projection semantics as SourceNodeName (spec-2 \u00a74)."
+            "description": "TargetNodeLabels are the labels of the target node at read time. Same\nread-time-projection semantics as SourceNodeName."
           },
           "target_node_name": {
             "type": "string",
-            "description": "TargetNodeName is the name of the target node at read time. Same\nread-time-projection semantics as SourceNodeName (spec-2 \u00a74)."
+            "description": "TargetNodeName is the name of the target node at read time. Same\nread-time-projection semantics as SourceNodeName."
           },
           "target_node_uuid": {
             "type": "string",
@@ -8561,7 +8561,7 @@
           },
           "search_filters": {
             "$ref": "#/components/schemas/GraphitiSearchFilters",
-            "description": "Filters constraining traversed edges and included nodes. Reuses the\ngraph.search filter type. search_filters.episode_metadata_filters is\nrejected: it cannot be enforced during graph traversal (spec-2 \u00a79.4)."
+            "description": "Filters constraining traversed edges and included nodes. Reuses the\ngraph.search filter type. search_filters.episode_metadata_filters is\nrejected: it cannot be enforced during graph traversal."
           },
           "seed_node_uuids": {
             "type": "array",
@@ -8939,7 +8939,7 @@
           },
           "filters": {
             "$ref": "#/components/schemas/GraphitiSearchFilters",
-            "description": "Filters constraining the connecting edges (edge types, dates, and the\nsection-3 node-/episode-anchored fields) and the neighbor nodes\n(node_labels/exclude_node_labels). Reuses the graph.search filter\ntype."
+            "description": "Filters constraining the connecting edges (edge types, dates, and the\nnode- and episode-anchored UUID fields) and the neighbor nodes\n(node_labels/exclude_node_labels). Reuses the graph.search filter\ntype."
           },
           "limit": {
             "type": "integer",
