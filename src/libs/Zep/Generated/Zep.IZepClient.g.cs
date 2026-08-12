@@ -77,6 +77,16 @@ namespace Zep
         /// <summary>
         /// 
         /// </summary>
+        public GraphEpisodeClient GraphEpisode { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public GraphNodeClient GraphNode { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public ObservationClient Observation { get; }
 
         /// <summary>

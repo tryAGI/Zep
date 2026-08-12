@@ -43,7 +43,7 @@ namespace Zep
 
         /// <summary>
         /// Get Episodes for a node<br/>
-        /// Returns all episodes that mentioned a given node
+        /// Deprecated. Use episode listing with `mentioned_node_uuids` (`POST /graph/episodes/graph/{graph_id}` or `POST /graph/episodes/user/{user_id}`) instead. Returns episodes that mentioned a given node, subject to an internal cap; responses reduced by that cap set the Zep-Truncated header.
         /// </summary>
         /// <param name="nodeUuid"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
@@ -64,7 +64,7 @@ namespace Zep
         }
         /// <summary>
         /// Get Episodes for a node<br/>
-        /// Returns all episodes that mentioned a given node
+        /// Deprecated. Use episode listing with `mentioned_node_uuids` (`POST /graph/episodes/graph/{graph_id}` or `POST /graph/episodes/user/{user_id}`) instead. Returns episodes that mentioned a given node, subject to an internal cap; responses reduced by that cap set the Zep-Truncated header.
         /// </summary>
         /// <param name="nodeUuid"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
