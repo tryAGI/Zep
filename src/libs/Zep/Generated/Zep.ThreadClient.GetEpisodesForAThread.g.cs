@@ -7,7 +7,7 @@ namespace Zep
     {
 
 
-        private static readonly global::Zep.EndPointSecurityRequirement s_GetMessagesOfAThreadSecurityRequirement0 =
+        private static readonly global::Zep.EndPointSecurityRequirement s_GetEpisodesForAThreadSecurityRequirement0 =
             new global::Zep.EndPointSecurityRequirement
             {
                 Authorizations = new global::Zep.EndPointAuthorizationRequirement[]
@@ -21,56 +21,41 @@ namespace Zep
                     },
                 },
             };
-        private static readonly global::Zep.EndPointSecurityRequirement[] s_GetMessagesOfAThreadSecurityRequirements =
+        private static readonly global::Zep.EndPointSecurityRequirement[] s_GetEpisodesForAThreadSecurityRequirements =
             new global::Zep.EndPointSecurityRequirement[]
-            {                s_GetMessagesOfAThreadSecurityRequirement0,
+            {                s_GetEpisodesForAThreadSecurityRequirement0,
             };
-        partial void PrepareGetMessagesOfAThreadArguments(
+        partial void PrepareGetEpisodesForAThreadArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string threadId,
-            ref int? limit,
-            ref long? cursor,
-            ref int? lastn);
-        partial void PrepareGetMessagesOfAThreadRequest(
+            ref string threadId);
+        partial void PrepareGetEpisodesForAThreadRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string threadId,
-            int? limit,
-            long? cursor,
-            int? lastn);
-        partial void ProcessGetMessagesOfAThreadResponse(
+            string threadId);
+        partial void ProcessGetEpisodesForAThreadResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
-        partial void ProcessGetMessagesOfAThreadResponseContent(
+        partial void ProcessGetEpisodesForAThreadResponseContent(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage,
             ref string content);
 
         /// <summary>
-        /// Get messages of a thread<br/>
-        /// Returns messages for a thread.
+        /// Get Episodes for a thread<br/>
+        /// Returns graph episodes associated with a thread. Parallel to get_episodes_for_document for documents.
         /// </summary>
         /// <param name="threadId"></param>
-        /// <param name="limit"></param>
-        /// <param name="cursor"></param>
-        /// <param name="lastn"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Zep.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Zep.ApidataThreadMessageListResponse> GetMessagesOfAThreadAsync(
+        public async global::System.Threading.Tasks.Task<global::Zep.ApidataGraphEpisodeResponse> GetEpisodesForAThreadAsync(
             string threadId,
-            int? limit = default,
-            long? cursor = default,
-            int? lastn = default,
             global::Zep.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __response = await GetMessagesOfAThreadAsResponseAsync(
+            var __response = await GetEpisodesForAThreadAsResponseAsync(
                 threadId: threadId,
-                limit: limit,
-                cursor: cursor,
-                lastn: lastn,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
@@ -78,38 +63,29 @@ namespace Zep
             return __response.Body;
         }
         /// <summary>
-        /// Get messages of a thread<br/>
-        /// Returns messages for a thread.
+        /// Get Episodes for a thread<br/>
+        /// Returns graph episodes associated with a thread. Parallel to get_episodes_for_document for documents.
         /// </summary>
         /// <param name="threadId"></param>
-        /// <param name="limit"></param>
-        /// <param name="cursor"></param>
-        /// <param name="lastn"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Zep.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Zep.AutoSDKHttpResponse<global::Zep.ApidataThreadMessageListResponse>> GetMessagesOfAThreadAsResponseAsync(
+        public async global::System.Threading.Tasks.Task<global::Zep.AutoSDKHttpResponse<global::Zep.ApidataGraphEpisodeResponse>> GetEpisodesForAThreadAsResponseAsync(
             string threadId,
-            int? limit = default,
-            long? cursor = default,
-            int? lastn = default,
             global::Zep.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             PrepareArguments(
                 client: HttpClient);
-            PrepareGetMessagesOfAThreadArguments(
+            PrepareGetEpisodesForAThreadArguments(
                 httpClient: HttpClient,
-                threadId: ref threadId,
-                limit: ref limit,
-                cursor: ref cursor,
-                lastn: ref lastn);
+                threadId: ref threadId);
 
 
             var __authorizations = global::Zep.EndPointSecurityResolver.ResolveAuthorizations(
                 availableAuthorizations: Authorizations,
-                securityRequirements: s_GetMessagesOfAThreadSecurityRequirements,
-                operationName: "GetMessagesOfAThreadAsync");
+                securityRequirements: s_GetEpisodesForAThreadSecurityRequirements,
+                operationName: "GetEpisodesForAThreadAsync");
 
             using var __timeoutCancellationTokenSource = global::Zep.AutoSDKRequestOptionsSupport.CreateTimeoutCancellationTokenSource(
                 clientOptions: Options,
@@ -129,13 +105,8 @@ namespace Zep
             {
 
                             var __pathBuilder = new global::Zep.PathBuilder(
-                                path: $"/threads/{threadId}/messages",
+                                path: $"/threads/{threadId}/episodes",
                                 baseUri: HttpClient.BaseAddress);
-                            __pathBuilder
-                                .AddOptionalParameter("limit", limit?.ToString())
-                                .AddOptionalParameter("cursor", cursor?.ToString())
-                                .AddOptionalParameter("lastn", lastn?.ToString())
-                                ;
                             var __path = __pathBuilder.ToString();
                 __path = global::Zep.AutoSDKRequestOptionsSupport.AppendQueryParameters(
                     path: __path,
@@ -173,13 +144,10 @@ namespace Zep
                 PrepareRequest(
                     client: HttpClient,
                     request: __httpRequest);
-                PrepareGetMessagesOfAThreadRequest(
+                PrepareGetEpisodesForAThreadRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    threadId: threadId!,
-                    limit: limit,
-                    cursor: cursor,
-                    lastn: lastn);
+                    threadId: threadId!);
 
                 return __httpRequest;
             }
@@ -196,9 +164,9 @@ namespace Zep
                     await global::Zep.AutoSDKRequestOptionsSupport.OnBeforeRequestAsync(
                             clientOptions: Options,
                             context: global::Zep.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "GetMessagesOfAThread",
-                                methodName: "GetMessagesOfAThreadAsync",
-                                pathTemplate: "$\"/threads/{threadId}/messages\"",
+                                operationId: "GetEpisodesForAThread",
+                                methodName: "GetEpisodesForAThreadAsync",
+                                pathTemplate: "$\"/threads/{threadId}/episodes\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -230,9 +198,9 @@ namespace Zep
                         await global::Zep.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Zep.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "GetMessagesOfAThread",
-                                methodName: "GetMessagesOfAThreadAsync",
-                                pathTemplate: "$\"/threads/{threadId}/messages\"",
+                                operationId: "GetEpisodesForAThread",
+                                methodName: "GetEpisodesForAThreadAsync",
+                                pathTemplate: "$\"/threads/{threadId}/episodes\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -271,9 +239,9 @@ namespace Zep
                         await global::Zep.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Zep.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "GetMessagesOfAThread",
-                                methodName: "GetMessagesOfAThreadAsync",
-                                pathTemplate: "$\"/threads/{threadId}/messages\"",
+                                operationId: "GetEpisodesForAThread",
+                                methodName: "GetEpisodesForAThreadAsync",
+                                pathTemplate: "$\"/threads/{threadId}/episodes\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -311,7 +279,7 @@ namespace Zep
                 ProcessResponse(
                     client: HttpClient,
                     response: __response);
-                ProcessGetMessagesOfAThreadResponse(
+                ProcessGetEpisodesForAThreadResponse(
                     httpClient: HttpClient,
                     httpResponseMessage: __response);
                 if (__response.IsSuccessStatusCode)
@@ -319,9 +287,9 @@ namespace Zep
                     await global::Zep.AutoSDKRequestOptionsSupport.OnAfterSuccessAsync(
                             clientOptions: Options,
                             context: global::Zep.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "GetMessagesOfAThread",
-                                methodName: "GetMessagesOfAThreadAsync",
-                                pathTemplate: "$\"/threads/{threadId}/messages\"",
+                                operationId: "GetEpisodesForAThread",
+                                methodName: "GetEpisodesForAThreadAsync",
+                                pathTemplate: "$\"/threads/{threadId}/episodes\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -341,9 +309,9 @@ namespace Zep
                     await global::Zep.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Zep.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "GetMessagesOfAThread",
-                                methodName: "GetMessagesOfAThreadAsync",
-                                pathTemplate: "$\"/threads/{threadId}/messages\"",
+                                operationId: "GetEpisodesForAThread",
+                                methodName: "GetEpisodesForAThreadAsync",
+                                pathTemplate: "$\"/threads/{threadId}/episodes\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -358,6 +326,43 @@ namespace Zep
                                 retryReason: global::System.String.Empty,
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                 }
+                            // Forbidden
+                            if ((int)__response.StatusCode == 403)
+                            {
+                                string? __content_403 = null;
+                                global::System.Exception? __exception_403 = null;
+                                global::Zep.ApidataAPIError? __value_403 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_403 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_403 = global::Zep.ApidataAPIError.FromJson(__content_403, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_403 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_403 = global::Zep.ApidataAPIError.FromJson(__content_403, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_403 = __ex;
+                                }
+
+
+                                throw global::Zep.ApiException<global::Zep.ApidataAPIError>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_403 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_403,
+                                    responseBody: __content_403,
+                                    responseObject: __value_403,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
                             // Not Found
                             if ((int)__response.StatusCode == 404)
                             {
@@ -445,7 +450,7 @@ namespace Zep
                                     client: HttpClient,
                                     response: __response,
                                     content: ref __content);
-                                ProcessGetMessagesOfAThreadResponseContent(
+                                ProcessGetEpisodesForAThreadResponseContent(
                                     httpClient: HttpClient,
                                     httpResponseMessage: __response,
                                     content: ref __content);
@@ -454,9 +459,9 @@ namespace Zep
                                 {
                                     __response.EnsureSuccessStatusCode();
 
-                                    var __value = global::Zep.ApidataThreadMessageListResponse.FromJson(__content, JsonSerializerContext) ??
+                                    var __value = global::Zep.ApidataGraphEpisodeResponse.FromJson(__content, JsonSerializerContext) ??
                                         throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
-                                    return new global::Zep.AutoSDKHttpResponse<global::Zep.ApidataThreadMessageListResponse>(
+                                    return new global::Zep.AutoSDKHttpResponse<global::Zep.ApidataGraphEpisodeResponse>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Zep.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
@@ -486,9 +491,9 @@ namespace Zep
                 #endif
                                     ).ConfigureAwait(false);
 
-                                    var __value = await global::Zep.ApidataThreadMessageListResponse.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
+                                    var __value = await global::Zep.ApidataGraphEpisodeResponse.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
                                         throw new global::System.InvalidOperationException("Response deserialization failed.");
-                                    return new global::Zep.AutoSDKHttpResponse<global::Zep.ApidataThreadMessageListResponse>(
+                                    return new global::Zep.AutoSDKHttpResponse<global::Zep.ApidataGraphEpisodeResponse>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Zep.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,

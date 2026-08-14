@@ -62,6 +62,16 @@ namespace Zep
         /// <summary>
         /// 
         /// </summary>
+        public DocumentClient Document { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public DocumentSummaryClient DocumentSummary { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public EntityClient Entity { get; }
 
         /// <summary>

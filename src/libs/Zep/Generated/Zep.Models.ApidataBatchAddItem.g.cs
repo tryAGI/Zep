@@ -34,6 +34,13 @@ namespace Zep
         public global::Zep.ModelsGraphDataType? DataType { get; set; }
 
         /// <summary>
+        /// Optional document ID for graph_episode items. Groups episodes as document<br/>
+        /// chunks. Ignored for thread_message items.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("document_id")]
+        public string? DocumentId { get; set; }
+
+        /// <summary>
         /// 
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("graph_id")]
@@ -98,6 +105,10 @@ namespace Zep
         /// <param name="createdAt"></param>
         /// <param name="data"></param>
         /// <param name="dataType"></param>
+        /// <param name="documentId">
+        /// Optional document ID for graph_episode items. Groups episodes as document<br/>
+        /// chunks. Ignored for thread_message items.
+        /// </param>
         /// <param name="graphId"></param>
         /// <param name="metadata"></param>
         /// <param name="name"></param>
@@ -114,6 +125,7 @@ namespace Zep
             string? createdAt,
             string? data,
             global::Zep.ModelsGraphDataType? dataType,
+            string? documentId,
             string? graphId,
             object? metadata,
             string? name,
@@ -126,6 +138,7 @@ namespace Zep
             this.CreatedAt = createdAt;
             this.Data = data;
             this.DataType = dataType;
+            this.DocumentId = documentId;
             this.GraphId = graphId;
             this.Metadata = metadata;
             this.Name = name;

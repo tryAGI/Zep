@@ -36,6 +36,10 @@ namespace Zep
         /// </summary>
         /// <param name="createdAt"></param>
         /// <param name="data"></param>
+        /// <param name="documentId">
+        /// Optional document ID that groups episodes as chunks of the same document<br/>
+        /// on a graph. Parallel to thread_id for message threads.
+        /// </param>
         /// <param name="graphId">
         /// graph_id is the ID of the graph to which the data will be added. If adding to the user graph, please use user_id field instead.
         /// </param>
@@ -57,6 +61,7 @@ namespace Zep
             string data,
             global::Zep.ModelsGraphDataType type,
             string? createdAt = default,
+            string? documentId = default,
             string? graphId = default,
             object? metadata = default,
             string? sourceDescription = default,

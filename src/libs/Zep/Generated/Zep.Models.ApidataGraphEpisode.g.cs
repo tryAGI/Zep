@@ -23,6 +23,12 @@ namespace Zep
         public required string CreatedAt { get; set; }
 
         /// <summary>
+        /// Optional document ID, will be present if the episode is part of a document
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("document_id")]
+        public string? DocumentId { get; set; }
+
+        /// <summary>
         /// 
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("metadata")]
@@ -110,6 +116,9 @@ namespace Zep
         /// <param name="content"></param>
         /// <param name="createdAt"></param>
         /// <param name="uuid"></param>
+        /// <param name="documentId">
+        /// Optional document ID, will be present if the episode is part of a document
+        /// </param>
         /// <param name="metadata"></param>
         /// <param name="processed"></param>
         /// <param name="relevance">
@@ -143,6 +152,7 @@ namespace Zep
             string content,
             string createdAt,
             string uuid,
+            string? documentId,
             object? metadata,
             bool? processed,
             double? relevance,
@@ -157,6 +167,7 @@ namespace Zep
         {
             this.Content = content ?? throw new global::System.ArgumentNullException(nameof(content));
             this.CreatedAt = createdAt ?? throw new global::System.ArgumentNullException(nameof(createdAt));
+            this.DocumentId = documentId;
             this.Metadata = metadata;
             this.Processed = processed;
             this.Relevance = relevance;

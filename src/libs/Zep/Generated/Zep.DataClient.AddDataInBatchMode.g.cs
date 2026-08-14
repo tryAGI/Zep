@@ -514,6 +514,9 @@ namespace Zep
         /// Deprecated. Use the [Batch API](/adding-batch-data) (`client.batch.*`) instead.<br/>
         /// Adds data to the graph in batch mode, processing episodes concurrently.
         /// </summary>
+        /// <param name="documentId">
+        /// Optional document ID applied to every episode in this batch request.
+        /// </param>
         /// <param name="episodes"></param>
         /// <param name="graphId">
         /// graph_id is the ID of the graph to which the data will be added. If adding to the user graph, please use user_id field instead.
@@ -529,6 +532,7 @@ namespace Zep
         /// <exception cref="global::System.InvalidOperationException"></exception>
         public async global::System.Threading.Tasks.Task<global::System.Collections.Generic.IList<global::Zep.ApidataGraphEpisode>> AddDataInBatchModeAsync(
             global::System.Collections.Generic.IList<global::Zep.ApidataEpisodeData> episodes,
+            string? documentId = default,
             string? graphId = default,
             bool? strictOntology = default,
             string? userId = default,
@@ -537,6 +541,7 @@ namespace Zep
         {
             var __request = new global::Zep.ApidataAddDataBatchRequest
             {
+                DocumentId = documentId,
                 Episodes = episodes,
                 GraphId = graphId,
                 StrictOntology = strictOntology,

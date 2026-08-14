@@ -17,6 +17,10 @@ namespace Zep
 
             typeof(global::Zep.JsonConverters.ApidataRoleTypeNullableJsonConverter),
 
+            typeof(global::Zep.JsonConverters.ModelsGraphDataTypeJsonConverter),
+
+            typeof(global::Zep.JsonConverters.ModelsGraphDataTypeNullableJsonConverter),
+
             typeof(global::Zep.JsonConverters.ModelsUserGroupKindJsonConverter),
 
             typeof(global::Zep.JsonConverters.ModelsUserGroupKindNullableJsonConverter),
@@ -24,10 +28,6 @@ namespace Zep
             typeof(global::Zep.JsonConverters.ModelsEntityPropertyTypeJsonConverter),
 
             typeof(global::Zep.JsonConverters.ModelsEntityPropertyTypeNullableJsonConverter),
-
-            typeof(global::Zep.JsonConverters.ModelsGraphDataTypeJsonConverter),
-
-            typeof(global::Zep.JsonConverters.ModelsGraphDataTypeNullableJsonConverter),
 
             typeof(global::Zep.JsonConverters.ApidataRecencyWeightJsonConverter),
 
@@ -79,6 +79,11 @@ namespace Zep
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(bool))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataThreadMessageListResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Zep.ApidataThreadMessage>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ModelsGraphDataType), TypeInfoPropertyName = "ModelsGraphDataType2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataGraphEpisode))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(double))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataGraphEpisodeResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Zep.ApidataGraphEpisode>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataAddThreadMessagesRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Zep.ApidataRoleType>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataAddThreadMessagesResponse))]
@@ -91,7 +96,6 @@ namespace Zep
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Zep.ApidataUser>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataUpdateUserRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.GraphitiEntityNode))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(double))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataUserNodeResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataUserInstruction))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataListUserInstructionsResponse))]
@@ -131,9 +135,7 @@ namespace Zep
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataEntityTypeResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Zep.ApidataEdgeType>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Zep.ApidataEntityType>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ModelsGraphDataType), TypeInfoPropertyName = "ModelsGraphDataType2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataAddDataRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataGraphEpisode))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataEpisodeData))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataAddDataBatchRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Zep.ApidataEpisodeData>))]
@@ -180,7 +182,6 @@ namespace Zep
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataGraphSearchResponseMetadata))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.GraphitiSagaNode))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataGraphSearchResults))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Zep.ApidataGraphEpisode>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Zep.GraphitiDerivedNode>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Zep.GraphitiSagaNode>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataGraphSubgraphRequest))]
@@ -188,7 +189,6 @@ namespace Zep
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataUpdateGraphRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataGraphEdgesRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataUpdateEdgeRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataGraphEpisodeResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataGraphEpisodeListRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataUpdateEpisodeRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataEpisodeMentions))]
@@ -209,6 +209,8 @@ namespace Zep
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataDeleteCustomInstructionsRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataGraphObservationsRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataGraphThreadSummariesRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataGraphDocumentSummariesRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataDocumentSummary))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataProjectInfo))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataProjectInfoResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataUpdateProjectInfoRequest))]
@@ -236,10 +238,13 @@ namespace Zep
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataBatchItemListResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Zep.ApidataBatchItemDetail>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.SetOntologyRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(long))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Zep.ApidataGraphNodeNeighbor>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Zep.ApidataThreadSummary>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Zep.ApidataDocumentSummary>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Zep.ApidataThread>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Zep.ApidataThreadMessage>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Zep.ApidataGraphEpisode>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Zep.ApidataRoleType>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<string>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Zep.ApidataUser>))]
@@ -261,7 +266,6 @@ namespace Zep
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Zep.GraphitiEntityEdge>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Zep.GraphitiEntityNode>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Zep.ApidataPatternResult>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Zep.ApidataGraphEpisode>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Zep.GraphitiDerivedNode>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Zep.GraphitiSagaNode>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Zep.GraphitiAddNodeItem>))]
@@ -274,6 +278,7 @@ namespace Zep
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Zep.ApidataBatchItemDetail>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Zep.ApidataGraphNodeNeighbor>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Zep.ApidataThreadSummary>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Zep.ApidataDocumentSummary>))]
     public sealed partial class SourceGenerationContext : global::System.Text.Json.Serialization.JsonSerializerContext
     {
     }

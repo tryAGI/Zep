@@ -22,6 +22,13 @@ namespace Zep
         public required string Data { get; set; }
 
         /// <summary>
+        /// Optional document ID that groups episodes as chunks of the same document<br/>
+        /// on a graph. Parallel to thread_id for message threads.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("document_id")]
+        public string? DocumentId { get; set; }
+
+        /// <summary>
         /// graph_id is the ID of the graph to which the data will be added. If adding to the user graph, please use user_id field instead.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("graph_id")]
@@ -71,6 +78,10 @@ namespace Zep
         /// <param name="data"></param>
         /// <param name="type"></param>
         /// <param name="createdAt"></param>
+        /// <param name="documentId">
+        /// Optional document ID that groups episodes as chunks of the same document<br/>
+        /// on a graph. Parallel to thread_id for message threads.
+        /// </param>
         /// <param name="graphId">
         /// graph_id is the ID of the graph to which the data will be added. If adding to the user graph, please use user_id field instead.
         /// </param>
@@ -91,6 +102,7 @@ namespace Zep
             string data,
             global::Zep.ModelsGraphDataType type,
             string? createdAt,
+            string? documentId,
             string? graphId,
             object? metadata,
             string? sourceDescription,
@@ -99,6 +111,7 @@ namespace Zep
         {
             this.CreatedAt = createdAt;
             this.Data = data ?? throw new global::System.ArgumentNullException(nameof(data));
+            this.DocumentId = documentId;
             this.GraphId = graphId;
             this.Metadata = metadata;
             this.SourceDescription = sourceDescription;
