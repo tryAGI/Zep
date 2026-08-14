@@ -9,6 +9,12 @@ namespace Zep
     public sealed partial class ApidataAddDataBatchRequest
     {
         /// <summary>
+        /// Optional document ID applied to every episode in this batch request.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("document_id")]
+        public string? DocumentId { get; set; }
+
+        /// <summary>
         /// 
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("episodes")]
@@ -43,6 +49,9 @@ namespace Zep
         /// Initializes a new instance of the <see cref="ApidataAddDataBatchRequest" /> class.
         /// </summary>
         /// <param name="episodes"></param>
+        /// <param name="documentId">
+        /// Optional document ID applied to every episode in this batch request.
+        /// </param>
         /// <param name="graphId">
         /// graph_id is the ID of the graph to which the data will be added. If adding to the user graph, please use user_id field instead.
         /// </param>
@@ -57,10 +66,12 @@ namespace Zep
 #endif
         public ApidataAddDataBatchRequest(
             global::System.Collections.Generic.IList<global::Zep.ApidataEpisodeData> episodes,
+            string? documentId,
             string? graphId,
             bool? strictOntology,
             string? userId)
         {
+            this.DocumentId = documentId;
             this.Episodes = episodes ?? throw new global::System.ArgumentNullException(nameof(episodes));
             this.GraphId = graphId;
             this.StrictOntology = strictOntology;

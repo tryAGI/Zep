@@ -283,7 +283,8 @@
             "description": "Cursor for pagination",
             "required": false,
             "schema": {
-              "type": "integer"
+              "type": "integer",
+              "format": "int64"
             }
           },
           {
@@ -375,6 +376,69 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/ApidataAddThreadMessagesRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/threads/{threadId}/episodes": {
+      "get": {
+        "operationId": "get-episodes-for-a-thread",
+        "summary": "Get Episodes for a thread",
+        "description": "Returns graph episodes associated with a thread. Parallel to get_episodes_for_document for documents.",
+        "tags": [
+          "thread"
+        ],
+        "parameters": [
+          {
+            "name": "threadId",
+            "in": "path",
+            "description": "The ID of the thread",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Episodes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataGraphEpisodeResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
               }
             }
           }
@@ -5387,6 +5451,154 @@
         }
       }
     },
+    "/graph/documents/{document_id}/episodes": {
+      "get": {
+        "operationId": "get-episodes-for-a-document",
+        "summary": "Get Episodes for a document",
+        "description": "Returns episodes associated with a document on a graph. Documents group episodes as chunks, parallel to how threads group messages.",
+        "tags": [
+          "document"
+        ],
+        "parameters": [
+          {
+            "name": "document_id",
+            "in": "path",
+            "description": "Document ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "graph_id",
+            "in": "query",
+            "description": "Graph ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Episodes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataGraphEpisodeResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/graph/document-summary/graph/{graph_id}": {
+      "post": {
+        "operationId": "get-graph-document-summaries",
+        "summary": "Get Graph Document Summaries",
+        "description": "Returns incremental document summaries associated with the graph. Document summaries are derived similarly to thread summaries.",
+        "tags": [
+          "document-summary"
+        ],
+        "parameters": [
+          {
+            "name": "graph_id",
+            "in": "path",
+            "description": "Graph ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Document summaries",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ApidataDocumentSummary"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApidataAPIError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "Pagination parameters",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApidataGraphDocumentSummariesRequest"
+              }
+            }
+          }
+        }
+      }
+    },
     "/projects/info": {
       "get": {
         "operationId": "retrieves-project-information",
@@ -6439,6 +6651,97 @@
         },
         "title": "ApidataThreadMessageListResponse"
       },
+      "ModelsGraphDataType": {
+        "type": "string",
+        "enum": [
+          "text",
+          "json",
+          "message",
+          "fact_triple"
+        ],
+        "title": "ModelsGraphDataType"
+      },
+      "ApidataGraphEpisode": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string"
+          },
+          "document_id": {
+            "type": "string",
+            "description": "Optional document ID, will be present if the episode is part of a document"
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": {
+              "description": "Any type"
+            }
+          },
+          "processed": {
+            "type": "boolean"
+          },
+          "relevance": {
+            "type": "number",
+            "format": "double",
+            "description": "Relevance is an experimental rank-aligned score in [0,1] derived from Score via logit transformation.\nOnly populated when using cross_encoder reranker; omitted for other reranker types (e.g., RRF)."
+          },
+          "role": {
+            "type": "string",
+            "description": "Optional role, will only be present if the episode was created using memory.add API"
+          },
+          "role_type": {
+            "$ref": "#/components/schemas/ApidataRoleType",
+            "description": "Optional role_type, will only be present if the episode was created using memory.add API"
+          },
+          "score": {
+            "type": "number",
+            "format": "double",
+            "description": "Score is the reranker output: sigmoid-distributed logits [0,1] when using cross_encoder reranker, or RRF ordinal rank when using rrf reranker"
+          },
+          "selection_rank": {
+            "type": "integer",
+            "description": "SelectionRank is the global cross-scope rank assigned by auto scope selection."
+          },
+          "source": {
+            "$ref": "#/components/schemas/ModelsGraphDataType"
+          },
+          "source_description": {
+            "type": "string"
+          },
+          "task_id": {
+            "type": "string",
+            "description": "Optional task ID to poll episode processing status. Currently only available for batch ingestion."
+          },
+          "thread_id": {
+            "type": "string",
+            "description": "Optional thread ID, will be present if the episode is part of a thread"
+          },
+          "uuid": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "content",
+          "created_at",
+          "uuid"
+        ],
+        "title": "ApidataGraphEpisode"
+      },
+      "ApidataGraphEpisodeResponse": {
+        "type": "object",
+        "properties": {
+          "episodes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApidataGraphEpisode"
+            }
+          }
+        },
+        "title": "ApidataGraphEpisodeResponse"
+      },
       "ApidataAddThreadMessagesRequest": {
         "type": "object",
         "properties": {
@@ -6513,7 +6816,7 @@
           },
           "uuid": {
             "type": "string",
-            "description": "UUID of the thread summary node."
+            "description": "UUID of the derived thread summary node."
           }
         },
         "title": "ApidataThreadSummary"
@@ -7271,16 +7574,6 @@
         },
         "title": "ApidataEntityTypeResponse"
       },
-      "ModelsGraphDataType": {
-        "type": "string",
-        "enum": [
-          "text",
-          "json",
-          "message",
-          "fact_triple"
-        ],
-        "title": "ModelsGraphDataType"
-      },
       "ApidataAddDataRequest": {
         "type": "object",
         "properties": {
@@ -7289,6 +7582,10 @@
           },
           "data": {
             "type": "string"
+          },
+          "document_id": {
+            "type": "string",
+            "description": "Optional document ID that groups episodes as chunks of the same document\non a graph. Parallel to thread_id for message threads."
           },
           "graph_id": {
             "type": "string",
@@ -7322,71 +7619,6 @@
         ],
         "title": "ApidataAddDataRequest"
       },
-      "ApidataGraphEpisode": {
-        "type": "object",
-        "properties": {
-          "content": {
-            "type": "string"
-          },
-          "created_at": {
-            "type": "string"
-          },
-          "metadata": {
-            "type": "object",
-            "additionalProperties": {
-              "description": "Any type"
-            }
-          },
-          "processed": {
-            "type": "boolean"
-          },
-          "relevance": {
-            "type": "number",
-            "format": "double",
-            "description": "Relevance is an experimental rank-aligned score in [0,1] derived from Score via logit transformation.\nOnly populated when using cross_encoder reranker; omitted for other reranker types (e.g., RRF)."
-          },
-          "role": {
-            "type": "string",
-            "description": "Optional role, will only be present if the episode was created using memory.add API"
-          },
-          "role_type": {
-            "$ref": "#/components/schemas/ApidataRoleType",
-            "description": "Optional role_type, will only be present if the episode was created using memory.add API"
-          },
-          "score": {
-            "type": "number",
-            "format": "double",
-            "description": "Score is the reranker output: sigmoid-distributed logits [0,1] when using cross_encoder reranker, or RRF ordinal rank when using rrf reranker"
-          },
-          "selection_rank": {
-            "type": "integer",
-            "description": "SelectionRank is the global cross-scope rank assigned by auto scope selection."
-          },
-          "source": {
-            "$ref": "#/components/schemas/ModelsGraphDataType"
-          },
-          "source_description": {
-            "type": "string"
-          },
-          "task_id": {
-            "type": "string",
-            "description": "Optional task ID to poll episode processing status. Currently only available for batch ingestion."
-          },
-          "thread_id": {
-            "type": "string",
-            "description": "Optional thread ID, will be present if the episode is part of a thread"
-          },
-          "uuid": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "content",
-          "created_at",
-          "uuid"
-        ],
-        "title": "ApidataGraphEpisode"
-      },
       "ApidataEpisodeData": {
         "type": "object",
         "properties": {
@@ -7419,6 +7651,10 @@
       "ApidataAddDataBatchRequest": {
         "type": "object",
         "properties": {
+          "document_id": {
+            "type": "string",
+            "description": "Optional document ID applied to every episode in this batch request."
+          },
           "episodes": {
             "type": "array",
             "items": {
@@ -8696,18 +8932,6 @@
         },
         "title": "ApidataUpdateEdgeRequest"
       },
-      "ApidataGraphEpisodeResponse": {
-        "type": "object",
-        "properties": {
-          "episodes": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ApidataGraphEpisode"
-            }
-          }
-        },
-        "title": "ApidataGraphEpisodeResponse"
-      },
       "ApidataGraphEpisodeListRequest": {
         "type": "object",
         "properties": {
@@ -9140,6 +9364,66 @@
         },
         "title": "ApidataGraphThreadSummariesRequest"
       },
+      "ApidataGraphDocumentSummariesRequest": {
+        "type": "object",
+        "properties": {
+          "cursor": {
+            "type": "string",
+            "description": "Opaque cursor for pagination, obtained from the Zep-Next-Cursor response header\nof the previous page. Encodes the sort field, direction, and continuation position."
+          },
+          "direction": {
+            "type": "string",
+            "description": "Sort direction. One of \"asc\" or \"desc\" (default \"desc\")."
+          },
+          "filters": {
+            "$ref": "#/components/schemas/GraphitiSearchFilters",
+            "description": "Optional filters applied to the listed artifacts. Reuses the graph.search filter type."
+          },
+          "limit": {
+            "type": "integer",
+            "description": "Maximum number of items to return"
+          },
+          "order_by": {
+            "type": "string",
+            "description": "Field to sort by. One of \"created_at\", \"valid_at\", or \"uuid\" (default \"uuid\")."
+          },
+          "uuid_cursor": {
+            "type": "string",
+            "description": "UUID based cursor, used for pagination. Should be the UUID of the last item in the previous page.\n\nDeprecated: prefer Cursor, the opaque cursor returned via the Zep-Next-Cursor response header."
+          }
+        },
+        "title": "ApidataGraphDocumentSummariesRequest"
+      },
+      "ApidataDocumentSummary": {
+        "type": "object",
+        "properties": {
+          "created_at": {
+            "type": "string",
+            "description": "CreatedAt is when the summary node was first created."
+          },
+          "document_id": {
+            "type": "string",
+            "description": "DocumentID is the customer-facing document identifier."
+          },
+          "last_summarized_at": {
+            "type": "string",
+            "description": "LastSummarizedAt is the wall-clock timestamp of the most recent\nsummary update."
+          },
+          "last_summarized_episode_valid_at": {
+            "type": "string",
+            "description": "LastSummarizedEpisodeValidAt is the maximum episode reference time\n(valid_at) covered by the most recent summary."
+          },
+          "summary": {
+            "type": "string",
+            "description": "Summary is the incremental summary content."
+          },
+          "uuid": {
+            "type": "string",
+            "description": "UUID of the document summary (derived) node."
+          }
+        },
+        "title": "ApidataDocumentSummary"
+      },
       "ApidataProjectInfo": {
         "type": "object",
         "properties": {
@@ -9418,6 +9702,10 @@
           "data_type": {
             "$ref": "#/components/schemas/ModelsGraphDataType"
           },
+          "document_id": {
+            "type": "string",
+            "description": "Optional document ID for graph_episode items. Groups episodes as document\nchunks. Ignored for thread_message items."
+          },
           "graph_id": {
             "type": "string"
           },
@@ -9483,6 +9771,9 @@
         "type": "object",
         "properties": {
           "created_at": {
+            "type": "string"
+          },
+          "document_id": {
             "type": "string"
           },
           "episode_uuid": {

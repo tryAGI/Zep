@@ -76,6 +76,24 @@ namespace Zep
         /// <summary>
         /// 
         /// </summary>
+        public DocumentClient Document => new DocumentClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        {
+            ReadResponseAsString = ReadResponseAsString,
+            JsonSerializerContextProvider = JsonSerializerContextProvider,
+        };
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public DocumentSummaryClient DocumentSummary => new DocumentSummaryClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        {
+            ReadResponseAsString = ReadResponseAsString,
+            JsonSerializerContextProvider = JsonSerializerContextProvider,
+        };
+
+        /// <summary>
+        /// 
+        /// </summary>
         public EntityClient Entity => new EntityClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
