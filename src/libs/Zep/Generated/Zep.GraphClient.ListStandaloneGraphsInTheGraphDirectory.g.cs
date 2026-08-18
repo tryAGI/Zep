@@ -7,7 +7,7 @@ namespace Zep
     {
 
 
-        private static readonly global::Zep.EndPointSecurityRequirement s_ListAllGraphsSecurityRequirement0 =
+        private static readonly global::Zep.EndPointSecurityRequirement s_ListStandaloneGraphsInTheGraphDirectorySecurityRequirement0 =
             new global::Zep.EndPointSecurityRequirement
             {
                 Authorizations = new global::Zep.EndPointAuthorizationRequirement[]
@@ -21,18 +21,18 @@ namespace Zep
                     },
                 },
             };
-        private static readonly global::Zep.EndPointSecurityRequirement[] s_ListAllGraphsSecurityRequirements =
+        private static readonly global::Zep.EndPointSecurityRequirement[] s_ListStandaloneGraphsInTheGraphDirectorySecurityRequirements =
             new global::Zep.EndPointSecurityRequirement[]
-            {                s_ListAllGraphsSecurityRequirement0,
+            {                s_ListStandaloneGraphsInTheGraphDirectorySecurityRequirement0,
             };
-        partial void PrepareListAllGraphsArguments(
+        partial void PrepareListStandaloneGraphsInTheGraphDirectoryArguments(
             global::System.Net.Http.HttpClient httpClient,
             ref int? pageNumber,
             ref int? pageSize,
             ref string? search,
             ref string? orderBy,
             ref bool? asc);
-        partial void PrepareListAllGraphsRequest(
+        partial void PrepareListStandaloneGraphsInTheGraphDirectoryRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
             int? pageNumber,
@@ -40,18 +40,24 @@ namespace Zep
             string? search,
             string? orderBy,
             bool? asc);
-        partial void ProcessListAllGraphsResponse(
+        partial void ProcessListStandaloneGraphsInTheGraphDirectoryResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
-        partial void ProcessListAllGraphsResponseContent(
+        partial void ProcessListStandaloneGraphsInTheGraphDirectoryResponseContent(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage,
             ref string content);
 
         /// <summary>
-        /// List all graphs.<br/>
-        /// Returns all graphs. In order to list users, use user.list_ordered instead
+        /// List standalone graphs in the graph directory<br/>
+        /// Returns a paginated directory of live standalone graphs in the<br/>
+        /// authenticated project. Optional `search` matches `graph_id`, `name`, and<br/>
+        /// `description` (metadata only; not graph contents).<br/>
+        /// Default `pageSize` is 50 (range 1–100). To list users, use<br/>
+        /// `user.list_ordered` instead. See the<br/>
+        /// [graph directory guide](/graph-directory) for pagination, relevance<br/>
+        /// ordering, and Memory MCP exposure.
         /// </summary>
         /// <param name="pageNumber"></param>
         /// <param name="pageSize"></param>
@@ -61,7 +67,7 @@ namespace Zep
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Zep.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Zep.ApidataGraphListResponse> ListAllGraphsAsync(
+        public async global::System.Threading.Tasks.Task<global::Zep.ApidataGraphListResponse> ListStandaloneGraphsInTheGraphDirectoryAsync(
             int? pageNumber = default,
             int? pageSize = default,
             string? search = default,
@@ -70,7 +76,7 @@ namespace Zep
             global::Zep.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __response = await ListAllGraphsAsResponseAsync(
+            var __response = await ListStandaloneGraphsInTheGraphDirectoryAsResponseAsync(
                 pageNumber: pageNumber,
                 pageSize: pageSize,
                 search: search,
@@ -83,8 +89,14 @@ namespace Zep
             return __response.Body;
         }
         /// <summary>
-        /// List all graphs.<br/>
-        /// Returns all graphs. In order to list users, use user.list_ordered instead
+        /// List standalone graphs in the graph directory<br/>
+        /// Returns a paginated directory of live standalone graphs in the<br/>
+        /// authenticated project. Optional `search` matches `graph_id`, `name`, and<br/>
+        /// `description` (metadata only; not graph contents).<br/>
+        /// Default `pageSize` is 50 (range 1–100). To list users, use<br/>
+        /// `user.list_ordered` instead. See the<br/>
+        /// [graph directory guide](/graph-directory) for pagination, relevance<br/>
+        /// ordering, and Memory MCP exposure.
         /// </summary>
         /// <param name="pageNumber"></param>
         /// <param name="pageSize"></param>
@@ -94,7 +106,7 @@ namespace Zep
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Zep.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Zep.AutoSDKHttpResponse<global::Zep.ApidataGraphListResponse>> ListAllGraphsAsResponseAsync(
+        public async global::System.Threading.Tasks.Task<global::Zep.AutoSDKHttpResponse<global::Zep.ApidataGraphListResponse>> ListStandaloneGraphsInTheGraphDirectoryAsResponseAsync(
             int? pageNumber = default,
             int? pageSize = default,
             string? search = default,
@@ -105,7 +117,7 @@ namespace Zep
         {
             PrepareArguments(
                 client: HttpClient);
-            PrepareListAllGraphsArguments(
+            PrepareListStandaloneGraphsInTheGraphDirectoryArguments(
                 httpClient: HttpClient,
                 pageNumber: ref pageNumber,
                 pageSize: ref pageSize,
@@ -116,8 +128,8 @@ namespace Zep
 
             var __authorizations = global::Zep.EndPointSecurityResolver.ResolveAuthorizations(
                 availableAuthorizations: Authorizations,
-                securityRequirements: s_ListAllGraphsSecurityRequirements,
-                operationName: "ListAllGraphsAsync");
+                securityRequirements: s_ListStandaloneGraphsInTheGraphDirectorySecurityRequirements,
+                operationName: "ListStandaloneGraphsInTheGraphDirectoryAsync");
 
             using var __timeoutCancellationTokenSource = global::Zep.AutoSDKRequestOptionsSupport.CreateTimeoutCancellationTokenSource(
                 clientOptions: Options,
@@ -183,7 +195,7 @@ namespace Zep
                 PrepareRequest(
                     client: HttpClient,
                     request: __httpRequest);
-                PrepareListAllGraphsRequest(
+                PrepareListStandaloneGraphsInTheGraphDirectoryRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
                     pageNumber: pageNumber,
@@ -207,8 +219,8 @@ namespace Zep
                     await global::Zep.AutoSDKRequestOptionsSupport.OnBeforeRequestAsync(
                             clientOptions: Options,
                             context: global::Zep.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "ListAllGraphs",
-                                methodName: "ListAllGraphsAsync",
+                                operationId: "ListStandaloneGraphsInTheGraphDirectory",
+                                methodName: "ListStandaloneGraphsInTheGraphDirectoryAsync",
                                 pathTemplate: "\"/graph/list-all\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
@@ -241,8 +253,8 @@ namespace Zep
                         await global::Zep.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Zep.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "ListAllGraphs",
-                                methodName: "ListAllGraphsAsync",
+                                operationId: "ListStandaloneGraphsInTheGraphDirectory",
+                                methodName: "ListStandaloneGraphsInTheGraphDirectoryAsync",
                                 pathTemplate: "\"/graph/list-all\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
@@ -282,8 +294,8 @@ namespace Zep
                         await global::Zep.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Zep.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "ListAllGraphs",
-                                methodName: "ListAllGraphsAsync",
+                                operationId: "ListStandaloneGraphsInTheGraphDirectory",
+                                methodName: "ListStandaloneGraphsInTheGraphDirectoryAsync",
                                 pathTemplate: "\"/graph/list-all\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
@@ -322,7 +334,7 @@ namespace Zep
                 ProcessResponse(
                     client: HttpClient,
                     response: __response);
-                ProcessListAllGraphsResponse(
+                ProcessListStandaloneGraphsInTheGraphDirectoryResponse(
                     httpClient: HttpClient,
                     httpResponseMessage: __response);
                 if (__response.IsSuccessStatusCode)
@@ -330,8 +342,8 @@ namespace Zep
                     await global::Zep.AutoSDKRequestOptionsSupport.OnAfterSuccessAsync(
                             clientOptions: Options,
                             context: global::Zep.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "ListAllGraphs",
-                                methodName: "ListAllGraphsAsync",
+                                operationId: "ListStandaloneGraphsInTheGraphDirectory",
+                                methodName: "ListStandaloneGraphsInTheGraphDirectoryAsync",
                                 pathTemplate: "\"/graph/list-all\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
@@ -352,8 +364,8 @@ namespace Zep
                     await global::Zep.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Zep.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "ListAllGraphs",
-                                methodName: "ListAllGraphsAsync",
+                                operationId: "ListStandaloneGraphsInTheGraphDirectory",
+                                methodName: "ListStandaloneGraphsInTheGraphDirectoryAsync",
                                 pathTemplate: "\"/graph/list-all\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
@@ -456,7 +468,7 @@ namespace Zep
                                     client: HttpClient,
                                     response: __response,
                                     content: ref __content);
-                                ProcessListAllGraphsResponseContent(
+                                ProcessListStandaloneGraphsInTheGraphDirectoryResponseContent(
                                     httpClient: HttpClient,
                                     httpResponseMessage: __response,
                                     content: ref __content);
