@@ -2980,9 +2980,9 @@
     },
     "/graph/list-all": {
       "get": {
-        "operationId": "list-all-graphs",
-        "summary": "List all graphs.",
-        "description": "Returns all graphs. In order to list users, use user.list_ordered instead",
+        "operationId": "list-standalone-graphs-in-the-graph-directory",
+        "summary": "List standalone graphs in the graph directory",
+        "description": "Returns a paginated directory of live standalone graphs in the\nauthenticated project. Optional `search` matches `graph_id`, `name`, and\n`description` (metadata only; not graph contents).\n\nDefault `pageSize` is 50 (range 1\u2013100). To list users, use\n`user.list_ordered` instead. See the\n[graph directory guide](/graph-directory) for pagination, relevance\nordering, and Memory MCP exposure.\n",
         "tags": [
           "graph"
         ],
