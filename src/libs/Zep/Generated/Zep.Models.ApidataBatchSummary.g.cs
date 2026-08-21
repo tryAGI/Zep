@@ -66,6 +66,12 @@ namespace Zep
         /// <summary>
         /// 
         /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("strict_ontology")]
+        public bool? StrictOntology { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("updated_at")]
         public string? UpdatedAt { get; set; }
 
@@ -87,6 +93,7 @@ namespace Zep
         /// <param name="processedAt"></param>
         /// <param name="progress"></param>
         /// <param name="status"></param>
+        /// <param name="strictOntology"></param>
         /// <param name="updatedAt"></param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
@@ -101,6 +108,7 @@ namespace Zep
             string? processedAt,
             global::Zep.ApidataBatchProgress? progress,
             global::Zep.ModelsBatchStatus? status,
+            bool? strictOntology,
             string? updatedAt)
         {
             this.BatchId = batchId;
@@ -112,6 +120,7 @@ namespace Zep
             this.ProcessedAt = processedAt;
             this.Progress = progress;
             this.Status = status;
+            this.StrictOntology = strictOntology;
             this.UpdatedAt = updatedAt;
         }
 

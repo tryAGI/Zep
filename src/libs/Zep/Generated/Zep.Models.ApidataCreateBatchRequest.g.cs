@@ -24,6 +24,12 @@ namespace Zep
         public object? Metadata { get; set; }
 
         /// <summary>
+        /// When true, prevents extraction of generic Entity nodes that do not match the configured ontology.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("strict_ontology")]
+        public bool? StrictOntology { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -39,15 +45,20 @@ namespace Zep
         /// Has no effect on graph_episode items.
         /// </param>
         /// <param name="metadata"></param>
+        /// <param name="strictOntology">
+        /// When true, prevents extraction of generic Entity nodes that do not match the configured ontology.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
         public ApidataCreateBatchRequest(
             global::System.Collections.Generic.IList<global::Zep.ApidataRoleType>? ignoreRoles,
-            object? metadata)
+            object? metadata,
+            bool? strictOntology)
         {
             this.IgnoreRoles = ignoreRoles;
             this.Metadata = metadata;
+            this.StrictOntology = strictOntology;
         }
 
         /// <summary>
