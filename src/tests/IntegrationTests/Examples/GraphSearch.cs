@@ -19,19 +19,19 @@ public partial class Tests
         //// Add data to a user's knowledge graph.
         var userId = "test-user-" + Guid.NewGuid().ToString("N")[..8];
 
-        await client.SubpackageUser.AddAsync(
+        await client.User.AddAsync(
             userId: userId,
             firstName: "Graph",
             lastName: "User");
 
-        await client.SubpackageData.AddDataAsync(
+        await client.Data.AddDataAsync(
             data: "Alice works at Acme Corp as a software engineer. She joined in 2023.",
             type: ModelsGraphDataType.Text,
             userId: userId,
             sourceDescription: "user_profile");
 
         //// Search the user's knowledge graph for relevant facts.
-        var results = await client.SubpackageSearch.GraphAsync(
+        var results = await client.Search.GraphAsync(
             query: "Where does Alice work?",
             userId: userId,
             limit: 5);

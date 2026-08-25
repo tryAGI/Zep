@@ -21,7 +21,7 @@ public static class ZepClientTools
                    [Description("Optional description of the data source")] string? sourceDescription,
                    CancellationToken cancellationToken) =>
             {
-                var response = await client.SubpackageData.AddDataAsync(
+                var response = await client.Data.AddDataAsync(
                     data: data,
                     type: ModelsGraphDataType.Text,
                     userId: userId,
@@ -51,7 +51,7 @@ public static class ZepClientTools
                    [Description("Maximum number of results to return (default 10, max 50)")] int? limit,
                    CancellationToken cancellationToken) =>
             {
-                var response = await client.SubpackageSearch.GraphAsync(
+                var response = await client.Search.GraphAsync(
                     query: query,
                     userId: userId,
                     limit: limit,
@@ -88,7 +88,7 @@ public static class ZepClientTools
             async ([Description("The thread ID to get context for")] string threadId,
                    CancellationToken cancellationToken) =>
             {
-                var response = await client.SubpackageThread.GetUserContextAsync(
+                var response = await client.Thread.GetUserContextAsync(
                     threadId: threadId,
                     cancellationToken: cancellationToken).ConfigureAwait(false);
 
@@ -111,7 +111,7 @@ public static class ZepClientTools
                    [Description("Page size for pagination (optional)")] int? pageSize,
                    CancellationToken cancellationToken) =>
             {
-                var response = await client.SubpackageThread.GetThreadsAsync(
+                var response = await client.Thread.GetThreadsAsync(
                     pageNumber: pageNumber,
                     pageSize: pageSize,
                     cancellationToken: cancellationToken).ConfigureAwait(false);
@@ -131,7 +131,7 @@ public static class ZepClientTools
             async ([Description("The user ID to get the knowledge graph node for")] string userId,
                    CancellationToken cancellationToken) =>
             {
-                var response = await client.SubpackageUser.GetUserNodeAsync(
+                var response = await client.User.GetUserNodeAsync(
                     userId: userId,
                     cancellationToken: cancellationToken).ConfigureAwait(false);
 
@@ -157,7 +157,7 @@ public static class ZepClientTools
                    [Description("The role of the message sender (e.g., 'user', 'assistant')")] string role,
                    CancellationToken cancellationToken) =>
             {
-                var response = await client.SubpackageThread.AddMessagesToAThreadAsync(
+                var response = await client.Thread.AddMessagesToAThreadAsync(
                     threadId: threadId,
                     messages:
                     [

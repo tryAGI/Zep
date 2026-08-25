@@ -17,7 +17,7 @@ public partial class Tests
         using var client = GetAuthenticatedClient();
 
         //// Create a user to associate with threads.
-        var user = await client.SubpackageUser.AddAsync(
+        var user = await client.User.AddAsync(
             userId: "test-user-" + Guid.NewGuid().ToString("N")[..8],
             firstName: "Test",
             lastName: "User",
@@ -25,13 +25,13 @@ public partial class Tests
         user.Should().NotBeNull();
 
         //// Start a new thread for the user.
-        var thread = await client.SubpackageThread.StartANewThreadAsync(
+        var thread = await client.Thread.StartANewThreadAsync(
             threadId: "thread-" + Guid.NewGuid().ToString("N")[..8],
             userId: user.UserId!);
         thread.Should().NotBeNull();
 
         //// Add messages to the thread.
-        var response = await client.SubpackageThread.AddMessagesToAThreadAsync(
+        var response = await client.Thread.AddMessagesToAThreadAsync(
             threadId: thread.ThreadId!,
             messages:
             [
@@ -50,7 +50,7 @@ public partial class Tests
         response.Should().NotBeNull();
 
         //// Get context for the thread based on recent messages.
-        var context = await client.SubpackageThread.GetUserContextAsync(
+        var context = await client.Thread.GetUserContextAsync(
             threadId: thread.ThreadId!);
         context.Should().NotBeNull();
     }
