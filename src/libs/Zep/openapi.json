@@ -283,8 +283,7 @@
             "description": "Cursor for pagination",
             "required": false,
             "schema": {
-              "type": "integer",
-              "format": "int64"
+              "type": "integer"
             }
           },
           {
@@ -1316,6 +1315,15 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Type \"Api-Key\" followed by a space and JWT token.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -1362,6 +1370,15 @@
             "name": "projectId",
             "in": "query",
             "description": "Project UUID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Type \"Api-Key\" followed by a space and JWT token.",
             "required": true,
             "schema": {
               "type": "string"
@@ -1447,6 +1464,15 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Type \"Api-Key\" followed by a space and JWT token.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -1508,6 +1534,15 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Type \"Api-Key\" followed by a space and JWT token.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -1563,6 +1598,15 @@
             "name": "projectId",
             "in": "query",
             "description": "Project UUID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Type \"Api-Key\" followed by a space and JWT token.",
             "required": true,
             "schema": {
               "type": "string"
@@ -1656,6 +1700,15 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Type \"Api-Key\" followed by a space and JWT token.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -1725,6 +1778,15 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Type \"Api-Key\" followed by a space and JWT token.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -1780,6 +1842,15 @@
             "name": "projectId",
             "in": "query",
             "description": "Project UUID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Type \"Api-Key\" followed by a space and JWT token.",
             "required": true,
             "schema": {
               "type": "string"
@@ -1871,6 +1942,15 @@
             "name": "projectId",
             "in": "query",
             "description": "Project UUID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Type \"Api-Key\" followed by a space and JWT token.",
             "required": true,
             "schema": {
               "type": "string"
@@ -1993,6 +2073,15 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Type \"Api-Key\" followed by a space and JWT token.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -2069,6 +2158,15 @@
             "name": "projectId",
             "in": "query",
             "description": "Project UUID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Type \"Api-Key\" followed by a space and JWT token.",
             "required": true,
             "schema": {
               "type": "string"
@@ -3072,7 +3170,7 @@
       "post": {
         "operationId": "detect-patterns-experimental",
         "summary": "Detect Patterns (Experimental)",
-        "description": "Detects structural patterns in a knowledge graph including relationship frequencies,\nmulti-hop paths, co-occurrences, hubs, and clusters.\nWhen a query is provided, uses hybrid search to discover seed nodes,\ndetects triple-frequency patterns, and returns resolved edges ranked by relevance.",
+        "description": "Deprecated. Pattern detection is not part of Public API v4.\nDetects structural patterns in a knowledge graph including relationship frequencies,\nmulti-hop paths, co-occurrences, hubs, and clusters.\nWhen a query is provided, uses hybrid search to discover seed nodes,\ndetects triple-frequency patterns, and returns resolved edges ranked by relevance.",
         "tags": [
           "graph"
         ],
@@ -3128,6 +3226,7 @@
             }
           }
         },
+        "deprecated": true,
         "requestBody": {
           "description": "Pattern detection request",
           "content": {
@@ -6487,6 +6586,10 @@
           "created_at": {
             "type": "string"
           },
+          "graph_uuid": {
+            "type": "string",
+            "description": "GraphUUID is the graphs.uuid of the owning user's graph (spec-3 section 13.5)."
+          },
           "project_uuid": {
             "type": "string"
           },
@@ -6902,6 +7005,10 @@
           },
           "first_name": {
             "type": "string"
+          },
+          "graph_uuid": {
+            "type": "string",
+            "description": "GraphUUID is the graphs.uuid of the user's graph (spec-3 section 13.5).\nOmitted when the graph row does not exist. Read-only; never accepted as input."
           },
           "id": {
             "type": "integer"
@@ -8014,6 +8121,10 @@
       "ApidataGraph": {
         "type": "object",
         "properties": {
+          "canonical_graph_uuid": {
+            "type": "string",
+            "description": "CanonicalGraphUUID is graphs.uuid, the v4 graph address (spec-3 \u00a713.5).\nOmitted when the graphs row does not yet exist. Distinct from UUID,\nwhich is the group-row identifier."
+          },
           "created_at": {
             "type": "string"
           },

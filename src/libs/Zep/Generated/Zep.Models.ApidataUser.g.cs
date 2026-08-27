@@ -39,6 +39,13 @@ namespace Zep
         public string? FirstName { get; set; }
 
         /// <summary>
+        /// GraphUUID is the graphs.uuid of the user's graph (spec-3 section 13.5).<br/>
+        /// Omitted when the graph row does not exist. Read-only; never accepted as input.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("graph_uuid")]
+        public string? GraphUuid { get; set; }
+
+        /// <summary>
         /// 
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("id")]
@@ -106,6 +113,10 @@ namespace Zep
         /// <param name="disableDefaultOntology"></param>
         /// <param name="email"></param>
         /// <param name="firstName"></param>
+        /// <param name="graphUuid">
+        /// GraphUUID is the graphs.uuid of the user's graph (spec-3 section 13.5).<br/>
+        /// Omitted when the graph row does not exist. Read-only; never accepted as input.
+        /// </param>
         /// <param name="id"></param>
         /// <param name="lastName"></param>
         /// <param name="metadata">
@@ -130,6 +141,7 @@ namespace Zep
             bool? disableDefaultOntology,
             string? email,
             string? firstName,
+            string? graphUuid,
             int? id,
             string? lastName,
             object? metadata,
@@ -145,6 +157,7 @@ namespace Zep
             this.DisableDefaultOntology = disableDefaultOntology;
             this.Email = email;
             this.FirstName = firstName;
+            this.GraphUuid = graphUuid;
             this.Id = id;
             this.LastName = lastName;
             this.Metadata = metadata;

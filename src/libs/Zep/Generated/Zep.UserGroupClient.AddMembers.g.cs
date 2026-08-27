@@ -29,12 +29,14 @@ namespace Zep
             global::System.Net.Http.HttpClient httpClient,
             ref string groupUUID,
             ref string projectId,
+            ref string authorization,
             global::Zep.ApidataMutateUserGroupMembersRequest request);
         partial void PrepareAddMembersRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
             string groupUUID,
             string projectId,
+            string authorization,
             global::Zep.ApidataMutateUserGroupMembersRequest request);
         partial void ProcessAddMembersResponse(
             global::System.Net.Http.HttpClient httpClient,
@@ -50,6 +52,7 @@ namespace Zep
         /// </summary>
         /// <param name="groupUUID"></param>
         /// <param name="projectId"></param>
+        /// <param name="authorization"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -57,6 +60,7 @@ namespace Zep
         public async global::System.Threading.Tasks.Task<global::Zep.ApidataUserGroupMembershipResponse> AddMembersAsync(
             string groupUUID,
             string projectId,
+            string authorization,
 
             global::Zep.ApidataMutateUserGroupMembersRequest request,
             global::Zep.AutoSDKRequestOptions? requestOptions = default,
@@ -65,6 +69,7 @@ namespace Zep
             var __response = await AddMembersAsResponseAsync(
                 groupUUID: groupUUID,
                 projectId: projectId,
+                authorization: authorization,
 
                 request: request,
                 requestOptions: requestOptions,
@@ -78,6 +83,7 @@ namespace Zep
         /// </summary>
         /// <param name="groupUUID"></param>
         /// <param name="projectId"></param>
+        /// <param name="authorization"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -85,6 +91,7 @@ namespace Zep
         public async global::System.Threading.Tasks.Task<global::Zep.AutoSDKHttpResponse<global::Zep.ApidataUserGroupMembershipResponse>> AddMembersAsResponseAsync(
             string groupUUID,
             string projectId,
+            string authorization,
 
             global::Zep.ApidataMutateUserGroupMembersRequest request,
             global::Zep.AutoSDKRequestOptions? requestOptions = default,
@@ -98,6 +105,7 @@ namespace Zep
                 httpClient: HttpClient,
                 groupUUID: ref groupUUID,
                 projectId: ref projectId,
+                authorization: ref authorization,
                 request: request);
 
 
@@ -158,6 +166,9 @@ namespace Zep
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
                 } 
             }
+
+                __httpRequest.Headers.TryAddWithoutValidation("Authorization", authorization.ToString());
+
                             var __httpRequestContentBody = request.ToJson(JsonSerializerContext);
                             var __httpRequestContent = new global::System.Net.Http.StringContent(
                                 content: __httpRequestContentBody,
@@ -177,6 +188,7 @@ namespace Zep
                     httpRequestMessage: __httpRequest,
                     groupUUID: groupUUID!,
                     projectId: projectId!,
+                    authorization: authorization!,
                     request: request);
 
                 return __httpRequest;
@@ -605,6 +617,7 @@ namespace Zep
         /// </summary>
         /// <param name="groupUUID"></param>
         /// <param name="projectId"></param>
+        /// <param name="authorization"></param>
         /// <param name="userUuids"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -612,6 +625,7 @@ namespace Zep
         public async global::System.Threading.Tasks.Task<global::Zep.ApidataUserGroupMembershipResponse> AddMembersAsync(
             string groupUUID,
             string projectId,
+            string authorization,
             global::System.Collections.Generic.IList<string> userUuids,
             global::Zep.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
@@ -624,6 +638,7 @@ namespace Zep
             return await AddMembersAsync(
                 groupUUID: groupUUID,
                 projectId: projectId,
+                authorization: authorization,
                 request: __request,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken).ConfigureAwait(false);

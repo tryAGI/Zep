@@ -15,6 +15,12 @@ namespace Zep
         public string? CreatedAt { get; set; }
 
         /// <summary>
+        /// GraphUUID is the graphs.uuid of the owning user's graph (spec-3 section 13.5).
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("graph_uuid")]
+        public string? GraphUuid { get; set; }
+
+        /// <summary>
         /// 
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("project_uuid")]
@@ -54,6 +60,9 @@ namespace Zep
         /// Initializes a new instance of the <see cref="ApidataThread" /> class.
         /// </summary>
         /// <param name="createdAt"></param>
+        /// <param name="graphUuid">
+        /// GraphUUID is the graphs.uuid of the owning user's graph (spec-3 section 13.5).
+        /// </param>
         /// <param name="projectUuid"></param>
         /// <param name="threadId"></param>
         /// <param name="userId"></param>
@@ -64,6 +73,7 @@ namespace Zep
 #endif
         public ApidataThread(
             string? createdAt,
+            string? graphUuid,
             string? projectUuid,
             string? threadId,
             string? userId,
@@ -71,6 +81,7 @@ namespace Zep
             string? uuid)
         {
             this.CreatedAt = createdAt;
+            this.GraphUuid = graphUuid;
             this.ProjectUuid = projectUuid;
             this.ThreadId = threadId;
             this.UserId = userId;

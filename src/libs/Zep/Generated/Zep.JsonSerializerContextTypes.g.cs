@@ -724,19 +724,15 @@ namespace Zep
         /// <summary>
         /// 
         /// </summary>
-        public long? Type174 { get; set; }
+        public global::System.Collections.Generic.IList<global::Zep.ApidataGraphNodeNeighbor>? Type174 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Zep.ApidataGraphNodeNeighbor>? Type175 { get; set; }
+        public global::System.Collections.Generic.IList<global::Zep.ApidataThreadSummary>? Type175 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Zep.ApidataThreadSummary>? Type176 { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public global::System.Collections.Generic.IList<global::Zep.ApidataDocumentSummary>? Type177 { get; set; }
+        public global::System.Collections.Generic.IList<global::Zep.ApidataDocumentSummary>? Type176 { get; set; }
 
         /// <summary>
         /// 
