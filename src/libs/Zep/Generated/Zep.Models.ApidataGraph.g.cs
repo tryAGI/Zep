@@ -9,6 +9,14 @@ namespace Zep
     public sealed partial class ApidataGraph
     {
         /// <summary>
+        /// CanonicalGraphUUID is graphs.uuid, the v4 graph address (spec-3 §13.5).<br/>
+        /// Omitted when the graphs row does not yet exist. Distinct from UUID,<br/>
+        /// which is the group-row identifier.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("canonical_graph_uuid")]
+        public string? CanonicalGraphUuid { get; set; }
+
+        /// <summary>
         /// 
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("created_at")]
@@ -71,6 +79,11 @@ namespace Zep
         /// <summary>
         /// Initializes a new instance of the <see cref="ApidataGraph" /> class.
         /// </summary>
+        /// <param name="canonicalGraphUuid">
+        /// CanonicalGraphUUID is graphs.uuid, the v4 graph address (spec-3 §13.5).<br/>
+        /// Omitted when the graphs row does not yet exist. Distinct from UUID,<br/>
+        /// which is the group-row identifier.
+        /// </param>
         /// <param name="createdAt"></param>
         /// <param name="description"></param>
         /// <param name="graphId"></param>
@@ -84,6 +97,7 @@ namespace Zep
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
         public ApidataGraph(
+            string? canonicalGraphUuid,
             string? createdAt,
             string? description,
             string? graphId,
@@ -94,6 +108,7 @@ namespace Zep
             string? updatedAt,
             string? uuid)
         {
+            this.CanonicalGraphUuid = canonicalGraphUuid;
             this.CreatedAt = createdAt;
             this.Description = description;
             this.GraphId = graphId;

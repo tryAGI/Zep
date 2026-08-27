@@ -28,12 +28,14 @@ namespace Zep
         partial void PrepareDeleteArguments(
             global::System.Net.Http.HttpClient httpClient,
             ref string groupUUID,
-            ref string projectId);
+            ref string projectId,
+            ref string authorization);
         partial void PrepareDeleteRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
             string groupUUID,
-            string projectId);
+            string projectId,
+            string authorization);
         partial void ProcessDeleteResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
@@ -48,18 +50,21 @@ namespace Zep
         /// </summary>
         /// <param name="groupUUID"></param>
         /// <param name="projectId"></param>
+        /// <param name="authorization"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Zep.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<string> DeleteAsync(
             string groupUUID,
             string projectId,
+            string authorization,
             global::Zep.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await DeleteAsResponseAsync(
                 groupUUID: groupUUID,
                 projectId: projectId,
+                authorization: authorization,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
@@ -71,12 +76,14 @@ namespace Zep
         /// </summary>
         /// <param name="groupUUID"></param>
         /// <param name="projectId"></param>
+        /// <param name="authorization"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Zep.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Zep.AutoSDKHttpResponse<string>> DeleteAsResponseAsync(
             string groupUUID,
             string projectId,
+            string authorization,
             global::Zep.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -85,7 +92,8 @@ namespace Zep
             PrepareDeleteArguments(
                 httpClient: HttpClient,
                 groupUUID: ref groupUUID,
-                projectId: ref projectId);
+                projectId: ref projectId,
+                authorization: ref authorization);
 
 
             var __authorizations = global::Zep.EndPointSecurityResolver.ResolveAuthorizations(
@@ -145,6 +153,9 @@ namespace Zep
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
                 } 
             }
+
+                __httpRequest.Headers.TryAddWithoutValidation("Authorization", authorization.ToString());
+
                 global::Zep.AutoSDKRequestOptionsSupport.ApplyHeaders(
                     request: __httpRequest,
                     clientHeaders: Options.Headers,
@@ -157,7 +168,8 @@ namespace Zep
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
                     groupUUID: groupUUID!,
-                    projectId: projectId!);
+                    projectId: projectId!,
+                    authorization: authorization!);
 
                 return __httpRequest;
             }

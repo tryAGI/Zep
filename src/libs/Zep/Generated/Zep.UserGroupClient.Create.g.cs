@@ -28,11 +28,13 @@ namespace Zep
         partial void PrepareCreateArguments(
             global::System.Net.Http.HttpClient httpClient,
             ref string projectId,
+            ref string authorization,
             global::Zep.ApidataCreateUserGroupRequest request);
         partial void PrepareCreateRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
             string projectId,
+            string authorization,
             global::Zep.ApidataCreateUserGroupRequest request);
         partial void ProcessCreateResponse(
             global::System.Net.Http.HttpClient httpClient,
@@ -47,12 +49,14 @@ namespace Zep
         /// Create a managed UserGroup
         /// </summary>
         /// <param name="projectId"></param>
+        /// <param name="authorization"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Zep.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Zep.ApidataUserGroupResponse> CreateAsync(
             string projectId,
+            string authorization,
 
             global::Zep.ApidataCreateUserGroupRequest request,
             global::Zep.AutoSDKRequestOptions? requestOptions = default,
@@ -60,6 +64,7 @@ namespace Zep
         {
             var __response = await CreateAsResponseAsync(
                 projectId: projectId,
+                authorization: authorization,
 
                 request: request,
                 requestOptions: requestOptions,
@@ -72,12 +77,14 @@ namespace Zep
         /// Create a managed UserGroup
         /// </summary>
         /// <param name="projectId"></param>
+        /// <param name="authorization"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Zep.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Zep.AutoSDKHttpResponse<global::Zep.ApidataUserGroupResponse>> CreateAsResponseAsync(
             string projectId,
+            string authorization,
 
             global::Zep.ApidataCreateUserGroupRequest request,
             global::Zep.AutoSDKRequestOptions? requestOptions = default,
@@ -90,6 +97,7 @@ namespace Zep
             PrepareCreateArguments(
                 httpClient: HttpClient,
                 projectId: ref projectId,
+                authorization: ref authorization,
                 request: request);
 
 
@@ -150,6 +158,9 @@ namespace Zep
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
                 } 
             }
+
+                __httpRequest.Headers.TryAddWithoutValidation("Authorization", authorization.ToString());
+
                             var __httpRequestContentBody = request.ToJson(JsonSerializerContext);
                             var __httpRequestContent = new global::System.Net.Http.StringContent(
                                 content: __httpRequestContentBody,
@@ -168,6 +179,7 @@ namespace Zep
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
                     projectId: projectId!,
+                    authorization: authorization!,
                     request: request);
 
                 return __httpRequest;
@@ -558,6 +570,7 @@ namespace Zep
         /// Create a managed UserGroup
         /// </summary>
         /// <param name="projectId"></param>
+        /// <param name="authorization"></param>
         /// <param name="description"></param>
         /// <param name="name"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
@@ -565,6 +578,7 @@ namespace Zep
         /// <exception cref="global::System.InvalidOperationException"></exception>
         public async global::System.Threading.Tasks.Task<global::Zep.ApidataUserGroupResponse> CreateAsync(
             string projectId,
+            string authorization,
             string name,
             string? description = default,
             global::Zep.AutoSDKRequestOptions? requestOptions = default,
@@ -578,6 +592,7 @@ namespace Zep
 
             return await CreateAsync(
                 projectId: projectId,
+                authorization: authorization,
                 request: __request,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken).ConfigureAwait(false);
