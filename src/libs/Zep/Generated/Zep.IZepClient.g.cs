@@ -39,98 +39,98 @@ namespace Zep
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         global::System.Text.Json.Serialization.JsonSerializerContext JsonSerializerContext { get; set; }
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public BatchClient Batch { get; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ContextClient Context { get; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public DataClient Data { get; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public DocumentClient Document { get; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public DocumentSummaryClient DocumentSummary { get; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public EntityClient Entity { get; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public EpisodesClient Episodes { get; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public GraphClient Graph { get; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public GraphEpisodeClient GraphEpisode { get; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public GraphNodeClient GraphNode { get; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ObservationClient Observation { get; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ProjectClient Project { get; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public SearchClient Search { get; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public TaskClient Task { get; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ThreadClient Thread { get; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ThreadSummaryClient ThreadSummary { get; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public UserClient User { get; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public UserGroupClient UserGroup { get; }
 

@@ -4,7 +4,7 @@
 namespace Zep
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public sealed partial class ApidataAddDataBatchRequest
     {
@@ -15,7 +15,7 @@ namespace Zep
         public string? DocumentId { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("episodes")]
         [global::System.Text.Json.Serialization.JsonRequired]

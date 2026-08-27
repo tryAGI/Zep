@@ -4,24 +4,24 @@
 namespace Zep
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public sealed partial class GraphitiAddTripleResponse
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("edge")]
         public global::Zep.GraphitiEntityEdge? Edge { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("source_node")]
         public global::Zep.GraphitiEntityNode? SourceNode { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("target_node")]
         public global::Zep.GraphitiEntityNode? TargetNode { get; set; }

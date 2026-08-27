@@ -4,18 +4,18 @@
 namespace Zep
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public sealed partial class ApidataEntityTypeResponse
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("edge_types")]
         public global::System.Collections.Generic.IList<global::Zep.ApidataEdgeType>? EdgeTypes { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("entity_types")]
         public global::System.Collections.Generic.IList<global::Zep.ApidataEntityType>? EntityTypes { get; set; }

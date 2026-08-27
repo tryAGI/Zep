@@ -4,7 +4,7 @@
 namespace Zep
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public sealed partial class ApidataCreateBatchRequest
     {
@@ -18,7 +18,7 @@ namespace Zep
         public global::System.Collections.Generic.IList<global::Zep.ApidataRoleType>? IgnoreRoles { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("metadata")]
         public object? Metadata { get; set; }

@@ -4,12 +4,12 @@
 namespace Zep
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public sealed partial class ApidataAttachedPolicySetsResponse
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("policy_sets")]
         public global::System.Collections.Generic.IList<global::Zep.ApidataPolicySetSummaryResponse>? PolicySets { get; set; }

@@ -4,12 +4,12 @@
 namespace Zep
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public sealed partial class ApidataListContextTemplatesResponse
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("templates")]
         public global::System.Collections.Generic.IList<global::Zep.ApidataContextTemplateResponse>? Templates { get; set; }

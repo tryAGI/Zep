@@ -4,7 +4,7 @@
 namespace Zep
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public sealed partial class GraphitiAddTripleRequest
     {
@@ -42,7 +42,7 @@ namespace Zep
         public required string FactName { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("graph_id")]
         public string? GraphId { get; set; }
@@ -131,7 +131,7 @@ namespace Zep
         public string? TargetNodeUuid { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("user_id")]
         public string? UserId { get; set; }

@@ -4,28 +4,28 @@
 namespace Zep
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public enum GraphitiReranker
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         CrossEncoder,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         EpisodeMentions,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Mmr,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         NodeDistance,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Rrf,
     }

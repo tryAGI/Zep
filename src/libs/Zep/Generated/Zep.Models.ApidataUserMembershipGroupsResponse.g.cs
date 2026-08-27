@@ -4,12 +4,12 @@
 namespace Zep
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public sealed partial class ApidataUserMembershipGroupsResponse
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("user_groups")]
         public global::System.Collections.Generic.IList<global::Zep.ModelsUserGroup>? UserGroups { get; set; }

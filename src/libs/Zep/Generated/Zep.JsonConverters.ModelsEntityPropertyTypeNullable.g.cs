@@ -20,7 +20,7 @@ namespace Zep.JsonConverters
                     {
                         return global::Zep.ModelsEntityPropertyTypeExtensions.ToEnum(stringValue);
                     }
-                    
+
                     break;
                 }
                 case global::System.Text.Json.JsonTokenType.Number:
