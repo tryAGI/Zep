@@ -4,18 +4,18 @@
 namespace Zep
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public sealed partial class ApidataBatchItemListResponse
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("items")]
         public global::System.Collections.Generic.IList<global::Zep.ApidataBatchItemDetail>? Items { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("next_cursor")]
         public int? NextCursor { get; set; }

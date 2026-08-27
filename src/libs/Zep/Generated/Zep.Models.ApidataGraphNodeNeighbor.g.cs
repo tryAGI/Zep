@@ -4,18 +4,18 @@
 namespace Zep
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public sealed partial class ApidataGraphNodeNeighbor
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("edges")]
         public global::System.Collections.Generic.IList<global::Zep.GraphitiEntityEdge>? Edges { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("node")]
         public global::Zep.GraphitiEntityNode? Node { get; set; }

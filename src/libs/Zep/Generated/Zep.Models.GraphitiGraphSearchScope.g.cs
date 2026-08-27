@@ -4,32 +4,32 @@
 namespace Zep
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public enum GraphitiGraphSearchScope
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Auto,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Edges,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Episodes,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Nodes,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Observations,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ThreadSummaries,
     }

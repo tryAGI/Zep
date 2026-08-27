@@ -4,16 +4,16 @@
 namespace Zep
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public enum ModelsUserGroupKind
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Managed,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Virtual,
     }

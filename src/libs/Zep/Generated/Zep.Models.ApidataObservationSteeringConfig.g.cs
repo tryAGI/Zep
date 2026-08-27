@@ -4,18 +4,18 @@
 namespace Zep
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public sealed partial class ApidataObservationSteeringConfig
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("instruction")]
         public string? Instruction { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("types")]
         public global::System.Collections.Generic.IList<global::Zep.ApidataObservationType>? Types { get; set; }

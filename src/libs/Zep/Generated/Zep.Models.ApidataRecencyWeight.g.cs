@@ -4,24 +4,24 @@
 namespace Zep
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public enum ApidataRecencyWeight
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x30Days,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x7Days,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x90Days,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         None,
     }

@@ -4,48 +4,48 @@
 namespace Zep
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public sealed partial class ApidataGraphSearchResults
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("context")]
         public string? Context { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("edges")]
         public global::System.Collections.Generic.IList<global::Zep.GraphitiEntityEdge>? Edges { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("episodes")]
         public global::System.Collections.Generic.IList<global::Zep.ApidataGraphEpisode>? Episodes { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("nodes")]
         public global::System.Collections.Generic.IList<global::Zep.GraphitiEntityNode>? Nodes { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("observations")]
         public global::System.Collections.Generic.IList<global::Zep.GraphitiDerivedNode>? Observations { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("response")]
         public global::Zep.ApidataGraphSearchResponseMetadata? Response { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("thread_summaries")]
         public global::System.Collections.Generic.IList<global::Zep.GraphitiSagaNode>? ThreadSummaries { get; set; }

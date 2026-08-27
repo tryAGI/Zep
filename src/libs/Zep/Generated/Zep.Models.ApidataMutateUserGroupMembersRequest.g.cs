@@ -4,12 +4,12 @@
 namespace Zep
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public sealed partial class ApidataMutateUserGroupMembersRequest
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("user_uuids")]
         [global::System.Text.Json.Serialization.JsonRequired]

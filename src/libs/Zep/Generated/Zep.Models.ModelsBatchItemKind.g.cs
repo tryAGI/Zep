@@ -4,16 +4,16 @@
 namespace Zep
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public enum ModelsBatchItemKind
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         GraphEpisode,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ThreadMessage,
     }

@@ -4,40 +4,40 @@
 namespace Zep
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public enum ModelsBatchStatus
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Canceled,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Draft,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Failed,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Invalid,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Partial,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Processing,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Queued,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Succeeded,
     }

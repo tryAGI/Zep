@@ -4,48 +4,48 @@
 namespace Zep
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public enum GraphitiComparisonOperator
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Lt,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Lte,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x__,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Eq,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Gt,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Gte,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Contains,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         IsNotNull,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         IsNull,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         IsNull2,
     }

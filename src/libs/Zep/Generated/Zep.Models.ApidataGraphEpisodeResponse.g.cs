@@ -4,12 +4,12 @@
 namespace Zep
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public sealed partial class ApidataGraphEpisodeResponse
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("episodes")]
         public global::System.Collections.Generic.IList<global::Zep.ApidataGraphEpisode>? Episodes { get; set; }

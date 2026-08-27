@@ -37,7 +37,7 @@ namespace Zep
         internal global::System.Lazy<global::System.Text.Json.Serialization.JsonSerializerContext> JsonSerializerContextProvider { get; set; } = new(() => global::Zep.SourceGenerationContext.Default);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public global::System.Text.Json.Serialization.JsonSerializerContext JsonSerializerContext
         {
@@ -47,7 +47,7 @@ namespace Zep
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public BatchClient Batch => new BatchClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
@@ -56,7 +56,7 @@ namespace Zep
         };
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ContextClient Context => new ContextClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
@@ -65,7 +65,7 @@ namespace Zep
         };
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public DataClient Data => new DataClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
@@ -74,7 +74,7 @@ namespace Zep
         };
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public DocumentClient Document => new DocumentClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
@@ -83,7 +83,7 @@ namespace Zep
         };
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public DocumentSummaryClient DocumentSummary => new DocumentSummaryClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
@@ -92,7 +92,7 @@ namespace Zep
         };
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public EntityClient Entity => new EntityClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
@@ -101,7 +101,7 @@ namespace Zep
         };
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public EpisodesClient Episodes => new EpisodesClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
@@ -110,7 +110,7 @@ namespace Zep
         };
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public GraphClient Graph => new GraphClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
@@ -119,7 +119,7 @@ namespace Zep
         };
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public GraphEpisodeClient GraphEpisode => new GraphEpisodeClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
@@ -128,7 +128,7 @@ namespace Zep
         };
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public GraphNodeClient GraphNode => new GraphNodeClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
@@ -137,7 +137,7 @@ namespace Zep
         };
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ObservationClient Observation => new ObservationClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
@@ -146,7 +146,7 @@ namespace Zep
         };
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ProjectClient Project => new ProjectClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
@@ -155,7 +155,7 @@ namespace Zep
         };
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public SearchClient Search => new SearchClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
@@ -164,7 +164,7 @@ namespace Zep
         };
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public TaskClient Task => new TaskClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
@@ -173,7 +173,7 @@ namespace Zep
         };
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ThreadClient Thread => new ThreadClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
@@ -182,7 +182,7 @@ namespace Zep
         };
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ThreadSummaryClient ThreadSummary => new ThreadSummaryClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
@@ -191,7 +191,7 @@ namespace Zep
         };
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public UserClient User => new UserClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
@@ -200,7 +200,7 @@ namespace Zep
         };
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public UserGroupClient UserGroup => new UserGroupClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
