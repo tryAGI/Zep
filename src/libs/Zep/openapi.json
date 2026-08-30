@@ -6668,7 +6668,7 @@
         "properties": {
           "context": {
             "type": "string",
-            "description": "Context block containing relevant facts, entities, and messages/episodes from the user graph. Meant to be replaced in the system prompt on every chat turn."
+            "description": "Context block containing relevant facts, entities, and messages/episodes from the user graph. Pass it through the model provider's untrusted-data channel."
           }
         },
         "title": "ApidataThreadContextResponse"

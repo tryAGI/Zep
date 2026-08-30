@@ -9,7 +9,7 @@ namespace Zep
     public sealed partial class ApidataThreadContextResponse
     {
         /// <summary>
-        /// Context block containing relevant facts, entities, and messages/episodes from the user graph. Meant to be replaced in the system prompt on every chat turn.
+        /// Context block containing relevant facts, entities, and messages/episodes from the user graph. Pass it through the model provider's untrusted-data channel.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("context")]
         public string? Context { get; set; }
@@ -24,7 +24,7 @@ namespace Zep
         /// Initializes a new instance of the <see cref="ApidataThreadContextResponse" /> class.
         /// </summary>
         /// <param name="context">
-        /// Context block containing relevant facts, entities, and messages/episodes from the user graph. Meant to be replaced in the system prompt on every chat turn.
+        /// Context block containing relevant facts, entities, and messages/episodes from the user graph. Pass it through the model provider's untrusted-data channel.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
