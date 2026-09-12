@@ -7,7 +7,7 @@
   "paths": {
     "/threads": {
       "get": {
-        "operationId": "get-threads",
+        "operationId": "thread_getThreads",
         "summary": "Get threads",
         "description": "Returns all threads.",
         "tags": [
@@ -85,7 +85,7 @@
         }
       },
       "post": {
-        "operationId": "start-a-new-thread",
+        "operationId": "thread_startANewThread",
         "summary": "Start a new thread.",
         "description": "Start a new thread.",
         "tags": [
@@ -137,7 +137,7 @@
     },
     "/threads/{threadId}": {
       "delete": {
-        "operationId": "delete-thread",
+        "operationId": "thread_deleteThread",
         "summary": "Delete thread",
         "description": "Deletes a thread.",
         "tags": [
@@ -190,7 +190,7 @@
     },
     "/threads/{threadId}/context": {
       "get": {
-        "operationId": "get-user-context",
+        "operationId": "thread_getUserContext",
         "summary": "Get user context",
         "description": "Returns most relevant context from the user graph (including memory from any/all past threads) based on the content of the past few messages of the given thread.",
         "tags": [
@@ -252,7 +252,7 @@
     },
     "/threads/{threadId}/messages": {
       "get": {
-        "operationId": "get-messages-of-a-thread",
+        "operationId": "thread_getMessagesOfAThread",
         "summary": "Get messages of a thread",
         "description": "Returns messages for a thread.",
         "tags": [
@@ -330,7 +330,7 @@
         }
       },
       "post": {
-        "operationId": "add-messages-to-a-thread",
+        "operationId": "thread_addMessagesToAThread",
         "summary": "Add messages to a thread",
         "description": "Add messages to a thread.",
         "tags": [
@@ -383,7 +383,7 @@
     },
     "/threads/{threadId}/episodes": {
       "get": {
-        "operationId": "get-episodes-for-a-thread",
+        "operationId": "thread_getEpisodesForAThread",
         "summary": "Get Episodes for a thread",
         "description": "Returns graph episodes associated with a thread. Parallel to get_episodes_for_document for documents.",
         "tags": [
@@ -446,7 +446,7 @@
     },
     "/threads/{threadId}/messages-batch": {
       "post": {
-        "operationId": "add-messages-to-a-thread-in-batch",
+        "operationId": "thread_addMessagesToAThreadInBatch",
         "summary": "Add messages to a thread in batch",
         "description": "Deprecated. Use the [Batch API](/adding-batch-data) (`client.batch.*` with `type: \"thread_message\"`) instead.\n\nAdds messages to a thread in batch mode, processing messages concurrently.\n",
         "tags": [
@@ -500,7 +500,7 @@
     },
     "/threads/{threadId}/summary": {
       "get": {
-        "operationId": "get-thread-summary",
+        "operationId": "thread_getThreadSummary",
         "summary": "Get thread summary",
         "description": "Returns the incremental summary generated from messages in the thread. Returns 404 if no summary exists for the thread.",
         "tags": [
@@ -563,7 +563,7 @@
     },
     "/messages/{messageUUID}": {
       "patch": {
-        "operationId": "updates-a-message",
+        "operationId": "updatesAMessage",
         "summary": "Updates a message.",
         "description": "Updates a message.",
         "parameters": [
@@ -623,7 +623,7 @@
     },
     "/users": {
       "post": {
-        "operationId": "add",
+        "operationId": "user_add",
         "summary": "Add User",
         "description": "Adds a user.",
         "tags": [
@@ -675,7 +675,7 @@
     },
     "/users-ordered": {
       "get": {
-        "operationId": "list-ordered",
+        "operationId": "user_listOrdered",
         "summary": "Get Users",
         "description": "Returns all users.",
         "tags": [
@@ -764,7 +764,7 @@
     },
     "/users/{userId}": {
       "get": {
-        "operationId": "get",
+        "operationId": "user_get",
         "summary": "Get User",
         "description": "Returns a user.",
         "tags": [
@@ -815,7 +815,7 @@
         }
       },
       "delete": {
-        "operationId": "delete",
+        "operationId": "user_delete",
         "summary": "Delete User",
         "description": "Deletes a user.",
         "tags": [
@@ -866,7 +866,7 @@
         }
       },
       "patch": {
-        "operationId": "update",
+        "operationId": "user_update",
         "summary": "Update User",
         "description": "Updates a user.",
         "tags": [
@@ -939,7 +939,7 @@
     },
     "/users/{userId}/node": {
       "get": {
-        "operationId": "get-user-node",
+        "operationId": "user_getUserNode",
         "summary": "Get User Node",
         "description": "Returns a user's node.",
         "tags": [
@@ -992,7 +992,7 @@
     },
     "/users/{userId}/threads": {
       "get": {
-        "operationId": "get-user-threads",
+        "operationId": "user_getUserThreads",
         "summary": "Get User Threads",
         "description": "Returns all threads for a user.",
         "tags": [
@@ -1038,7 +1038,7 @@
     },
     "/users/{userId}/warm": {
       "get": {
-        "operationId": "warm-user-cache",
+        "operationId": "user_warmUserCache",
         "summary": "Warm User Cache",
         "description": "Hints Zep to warm a user's graph for low-latency search",
         "tags": [
@@ -1091,7 +1091,7 @@
     },
     "/user-summary-instructions": {
       "get": {
-        "operationId": "list-user-instructions",
+        "operationId": "user_listUserInstructions",
         "summary": "List User Instructions",
         "description": "Lists all user summary instructions for a project, user.",
         "tags": [
@@ -1152,7 +1152,7 @@
         }
       },
       "post": {
-        "operationId": "add-user-instructions",
+        "operationId": "user_addUserInstructions",
         "summary": "Add User Instructions",
         "description": "Adds new summary instructions for users graphs without removing existing ones. If user_ids is empty, adds to project-wide default instructions.",
         "tags": [
@@ -1212,7 +1212,7 @@
         }
       },
       "delete": {
-        "operationId": "delete-user-instructions",
+        "operationId": "user_deleteUserInstructions",
         "summary": "Delete User Instructions",
         "description": "Deletes user summary/instructions for users or project wide defaults.",
         "tags": [
@@ -1274,7 +1274,7 @@
     },
     "/user-groups": {
       "get": {
-        "operationId": "list",
+        "operationId": "userGroup_list",
         "summary": "List UserGroups",
         "tags": [
           "userGroup"
@@ -1360,7 +1360,7 @@
         }
       },
       "post": {
-        "operationId": "create",
+        "operationId": "userGroup_create",
         "summary": "Create a managed UserGroup",
         "tags": [
           "userGroup"
@@ -1441,7 +1441,7 @@
     },
     "/user-groups/users/{userUUID}": {
       "get": {
-        "operationId": "list-for-user",
+        "operationId": "userGroup_list_for_user",
         "summary": "List effective UserGroups for a User",
         "tags": [
           "userGroup"
@@ -1511,7 +1511,7 @@
     },
     "/user-groups/{groupUUID}": {
       "get": {
-        "operationId": "get",
+        "operationId": "userGroup_get",
         "summary": "Get a UserGroup",
         "tags": [
           "userGroup"
@@ -1579,7 +1579,7 @@
         }
       },
       "patch": {
-        "operationId": "update",
+        "operationId": "userGroup_update",
         "summary": "Update a managed UserGroup",
         "tags": [
           "userGroup"
@@ -1677,7 +1677,7 @@
         }
       },
       "delete": {
-        "operationId": "delete",
+        "operationId": "userGroup_delete",
         "summary": "Delete a managed UserGroup",
         "tags": [
           "userGroup"
@@ -1728,7 +1728,7 @@
     },
     "/user-groups/{groupUUID}/members": {
       "get": {
-        "operationId": "list-members",
+        "operationId": "userGroup_list_members",
         "summary": "List UserGroup members",
         "tags": [
           "userGroup"
@@ -1823,7 +1823,7 @@
         }
       },
       "post": {
-        "operationId": "add-members",
+        "operationId": "userGroup_add_members",
         "summary": "Add members to a managed UserGroup",
         "tags": [
           "userGroup"
@@ -1923,7 +1923,7 @@
     },
     "/user-groups/{groupUUID}/members/bulk-remove": {
       "post": {
-        "operationId": "remove-members",
+        "operationId": "userGroup_remove_members",
         "summary": "Remove members from a managed UserGroup",
         "tags": [
           "userGroup"
@@ -2023,7 +2023,7 @@
     },
     "/user-groups/{groupUUID}/members/candidates": {
       "get": {
-        "operationId": "list-member-candidates",
+        "operationId": "userGroup_list_member_candidates",
         "summary": "List Users eligible to join a UserGroup",
         "tags": [
           "userGroup"
@@ -2130,7 +2130,7 @@
     },
     "/user-groups/{groupUUID}/members/{userUUID}": {
       "delete": {
-        "operationId": "remove-member",
+        "operationId": "userGroup_remove_member",
         "summary": "Remove one member from a managed UserGroup",
         "tags": [
           "userGroup"
@@ -2219,7 +2219,7 @@
     },
     "/abac/user-groups/{groupUUID}/policy-sets": {
       "get": {
-        "operationId": "list-policy-sets",
+        "operationId": "userGroup_list_policy_sets",
         "summary": "List policy sets attached to a UserGroup",
         "tags": [
           "userGroup"
@@ -2278,7 +2278,7 @@
         }
       },
       "post": {
-        "operationId": "attach-policy-set",
+        "operationId": "userGroup_attach_policy_set",
         "summary": "Attach a policy set to a UserGroup",
         "tags": [
           "userGroup"
@@ -2359,7 +2359,7 @@
     },
     "/abac/user-groups/{groupUUID}/policy-sets/{policySetUUID}": {
       "delete": {
-        "operationId": "detach-policy-set",
+        "operationId": "userGroup_detach_policy_set",
         "summary": "Detach a policy set from a UserGroup",
         "tags": [
           "userGroup"
@@ -2429,7 +2429,7 @@
     },
     "/context-templates": {
       "post": {
-        "operationId": "create-context-template",
+        "operationId": "context_createContextTemplate",
         "summary": "Create Context Template",
         "description": "Creates a new context template.",
         "tags": [
@@ -2479,7 +2479,7 @@
         }
       },
       "get": {
-        "operationId": "list-context-templates",
+        "operationId": "context_listContextTemplates",
         "summary": "List Context Templates",
         "description": "Lists all context templates.",
         "tags": [
@@ -2521,7 +2521,7 @@
     },
     "/context-templates/{template_id}": {
       "get": {
-        "operationId": "get-context-template",
+        "operationId": "context_getContextTemplate",
         "summary": "Get Context Template",
         "description": "Retrieves a context template by template_id.",
         "tags": [
@@ -2582,7 +2582,7 @@
         }
       },
       "put": {
-        "operationId": "update-context-template",
+        "operationId": "context_updateContextTemplate",
         "summary": "Update Context Template",
         "description": "Updates an existing context template by template_id.",
         "tags": [
@@ -2653,7 +2653,7 @@
         }
       },
       "delete": {
-        "operationId": "delete-context-template",
+        "operationId": "context_deleteContextTemplate",
         "summary": "Delete Context Template",
         "description": "Deletes a context template by template_id.",
         "tags": [
@@ -2716,7 +2716,7 @@
     },
     "/graph/set-ontology": {
       "put": {
-        "operationId": "set-ontology",
+        "operationId": "graph_set_ontology",
         "summary": "Set graph ontology",
         "description": "Sets custom entity and edge types for your graph. This wrapper method\nprovides a clean interface for defining your graph schema with custom\nentity and edge types.\n\nSee the [full documentation](/customizing-graph-structure#setting-entity-and-edge-types) for details.\n",
         "tags": [
@@ -2771,7 +2771,7 @@
     },
     "/graph/list-ontology": {
       "get": {
-        "operationId": "list-ontology",
+        "operationId": "graph_list_ontology",
         "summary": "List graph ontology",
         "description": "Retrieves the current entity and edge types configured for your graph.\n\nSee the [full documentation](/customizing-graph-structure) for details.\n",
         "tags": [
@@ -2813,7 +2813,7 @@
     },
     "/graph": {
       "post": {
-        "operationId": "add-data",
+        "operationId": "data_addData",
         "summary": "Add Data",
         "description": "Add data to the graph.",
         "tags": [
@@ -2865,7 +2865,7 @@
     },
     "/graph-batch": {
       "post": {
-        "operationId": "add-data-in-batch-mode",
+        "operationId": "data_addDataInBatchMode",
         "summary": "Add Data in batch mode",
         "description": "Deprecated. Use the [Batch API](/adding-batch-data) (`client.batch.*`) instead.\n\nAdds data to the graph in batch mode, processing episodes concurrently.\n",
         "tags": [
@@ -2921,7 +2921,7 @@
     },
     "/graph/add-fact-triple": {
       "post": {
-        "operationId": "add-fact-triple",
+        "operationId": "entity_addFactTriple",
         "summary": "Add Fact Triple",
         "description": "Add a fact triple for a user or group",
         "tags": [
@@ -2973,7 +2973,7 @@
     },
     "/graph/clone": {
       "post": {
-        "operationId": "clone-graph",
+        "operationId": "data_cloneGraph",
         "summary": "Clone graph",
         "description": "Clone a user or group graph.",
         "tags": [
@@ -3025,7 +3025,7 @@
     },
     "/graph/create": {
       "post": {
-        "operationId": "create-graph",
+        "operationId": "graph_createGraph",
         "summary": "Create Graph",
         "description": "Creates a new graph.",
         "tags": [
@@ -3077,7 +3077,7 @@
     },
     "/graph/list-all": {
       "get": {
-        "operationId": "list-standalone-graphs-in-the-graph-directory",
+        "operationId": "graph_listStandaloneGraphsInTheGraphDirectory",
         "summary": "List standalone graphs in the graph directory",
         "description": "Returns a paginated directory of live standalone graphs in the\nauthenticated project. Optional `search` matches `graph_id`, `name`, and\n`description` (metadata only; not graph contents).\n\nDefault `pageSize` is 50 (range 1\u2013100). To list users, use\n`user.list_ordered` instead. See the\n[graph directory guide](/graph-directory) for pagination, relevance\nordering, and Memory MCP exposure.\n",
         "tags": [
@@ -3168,7 +3168,7 @@
     },
     "/graph/patterns": {
       "post": {
-        "operationId": "detect-patterns-experimental",
+        "operationId": "graph_detectPatternsExperimental",
         "summary": "Detect Patterns (Experimental)",
         "description": "Deprecated. Pattern detection is not part of Public API v4.\nDetects structural patterns in a knowledge graph including relationship frequencies,\nmulti-hop paths, co-occurrences, hubs, and clusters.\nWhen a query is provided, uses hybrid search to discover seed nodes,\ndetects triple-frequency patterns, and returns resolved edges ranked by relevance.",
         "tags": [
@@ -3241,7 +3241,7 @@
     },
     "/graph/search": {
       "post": {
-        "operationId": "graph",
+        "operationId": "search_graph",
         "summary": "Search Graph",
         "description": "Perform a graph search query.",
         "tags": [
@@ -3293,7 +3293,7 @@
     },
     "/graph/subgraph": {
       "post": {
-        "operationId": "get-subgraph",
+        "operationId": "graph_get_subgraph",
         "summary": "Get Subgraph",
         "description": "Returns the bounded neighborhood of a set of seed nodes as a single {nodes, edges} payload: breadth-first expansion up to a caller-specified depth, subject to explicit budgets, with explicit truncation reporting.",
         "tags": [
@@ -3365,7 +3365,7 @@
     },
     "/graph/{graphId}": {
       "get": {
-        "operationId": "get-graph",
+        "operationId": "graph_getGraph",
         "summary": "Get Graph",
         "description": "Returns a graph.",
         "tags": [
@@ -3416,7 +3416,7 @@
         }
       },
       "delete": {
-        "operationId": "delete-graph",
+        "operationId": "graph_deleteGraph",
         "summary": "Delete Graph",
         "description": "Deletes a graph. If you would like to delete a user graph, make sure to use user.delete instead.",
         "tags": [
@@ -3477,7 +3477,7 @@
         }
       },
       "patch": {
-        "operationId": "update-graph",
+        "operationId": "graph_updateGraph",
         "summary": "Update Graph.",
         "description": "Updates information about a graph.",
         "tags": [
@@ -3550,7 +3550,7 @@
     },
     "/graph/{graphId}/warm": {
       "get": {
-        "operationId": "warm-graph-cache",
+        "operationId": "graph_warmGraphCache",
         "summary": "Warm Graph Cache",
         "description": "Hints Zep to warm a graph for low-latency search",
         "tags": [
@@ -3603,7 +3603,7 @@
     },
     "/graph/edge/graph/{graph_id}": {
       "post": {
-        "operationId": "get-graph-edges",
+        "operationId": "entity_getGraphEdges",
         "summary": "Get Graph Edges",
         "description": "Returns all edges for a graph.",
         "tags": [
@@ -3669,7 +3669,7 @@
     },
     "/graph/edge/user/{user_id}": {
       "post": {
-        "operationId": "get-user-edges",
+        "operationId": "entity_getUserEdges",
         "summary": "Get User Edges",
         "description": "Returns all edges for a user.",
         "tags": [
@@ -3735,7 +3735,7 @@
     },
     "/graph/edge/{uuid}": {
       "get": {
-        "operationId": "get-edge",
+        "operationId": "entity_getEdge",
         "summary": "Get Edge",
         "description": "Returns a specific edge by its UUID.",
         "tags": [
@@ -3796,7 +3796,7 @@
         }
       },
       "patch": {
-        "operationId": "update-edge",
+        "operationId": "graph_updateEdge",
         "summary": "Update Edge",
         "description": "Updates an entity edge by UUID.",
         "tags": [
@@ -3867,7 +3867,7 @@
         }
       },
       "delete": {
-        "operationId": "delete-edge",
+        "operationId": "entity_deleteEdge",
         "summary": "Delete Edge",
         "description": "Deletes an edge by UUID.",
         "tags": [
@@ -3930,7 +3930,7 @@
     },
     "/graph/episodes/graph/{graph_id}": {
       "get": {
-        "operationId": "get-graph-episodes",
+        "operationId": "episodes_getGraphEpisodes",
         "summary": "Get Graph Episodes",
         "description": "Returns episodes by graph id.",
         "tags": [
@@ -3990,7 +3990,7 @@
         }
       },
       "post": {
-        "operationId": "list-by-graph-id",
+        "operationId": "graph_episode_list_by_graph_id",
         "summary": "List Graph Episodes",
         "description": "Returns a paginated, filterable list of episodes for a graph.",
         "tags": [
@@ -4056,7 +4056,7 @@
     },
     "/graph/episodes/user/{user_id}": {
       "get": {
-        "operationId": "get-user-episodes",
+        "operationId": "episodes_getUserEpisodes",
         "summary": "Get User Episodes",
         "description": "Returns episodes by user id.",
         "tags": [
@@ -4116,7 +4116,7 @@
         }
       },
       "post": {
-        "operationId": "list-by-user-id",
+        "operationId": "graph_episode_list_by_user_id",
         "summary": "List User Episodes",
         "description": "Returns a paginated, filterable list of episodes for a user's graph.",
         "tags": [
@@ -4182,7 +4182,7 @@
     },
     "/graph/episodes/{uuid}": {
       "get": {
-        "operationId": "get-episode",
+        "operationId": "episodes_getEpisode",
         "summary": "Get Episode",
         "description": "Returns episodes by UUID",
         "tags": [
@@ -4233,7 +4233,7 @@
         }
       },
       "patch": {
-        "operationId": "update-episode-metadata",
+        "operationId": "episodes_updateEpisodeMetadata",
         "summary": "Update Episode Metadata",
         "description": "Update episode metadata with merge semantics. Supplied keys overwrite or add to existing metadata; keys set to null are removed.",
         "tags": [
@@ -4314,7 +4314,7 @@
         }
       },
       "delete": {
-        "operationId": "delete-episode",
+        "operationId": "entity_deleteEpisode",
         "summary": "Delete Episode",
         "description": "Deletes an episode by its UUID.",
         "tags": [
@@ -4377,7 +4377,7 @@
     },
     "/graph/episodes/{uuid}/mentions": {
       "get": {
-        "operationId": "return-any-nodes-and-edges-mentioned-in-an-episode",
+        "operationId": "episodes_returnAnyNodesAndEdgesMentionedInAnEpisode",
         "summary": "Return any nodes and edges mentioned in an episode",
         "description": "Deprecated. Use edge and node listing with `filters.episode_uuids` instead. Returns nodes and edges mentioned in an episode, subject to an internal cap; responses reduced by that cap set the Zep-Truncated header.",
         "tags": [
@@ -4431,7 +4431,7 @@
     },
     "/graph/nodes": {
       "post": {
-        "operationId": "add-nodes",
+        "operationId": "entity_addNodes",
         "summary": "Add Nodes",
         "description": "Add entity nodes to a user or graph directly, without episode ingestion. Up to 100 nodes per request.",
         "tags": [
@@ -4483,7 +4483,7 @@
     },
     "/graph/node/graph/{graph_id}": {
       "post": {
-        "operationId": "get-graph-nodes",
+        "operationId": "entity_getGraphNodes",
         "summary": "Get Graph Nodes",
         "description": "Returns all nodes for a graph.",
         "tags": [
@@ -4549,7 +4549,7 @@
     },
     "/graph/node/user/{user_id}": {
       "post": {
-        "operationId": "get-user-nodes",
+        "operationId": "entity_getUserNodes",
         "summary": "Get User Nodes",
         "description": "Returns all nodes for a user",
         "tags": [
@@ -4615,7 +4615,7 @@
     },
     "/graph/node/{node_uuid}/entity-edges": {
       "get": {
-        "operationId": "get-entity-edges-for-a-node",
+        "operationId": "entity_getEntityEdgesForANode",
         "summary": "Get Entity Edges for a node",
         "description": "Deprecated. Use edge listing with `filters.connected_node_uuids`, or the neighbors endpoint (`POST /graph/node/{node_uuid}/neighbors`), instead. Returns all edges for a node, subject to an internal cap; responses reduced by that cap set the Zep-Truncated header.",
         "tags": [
@@ -4672,7 +4672,7 @@
     },
     "/graph/node/{node_uuid}/episodes": {
       "get": {
-        "operationId": "get-episodes-for-a-node",
+        "operationId": "entity_getEpisodesForANode",
         "summary": "Get Episodes for a node",
         "description": "Deprecated. Use episode listing with `mentioned_node_uuids` (`POST /graph/episodes/graph/{graph_id}` or `POST /graph/episodes/user/{user_id}`) instead. Returns episodes that mentioned a given node, subject to an internal cap; responses reduced by that cap set the Zep-Truncated header.",
         "tags": [
@@ -4726,7 +4726,7 @@
     },
     "/graph/node/{node_uuid}/neighbors": {
       "post": {
-        "operationId": "get-neighbors",
+        "operationId": "graph_node_get_neighbors",
         "summary": "Get Node Neighbors",
         "description": "Enumerates the distinct entity nodes directly connected to a node, together with the edges connecting each to it.",
         "tags": [
@@ -4802,7 +4802,7 @@
     },
     "/graph/node/{uuid}": {
       "get": {
-        "operationId": "get-node",
+        "operationId": "entity_getNode",
         "summary": "Get Node",
         "description": "Returns a specific node by its UUID.",
         "tags": [
@@ -4863,7 +4863,7 @@
         }
       },
       "patch": {
-        "operationId": "update-node",
+        "operationId": "graph_updateNode",
         "summary": "Update Node",
         "description": "Updates an entity node by UUID.",
         "tags": [
@@ -4934,7 +4934,7 @@
         }
       },
       "delete": {
-        "operationId": "delete-node",
+        "operationId": "entity_deleteNode",
         "summary": "Delete Node",
         "description": "Deletes a node by UUID.",
         "tags": [
@@ -4997,7 +4997,7 @@
     },
     "/custom-instructions": {
       "get": {
-        "operationId": "list-custom-instructions",
+        "operationId": "graph_listCustomInstructions",
         "summary": "List Custom Instructions",
         "description": "Lists all custom instructions for a project, user, or graph.",
         "tags": [
@@ -5067,7 +5067,7 @@
         }
       },
       "post": {
-        "operationId": "add-custom-instructions",
+        "operationId": "graph_addCustomInstructions",
         "summary": "Add Custom Instructions",
         "description": "Adds new custom instructions for graphs without removing existing ones. If user_ids or graph_ids is empty, adds to project-wide default instructions.",
         "tags": [
@@ -5127,7 +5127,7 @@
         }
       },
       "delete": {
-        "operationId": "delete-custom-instructions",
+        "operationId": "graph_deleteCustomInstructions",
         "summary": "Delete Custom Instructions",
         "description": "Deletes custom instructions for graphs or project wide defaults.",
         "tags": [
@@ -5189,7 +5189,7 @@
     },
     "/graph/observation/graph/{graph_id}": {
       "post": {
-        "operationId": "get-graph-observations",
+        "operationId": "observation_getGraphObservations",
         "summary": "Get Graph Observations",
         "description": "Returns read-only observation nodes for a graph.",
         "tags": [
@@ -5265,7 +5265,7 @@
     },
     "/graph/observation/user/{user_id}": {
       "post": {
-        "operationId": "get-user-observations",
+        "operationId": "observation_getUserObservations",
         "summary": "Get User Observations",
         "description": "Returns read-only observation nodes for a user's graph.",
         "tags": [
@@ -5341,7 +5341,7 @@
     },
     "/graph/observation/{uuid}": {
       "get": {
-        "operationId": "get-observation",
+        "operationId": "observation_getObservation",
         "summary": "Get Observation",
         "description": "Returns a specific observation node by UUID. Observation nodes are read-only.",
         "tags": [
@@ -5404,7 +5404,7 @@
     },
     "/graph/thread-summary/graph/{graph_id}": {
       "post": {
-        "operationId": "get-graph-thread-summaries",
+        "operationId": "threadSummary_getGraphThreadSummaries",
         "summary": "Get Graph Thread Summaries",
         "description": "Returns incremental thread summaries associated with the graph.",
         "tags": [
@@ -5480,7 +5480,7 @@
     },
     "/graph/thread-summary/user/{user_id}": {
       "post": {
-        "operationId": "get-user-thread-summaries",
+        "operationId": "threadSummary_getUserThreadSummaries",
         "summary": "Get User Thread Summaries",
         "description": "Returns incremental thread summaries generated from messages in each thread associated with the user's graph.",
         "tags": [
@@ -5556,7 +5556,7 @@
     },
     "/graph/documents/{document_id}/episodes": {
       "get": {
-        "operationId": "get-episodes-for-a-document",
+        "operationId": "document_getEpisodesForADocument",
         "summary": "Get Episodes for a document",
         "description": "Returns episodes associated with a document on a graph. Documents group episodes as chunks, parallel to how threads group messages.",
         "tags": [
@@ -5628,7 +5628,7 @@
     },
     "/graph/document-summary/graph/{graph_id}": {
       "post": {
-        "operationId": "get-graph-document-summaries",
+        "operationId": "documentSummary_getGraphDocumentSummaries",
         "summary": "Get Graph Document Summaries",
         "description": "Returns incremental document summaries associated with the graph. Document summaries are derived similarly to thread summaries.",
         "tags": [
@@ -5704,7 +5704,7 @@
     },
     "/projects/info": {
       "get": {
-        "operationId": "retrieves-project-information",
+        "operationId": "project_retrievesProjectInformation",
         "summary": "Retrieves project information",
         "description": "Retrieve project info based on the provided api key.",
         "tags": [
@@ -5754,7 +5754,7 @@
         }
       },
       "patch": {
-        "operationId": "updates-project-time-zone-information",
+        "operationId": "project_updatesProjectTimeZoneInformation",
         "summary": "Updates project time-zone information",
         "description": "Sets or clears the project-level fallback time zone for the API key's project.",
         "tags": [
@@ -5816,7 +5816,7 @@
     },
     "/projects/observation-steering": {
       "get": {
-        "operationId": "retrieves-observation-steering-configuration-experimental",
+        "operationId": "project_retrievesObservationSteeringConfigurationExperimental",
         "summary": "Retrieves observation steering configuration (Experimental)",
         "description": "Returns project steering or the effective user/graph steering with project fallback. This API is experimental and may change in future releases.",
         "tags": [
@@ -5876,7 +5876,7 @@
         }
       },
       "put": {
-        "operationId": "replaces-observation-steering-configuration-experimental",
+        "operationId": "project_replacesObservationSteeringConfigurationExperimental",
         "summary": "Replaces observation steering configuration (Experimental)",
         "description": "Replaces project, user, or graph steering. An empty configuration clears the project default or removes the user/graph override. Changes affect later materializer runs only. This API is experimental and may change in future releases.",
         "tags": [
@@ -5948,7 +5948,7 @@
     },
     "/tasks/{task_id}": {
       "get": {
-        "operationId": "get-task",
+        "operationId": "task_getTask",
         "summary": "Get Task",
         "description": "Gets a task by its ID",
         "tags": [
@@ -6001,7 +6001,7 @@
     },
     "/batches": {
       "post": {
-        "operationId": "create-batch",
+        "operationId": "batch_createBatch",
         "summary": "Create Batch",
         "description": "Create a draft batch that can be filled with graph episodes and thread messages.",
         "tags": [
@@ -6061,7 +6061,7 @@
         }
       },
       "get": {
-        "operationId": "list-batches",
+        "operationId": "batch_listBatches",
         "summary": "List Batches",
         "description": "List batches for the current project, optionally filtered by batch status.",
         "tags": [
@@ -6142,7 +6142,7 @@
     },
     "/batches/{batchId}/items": {
       "post": {
-        "operationId": "add-batch-items",
+        "operationId": "batch_addBatchItems",
         "summary": "Add Batch Items",
         "description": "Add graph episodes and thread messages to a draft batch. Items are appended in request order.",
         "tags": [
@@ -6236,7 +6236,7 @@
         }
       },
       "get": {
-        "operationId": "list-batch-items",
+        "operationId": "batch_listBatchItems",
         "summary": "List Batch Items",
         "description": "List items in a batch, including derived runtime status when the batch has been processed.",
         "tags": [
@@ -6336,7 +6336,7 @@
     },
     "/batches/{batchId}/process": {
       "post": {
-        "operationId": "process-batch",
+        "operationId": "batch_processBatch",
         "summary": "Process Batch",
         "description": "Start processing a filled batch. Repeated calls return a conflict.",
         "tags": [
@@ -6419,7 +6419,7 @@
     },
     "/batches/{batchId}": {
       "get": {
-        "operationId": "get-batch",
+        "operationId": "batch_getBatch",
         "summary": "Get Batch",
         "description": "Get a batch summary, including runtime progress when the batch has been processed.",
         "tags": [
@@ -6490,7 +6490,7 @@
         }
       },
       "delete": {
-        "operationId": "delete-batch",
+        "operationId": "batch_deleteBatch",
         "summary": "Delete Batch",
         "description": "Delete a draft or invalid unprocessed batch. Processed batches cannot be deleted.",
         "tags": [

@@ -6,7 +6,7 @@ namespace Zep
     /// <summary>
     ///
     /// </summary>
-    public sealed partial class SetOntologyRequest
+    public sealed partial class GraphSetOntologyRequest
     {
         /// <summary>
         /// Dictionary mapping entity type names to their definitions
@@ -39,7 +39,7 @@ namespace Zep
         public global::System.Collections.Generic.IDictionary<string, object> AdditionalProperties { get; set; } = new global::System.Collections.Generic.Dictionary<string, object>();
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SetOntologyRequest" /> class.
+        /// Initializes a new instance of the <see cref="GraphSetOntologyRequest" /> class.
         /// </summary>
         /// <param name="entities">
         /// Dictionary mapping entity type names to their definitions
@@ -56,7 +56,7 @@ namespace Zep
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
-        public SetOntologyRequest(
+        public GraphSetOntologyRequest(
             global::Zep.GraphSetOntologyPutRequestBodyContentApplicationJsonSchemaEntities? entities,
             global::Zep.GraphSetOntologyPutRequestBodyContentApplicationJsonSchemaEdges? edges,
             global::System.Collections.Generic.IList<string>? userIds,
@@ -69,9 +69,9 @@ namespace Zep
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SetOntologyRequest" /> class.
+        /// Initializes a new instance of the <see cref="GraphSetOntologyRequest" /> class.
         /// </summary>
-        public SetOntologyRequest()
+        public GraphSetOntologyRequest()
         {
         }
 
