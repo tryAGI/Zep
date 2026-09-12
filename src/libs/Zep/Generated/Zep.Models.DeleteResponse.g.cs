@@ -6,7 +6,7 @@ namespace Zep
     /// <summary>
     ///
     /// </summary>
-    public sealed partial class UserGroupDeleteResponse
+    public sealed partial class DeleteResponse
     {
 
         /// <summary>

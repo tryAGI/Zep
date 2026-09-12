@@ -17,7 +17,7 @@ namespace Zep
         /// <exception cref="global::Zep.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Zep.ApidataSuccessResponse> SetOntologyAsync(
 
-            global::Zep.GraphSetOntologyRequest request,
+            global::Zep.SetOntologyRequest request,
             global::Zep.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -33,7 +33,7 @@ namespace Zep
         /// <exception cref="global::Zep.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Zep.AutoSDKHttpResponse<global::Zep.ApidataSuccessResponse>> SetOntologyAsResponseAsync(
 
-            global::Zep.GraphSetOntologyRequest request,
+            global::Zep.SetOntologyRequest request,
             global::Zep.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
