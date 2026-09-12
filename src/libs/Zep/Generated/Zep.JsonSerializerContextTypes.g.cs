@@ -725,7 +725,7 @@ namespace Zep
         /// <summary>
         ///
         /// </summary>
-        public global::Zep.GraphSetOntologyRequest? Type173 { get; set; }
+        public global::Zep.SetOntologyRequest? Type173 { get; set; }
         /// <summary>
         ///
         /// </summary>
