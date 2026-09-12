@@ -190,4 +190,5 @@ autosdk generate openapi.json \
   --clientClassName ZepClient \
   --targetFramework net10.0 \
   --output Generated \
+  --strip-redundant-operation-id-tag-prefixes \
   --exclude-deprecated-operations
