@@ -2,7 +2,7 @@
 
 namespace Zep
 {
-    public sealed partial class DeleteResponse
+    public sealed partial class GraphSetOntologyRequest
     {
         /// <summary>
         /// Serializes the current instance to a JSON string using the provided JsonSerializerContext.
@@ -47,20 +47,20 @@ namespace Zep
         /// <summary>
         /// Deserializes a JSON string using the provided JsonSerializerContext.
         /// </summary>
-        public static global::Zep.DeleteResponse? FromJson(
+        public static global::Zep.GraphSetOntologyRequest? FromJson(
             string json,
             global::System.Text.Json.Serialization.JsonSerializerContext jsonSerializerContext)
         {
             return global::System.Text.Json.JsonSerializer.Deserialize(
                 json,
-                typeof(global::Zep.DeleteResponse),
-                jsonSerializerContext) as global::Zep.DeleteResponse;
+                typeof(global::Zep.GraphSetOntologyRequest),
+                jsonSerializerContext) as global::Zep.GraphSetOntologyRequest;
         }
 
         /// <summary>
         /// Deserializes a JSON string using the generated default JsonSerializerContext.
         /// </summary>
-        public static global::Zep.DeleteResponse? FromJson(
+        public static global::Zep.GraphSetOntologyRequest? FromJson(
             string json)
         {
             return FromJson(
@@ -75,7 +75,7 @@ namespace Zep
         [global::System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode("JSON serialization and deserialization might require types that cannot be statically analyzed. Use the overload that takes a JsonTypeInfo or JsonSerializerContext, or make sure all of the required types are preserved.")]
         [global::System.Diagnostics.CodeAnalysis.RequiresDynamicCode("JSON serialization and deserialization might require types that cannot be statically analyzed and might need runtime code generation. Use System.Text.Json source generation for native AOT applications.")]
 #endif
-        public static global::Zep.DeleteResponse? FromJson(
+        public static global::Zep.GraphSetOntologyRequest? FromJson(
             string json,
             global::System.Text.Json.JsonSerializerOptions? jsonSerializerOptions = null)
         {
@@ -86,7 +86,7 @@ namespace Zep
                     global::Zep.SourceGenerationContext.Default);
             }
 
-            return global::System.Text.Json.JsonSerializer.Deserialize<global::Zep.DeleteResponse>(
+            return global::System.Text.Json.JsonSerializer.Deserialize<global::Zep.GraphSetOntologyRequest>(
                 json,
                 jsonSerializerOptions);
         }
@@ -94,20 +94,20 @@ namespace Zep
         /// <summary>
         /// Deserializes a JSON stream using the provided JsonSerializerContext.
         /// </summary>
-        public static async global::System.Threading.Tasks.ValueTask<global::Zep.DeleteResponse?> FromJsonStreamAsync(
+        public static async global::System.Threading.Tasks.ValueTask<global::Zep.GraphSetOntologyRequest?> FromJsonStreamAsync(
             global::System.IO.Stream jsonStream,
             global::System.Text.Json.Serialization.JsonSerializerContext jsonSerializerContext)
         {
             return (await global::System.Text.Json.JsonSerializer.DeserializeAsync(
                 jsonStream,
-                typeof(global::Zep.DeleteResponse),
-                jsonSerializerContext).ConfigureAwait(false)) as global::Zep.DeleteResponse;
+                typeof(global::Zep.GraphSetOntologyRequest),
+                jsonSerializerContext).ConfigureAwait(false)) as global::Zep.GraphSetOntologyRequest;
         }
 
         /// <summary>
         /// Deserializes a JSON stream using the generated default JsonSerializerContext.
         /// </summary>
-        public static global::System.Threading.Tasks.ValueTask<global::Zep.DeleteResponse?> FromJsonStreamAsync(
+        public static global::System.Threading.Tasks.ValueTask<global::Zep.GraphSetOntologyRequest?> FromJsonStreamAsync(
             global::System.IO.Stream jsonStream)
         {
             return FromJsonStreamAsync(
@@ -122,7 +122,7 @@ namespace Zep
         [global::System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode("JSON serialization and deserialization might require types that cannot be statically analyzed. Use the overload that takes a JsonTypeInfo or JsonSerializerContext, or make sure all of the required types are preserved.")]
         [global::System.Diagnostics.CodeAnalysis.RequiresDynamicCode("JSON serialization and deserialization might require types that cannot be statically analyzed and might need runtime code generation. Use System.Text.Json source generation for native AOT applications.")]
 #endif
-        public static global::System.Threading.Tasks.ValueTask<global::Zep.DeleteResponse?> FromJsonStreamAsync(
+        public static global::System.Threading.Tasks.ValueTask<global::Zep.GraphSetOntologyRequest?> FromJsonStreamAsync(
             global::System.IO.Stream jsonStream,
             global::System.Text.Json.JsonSerializerOptions? jsonSerializerOptions = null)
         {
@@ -133,7 +133,7 @@ namespace Zep
                     global::Zep.SourceGenerationContext.Default);
             }
 
-            return global::System.Text.Json.JsonSerializer.DeserializeAsync<global::Zep.DeleteResponse?>(
+            return global::System.Text.Json.JsonSerializer.DeserializeAsync<global::Zep.GraphSetOntologyRequest?>(
                 jsonStream,
                 jsonSerializerOptions);
         }

@@ -27,11 +27,11 @@ namespace Zep
             };
         partial void PrepareSetOntologyArguments(
             global::System.Net.Http.HttpClient httpClient,
-            global::Zep.SetOntologyRequest request);
+            global::Zep.GraphSetOntologyRequest request);
         partial void PrepareSetOntologyRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            global::Zep.SetOntologyRequest request);
+            global::Zep.GraphSetOntologyRequest request);
         partial void ProcessSetOntologyResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
@@ -54,7 +54,7 @@ namespace Zep
         /// <exception cref="global::Zep.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Zep.ApidataSuccessResponse> SetOntologyAsync(
 
-            global::Zep.SetOntologyRequest request,
+            global::Zep.GraphSetOntologyRequest request,
             global::Zep.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -80,7 +80,7 @@ namespace Zep
         /// <exception cref="global::Zep.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Zep.AutoSDKHttpResponse<global::Zep.ApidataSuccessResponse>> SetOntologyAsResponseAsync(
 
-            global::Zep.SetOntologyRequest request,
+            global::Zep.GraphSetOntologyRequest request,
             global::Zep.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -469,7 +469,7 @@ namespace Zep
             global::Zep.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __request = new global::Zep.SetOntologyRequest
+            var __request = new global::Zep.GraphSetOntologyRequest
             {
                 Entities = entities,
                 Edges = edges,
