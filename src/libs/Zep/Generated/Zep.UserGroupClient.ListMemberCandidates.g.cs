@@ -13,11 +13,11 @@ namespace Zep
                 Authorizations = new global::Zep.EndPointAuthorizationRequirement[]
                 {                    new global::Zep.EndPointAuthorizationRequirement
                     {
-                        Type = "Http",
-                        SchemeId = "BearerAuth",
-                        Location = "Header",
-                        Name = "Bearer",
-                        FriendlyName = "Bearer",
+                        Type = "",
+                        SchemeId = "ApiKey",
+                        Location = "",
+                        Name = "",
+                        FriendlyName = "Authorization",
                     },
                 },
             };
@@ -31,8 +31,7 @@ namespace Zep
             ref string projectId,
             ref int pageNumber,
             ref int pageSize,
-            ref string? search,
-            ref string authorization);
+            ref string? search);
         partial void PrepareListMemberCandidatesRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
@@ -40,8 +39,7 @@ namespace Zep
             string projectId,
             int pageNumber,
             int pageSize,
-            string? search,
-            string authorization);
+            string? search);
         partial void ProcessListMemberCandidatesResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
@@ -59,7 +57,6 @@ namespace Zep
         /// <param name="pageNumber"></param>
         /// <param name="pageSize"></param>
         /// <param name="search"></param>
-        /// <param name="authorization"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Zep.ApiException"></exception>
@@ -68,7 +65,6 @@ namespace Zep
             string projectId,
             int pageNumber,
             int pageSize,
-            string authorization,
             string? search = default,
             global::Zep.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
@@ -78,7 +74,6 @@ namespace Zep
                 projectId: projectId,
                 pageNumber: pageNumber,
                 pageSize: pageSize,
-                authorization: authorization,
                 search: search,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
@@ -94,7 +89,6 @@ namespace Zep
         /// <param name="pageNumber"></param>
         /// <param name="pageSize"></param>
         /// <param name="search"></param>
-        /// <param name="authorization"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Zep.ApiException"></exception>
@@ -103,7 +97,6 @@ namespace Zep
             string projectId,
             int pageNumber,
             int pageSize,
-            string authorization,
             string? search = default,
             global::Zep.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
@@ -116,8 +109,7 @@ namespace Zep
                 projectId: ref projectId,
                 pageNumber: ref pageNumber,
                 pageSize: ref pageSize,
-                search: ref search,
-                authorization: ref authorization);
+                search: ref search);
 
 
             var __authorizations = global::Zep.EndPointSecurityResolver.ResolveAuthorizations(
@@ -163,26 +155,6 @@ namespace Zep
                 __httpRequest.Version = global::System.Net.HttpVersion.Version11;
                 __httpRequest.VersionPolicy = global::System.Net.Http.HttpVersionPolicy.RequestVersionOrHigher;
 #endif
-
-            foreach (var __authorization in __authorizations)
-            {
-                if (__authorization.Type == "Http" ||
-                    __authorization.Type == "OAuth2" ||
-                    __authorization.Type == "OpenIdConnect")
-                {
-                    __httpRequest.Headers.Authorization = new global::System.Net.Http.Headers.AuthenticationHeaderValue(
-                        scheme: __authorization.Name,
-                        parameter: __authorization.Value);
-                }
-                else if (__authorization.Type == "ApiKey" &&
-                         __authorization.Location == "Header")
-                {
-                    __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
-                }
-            }
-
-                __httpRequest.Headers.TryAddWithoutValidation("Authorization", authorization.ToString());
-
                 global::Zep.AutoSDKRequestOptionsSupport.ApplyHeaders(
                     request: __httpRequest,
                     clientHeaders: Options.Headers,
@@ -198,8 +170,9 @@ namespace Zep
                     projectId: projectId!,
                     pageNumber: pageNumber!,
                     pageSize: pageSize!,
-                    search: search,
-                    authorization: authorization!);
+                    search: search);
+
+                global::Zep.AutoSDKHttpRequestOptions.StampAuthorizationOverride(__httpRequest);
 
                 return __httpRequest;
             }
