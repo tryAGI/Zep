@@ -4630,7 +4630,7 @@
       "get": {
         "operationId": "entity_getEpisodesForANode",
         "summary": "Get Episodes for a node",
-        "description": "Deprecated. Use episode listing with `mentioned_node_uuids` (`POST /graph/episodes/graph/{graph_id}` or `POST /graph/episodes/user/{user_id}`) instead. Returns episodes that mentioned a given node, subject to an internal cap; responses reduced by that cap set the Zep-Truncated header.",
+        "description": "Deprecated. Read the `episodes` field on the node; when `episodes_truncated` is true, use the episode list SDK methods `graph.episode.list_by_graph_id` or `graph.episode.list_by_user_id` with the `mentioned_node_uuids` filter. Returns episodes that mentioned a given node, subject to an internal cap; responses reduced by that cap set the Zep-Truncated header.",
         "tags": [
           "entity"
         ],
@@ -6713,7 +6713,7 @@
             "additionalProperties": {
               "description": "Any type"
             },
-            "description": "The metadata associated with the message."
+            "description": "The metadata associated with the message. Max 10 keys. Values must be strings, numbers, booleans, or arrays of scalars."
           },
           "name": {
             "type": "string",
@@ -6948,7 +6948,8 @@
             "type": "object",
             "additionalProperties": {
               "description": "Any type"
-            }
+            },
+            "description": "Metadata to store on the message. Max 10 keys. Values must be strings, numbers, booleans, or arrays of scalars."
           }
         },
         "required": [
@@ -7128,6 +7129,17 @@
           "created_at": {
             "type": "string",
             "description": "Creation time of the node"
+          },
+          "episodes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The UUIDs of the live episodes that mention this node, newest first. The\nlist is complete when `episodes_truncated` is false. The list is empty\nwhen the node has more than 100 source episodes; list episodes with the\n`mentioned_node_uuids` filter to read them."
+          },
+          "episodes_truncated": {
+            "type": "boolean",
+            "description": "True when the node has more than 100 source episodes, so `episodes` is\nempty, or when provenance is unavailable. False means `episodes` is the\ncomplete set."
           },
           "labels": {
             "type": "array",
@@ -7969,6 +7981,10 @@
           "fact": {
             "type": "string",
             "description": "Fact representing the edge and nodes that it connects"
+          },
+          "hyperedge_uuid": {
+            "type": "string",
+            "description": "HyperedgeUUID groups the pairwise edges projected from the same atomic\nmulti-entity fact. Omitted when the edge is not part of a hyperedge."
           },
           "invalid_at": {
             "type": "string",
@@ -9134,6 +9150,10 @@
             "type": "string",
             "description": "Sort direction. One of \"asc\" or \"desc\". Defaults to \"desc\"."
           },
+          "episode_metadata_filters": {
+            "$ref": "#/components/schemas/GraphitiMetadataFilterGroup",
+            "description": "Restricts results to episodes whose stored metadata matches this\npredicate. Same type and limits as graph.search episode_metadata_filters."
+          },
           "limit": {
             "type": "integer",
             "description": "Maximum number of episodes to return. An explicit value is clamped to\n50; when omitted, the default page size (100) applies."
@@ -9143,7 +9163,7 @@
             "items": {
               "type": "string"
             },
-            "description": "Restricts results to episodes that mention any of the listed node\nUUIDs. At most 256 entries; each must be a syntactically valid UUID."
+            "description": "Restricts results to episodes that mention any of the listed node\nUUIDs. The list can also contain episode UUIDs: an episode UUID\nmatches that episode, so one request can return a known set of\nepisodes. At most 256 entries; each must be a syntactically valid UUID."
           },
           "order_by": {
             "type": "string",

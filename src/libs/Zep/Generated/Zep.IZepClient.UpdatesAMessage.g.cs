@@ -39,7 +39,9 @@ namespace Zep
         /// Updates a message.
         /// </summary>
         /// <param name="messageUUID"></param>
-        /// <param name="metadata"></param>
+        /// <param name="metadata">
+        /// Metadata to store on the message. Max 10 keys. Values must be strings, numbers, booleans, or arrays of scalars.
+        /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>

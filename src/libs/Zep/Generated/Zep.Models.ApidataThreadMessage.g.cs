@@ -22,7 +22,7 @@ namespace Zep
         public string? CreatedAt { get; set; }
 
         /// <summary>
-        /// The metadata associated with the message.
+        /// The metadata associated with the message. Max 10 keys. Values must be strings, numbers, booleans, or arrays of scalars.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("metadata")]
         public object? Metadata { get; set; }
@@ -72,7 +72,7 @@ namespace Zep
         /// The timestamp of when the message was created.
         /// </param>
         /// <param name="metadata">
-        /// The metadata associated with the message.
+        /// The metadata associated with the message. Max 10 keys. Values must be strings, numbers, booleans, or arrays of scalars.
         /// </param>
         /// <param name="name">
         /// Customizable name of the sender of the message (e.g., "john", "sales_agent").
