@@ -4,7 +4,7 @@
 namespace Zep
 {
     /// <summary>
-    /// The metadata associated with the message.
+    /// The metadata associated with the message. Max 10 keys. Values must be strings, numbers, booleans, or arrays of scalars.
     /// </summary>
     public sealed partial class ApidataThreadMessageMetadata
     {

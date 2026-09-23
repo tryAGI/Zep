@@ -22,6 +22,13 @@ namespace Zep
         public string? Direction { get; set; }
 
         /// <summary>
+        /// Restricts results to episodes whose stored metadata matches this<br/>
+        /// predicate. Same type and limits as graph.search episode_metadata_filters.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("episode_metadata_filters")]
+        public global::Zep.GraphitiMetadataFilterGroup? EpisodeMetadataFilters { get; set; }
+
+        /// <summary>
         /// Maximum number of episodes to return. An explicit value is clamped to<br/>
         /// 50; when omitted, the default page size (100) applies.
         /// </summary>
@@ -30,7 +37,9 @@ namespace Zep
 
         /// <summary>
         /// Restricts results to episodes that mention any of the listed node<br/>
-        /// UUIDs. At most 256 entries; each must be a syntactically valid UUID.
+        /// UUIDs. The list can also contain episode UUIDs: an episode UUID<br/>
+        /// matches that episode, so one request can return a known set of<br/>
+        /// episodes. At most 256 entries; each must be a syntactically valid UUID.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("mentioned_node_uuids")]
         public global::System.Collections.Generic.IList<string>? MentionedNodeUuids { get; set; }
@@ -57,13 +66,19 @@ namespace Zep
         /// <param name="direction">
         /// Sort direction. One of "asc" or "desc". Defaults to "desc".
         /// </param>
+        /// <param name="episodeMetadataFilters">
+        /// Restricts results to episodes whose stored metadata matches this<br/>
+        /// predicate. Same type and limits as graph.search episode_metadata_filters.
+        /// </param>
         /// <param name="limit">
         /// Maximum number of episodes to return. An explicit value is clamped to<br/>
         /// 50; when omitted, the default page size (100) applies.
         /// </param>
         /// <param name="mentionedNodeUuids">
         /// Restricts results to episodes that mention any of the listed node<br/>
-        /// UUIDs. At most 256 entries; each must be a syntactically valid UUID.
+        /// UUIDs. The list can also contain episode UUIDs: an episode UUID<br/>
+        /// matches that episode, so one request can return a known set of<br/>
+        /// episodes. At most 256 entries; each must be a syntactically valid UUID.
         /// </param>
         /// <param name="orderBy">
         /// Field to sort by. One of "uuid" or "created_at". Defaults to "uuid".
@@ -74,12 +89,14 @@ namespace Zep
         public ApidataGraphEpisodeListRequest(
             string? cursor,
             string? direction,
+            global::Zep.GraphitiMetadataFilterGroup? episodeMetadataFilters,
             int? limit,
             global::System.Collections.Generic.IList<string>? mentionedNodeUuids,
             string? orderBy)
         {
             this.Cursor = cursor;
             this.Direction = direction;
+            this.EpisodeMetadataFilters = episodeMetadataFilters;
             this.Limit = limit;
             this.MentionedNodeUuids = mentionedNodeUuids;
             this.OrderBy = orderBy;
