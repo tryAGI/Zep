@@ -7130,6 +7130,10 @@
             "type": "string",
             "description": "Creation time of the node"
           },
+          "degree": {
+            "type": "integer",
+            "description": "The count of live entity edges that touch this node (the edge scopes\nthe entity edge list returns). Present only when the list request\norders by degree."
+          },
           "episodes": {
             "type": "array",
             "items": {
@@ -9094,7 +9098,7 @@
           },
           "order_by": {
             "type": "string",
-            "description": "Field to sort by. One of \"created_at\", \"valid_at\", or \"uuid\" (default \"uuid\")."
+            "description": "Field to sort by. One of \"created_at\", \"valid_at\", \"degree\", or \"uuid\"\n(default \"uuid\"). \"degree\" sorts by the count of live entity edges that\ntouch each node (the edge scopes the entity edge list returns) and is\nsupported on the node list endpoints only."
           },
           "uuid_cursor": {
             "type": "string",
@@ -9356,7 +9360,7 @@
           },
           "order_by": {
             "type": "string",
-            "description": "Field to sort by. One of \"created_at\", \"valid_at\", or \"uuid\" (default \"uuid\")."
+            "description": "Field to sort by. One of \"created_at\", \"valid_at\", \"degree\", or \"uuid\"\n(default \"uuid\"). \"degree\" sorts by the count of live entity edges that\ntouch each node (the edge scopes the entity edge list returns) and is\nsupported on the node list endpoints only."
           },
           "uuid_cursor": {
             "type": "string",
@@ -9550,7 +9554,7 @@
           },
           "order_by": {
             "type": "string",
-            "description": "Field to sort by. One of \"created_at\", \"valid_at\", or \"uuid\" (default \"uuid\")."
+            "description": "Field to sort by. One of \"created_at\", \"valid_at\", \"degree\", or \"uuid\"\n(default \"uuid\"). \"degree\" sorts by the count of live entity edges that\ntouch each node (the edge scopes the entity edge list returns) and is\nsupported on the node list endpoints only."
           },
           "uuid_cursor": {
             "type": "string",
@@ -9580,7 +9584,7 @@
           },
           "order_by": {
             "type": "string",
-            "description": "Field to sort by. One of \"created_at\", \"valid_at\", or \"uuid\" (default \"uuid\")."
+            "description": "Field to sort by. One of \"created_at\", \"valid_at\", \"degree\", or \"uuid\"\n(default \"uuid\"). \"degree\" sorts by the count of live entity edges that\ntouch each node (the edge scopes the entity edge list returns) and is\nsupported on the node list endpoints only."
           },
           "uuid_cursor": {
             "type": "string",
@@ -9610,7 +9614,7 @@
           },
           "order_by": {
             "type": "string",
-            "description": "Field to sort by. One of \"created_at\", \"valid_at\", or \"uuid\" (default \"uuid\")."
+            "description": "Field to sort by. One of \"created_at\", \"valid_at\", \"degree\", or \"uuid\"\n(default \"uuid\"). \"degree\" sorts by the count of live entity edges that\ntouch each node (the edge scopes the entity edge list returns) and is\nsupported on the node list endpoints only."
           },
           "uuid_cursor": {
             "type": "string",

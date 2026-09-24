@@ -22,6 +22,14 @@ namespace Zep
         public required string CreatedAt { get; set; }
 
         /// <summary>
+        /// The count of live entity edges that touch this node (the edge scopes<br/>
+        /// the entity edge list returns). Present only when the list request<br/>
+        /// orders by degree.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("degree")]
+        public int? Degree { get; set; }
+
+        /// <summary>
         /// The UUIDs of the live episodes that mention this node, newest first. The<br/>
         /// list is complete when `episodes_truncated` is false. The list is empty<br/>
         /// when the node has more than 100 source episodes; list episodes with the<br/>
@@ -108,6 +116,11 @@ namespace Zep
         /// <param name="attributes">
         /// Additional attributes of the node. Dependent on node labels
         /// </param>
+        /// <param name="degree">
+        /// The count of live entity edges that touch this node (the edge scopes<br/>
+        /// the entity edge list returns). Present only when the list request<br/>
+        /// orders by degree.
+        /// </param>
         /// <param name="episodes">
         /// The UUIDs of the live episodes that mention this node, newest first. The<br/>
         /// list is complete when `episodes_truncated` is false. The list is empty<br/>
@@ -141,6 +154,7 @@ namespace Zep
             string summary,
             string uuid,
             object? attributes,
+            int? degree,
             global::System.Collections.Generic.IList<string>? episodes,
             bool? episodesTruncated,
             global::System.Collections.Generic.IList<string>? labels,
@@ -150,6 +164,7 @@ namespace Zep
         {
             this.Attributes = attributes;
             this.CreatedAt = createdAt ?? throw new global::System.ArgumentNullException(nameof(createdAt));
+            this.Degree = degree;
             this.Episodes = episodes;
             this.EpisodesTruncated = episodesTruncated;
             this.Labels = labels;
