@@ -29,14 +29,24 @@ namespace Zep
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(double))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Zep.ApidataGraphEpisode>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<string>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.GraphitiComparisonOperator), TypeInfoPropertyName = "GraphitiComparisonOperator2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.GraphitiEpisodeMetadataFilter))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.GraphitiMetadataFilterGroupType), TypeInfoPropertyName = "GraphitiMetadataFilterGroupType2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.GraphitiMetadataFilterGroup))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Zep.GraphitiEpisodeMetadataFilter>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Zep.GraphitiMetadataFilterGroup>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataGraphEpisodeListRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(int?))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataRoleType?), TypeInfoPropertyName = "NullableApidataRoleType2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(bool?))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ModelsGraphDataType?), TypeInfoPropertyName = "NullableModelsGraphDataType2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(double?))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.GraphitiComparisonOperator?), TypeInfoPropertyName = "NullableGraphitiComparisonOperator2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.GraphitiMetadataFilterGroupType?), TypeInfoPropertyName = "NullableGraphitiMetadataFilterGroupType2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Zep.ApidataGraphEpisode>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<string>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Zep.GraphitiEpisodeMetadataFilter>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Zep.GraphitiMetadataFilterGroup>))]
     internal sealed partial class GraphEpisodeSourceGenerationContextChunk0 : global::System.Text.Json.Serialization.JsonSerializerContext
     {
     }
@@ -109,7 +119,15 @@ namespace Zep
 
                     || typeToConvert == typeof(global::Zep.ModelsGraphDataType)
 
-                    || typeToConvert == typeof(global::Zep.ModelsGraphDataType?);
+                    || typeToConvert == typeof(global::Zep.ModelsGraphDataType?)
+
+                    || typeToConvert == typeof(global::Zep.GraphitiComparisonOperator)
+
+                    || typeToConvert == typeof(global::Zep.GraphitiComparisonOperator?)
+
+                    || typeToConvert == typeof(global::Zep.GraphitiMetadataFilterGroupType)
+
+                    || typeToConvert == typeof(global::Zep.GraphitiMetadataFilterGroupType?);
             }
 
             public override global::System.Text.Json.Serialization.JsonConverter CreateConverter(
@@ -134,6 +152,26 @@ namespace Zep
                 if (typeToConvert == typeof(global::Zep.ModelsGraphDataType?))
                 {
                     return new global::Zep.JsonConverters.ModelsGraphDataTypeNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Zep.GraphitiComparisonOperator))
+                {
+                    return new global::Zep.JsonConverters.GraphitiComparisonOperatorJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Zep.GraphitiComparisonOperator?))
+                {
+                    return new global::Zep.JsonConverters.GraphitiComparisonOperatorNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Zep.GraphitiMetadataFilterGroupType))
+                {
+                    return new global::Zep.JsonConverters.GraphitiMetadataFilterGroupTypeJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Zep.GraphitiMetadataFilterGroupType?))
+                {
+                    return new global::Zep.JsonConverters.GraphitiMetadataFilterGroupTypeNullableJsonConverter();
                 }
                 throw new global::System.NotSupportedException($"No generated enum converter is registered for '{typeToConvert}'.");
             }

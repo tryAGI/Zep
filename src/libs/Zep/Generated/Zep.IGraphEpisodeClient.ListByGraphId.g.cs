@@ -46,13 +46,19 @@ namespace Zep
         /// <param name="direction">
         /// Sort direction. One of "asc" or "desc". Defaults to "desc".
         /// </param>
+        /// <param name="episodeMetadataFilters">
+        /// Restricts results to episodes whose stored metadata matches this<br/>
+        /// predicate. Same type and limits as graph.search episode_metadata_filters.
+        /// </param>
         /// <param name="limit">
         /// Maximum number of episodes to return. An explicit value is clamped to<br/>
         /// 50; when omitted, the default page size (100) applies.
         /// </param>
         /// <param name="mentionedNodeUuids">
         /// Restricts results to episodes that mention any of the listed node<br/>
-        /// UUIDs. At most 256 entries; each must be a syntactically valid UUID.
+        /// UUIDs. The list can also contain episode UUIDs: an episode UUID<br/>
+        /// matches that episode, so one request can return a known set of<br/>
+        /// episodes. At most 256 entries; each must be a syntactically valid UUID.
         /// </param>
         /// <param name="orderBy">
         /// Field to sort by. One of "uuid" or "created_at". Defaults to "uuid".
@@ -64,6 +70,7 @@ namespace Zep
             string graphId,
             string? cursor = default,
             string? direction = default,
+            global::Zep.GraphitiMetadataFilterGroup? episodeMetadataFilters = default,
             int? limit = default,
             global::System.Collections.Generic.IList<string>? mentionedNodeUuids = default,
             string? orderBy = default,

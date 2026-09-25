@@ -572,7 +572,10 @@ namespace Zep
         /// Maximum number of items to return
         /// </param>
         /// <param name="orderBy">
-        /// Field to sort by. One of "created_at", "valid_at", or "uuid" (default "uuid").
+        /// Field to sort by. One of "created_at", "valid_at", "degree", or "uuid"<br/>
+        /// (default "uuid"). "degree" sorts by the count of live entity edges that<br/>
+        /// touch each node (the edge scopes the entity edge list returns) and is<br/>
+        /// supported on the node list endpoints only.
         /// </param>
         /// <param name="uuidCursor">
         /// UUID based cursor, used for pagination. Should be the UUID of the last item in the previous page.<br/>

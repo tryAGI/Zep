@@ -4,7 +4,7 @@
 namespace Zep
 {
     /// <summary>
-    ///
+    /// Metadata to store on the message. Max 10 keys. Values must be strings, numbers, booleans, or arrays of scalars.
     /// </summary>
     public sealed partial class ModelsThreadMessageUpdateMetadata
     {

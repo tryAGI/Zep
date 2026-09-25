@@ -9,7 +9,7 @@ namespace Zep
     public sealed partial class ModelsThreadMessageUpdate
     {
         /// <summary>
-        ///
+        /// Metadata to store on the message. Max 10 keys. Values must be strings, numbers, booleans, or arrays of scalars.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("metadata")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -24,7 +24,9 @@ namespace Zep
         /// <summary>
         /// Initializes a new instance of the <see cref="ModelsThreadMessageUpdate" /> class.
         /// </summary>
-        /// <param name="metadata"></param>
+        /// <param name="metadata">
+        /// Metadata to store on the message. Max 10 keys. Values must be strings, numbers, booleans, or arrays of scalars.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif

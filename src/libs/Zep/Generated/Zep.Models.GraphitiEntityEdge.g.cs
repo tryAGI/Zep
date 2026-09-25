@@ -41,6 +41,13 @@ namespace Zep
         public required string Fact { get; set; }
 
         /// <summary>
+        /// HyperedgeUUID groups the pairwise edges projected from the same atomic<br/>
+        /// multi-entity fact. Omitted when the edge is not part of a hyperedge.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("hyperedge_uuid")]
+        public string? HyperedgeUuid { get; set; }
+
+        /// <summary>
         /// Datetime of when the fact stopped being true
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("invalid_at")]
@@ -172,6 +179,10 @@ namespace Zep
         /// <param name="expiredAt">
         /// Datetime of when the node was invalidated
         /// </param>
+        /// <param name="hyperedgeUuid">
+        /// HyperedgeUUID groups the pairwise edges projected from the same atomic<br/>
+        /// multi-entity fact. Omitted when the edge is not part of a hyperedge.
+        /// </param>
         /// <param name="invalidAt">
         /// Datetime of when the fact stopped being true
         /// </param>
@@ -223,6 +234,7 @@ namespace Zep
             object? attributes,
             global::System.Collections.Generic.IList<string>? episodes,
             string? expiredAt,
+            string? hyperedgeUuid,
             string? invalidAt,
             double? relevance,
             string? scope,
@@ -239,6 +251,7 @@ namespace Zep
             this.Episodes = episodes;
             this.ExpiredAt = expiredAt;
             this.Fact = fact ?? throw new global::System.ArgumentNullException(nameof(fact));
+            this.HyperedgeUuid = hyperedgeUuid;
             this.InvalidAt = invalidAt;
             this.Name = name ?? throw new global::System.ArgumentNullException(nameof(name));
             this.Relevance = relevance;
