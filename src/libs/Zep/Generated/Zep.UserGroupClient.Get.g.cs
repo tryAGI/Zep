@@ -139,8 +139,8 @@ namespace Zep
                 PrepareGetRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    groupUUID: groupUUID!,
-                    projectId: projectId!);
+                    groupUUID: groupUUID,
+                    projectId: projectId);
 
                 global::Zep.AutoSDKHttpRequestOptions.StampAuthorizationOverride(__httpRequest);
 
@@ -164,7 +164,7 @@ namespace Zep
                                 pathTemplate: "$\"/user-groups/{groupUUID}\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
-                                request: __httpRequest!,
+                                request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
                                 response: null,
                                 exception: null,
                                 clientOptions: Options,
@@ -198,7 +198,7 @@ namespace Zep
                                 pathTemplate: "$\"/user-groups/{groupUUID}\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
-                                request: __httpRequest!,
+                                request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
                                 response: null,
                                 exception: __exception,
                                 clientOptions: Options,
@@ -239,7 +239,7 @@ namespace Zep
                                 pathTemplate: "$\"/user-groups/{groupUUID}\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
-                                request: __httpRequest!,
+                                request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
                                 response: __response,
                                 exception: null,
                                 clientOptions: Options,
@@ -287,7 +287,7 @@ namespace Zep
                                 pathTemplate: "$\"/user-groups/{groupUUID}\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
-                                request: __httpRequest!,
+                                request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
                                 response: __response,
                                 exception: null,
                                 clientOptions: Options,
@@ -309,7 +309,7 @@ namespace Zep
                                 pathTemplate: "$\"/user-groups/{groupUUID}\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
-                                request: __httpRequest!,
+                                request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
                                 response: __response,
                                 exception: null,
                                 clientOptions: Options,
