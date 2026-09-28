@@ -63,7 +63,7 @@ namespace Zep
 
         /// <summary>
         /// Filters which edges/nodes participate in pattern detection.<br/>
-        /// Reuses the same filter format as /graph/search.
+        /// Reuses the same filter format as the `graph.search` SDK method.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("search_filters")]
         public global::Zep.GraphitiSearchFilters? SearchFilters { get; set; }
@@ -119,7 +119,7 @@ namespace Zep
         /// </param>
         /// <param name="searchFilters">
         /// Filters which edges/nodes participate in pattern detection.<br/>
-        /// Reuses the same filter format as /graph/search.
+        /// Reuses the same filter format as the `graph.search` SDK method.
         /// </param>
         /// <param name="seeds">
         /// Seed selection. If omitted, analyzes the entire graph. Mutually exclusive with query.
