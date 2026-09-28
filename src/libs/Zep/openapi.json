@@ -4335,7 +4335,7 @@
       "get": {
         "operationId": "episodes_returnAnyNodesAndEdgesMentionedInAnEpisode",
         "summary": "Return any nodes and edges mentioned in an episode",
-        "description": "Deprecated. Use edge and node listing with `filters.episode_uuids` instead. Returns nodes and edges mentioned in an episode, subject to an internal cap; responses reduced by that cap set the Zep-Truncated header.",
+        "description": "Deprecated. Use the edge list SDK methods `graph.edge.get_by_graph_id` or `graph.edge.get_by_user_id`, or the node list SDK methods `graph.node.get_by_graph_id` or `graph.node.get_by_user_id`, with the `filters.episode_uuids` filter. Returns nodes and edges mentioned in an episode, subject to an internal cap; responses reduced by that cap set the Zep-Truncated header.",
         "tags": [
           "episodes"
         ],
@@ -4573,7 +4573,7 @@
       "get": {
         "operationId": "entity_getEntityEdgesForANode",
         "summary": "Get Entity Edges for a node",
-        "description": "Deprecated. Use edge listing with `filters.connected_node_uuids`, or the neighbors endpoint (`POST /graph/node/{node_uuid}/neighbors`), instead. Returns all edges for a node, subject to an internal cap; responses reduced by that cap set the Zep-Truncated header.",
+        "description": "Deprecated. Use the edge list SDK methods `graph.edge.get_by_graph_id` or `graph.edge.get_by_user_id` with the `filters.connected_node_uuids` filter, or use the `graph.node.get_neighbors` SDK method. Returns all edges for a node, subject to an internal cap; responses reduced by that cap set the Zep-Truncated header.",
         "tags": [
           "entity"
         ],
@@ -8599,7 +8599,7 @@
           },
           "search_filters": {
             "$ref": "#/components/schemas/GraphitiSearchFilters",
-            "description": "Filters which edges/nodes participate in pattern detection.\nReuses the same filter format as /graph/search."
+            "description": "Filters which edges/nodes participate in pattern detection.\nReuses the same filter format as the `graph.search` SDK method."
           },
           "seeds": {
             "$ref": "#/components/schemas/ApidataPatternSeeds",
