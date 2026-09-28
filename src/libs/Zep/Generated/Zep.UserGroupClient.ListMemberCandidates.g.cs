@@ -139,8 +139,8 @@ namespace Zep
                                 baseUri: HttpClient.BaseAddress);
                             __pathBuilder
                                 .AddRequiredParameter("projectId", projectId)
-                                .AddRequiredParameter("pageNumber", pageNumber.ToString()!)
-                                .AddRequiredParameter("pageSize", pageSize.ToString()!)
+                                .AddRequiredParameter("pageNumber", pageNumber.ToString() ?? throw new global::System.InvalidOperationException("A required query parameter returned null from ToString()."))
+                                .AddRequiredParameter("pageSize", pageSize.ToString() ?? throw new global::System.InvalidOperationException("A required query parameter returned null from ToString()."))
                                 .AddOptionalParameter("search", search)
                                 ;
                             var __path = __pathBuilder.ToString();
@@ -166,10 +166,10 @@ namespace Zep
                 PrepareListMemberCandidatesRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    groupUUID: groupUUID!,
-                    projectId: projectId!,
-                    pageNumber: pageNumber!,
-                    pageSize: pageSize!,
+                    groupUUID: groupUUID,
+                    projectId: projectId,
+                    pageNumber: pageNumber,
+                    pageSize: pageSize,
                     search: search);
 
                 global::Zep.AutoSDKHttpRequestOptions.StampAuthorizationOverride(__httpRequest);
@@ -194,7 +194,7 @@ namespace Zep
                                 pathTemplate: "$\"/user-groups/{groupUUID}/members/candidates\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
-                                request: __httpRequest!,
+                                request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
                                 response: null,
                                 exception: null,
                                 clientOptions: Options,
@@ -228,7 +228,7 @@ namespace Zep
                                 pathTemplate: "$\"/user-groups/{groupUUID}/members/candidates\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
-                                request: __httpRequest!,
+                                request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
                                 response: null,
                                 exception: __exception,
                                 clientOptions: Options,
@@ -269,7 +269,7 @@ namespace Zep
                                 pathTemplate: "$\"/user-groups/{groupUUID}/members/candidates\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
-                                request: __httpRequest!,
+                                request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
                                 response: __response,
                                 exception: null,
                                 clientOptions: Options,
@@ -317,7 +317,7 @@ namespace Zep
                                 pathTemplate: "$\"/user-groups/{groupUUID}/members/candidates\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
-                                request: __httpRequest!,
+                                request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
                                 response: __response,
                                 exception: null,
                                 clientOptions: Options,
@@ -339,7 +339,7 @@ namespace Zep
                                 pathTemplate: "$\"/user-groups/{groupUUID}/members/candidates\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
-                                request: __httpRequest!,
+                                request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
                                 response: __response,
                                 exception: null,
                                 clientOptions: Options,
