@@ -57,7 +57,7 @@ namespace Zep
         /// Default `pageSize` is 50 (range 1–100). To list users, use<br/>
         /// `user.list_ordered` instead. See the<br/>
         /// [graph directory guide](/graph-directory) for pagination, relevance<br/>
-        /// ordering, and Memory MCP exposure.
+        /// ordering, and Context MCP exposure.
         /// </summary>
         /// <param name="pageNumber"></param>
         /// <param name="pageSize"></param>
@@ -96,7 +96,7 @@ namespace Zep
         /// Default `pageSize` is 50 (range 1–100). To list users, use<br/>
         /// `user.list_ordered` instead. See the<br/>
         /// [graph directory guide](/graph-directory) for pagination, relevance<br/>
-        /// ordering, and Memory MCP exposure.
+        /// ordering, and Context MCP exposure.
         /// </summary>
         /// <param name="pageNumber"></param>
         /// <param name="pageSize"></param>
