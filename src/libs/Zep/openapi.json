@@ -3946,11 +3946,11 @@
         }
       },
       "post": {
-        "operationId": "graph_episode_list_by_graph_id",
+        "operationId": "episode_list_by_graph_id",
         "summary": "List Graph Episodes",
         "description": "Returns a paginated, filterable list of episodes for a graph.",
         "tags": [
-          "graph > episode"
+          "episode"
         ],
         "parameters": [
           {
@@ -4072,11 +4072,11 @@
         }
       },
       "post": {
-        "operationId": "graph_episode_list_by_user_id",
+        "operationId": "episode_list_by_user_id",
         "summary": "List User Episodes",
         "description": "Returns a paginated, filterable list of episodes for a user's graph.",
         "tags": [
-          "graph > episode"
+          "episode"
         ],
         "parameters": [
           {
@@ -4682,11 +4682,11 @@
     },
     "/graph/node/{node_uuid}/neighbors": {
       "post": {
-        "operationId": "graph_node_get_neighbors",
+        "operationId": "node_get_neighbors",
         "summary": "Get Node Neighbors",
         "description": "Enumerates the distinct entity nodes directly connected to a node, together with the edges connecting each to it.",
         "tags": [
-          "graph > node"
+          "node"
         ],
         "parameters": [
           {
@@ -6557,10 +6557,10 @@
       "name": "episodes"
     },
     {
-      "name": "graph > episode"
+      "name": "episode"
     },
     {
-      "name": "graph > node"
+      "name": "node"
     },
     {
       "name": "observation"
@@ -9439,7 +9439,7 @@
           },
           "summary": {
             "type": "string",
-            "maxLength": 500,
+            "maxLength": 5000,
             "description": "Updated summary for the node"
           }
         },

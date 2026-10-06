@@ -3,11 +3,11 @@
 
 namespace Zep
 {
-    public partial class GraphEpisodeClient
+    public partial class EpisodeClient
     {
 
 
-        private static readonly global::Zep.EndPointSecurityRequirement s_ListByGraphIdSecurityRequirement0 =
+        private static readonly global::Zep.EndPointSecurityRequirement s_ListByUserIdSecurityRequirement0 =
             new global::Zep.EndPointSecurityRequirement
             {
                 Authorizations = new global::Zep.EndPointAuthorizationRequirement[]
@@ -21,46 +21,46 @@ namespace Zep
                     },
                 },
             };
-        private static readonly global::Zep.EndPointSecurityRequirement[] s_ListByGraphIdSecurityRequirements =
+        private static readonly global::Zep.EndPointSecurityRequirement[] s_ListByUserIdSecurityRequirements =
             new global::Zep.EndPointSecurityRequirement[]
-            {                s_ListByGraphIdSecurityRequirement0,
+            {                s_ListByUserIdSecurityRequirement0,
             };
-        partial void PrepareListByGraphIdArguments(
+        partial void PrepareListByUserIdArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string graphId,
+            ref string userId,
             global::Zep.ApidataGraphEpisodeListRequest request);
-        partial void PrepareListByGraphIdRequest(
+        partial void PrepareListByUserIdRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string graphId,
+            string userId,
             global::Zep.ApidataGraphEpisodeListRequest request);
-        partial void ProcessListByGraphIdResponse(
+        partial void ProcessListByUserIdResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
-        partial void ProcessListByGraphIdResponseContent(
+        partial void ProcessListByUserIdResponseContent(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage,
             ref string content);
 
         /// <summary>
-        /// List Graph Episodes<br/>
-        /// Returns a paginated, filterable list of episodes for a graph.
+        /// List User Episodes<br/>
+        /// Returns a paginated, filterable list of episodes for a user's graph.
         /// </summary>
-        /// <param name="graphId"></param>
+        /// <param name="userId"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Zep.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::System.Collections.Generic.IList<global::Zep.ApidataGraphEpisode>> ListByGraphIdAsync(
-            string graphId,
+        public async global::System.Threading.Tasks.Task<global::System.Collections.Generic.IList<global::Zep.ApidataGraphEpisode>> ListByUserIdAsync(
+            string userId,
 
             global::Zep.ApidataGraphEpisodeListRequest request,
             global::Zep.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __response = await ListByGraphIdAsResponseAsync(
-                graphId: graphId,
+            var __response = await ListByUserIdAsResponseAsync(
+                userId: userId,
 
                 request: request,
                 requestOptions: requestOptions,
@@ -70,16 +70,16 @@ namespace Zep
             return __response.Body;
         }
         /// <summary>
-        /// List Graph Episodes<br/>
-        /// Returns a paginated, filterable list of episodes for a graph.
+        /// List User Episodes<br/>
+        /// Returns a paginated, filterable list of episodes for a user's graph.
         /// </summary>
-        /// <param name="graphId"></param>
+        /// <param name="userId"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Zep.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Zep.AutoSDKHttpResponse<global::System.Collections.Generic.IList<global::Zep.ApidataGraphEpisode>>> ListByGraphIdAsResponseAsync(
-            string graphId,
+        public async global::System.Threading.Tasks.Task<global::Zep.AutoSDKHttpResponse<global::System.Collections.Generic.IList<global::Zep.ApidataGraphEpisode>>> ListByUserIdAsResponseAsync(
+            string userId,
 
             global::Zep.ApidataGraphEpisodeListRequest request,
             global::Zep.AutoSDKRequestOptions? requestOptions = default,
@@ -89,16 +89,16 @@ namespace Zep
 
             PrepareArguments(
                 client: HttpClient);
-            PrepareListByGraphIdArguments(
+            PrepareListByUserIdArguments(
                 httpClient: HttpClient,
-                graphId: ref graphId,
+                userId: ref userId,
                 request: request);
 
 
             var __authorizations = global::Zep.EndPointSecurityResolver.ResolveAuthorizations(
                 availableAuthorizations: Authorizations,
-                securityRequirements: s_ListByGraphIdSecurityRequirements,
-                operationName: "ListByGraphIdAsync");
+                securityRequirements: s_ListByUserIdSecurityRequirements,
+                operationName: "ListByUserIdAsync");
 
             using var __timeoutCancellationTokenSource = global::Zep.AutoSDKRequestOptionsSupport.CreateTimeoutCancellationTokenSource(
                 clientOptions: Options,
@@ -118,7 +118,7 @@ namespace Zep
             {
 
                             var __pathBuilder = new global::Zep.PathBuilder(
-                                path: $"/graph/episodes/graph/{graphId}",
+                                path: $"/graph/episodes/user/{userId}",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Zep.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -163,10 +163,10 @@ namespace Zep
                 PrepareRequest(
                     client: HttpClient,
                     request: __httpRequest);
-                PrepareListByGraphIdRequest(
+                PrepareListByUserIdRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    graphId: graphId,
+                    userId: userId,
                     request: request);
 
                 return __httpRequest;
@@ -184,9 +184,9 @@ namespace Zep
                     await global::Zep.AutoSDKRequestOptionsSupport.OnBeforeRequestAsync(
                             clientOptions: Options,
                             context: global::Zep.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "ListByGraphId",
-                                methodName: "ListByGraphIdAsync",
-                                pathTemplate: "$\"/graph/episodes/graph/{graphId}\"",
+                                operationId: "ListByUserId",
+                                methodName: "ListByUserIdAsync",
+                                pathTemplate: "$\"/graph/episodes/user/{userId}\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
@@ -218,9 +218,9 @@ namespace Zep
                         await global::Zep.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Zep.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "ListByGraphId",
-                                methodName: "ListByGraphIdAsync",
-                                pathTemplate: "$\"/graph/episodes/graph/{graphId}\"",
+                                operationId: "ListByUserId",
+                                methodName: "ListByUserIdAsync",
+                                pathTemplate: "$\"/graph/episodes/user/{userId}\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
@@ -259,9 +259,9 @@ namespace Zep
                         await global::Zep.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Zep.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "ListByGraphId",
-                                methodName: "ListByGraphIdAsync",
-                                pathTemplate: "$\"/graph/episodes/graph/{graphId}\"",
+                                operationId: "ListByUserId",
+                                methodName: "ListByUserIdAsync",
+                                pathTemplate: "$\"/graph/episodes/user/{userId}\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
@@ -299,7 +299,7 @@ namespace Zep
                 ProcessResponse(
                     client: HttpClient,
                     response: __response);
-                ProcessListByGraphIdResponse(
+                ProcessListByUserIdResponse(
                     httpClient: HttpClient,
                     httpResponseMessage: __response);
                 if (__response.IsSuccessStatusCode)
@@ -307,9 +307,9 @@ namespace Zep
                     await global::Zep.AutoSDKRequestOptionsSupport.OnAfterSuccessAsync(
                             clientOptions: Options,
                             context: global::Zep.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "ListByGraphId",
-                                methodName: "ListByGraphIdAsync",
-                                pathTemplate: "$\"/graph/episodes/graph/{graphId}\"",
+                                operationId: "ListByUserId",
+                                methodName: "ListByUserIdAsync",
+                                pathTemplate: "$\"/graph/episodes/user/{userId}\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
@@ -329,9 +329,9 @@ namespace Zep
                     await global::Zep.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Zep.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "ListByGraphId",
-                                methodName: "ListByGraphIdAsync",
-                                pathTemplate: "$\"/graph/episodes/graph/{graphId}\"",
+                                operationId: "ListByUserId",
+                                methodName: "ListByUserIdAsync",
+                                pathTemplate: "$\"/graph/episodes/user/{userId}\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
@@ -433,7 +433,7 @@ namespace Zep
                                     client: HttpClient,
                                     response: __response,
                                     content: ref __content);
-                                ProcessListByGraphIdResponseContent(
+                                ProcessListByUserIdResponseContent(
                                     httpClient: HttpClient,
                                     httpResponseMessage: __response,
                                     content: ref __content);
@@ -517,10 +517,10 @@ namespace Zep
             }
         }
         /// <summary>
-        /// List Graph Episodes<br/>
-        /// Returns a paginated, filterable list of episodes for a graph.
+        /// List User Episodes<br/>
+        /// Returns a paginated, filterable list of episodes for a user's graph.
         /// </summary>
-        /// <param name="graphId"></param>
+        /// <param name="userId"></param>
         /// <param name="cursor">
         /// Opaque cursor for pagination, obtained from the Zep-Next-Cursor<br/>
         /// response header of the previous page.
@@ -548,8 +548,8 @@ namespace Zep
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
-        public async global::System.Threading.Tasks.Task<global::System.Collections.Generic.IList<global::Zep.ApidataGraphEpisode>> ListByGraphIdAsync(
-            string graphId,
+        public async global::System.Threading.Tasks.Task<global::System.Collections.Generic.IList<global::Zep.ApidataGraphEpisode>> ListByUserIdAsync(
+            string userId,
             string? cursor = default,
             string? direction = default,
             global::Zep.GraphitiMetadataFilterGroup? episodeMetadataFilters = default,
@@ -569,8 +569,8 @@ namespace Zep
                 OrderBy = orderBy,
             };
 
-            return await ListByGraphIdAsync(
-                graphId: graphId,
+            return await ListByUserIdAsync(
+                userId: userId,
                 request: __request,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken).ConfigureAwait(false);

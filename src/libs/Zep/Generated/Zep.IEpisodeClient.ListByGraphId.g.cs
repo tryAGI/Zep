@@ -2,43 +2,43 @@
 
 namespace Zep
 {
-    public partial interface IGraphEpisodeClient
+    public partial interface IEpisodeClient
     {
         /// <summary>
-        /// List User Episodes<br/>
-        /// Returns a paginated, filterable list of episodes for a user's graph.
+        /// List Graph Episodes<br/>
+        /// Returns a paginated, filterable list of episodes for a graph.
         /// </summary>
-        /// <param name="userId"></param>
+        /// <param name="graphId"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Zep.ApiException"></exception>
-        global::System.Threading.Tasks.Task<global::System.Collections.Generic.IList<global::Zep.ApidataGraphEpisode>> ListByUserIdAsync(
-            string userId,
+        global::System.Threading.Tasks.Task<global::System.Collections.Generic.IList<global::Zep.ApidataGraphEpisode>> ListByGraphIdAsync(
+            string graphId,
 
             global::Zep.ApidataGraphEpisodeListRequest request,
             global::Zep.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// List User Episodes<br/>
-        /// Returns a paginated, filterable list of episodes for a user's graph.
+        /// List Graph Episodes<br/>
+        /// Returns a paginated, filterable list of episodes for a graph.
         /// </summary>
-        /// <param name="userId"></param>
+        /// <param name="graphId"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Zep.ApiException"></exception>
-        global::System.Threading.Tasks.Task<global::Zep.AutoSDKHttpResponse<global::System.Collections.Generic.IList<global::Zep.ApidataGraphEpisode>>> ListByUserIdAsResponseAsync(
-            string userId,
+        global::System.Threading.Tasks.Task<global::Zep.AutoSDKHttpResponse<global::System.Collections.Generic.IList<global::Zep.ApidataGraphEpisode>>> ListByGraphIdAsResponseAsync(
+            string graphId,
 
             global::Zep.ApidataGraphEpisodeListRequest request,
             global::Zep.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// List User Episodes<br/>
-        /// Returns a paginated, filterable list of episodes for a user's graph.
+        /// List Graph Episodes<br/>
+        /// Returns a paginated, filterable list of episodes for a graph.
         /// </summary>
-        /// <param name="userId"></param>
+        /// <param name="graphId"></param>
         /// <param name="cursor">
         /// Opaque cursor for pagination, obtained from the Zep-Next-Cursor<br/>
         /// response header of the previous page.
@@ -66,8 +66,8 @@ namespace Zep
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
-        global::System.Threading.Tasks.Task<global::System.Collections.Generic.IList<global::Zep.ApidataGraphEpisode>> ListByUserIdAsync(
-            string userId,
+        global::System.Threading.Tasks.Task<global::System.Collections.Generic.IList<global::Zep.ApidataGraphEpisode>> ListByGraphIdAsync(
+            string graphId,
             string? cursor = default,
             string? direction = default,
             global::Zep.GraphitiMetadataFilterGroup? episodeMetadataFilters = default,

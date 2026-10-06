@@ -103,6 +103,15 @@ namespace Zep
         /// <summary>
         ///
         /// </summary>
+        public EpisodeClient Episode => new EpisodeClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        {
+            ReadResponseAsString = ReadResponseAsString,
+            JsonSerializerContextProvider = JsonSerializerContextProvider,
+        };
+
+        /// <summary>
+        ///
+        /// </summary>
         public EpisodesClient Episodes => new EpisodesClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
@@ -121,16 +130,7 @@ namespace Zep
         /// <summary>
         ///
         /// </summary>
-        public GraphEpisodeClient GraphEpisode => new GraphEpisodeClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
-        {
-            ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContextProvider = JsonSerializerContextProvider,
-        };
-
-        /// <summary>
-        ///
-        /// </summary>
-        public GraphNodeClient GraphNode => new GraphNodeClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        public NodeClient Node => new NodeClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             JsonSerializerContextProvider = JsonSerializerContextProvider,
