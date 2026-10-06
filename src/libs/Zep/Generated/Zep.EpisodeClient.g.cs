@@ -7,7 +7,7 @@ namespace Zep
     /// If no httpClient is provided, a new one will be created.<br/>
     /// If no baseUri is provided, the default baseUri from OpenAPI spec will be used.
     /// </summary>
-    public sealed partial class GraphEpisodeClient : global::Zep.IGraphEpisodeClient, global::System.IDisposable
+    public sealed partial class EpisodeClient : global::Zep.IEpisodeClient, global::System.IDisposable
     {
         /// <summary>
         /// https://api.getzep.com/api/v2
@@ -34,7 +34,7 @@ namespace Zep
         /// <inheritdoc/>
         public global::Zep.AutoSDKClientOptions Options { get; }
 
-        internal global::System.Lazy<global::System.Text.Json.Serialization.JsonSerializerContext> JsonSerializerContextProvider { get; set; } = new(() => global::Zep.GraphEpisodeSourceGenerationContext.Default);
+        internal global::System.Lazy<global::System.Text.Json.Serialization.JsonSerializerContext> JsonSerializerContextProvider { get; set; } = new(() => global::Zep.EpisodeSourceGenerationContext.Default);
 
         /// <summary>
         ///
@@ -47,7 +47,7 @@ namespace Zep
 
 
         /// <summary>
-        /// Creates a new instance of the GraphEpisodeClient.
+        /// Creates a new instance of the EpisodeClient.
         /// If no httpClient is provided, a new one will be created.
         /// If no baseUri is provided, the default baseUri from OpenAPI spec will be used.
         /// </summary>
@@ -55,7 +55,7 @@ namespace Zep
         /// <param name="baseUri">The base URL for the API. If not provided, the default baseUri from OpenAPI spec will be used.</param>
         /// <param name="authorizations">The authorizations to use for the requests.</param>
         /// <param name="disposeHttpClient">Dispose the HttpClient when the instance is disposed. True by default.</param>
-        public GraphEpisodeClient(
+        public EpisodeClient(
             global::System.Net.Http.HttpClient? httpClient = null,
             global::System.Uri? baseUri = null,
             global::System.Collections.Generic.List<global::Zep.EndPointAuthorization>? authorizations = null,
@@ -69,14 +69,14 @@ namespace Zep
         }
 
         /// <summary>
-        /// Creates a new instance of the GraphEpisodeClient with explicit options but no base URL override.
+        /// Creates a new instance of the EpisodeClient with explicit options but no base URL override.
         /// Skips passing <c>baseUri</c> so the default base URL from the OpenAPI spec applies.
         /// </summary>
         /// <param name="httpClient">The HttpClient instance. If not provided, a new one will be created.</param>
         /// <param name="authorizations">The authorizations to use for the requests.</param>
         /// <param name="options">Client-wide request defaults such as headers, query parameters, retries, and timeout.</param>
         /// <param name="disposeHttpClient">Dispose the HttpClient when the instance is disposed. True by default.</param>
-        public GraphEpisodeClient(
+        public EpisodeClient(
             global::System.Net.Http.HttpClient? httpClient,
             global::System.Collections.Generic.List<global::Zep.EndPointAuthorization>? authorizations,
             global::Zep.AutoSDKClientOptions? options,
@@ -90,7 +90,7 @@ namespace Zep
         }
 
         /// <summary>
-        /// Creates a new instance of the GraphEpisodeClient.
+        /// Creates a new instance of the EpisodeClient.
         /// If no httpClient is provided, a new one will be created.
         /// If no baseUri is provided, the default baseUri from OpenAPI spec will be used.
         /// </summary>
@@ -99,7 +99,7 @@ namespace Zep
         /// <param name="authorizations">The authorizations to use for the requests.</param>
         /// <param name="options">Client-wide request defaults such as headers, query parameters, retries, and timeout.</param>
         /// <param name="disposeHttpClient">Dispose the HttpClient when the instance is disposed. True by default.</param>
-        public GraphEpisodeClient(
+        public EpisodeClient(
             global::System.Net.Http.HttpClient? httpClient,
             global::System.Uri? baseUri,
             global::System.Collections.Generic.List<global::Zep.EndPointAuthorization>? authorizations,

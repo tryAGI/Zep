@@ -2,7 +2,7 @@
 
 namespace Zep
 {
-    public partial interface IGraphNodeClient
+    public partial interface INodeClient
     {
         /// <summary>
         /// Get Node Neighbors<br/>

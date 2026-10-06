@@ -3,11 +3,11 @@
 
 namespace Zep
 {
-    public partial class GraphNodeClient
+    public partial class EpisodeClient
     {
 
 
-        private static readonly global::Zep.EndPointSecurityRequirement s_GetNeighborsSecurityRequirement0 =
+        private static readonly global::Zep.EndPointSecurityRequirement s_ListByGraphIdSecurityRequirement0 =
             new global::Zep.EndPointSecurityRequirement
             {
                 Authorizations = new global::Zep.EndPointAuthorizationRequirement[]
@@ -21,46 +21,46 @@ namespace Zep
                     },
                 },
             };
-        private static readonly global::Zep.EndPointSecurityRequirement[] s_GetNeighborsSecurityRequirements =
+        private static readonly global::Zep.EndPointSecurityRequirement[] s_ListByGraphIdSecurityRequirements =
             new global::Zep.EndPointSecurityRequirement[]
-            {                s_GetNeighborsSecurityRequirement0,
+            {                s_ListByGraphIdSecurityRequirement0,
             };
-        partial void PrepareGetNeighborsArguments(
+        partial void PrepareListByGraphIdArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string nodeUuid,
-            global::Zep.ApidataGraphNodeNeighborsRequest request);
-        partial void PrepareGetNeighborsRequest(
+            ref string graphId,
+            global::Zep.ApidataGraphEpisodeListRequest request);
+        partial void PrepareListByGraphIdRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string nodeUuid,
-            global::Zep.ApidataGraphNodeNeighborsRequest request);
-        partial void ProcessGetNeighborsResponse(
+            string graphId,
+            global::Zep.ApidataGraphEpisodeListRequest request);
+        partial void ProcessListByGraphIdResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
-        partial void ProcessGetNeighborsResponseContent(
+        partial void ProcessListByGraphIdResponseContent(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage,
             ref string content);
 
         /// <summary>
-        /// Get Node Neighbors<br/>
-        /// Enumerates the distinct entity nodes directly connected to a node, together with the edges connecting each to it.
+        /// List Graph Episodes<br/>
+        /// Returns a paginated, filterable list of episodes for a graph.
         /// </summary>
-        /// <param name="nodeUuid"></param>
+        /// <param name="graphId"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Zep.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::System.Collections.Generic.IList<global::Zep.ApidataGraphNodeNeighbor>> GetNeighborsAsync(
-            string nodeUuid,
+        public async global::System.Threading.Tasks.Task<global::System.Collections.Generic.IList<global::Zep.ApidataGraphEpisode>> ListByGraphIdAsync(
+            string graphId,
 
-            global::Zep.ApidataGraphNodeNeighborsRequest request,
+            global::Zep.ApidataGraphEpisodeListRequest request,
             global::Zep.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __response = await GetNeighborsAsResponseAsync(
-                nodeUuid: nodeUuid,
+            var __response = await ListByGraphIdAsResponseAsync(
+                graphId: graphId,
 
                 request: request,
                 requestOptions: requestOptions,
@@ -70,18 +70,18 @@ namespace Zep
             return __response.Body;
         }
         /// <summary>
-        /// Get Node Neighbors<br/>
-        /// Enumerates the distinct entity nodes directly connected to a node, together with the edges connecting each to it.
+        /// List Graph Episodes<br/>
+        /// Returns a paginated, filterable list of episodes for a graph.
         /// </summary>
-        /// <param name="nodeUuid"></param>
+        /// <param name="graphId"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Zep.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Zep.AutoSDKHttpResponse<global::System.Collections.Generic.IList<global::Zep.ApidataGraphNodeNeighbor>>> GetNeighborsAsResponseAsync(
-            string nodeUuid,
+        public async global::System.Threading.Tasks.Task<global::Zep.AutoSDKHttpResponse<global::System.Collections.Generic.IList<global::Zep.ApidataGraphEpisode>>> ListByGraphIdAsResponseAsync(
+            string graphId,
 
-            global::Zep.ApidataGraphNodeNeighborsRequest request,
+            global::Zep.ApidataGraphEpisodeListRequest request,
             global::Zep.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -89,16 +89,16 @@ namespace Zep
 
             PrepareArguments(
                 client: HttpClient);
-            PrepareGetNeighborsArguments(
+            PrepareListByGraphIdArguments(
                 httpClient: HttpClient,
-                nodeUuid: ref nodeUuid,
+                graphId: ref graphId,
                 request: request);
 
 
             var __authorizations = global::Zep.EndPointSecurityResolver.ResolveAuthorizations(
                 availableAuthorizations: Authorizations,
-                securityRequirements: s_GetNeighborsSecurityRequirements,
-                operationName: "GetNeighborsAsync");
+                securityRequirements: s_ListByGraphIdSecurityRequirements,
+                operationName: "ListByGraphIdAsync");
 
             using var __timeoutCancellationTokenSource = global::Zep.AutoSDKRequestOptionsSupport.CreateTimeoutCancellationTokenSource(
                 clientOptions: Options,
@@ -118,7 +118,7 @@ namespace Zep
             {
 
                             var __pathBuilder = new global::Zep.PathBuilder(
-                                path: $"/graph/node/{nodeUuid}/neighbors",
+                                path: $"/graph/episodes/graph/{graphId}",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Zep.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -163,10 +163,10 @@ namespace Zep
                 PrepareRequest(
                     client: HttpClient,
                     request: __httpRequest);
-                PrepareGetNeighborsRequest(
+                PrepareListByGraphIdRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    nodeUuid: nodeUuid,
+                    graphId: graphId,
                     request: request);
 
                 return __httpRequest;
@@ -184,9 +184,9 @@ namespace Zep
                     await global::Zep.AutoSDKRequestOptionsSupport.OnBeforeRequestAsync(
                             clientOptions: Options,
                             context: global::Zep.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "GetNeighbors",
-                                methodName: "GetNeighborsAsync",
-                                pathTemplate: "$\"/graph/node/{nodeUuid}/neighbors\"",
+                                operationId: "ListByGraphId",
+                                methodName: "ListByGraphIdAsync",
+                                pathTemplate: "$\"/graph/episodes/graph/{graphId}\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
@@ -218,9 +218,9 @@ namespace Zep
                         await global::Zep.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Zep.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "GetNeighbors",
-                                methodName: "GetNeighborsAsync",
-                                pathTemplate: "$\"/graph/node/{nodeUuid}/neighbors\"",
+                                operationId: "ListByGraphId",
+                                methodName: "ListByGraphIdAsync",
+                                pathTemplate: "$\"/graph/episodes/graph/{graphId}\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
@@ -259,9 +259,9 @@ namespace Zep
                         await global::Zep.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Zep.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "GetNeighbors",
-                                methodName: "GetNeighborsAsync",
-                                pathTemplate: "$\"/graph/node/{nodeUuid}/neighbors\"",
+                                operationId: "ListByGraphId",
+                                methodName: "ListByGraphIdAsync",
+                                pathTemplate: "$\"/graph/episodes/graph/{graphId}\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
@@ -299,7 +299,7 @@ namespace Zep
                 ProcessResponse(
                     client: HttpClient,
                     response: __response);
-                ProcessGetNeighborsResponse(
+                ProcessListByGraphIdResponse(
                     httpClient: HttpClient,
                     httpResponseMessage: __response);
                 if (__response.IsSuccessStatusCode)
@@ -307,9 +307,9 @@ namespace Zep
                     await global::Zep.AutoSDKRequestOptionsSupport.OnAfterSuccessAsync(
                             clientOptions: Options,
                             context: global::Zep.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "GetNeighbors",
-                                methodName: "GetNeighborsAsync",
-                                pathTemplate: "$\"/graph/node/{nodeUuid}/neighbors\"",
+                                operationId: "ListByGraphId",
+                                methodName: "ListByGraphIdAsync",
+                                pathTemplate: "$\"/graph/episodes/graph/{graphId}\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
@@ -329,9 +329,9 @@ namespace Zep
                     await global::Zep.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Zep.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "GetNeighbors",
-                                methodName: "GetNeighborsAsync",
-                                pathTemplate: "$\"/graph/node/{nodeUuid}/neighbors\"",
+                                operationId: "ListByGraphId",
+                                methodName: "ListByGraphIdAsync",
+                                pathTemplate: "$\"/graph/episodes/graph/{graphId}\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
@@ -378,43 +378,6 @@ namespace Zep
                                     innerException: __exception_400,
                                     responseBody: __content_400,
                                     responseObject: __value_400,
-                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
-                                        __response.Headers,
-                                        h => h.Key,
-                                        h => h.Value));
-                            }
-                            // Not Found
-                            if ((int)__response.StatusCode == 404)
-                            {
-                                string? __content_404 = null;
-                                global::System.Exception? __exception_404 = null;
-                                global::Zep.ApidataAPIError? __value_404 = null;
-                                try
-                                {
-                                    if (__effectiveReadResponseAsString)
-                                    {
-                                        __content_404 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_404 = global::Zep.ApidataAPIError.FromJson(__content_404, JsonSerializerContext);
-                                    }
-                                    else
-                                    {
-                                        __content_404 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-
-                                        __value_404 = global::Zep.ApidataAPIError.FromJson(__content_404, JsonSerializerContext);
-                                    }
-                                }
-                                catch (global::System.Exception __ex)
-                                {
-                                    __exception_404 = __ex;
-                                }
-
-
-                                throw global::Zep.ApiException<global::Zep.ApidataAPIError>.Create(
-                                    statusCode: __response.StatusCode,
-                                    message: __content_404 ?? __response.ReasonPhrase ?? string.Empty,
-                                    innerException: __exception_404,
-                                    responseBody: __content_404,
-                                    responseObject: __value_404,
                                     responseHeaders: global::System.Linq.Enumerable.ToDictionary(
                                         __response.Headers,
                                         h => h.Key,
@@ -470,7 +433,7 @@ namespace Zep
                                     client: HttpClient,
                                     response: __response,
                                     content: ref __content);
-                                ProcessGetNeighborsResponseContent(
+                                ProcessListByGraphIdResponseContent(
                                     httpClient: HttpClient,
                                     httpResponseMessage: __response,
                                     content: ref __content);
@@ -479,9 +442,9 @@ namespace Zep
                                 {
                                     __response.EnsureSuccessStatusCode();
 
-                                    var __value = (global::System.Collections.Generic.IList<global::Zep.ApidataGraphNodeNeighbor>?)global::System.Text.Json.JsonSerializer.Deserialize(__content, typeof(global::System.Collections.Generic.IList<global::Zep.ApidataGraphNodeNeighbor>), JsonSerializerContext) ??
+                                    var __value = (global::System.Collections.Generic.IList<global::Zep.ApidataGraphEpisode>?)global::System.Text.Json.JsonSerializer.Deserialize(__content, typeof(global::System.Collections.Generic.IList<global::Zep.ApidataGraphEpisode>), JsonSerializerContext) ??
                                         throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
-                                    return new global::Zep.AutoSDKHttpResponse<global::System.Collections.Generic.IList<global::Zep.ApidataGraphNodeNeighbor>>(
+                                    return new global::Zep.AutoSDKHttpResponse<global::System.Collections.Generic.IList<global::Zep.ApidataGraphEpisode>>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Zep.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
@@ -511,9 +474,9 @@ namespace Zep
                 #endif
                                     ).ConfigureAwait(false);
 
-                                    var __value = (global::System.Collections.Generic.IList<global::Zep.ApidataGraphNodeNeighbor>?)await global::System.Text.Json.JsonSerializer.DeserializeAsync(__content, typeof(global::System.Collections.Generic.IList<global::Zep.ApidataGraphNodeNeighbor>), JsonSerializerContext).ConfigureAwait(false) ??
+                                    var __value = (global::System.Collections.Generic.IList<global::Zep.ApidataGraphEpisode>?)await global::System.Text.Json.JsonSerializer.DeserializeAsync(__content, typeof(global::System.Collections.Generic.IList<global::Zep.ApidataGraphEpisode>), JsonSerializerContext).ConfigureAwait(false) ??
                                         throw new global::System.InvalidOperationException("Response deserialization failed.");
-                                    return new global::Zep.AutoSDKHttpResponse<global::System.Collections.Generic.IList<global::Zep.ApidataGraphNodeNeighbor>>(
+                                    return new global::Zep.AutoSDKHttpResponse<global::System.Collections.Generic.IList<global::Zep.ApidataGraphEpisode>>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Zep.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
@@ -554,64 +517,60 @@ namespace Zep
             }
         }
         /// <summary>
-        /// Get Node Neighbors<br/>
-        /// Enumerates the distinct entity nodes directly connected to a node, together with the edges connecting each to it.
+        /// List Graph Episodes<br/>
+        /// Returns a paginated, filterable list of episodes for a graph.
         /// </summary>
-        /// <param name="nodeUuid"></param>
+        /// <param name="graphId"></param>
         /// <param name="cursor">
         /// Opaque cursor for pagination, obtained from the Zep-Next-Cursor<br/>
         /// response header of the previous page.
         /// </param>
         /// <param name="direction">
-        /// Orientation of the connecting edge relative to the anchor node: "out"<br/>
-        /// (anchor is the edge's source), "in" (anchor is the edge's target), or<br/>
-        /// "both" (either). Defaults to "both".
+        /// Sort direction. One of "asc" or "desc". Defaults to "desc".
         /// </param>
-        /// <param name="directionSort">
-        /// Sort direction for order_by. One of "asc" or "desc". Defaults to<br/>
-        /// "desc". Named direction_sort to avoid clashing with the traversal<br/>
-        /// Direction field above.
-        /// </param>
-        /// <param name="filters">
-        /// Filters constraining the connecting edges (edge types, dates, and the<br/>
-        /// node- and episode-anchored UUID fields) and the neighbor nodes<br/>
-        /// (node_labels/exclude_node_labels). Reuses the graph.search filter<br/>
-        /// type.
+        /// <param name="episodeMetadataFilters">
+        /// Restricts results to episodes whose stored metadata matches this<br/>
+        /// predicate. Same type and limits as graph.search episode_metadata_filters.
         /// </param>
         /// <param name="limit">
-        /// Maximum number of neighbor nodes to return. An explicit value is<br/>
-        /// clamped to 50; when omitted, the default page size (100) applies.
+        /// Maximum number of episodes to return. An explicit value is clamped to<br/>
+        /// 50; when omitted, the default page size (100) applies.
+        /// </param>
+        /// <param name="mentionedNodeUuids">
+        /// Restricts results to episodes that mention any of the listed node<br/>
+        /// UUIDs. The list can also contain episode UUIDs: an episode UUID<br/>
+        /// matches that episode, so one request can return a known set of<br/>
+        /// episodes. At most 256 entries; each must be a syntactically valid UUID.
         /// </param>
         /// <param name="orderBy">
-        /// Field to sort neighbor nodes by. One of "uuid" or "created_at".<br/>
-        /// Defaults to "uuid".
+        /// Field to sort by. One of "uuid" or "created_at". Defaults to "uuid".
         /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
-        public async global::System.Threading.Tasks.Task<global::System.Collections.Generic.IList<global::Zep.ApidataGraphNodeNeighbor>> GetNeighborsAsync(
-            string nodeUuid,
+        public async global::System.Threading.Tasks.Task<global::System.Collections.Generic.IList<global::Zep.ApidataGraphEpisode>> ListByGraphIdAsync(
+            string graphId,
             string? cursor = default,
             string? direction = default,
-            string? directionSort = default,
-            global::Zep.GraphitiSearchFilters? filters = default,
+            global::Zep.GraphitiMetadataFilterGroup? episodeMetadataFilters = default,
             int? limit = default,
+            global::System.Collections.Generic.IList<string>? mentionedNodeUuids = default,
             string? orderBy = default,
             global::Zep.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __request = new global::Zep.ApidataGraphNodeNeighborsRequest
+            var __request = new global::Zep.ApidataGraphEpisodeListRequest
             {
                 Cursor = cursor,
                 Direction = direction,
-                DirectionSort = directionSort,
-                Filters = filters,
+                EpisodeMetadataFilters = episodeMetadataFilters,
                 Limit = limit,
+                MentionedNodeUuids = mentionedNodeUuids,
                 OrderBy = orderBy,
             };
 
-            return await GetNeighborsAsync(
-                nodeUuid: nodeUuid,
+            return await ListByGraphIdAsync(
+                graphId: graphId,
                 request: __request,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken).ConfigureAwait(false);

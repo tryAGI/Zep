@@ -16,39 +16,48 @@ namespace Zep
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(string))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(int))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataAPIError))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataRoleType), TypeInfoPropertyName = "ApidataRoleType2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(object))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(bool))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ModelsGraphDataType), TypeInfoPropertyName = "ModelsGraphDataType2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataGraphEpisode))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(double))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Zep.ApidataGraphEpisode>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<string>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.GraphitiEntityNode))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.GraphitiEntityEdge))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.GraphitiComparisonOperator), TypeInfoPropertyName = "GraphitiComparisonOperator2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.GraphitiDateFilter))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.GraphitiEpisodeMetadataFilter))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.GraphitiMetadataFilterGroupType), TypeInfoPropertyName = "GraphitiMetadataFilterGroupType2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.GraphitiMetadataFilterGroup))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Zep.GraphitiEpisodeMetadataFilter>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Zep.GraphitiMetadataFilterGroup>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataGraphEpisodeListRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.GraphitiPropertyFilter))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.GraphitiSearchFilters))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::System.Collections.Generic.IList<global::Zep.GraphitiDateFilter>>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Zep.GraphitiDateFilter>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Zep.GraphitiPropertyFilter>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Zep.GraphitiEntityEdge>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataGraphNodeNeighborsRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataGraphNodeNeighbor))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Zep.ApidataGraphNodeNeighbor>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(int?))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ApidataRoleType?), TypeInfoPropertyName = "NullableApidataRoleType2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(bool?))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.ModelsGraphDataType?), TypeInfoPropertyName = "NullableModelsGraphDataType2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(double?))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.GraphitiComparisonOperator?), TypeInfoPropertyName = "NullableGraphitiComparisonOperator2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Zep.GraphitiMetadataFilterGroupType?), TypeInfoPropertyName = "NullableGraphitiMetadataFilterGroupType2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Zep.ApidataGraphEpisode>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<string>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Zep.GraphitiEpisodeMetadataFilter>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Zep.GraphitiMetadataFilterGroup>))]
-    internal sealed partial class GraphEpisodeSourceGenerationContextChunk0 : global::System.Text.Json.Serialization.JsonSerializerContext
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::System.Collections.Generic.List<global::Zep.GraphitiDateFilter>>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Zep.GraphitiDateFilter>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Zep.GraphitiPropertyFilter>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Zep.GraphitiEntityEdge>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Zep.ApidataGraphNodeNeighbor>))]
+    internal sealed partial class NodeSourceGenerationContextChunk0 : global::System.Text.Json.Serialization.JsonSerializerContext
     {
     }
     /// <summary>
     ///
     /// </summary>
-    public sealed partial class GraphEpisodeSourceGenerationContext : global::System.Text.Json.Serialization.JsonSerializerContext
+    public sealed partial class NodeSourceGenerationContext : global::System.Text.Json.Serialization.JsonSerializerContext
     {
         private static readonly global::System.Text.Json.Serialization.Metadata.IJsonTypeInfoResolver Resolver = new LazyChunkResolver();
 
@@ -61,9 +70,9 @@ namespace Zep
         /// <summary>
         ///
         /// </summary>
-        public static GraphEpisodeSourceGenerationContext Default { get; } = new(DefaultOptions);
+        public static NodeSourceGenerationContext Default { get; } = new(DefaultOptions);
 
-        private GraphEpisodeSourceGenerationContext(global::System.Text.Json.JsonSerializerOptions options)
+        private NodeSourceGenerationContext(global::System.Text.Json.JsonSerializerOptions options)
             : base(options)
         {
         }
@@ -111,15 +120,7 @@ namespace Zep
             public override bool CanConvert(global::System.Type typeToConvert)
             {
                 return
-                    typeToConvert == typeof(global::Zep.ApidataRoleType)
-
-                    || typeToConvert == typeof(global::Zep.ApidataRoleType?)
-
-                    || typeToConvert == typeof(global::Zep.ModelsGraphDataType)
-
-                    || typeToConvert == typeof(global::Zep.ModelsGraphDataType?)
-
-                    || typeToConvert == typeof(global::Zep.GraphitiComparisonOperator)
+                    typeToConvert == typeof(global::Zep.GraphitiComparisonOperator)
 
                     || typeToConvert == typeof(global::Zep.GraphitiComparisonOperator?)
 
@@ -132,26 +133,6 @@ namespace Zep
                 global::System.Type typeToConvert,
                 global::System.Text.Json.JsonSerializerOptions options)
             {
-                if (typeToConvert == typeof(global::Zep.ApidataRoleType))
-                {
-                    return new global::Zep.JsonConverters.ApidataRoleTypeJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Zep.ApidataRoleType?))
-                {
-                    return new global::Zep.JsonConverters.ApidataRoleTypeNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Zep.ModelsGraphDataType))
-                {
-                    return new global::Zep.JsonConverters.ModelsGraphDataTypeJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Zep.ModelsGraphDataType?))
-                {
-                    return new global::Zep.JsonConverters.ModelsGraphDataTypeNullableJsonConverter();
-                }
-
                 if (typeToConvert == typeof(global::Zep.GraphitiComparisonOperator))
                 {
                     return new global::Zep.JsonConverters.GraphitiComparisonOperatorJsonConverter();
@@ -214,7 +195,7 @@ namespace Zep
             {
                 return index switch
                 {
-                    0 => new GraphEpisodeSourceGenerationContextChunk0(new global::System.Text.Json.JsonSerializerOptions()),
+                    0 => new NodeSourceGenerationContextChunk0(new global::System.Text.Json.JsonSerializerOptions()),
                     _ => throw new global::System.ArgumentOutOfRangeException(nameof(index)),
                 };
             }
